@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "model": "priming_b_160",
+      "stage": "posttraining",
+      "images": 1,
+      "precision": "FP32",
+      "ema": "0.999",
+      "passed": true
+    },
+    {
+      "model": "priming_l_80",
+      "stage": "pretraining",
+      "images": 2,
+      "precision": "FP32",
+      "ema": "0.9999",
+      "passed": true
+    }
+  ],
+  "same_seed_cpu_png_identical": true,
+  "invalid_class_and_count_rejected": true,
+  "existing_output_preserved": true,
+  "scope": "Real checkpoint CPU FP32 generation and CLI checks. CUDA/BF16 execution was not tested."
+}

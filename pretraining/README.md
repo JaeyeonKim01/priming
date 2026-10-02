@@ -1,9 +1,7 @@
 # Reconstruction pretraining
 
-This package migrates the production B and L reconstruction recipes and the
-B no-perceptual ablation. It does not launch training or claim a new numerical
-reproduction. All migrated runtime files are unchanged copies of retained
-source files; preparation and launch support live separately in `scripts/`.
+Train Priming-B with or without perceptual loss, or Priming-L with perceptual
+loss, using the production reconstruction recipes below.
 
 | Recipe | Runtime | Auxiliary loss | Suggested execution |
 |---|---|---|---|
@@ -21,40 +19,9 @@ These two intermediate/final checkpoints supply the corresponding post-training
 recipes; separate 80-epoch configs are unnecessary. No L no-perceptual recipe
 is included.
 
-## Historical identity
-
-The four released checkpoints trace to these pretraining runs:
-
-- B-80/B-160: `OST_B_t08_e160_perceptual_seed1_20260912`.
-- L-80/L-160: `OST_L_aux_unif_t08_38545843`.
-
-The B trainer, deterministic crop implementation, and dependencies match the
-retained September 12 production manifest. B explicitly uses math SDPA,
-deterministic cuDNN/algorithms, a native CPU bicubic crop backward, stateless
-flip/noise/crop seeds, and complete all-rank Muon/RNG recovery.
-
-The L recipe comes from the **original executed arguments**, not the run
-directory's subsequently overwritten 320-epoch config. Its original training
-ran August 12–14, 2026 (Eastern time), with a restart at epoch 110. The 80-epoch
-source was saved August 13 at 16:37; the 160-epoch source August 14 at 14:12.
-The separate 320-epoch continuation started August 16.
-
-`runtime/l` is the unchanged September 10 retained L-study code snapshot.
-It is not an independently hash-verified snapshot of the August pretraining
-allocation. Original arguments and logs verify the L recipe and checkpoint
-lineage; they do not record which SDPA kernel was selected. The retained code
-uses the original nondeterministic backend settings, ordinary RNG/dataloader
-streams, and CUDA crop backward. Its checkpoint format stores rank-zero
-optimizer state rather than B's complete all-rank state. These limitations are
-preserved and documented, not silently replaced by the B implementation.
-
-The perceptual thresholds are also preserved: B 0.8 and L 1.0. Both include
-all examples at fixed t=0.8. The underlying objectives, model factories, and
-optimizer code have not been refactored or unified.
-
-See [production provenance](provenance/README.md),
-[release lineage](provenance/release_lineage.json), and
-[migration validation](reports/validation.json).
+B and L preserve their original backend and resume behavior. See
+[reproducibility notes](provenance/README.md#historical-training-details) when
+comparing a new run with the released checkpoints.
 
 ## Files and dependencies
 

@@ -6,7 +6,7 @@ The source code and historical run names use **OST**.
 **Pipeline:** reconstruction pretraining → distributional post-training → evaluation.
 
 Clone this repository as `priming`; all commands and relative paths below start
-there. The code is self-contained and does not import a parent OST checkout.
+there.
 
 ```bash
 git clone https://github.com/JaeyeonKim01/one_step_priming.git priming
@@ -16,20 +16,21 @@ conda activate priming
 python scripts/check_environment.py
 ```
 
-[Environment and H100/H200 setup](docs/setup.md) ·
-[Data and model assets](docs/assets.md) · [Checkpoint upload](docs/checkpoints.md)
+- [Environment setup](docs/setup.md): create `priming` and configure H100/H200 execution.
+- [Data and model assets](docs/assets.md): ImageNet training data and evaluation encoders/statistics; sampling needs only a checkpoint.
+- [Checkpoint downloads](docs/checkpoints.md): download and verify the pretrained and post-trained models.
 
 ## 1. Checkpoints
 
 Four model/epoch combinations, each available before and after post-training.
 Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates.
 
-| Model | Pretraining epochs | Before post-training | After post-training |
+| Model | Pretraining epochs | Pretrained | Post-trained |
 |---|---:|---|---|
-| Priming-B | 80 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_80.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_80.pth?download=true) |
-| Priming-B | 160 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_160.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_160.pth?download=true) |
-| Priming-L | 80 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_80.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_80.pth?download=true) |
-| Priming-L | 160 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_160.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_160.pth?download=true) |
+| Priming-B | 80 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_80.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_80.pth?download=true) |
+| Priming-B | 160 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_160.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_160.pth?download=true) |
+| Priming-L | 80 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_80.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_80.pth?download=true) |
+| Priming-L | 160 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_160.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_160.pth?download=true) |
 
 Weights are downloaded separately into these paths; they are not stored in Git.
 All eight files are hosted at [jaykim1102/priming](https://huggingface.co/jaykim1102/priming).
@@ -39,8 +40,21 @@ checked-in manifests.
 Pretraining checkpoints contain online and EMA weights; post-training initializes
 from online weights, and final evaluation uses post-training EMA 0.999.
 
-[Checkpoint manifest and inference configs](checkpoints/manifest.json) ·
-[Pretraining source record](pretraining/provenance/release_lineage.json)
+### Sampling from checkpoints
+
+Download one checkpoint and generate samples on a single GPU:
+
+```bash
+hf download jaykim1102/priming checkpoints/priming_b_160.pth --local-dir .
+python scripts/sample.py --model priming_b_160 --num-images 16 \
+  --class-ids 207 --output-dir outputs/samples/b160
+```
+
+Saves individual PNGs and a `samples.json` record. `--class-ids` accepts ImageNet
+IDs 0–999; omit it to cycle through classes. B/L and 80/160 checkpoints are
+supported. Use `--stage pretraining` for pretrained weights after downloading
+the corresponding file under `checkpoints/pretraining/`.
+See [sampling options](docs/checkpoints.md#sampling-options).
 
 ## 2. Evaluation
 
@@ -50,7 +64,9 @@ all 33 runs passed validation and match the paper means at two decimal places.
 
 [Evaluation guide and commands](eval/README.md) ·
 [Reproduced results](eval/full_reproduction_20260930.md) ·
-[Results dashboard](dashboard/index.html)
+[Results dashboard](dashboard/index.html) ·
+Paper figures: [compute vs. FID](dashboard/figures/compute_vs_fid.pdf) /
+[compute vs. FDr⁵](dashboard/figures/compute_vs_fdr5.pdf)
 
 ## 3. Training 1: Reconstruction pretraining
 
@@ -76,7 +92,5 @@ scheduled evaluations, checkpoint recovery, and validation tools.
 
 ---
 
-Datasets, weights, and encoder assets remain external; each stage's guide lists
-its setup and dependencies. [Reproduction status and provenance](REPRODUCTION_STATUS.md)
-records completed checks and historical limitations. Pretraining code has been
-migrated and checked without launching a new training reproduction.
+See [reproduction status](REPRODUCTION_STATUS.md) for validated results and
+reproducibility notes.
