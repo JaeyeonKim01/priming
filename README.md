@@ -1,49 +1,65 @@
-# Priming Models / OST release staging
+# Priming Models
 
-This directory collects the four ImageNet production EMA models, the frozen
-FID/FDr⁵ evaluation record, and an offline [results dashboard](dashboard/index.html).
-The paper calls these models **Priming Models**; the original code and training
-run names use **OST**. The production OT post-training reproduction workflow
-is in [training](training/README.md). The production pretraining recipes and
-retained source code are packaged in [pretraining](pretraining/README.md).
+Code, checkpoints, and reproduction records for Priming Models on ImageNet-256.
+The source code and historical run names use **OST**.
 
-| Item | Location |
-|---|---|
-| Project and paper map | [PROJECT_MAP.md](PROJECT_MAP.md) |
-| B/L at 80/160 epochs, 25,000 OT updates | [checkpoint manifest](checkpoints/manifest.json) |
-| Latest ImageNet results and metric protocol | [evaluation README](eval/README.md) |
-| Reproduction audit | [REPRODUCTION_STATUS.md](REPRODUCTION_STATUS.md) |
-| B/L 160-epoch → 25k OT reproduction | [training guide](training/README.md) |
-| B perceptual / B no-perceptual / L perceptual pretraining | [pretraining guide](pretraining/README.md) |
-| Fresh full-precision results | [full_reproduction_20260930.csv](eval/full_reproduction_20260930.csv) |
-| Paper-batch full-precision results | [paper_results.csv](eval/paper_results.csv) |
+**Pipeline:** reconstruction pretraining → distributional post-training → evaluation.
 
-Each `checkpoints/*.pth` is a relative symlink to its original full production
-checkpoint through the repository's `fdloss_work_dirs` scratch mount. No
-model weights are stored under this home directory. The evaluator loads EMA
-0.999 directly from those source files. The JSON beside each link contains
-the inference configuration. The manifest records source SHA256 hashes and
-symlink targets. To use this staging directory elsewhere, provide the
-checkpoint files at the linked paths or replace the links with corresponding
-local paths after verifying the recorded hashes. Third-party baseline
-checkpoints, feature encoder weights, and real-image statistics are identified
-in [the evaluation guide](eval/README.md).
+## 1. Checkpoints
 
-```bash
-python OST_public/verify_checkpoints.py
-```
+Four model/epoch combinations, each available before and after post-training.
+Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates.
 
-The evaluation package uses the repository's frozen evaluation runtime and
-pinned vendor sources. The training package contains its own frozen production
-runtime; large datasets, pretrained weights, and encoder assets remain external.
-The pretraining package preserves separate B/L source snapshots and production
-configs. Its migration is checked without launching new pretraining runs;
-historical source and restart limitations are documented in its guide.
+| Model | Pretraining epochs | Before post-training | After post-training |
+|---|---:|---|---|
+| Priming-B | 80 | [Local checkpoint](../fdloss_work_dirs/OST/OST_B_t08_e160_perceptual_seed1_20260912/checkpoints/step_0100080.pth) | [Local checkpoint](checkpoints/priming_b_80.pth) |
+| Priming-B | 160 | [Local checkpoint](../fdloss_work_dirs/OST/OST_B_t08_e160_perceptual_seed1_20260912/checkpoints/step_0200160.pth) | [Local checkpoint](checkpoints/priming_b_160.pth) |
+| Priming-L | 80 | [Local checkpoint](../fdloss_work_dirs/OST/OST_L_aux_unif_t08_38545843/checkpoints/step_0100080.pth) | [Local checkpoint](checkpoints/priming_l_80.pth) |
+| Priming-L | 160 | [Local checkpoint](../fdloss_work_dirs/OST/OST_L_aux_unif_t08_38545843/checkpoints/step_0200160.pth) | [Local checkpoint](checkpoints/priming_l_160.pth) |
 
-Git includes the runtime source code, production configs, provenance, and
-retained validation/evaluation records. Weights (including local checkpoint
-symlinks), caches, logs, allocation links, and live scheduler/launch state are
-ignored. On this cluster, `python link_checkpoints.py` recreates the four local
-checkpoint links from the manifest; elsewhere, supply the matching checkpoint
-files at the configured locations. Empty `training/logs/` and `training/results/`
-directories are retained for the launch scripts.
+These links currently resolve in the original local workspace; weights are not
+stored in Git. **Hugging Face download links are planned.**
+Pretraining checkpoints contain online and EMA weights; post-training initializes
+from online weights, and final evaluation uses post-training EMA 0.999.
+
+[Checkpoint manifest and inference configs](checkpoints/manifest.json) ·
+[Pretraining source record](pretraining/provenance/release_lineage.json)
+
+## 2. Evaluation
+
+Evaluate the released models and comparison baselines with **FID** and **FDr⁵**.
+The reproduced batch covers 11 checkpoints × 3 sampling seeds × 50,000 images;
+all 33 runs passed validation and match the paper means at two decimal places.
+
+[Evaluation guide and commands](eval/README.md) ·
+[Reproduced results](eval/full_reproduction_20260930.md) ·
+[Results dashboard](dashboard/index.html)
+
+## 3. Training 1: Reconstruction pretraining
+
+Train at fixed corruption t=0.8 with adaptive pixel MSE, optionally adding
+LPIPS and ConvNeXt perceptual losses. Production recipes cover **B with/without
+perceptual loss** and **L with perceptual loss**. The 160-epoch runs retain
+both the 80- and 160-epoch checkpoints.
+
+[Pretraining guide](pretraining/README.md) ·
+[Production configs](pretraining/configs) ·
+[Source code](pretraining/runtime)
+
+## 4. Training 2: Distributional post-training
+
+Apply feature-wise optimal transport in ResNet-MAE and ConvNeXt feature spaces,
+starting from pretrained online weights with a fresh AdamW optimizer.
+The packaged **B/L-160** workflows run 25,000 updates and include EMA,
+scheduled evaluations, checkpoint recovery, and validation tools.
+
+[Post-training guide](training/README.md) ·
+[Production configs](training/configs) ·
+[Source code](training/runtime)
+
+---
+
+Datasets, weights, and encoder assets remain external; each stage's guide lists
+its setup and dependencies. [Reproduction status and provenance](REPRODUCTION_STATUS.md)
+records completed checks and historical limitations. Pretraining code has been
+migrated and checked without launching a new training reproduction.
