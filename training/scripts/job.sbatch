@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=Priming_OT
-#SBATCH --partition=kempner_h200
-#SBATCH --account=kempner_sitanc_lab
-#SBATCH --nodes=4
-#SBATCH --gpus-per-node=2
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=8
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=240G
@@ -21,7 +19,7 @@ export JOB_DIR="$SCRATCH_ROOT/${MODE}_${ARM}_${SLURM_JOB_ID}"
 export RUN_NAME RUN_DIR
 RUN_NAME=$("$PYTHON" -c 'import json,os; c=json.load(open(os.environ["TASK"]+"/configs/"+os.environ["ARM"]+".json")); print(c["logging"]["exp_name"])')
 if [[ "$MODE" == probe ]]; then RUN_NAME="${RUN_NAME}_probe_${SLURM_JOB_ID}"; fi
-RUN_DIR=$("$PYTHON" -c 'import json,os; from pathlib import Path; c=json.load(open(os.environ["TASK"]+"/configs/"+os.environ["ARM"]+".json")); print(Path(c["logging"]["output_dir"])/c["logging"]["project"]/os.environ["RUN_NAME"])')
+RUN_DIR=$("$PYTHON" "$TASK/scripts/paths.py" --run-dir "$ARM" --run-name "$RUN_NAME")
 if [[ "${SLURM_RESTART_COUNT:-0}" == 0 ]]; then
   test ! -e "$RUN_DIR"
   if [[ "$MODE" == train ]]; then "$PYTHON" "$TASK/scripts/verify.py" --gate "$ARM"; fi

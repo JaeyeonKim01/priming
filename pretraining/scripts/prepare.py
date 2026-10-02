@@ -5,7 +5,7 @@ from pathlib import Path
 
 from omegaconf import OmegaConf
 
-from common import ROOT, RECIPES, sha, verify_runtime, write_json
+from common import ROOT, RECIPES, sha, verify_runtime, write_json, resolve
 
 
 def data_identity(path, validation):
@@ -28,7 +28,8 @@ def data_identity(path, validation):
 def prepare(recipe, bundle, output, site):
     if recipe not in RECIPES:
         raise ValueError(recipe)
-    bundle, output = Path(bundle).resolve(), Path(output).resolve()
+    bundle, output = resolve(bundle).resolve(), resolve(output).resolve()
+    site = {key: str(resolve(value)) for key, value in site.items()}
     if bundle.exists() or output.exists():
         raise FileExistsError('Use new bundle and training output directories; reuse an existing bundle for recovery.')
     if bundle == output or bundle in output.parents or output in bundle.parents:
@@ -98,7 +99,7 @@ if __name__ == '__main__':
     for name in ('data-path', 'hf-home', 'torch-home', 'lpips-weights'):
         parser.add_argument('--' + name)
     args = parser.parse_args()
-    site = json.loads(args.site.read_text())
+    site = json.loads(resolve(args.site).read_text())
     for key in ('data_path', 'hf_home', 'torch_home', 'lpips_weights'):
         if getattr(args, key):
             site[key] = getattr(args, key)

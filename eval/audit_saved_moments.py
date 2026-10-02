@@ -12,11 +12,13 @@ import numpy as np
 
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[1]
-sys.path.insert(0, str(ROOT / "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity"))
+ROOT = HERE.parent
+sys.path.insert(0, str(ROOT))
+from priming_paths import asset, resolve
+sys.path.insert(0, str(HERE / "vendor/torch-fidelity"))
 from torch_fidelity.metric_fid import fid_statistics_to_metric  # noqa: E402
 
-REFERENCE = Path("/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz")
+REFERENCE = asset('PRIMING_FID_REFERENCE', 'assets/fid_stats/jit_in256_stats.npz')
 REFERENCE_SHA256 = "412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c"
 
 
@@ -35,6 +37,8 @@ def main() -> None:
     parser.add_argument("--reference", type=Path, default=REFERENCE)
     parser.add_argument("--report", type=Path, help="Optional JSON audit output")
     options = parser.parse_args()
+    options.output_dir = resolve(options.output_dir)
+    options.reference = resolve(options.reference)
     assert digest(options.reference) == REFERENCE_SHA256
     with np.load(options.reference) as data:
         reference = {key: data[key] for key in ("mu", "sigma")}

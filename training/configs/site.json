@@ -1,8 +1,11 @@
 {
-  "python": "/n/home10/jaykim/.conda/envs/fdloss/bin/python",
-  "scratch_root": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_ot_20260930",
-  "hf_home": "/n/netscratch/sham_lab/Lab/jaykim/ost_b_perceptual_ot_20260916/protected_assets/huggingface",
-  "torch_home": "/n/home10/jaykim/woobin/OST/tests/mmd/runs/torch_cache",
-  "data_root": "/n/netscratch/sham_lab/Lab/jaykim/FD-Loss/data",
-  "fid_stats": "/n/netscratch/sham_lab/Lab/jaykim/ost_b_perceptual_ot_20260916/protected_assets/fid_stats"
+  "scratch_root": "outputs/posttraining_allocations",
+  "hf_home": "assets/huggingface",
+  "torch_home": "assets/torch",
+  "data_root": "data",
+  "fid_stats": "assets/fid_stats",
+  "nodes": 1,
+  "gpus_per_node": 8,
+  "partition": null,
+  "account": null
 }

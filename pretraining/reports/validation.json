@@ -112,8 +112,12 @@
   "recipes": {
     "b160_no_perceptual": {
       "completed_updates": 200160,
-      "config_sha256": "1c738c661217bf21dbf3e6ea56a88336caad35266830f2b4262a1ca0651a4a34",
+      "config_sha256": "8e0d71dd18d3e5d7c25c32439dc71b1d16377529c16379a1fa12138bd38b75fb",
       "differences": {
+        "data.data_path": [
+          "/n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data",
+          "data/imagenet"
+        ],
         "train.exp_name": [
           "OST_B_t08_e160_no_perceptual_seed1_20260912",
           "b160_no_perceptual"
@@ -124,15 +128,19 @@
         ],
         "train.project": [
           "OST",
-          "OST_public"
+          "priming"
         ]
       },
       "retained_epoch80_step": 100080
     },
     "b160_perceptual": {
       "completed_updates": 200160,
-      "config_sha256": "14f18e5fbf7676b95442407e8dae0d0d365bd9e45095c33d8da91502ed0ca588",
+      "config_sha256": "ea9c87a1c984952dd6c4ce5dd7719b9d9df7e29cb80c7d63b232a2bd5a012e0c",
       "differences": {
+        "data.data_path": [
+          "/n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data",
+          "data/imagenet"
+        ],
         "train.exp_name": [
           "OST_B_t08_e160_perceptual_seed1_20260912",
           "b160_perceptual"
@@ -143,15 +151,19 @@
         ],
         "train.project": [
           "OST",
-          "OST_public"
+          "priming"
         ]
       },
       "retained_epoch80_step": 100080
     },
     "l160_perceptual": {
       "completed_updates": 200160,
-      "config_sha256": "61bbe4e0b2eb937d133705678d4ae91565aceccab292af517bb813dada9440d7",
+      "config_sha256": "dbac799a3165682b36b38f5df4452ba3cfe70017c27cb7088bbdb0de83de7822",
       "differences": {
+        "data.data_path": [
+          "/n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data",
+          "data/imagenet"
+        ],
         "train.enable_wandb": [
           true,
           false
@@ -166,7 +178,7 @@
         ],
         "train.project": [
           "OST",
-          "OST_public"
+          "priming"
         ]
       },
       "retained_epoch80_step": 100080

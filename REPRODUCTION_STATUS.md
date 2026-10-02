@@ -136,3 +136,14 @@ L's original arguments and logs establish its recipe and checkpoint lineage,
 while its retained code snapshot comes from the later September study.
 The [source record](pretraining/provenance/README.md) documents that distinction
 and preserves L's historical restart limitations.
+
+## Portable checkout
+
+The public code now resolves active paths from the `priming/` repository and
+includes its evaluation runtime and baseline sampler sources. Current setup
+and H100/H200 commands are in [the setup guide](docs/setup.md) and each stage's
+README. Historical cluster paths in this report and provenance identify the
+original evidence; they are not required by new launches. Fresh launch state
+lives in ignored `training/state/`. The portability checks use a newly installed
+`priming` environment and a source-only relocated checkout; they do not claim
+a new GPU training or sampling reproduction.

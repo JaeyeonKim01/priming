@@ -1,11 +1,13 @@
 """Adapters around pinned, unmodified upstream baseline sampling code."""
-import contextlib, hashlib, os, subprocess, sys
+import contextlib, hashlib, json, os, sys
 from pathlib import Path
 from types import SimpleNamespace, ModuleType
 import torch
 HERE=Path(__file__).resolve().parent
-ROOT=HERE.parents[1]
-ASSETS=Path(os.environ.get('OST_BASELINE_CHECKPOINTS','/n/netscratch/sham_lab/Lab/jaykim/three_seed_eval_20260925/assets/checkpoints/base'))
+ROOT=HERE.parent
+sys.path.insert(0,str(ROOT))
+from priming_paths import asset
+ASSETS=asset('PRIMING_BASELINE_CHECKPOINTS','assets/baselines/checkpoints')
 EXPECTED={
  'pmf_l':('pMF-L_256.pth','930eea77d2874031740af7c56b24e440520e820f8c298ed0f16a728ec512f1d3'),
  'pmf_h':('pMF-H_256.pth','0822f66af5be5d0a2d7e127779ade472e0a0a04c6b6db02d42e7af29a1377e99'),
@@ -16,7 +18,7 @@ EXPECTED={
 def load_baseline(key):
  filename,expected=EXPECTED[key]; ckpt=ASSETS/filename
  repo='pMF' if key.startswith('pmf') else 'iMF' if key=='imf_xl' else 'JiT'
- vendor=ROOT/'isolated_experiments/three_seed_eval_20260925/vendor'/repo; sys.path.insert(0,str(vendor))
+ vendor=HERE/'vendor'/repo; sys.path.insert(0,str(vendor))
  # Upstream repos use namespace directories; prevent W-Flow's regular packages
  # with the same names from winning Python's import search.
  for package in ('models','utils') if repo!='JiT' else ('util',):
@@ -28,7 +30,7 @@ def load_baseline(key):
  print('CHECKPOINT',key,'top_keys',list(state)[:6],flush=True)
  metadata=dict(checkpoint=str(ckpt),expected_checkpoint_sha256=expected,checkpoint_release='jjiaweiyang/FD-Loss@88ce2bb4061b0dd58839a1827235ffcffa51eed2',official_sampler_source=str(vendor),adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
  if repo!='JiT':
-  metadata['official_sampler_commit']=subprocess.check_output(['git','-C',str(vendor),'rev-parse','HEAD'],text=True).strip()
+  metadata['official_sampler_commit']=json.loads((HERE/'provenance/vendors.json').read_text())[repo]['commit']
   from utils.torch_util import BatchGenerator
   if repo=='pMF':
    from pmf import pixelMeanFlow

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import datetime
 import json
@@ -11,7 +12,7 @@ from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[1]
+ROOT = HERE.parent
 LABELS = {
     "wflow_xl": ("WF-XL/2", "WF-XL/2"),
     "drifting_b": ("Drifting-B/16", "Drifting-B"),
@@ -27,8 +28,8 @@ LABELS = {
 }
 
 
-def manuscript_rows() -> dict[str, tuple[float, float, float]]:
-    text = (ROOT / "final_paper/onestep_newer/3_Experiment.tex").read_text()
+def manuscript_rows(path) -> dict[str, tuple[float, float, float]]:
+    text = path.read_text()
     table = text.split(r"\begin{tabular}{lrrr}", 1)[1].split(r"\end{tabular}", 1)[0]
     table = re.sub(r"\\tablecolor\{[^{}]*\}", "", table)
     for command in ("textbf", "underline"):
@@ -46,8 +47,11 @@ def manuscript_rows() -> dict[str, tuple[float, float, float]]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--manuscript", type=Path, default=HERE / "provenance/manuscript_table.tex")
+    options = parser.parse_args()
     paper = {r["model"]: r for r in csv.DictReader((HERE / "paper_results.csv").open())}
-    table = manuscript_rows()
+    table = manuscript_rows(options.manuscript)
     status = (HERE.parent / "REPRODUCTION_STATUS.md").read_text()
     assert len(paper) == len(table) == len(LABELS) == 11
     checked = {}

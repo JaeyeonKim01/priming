@@ -41,7 +41,7 @@ def verify():
                 raise ValueError(f'Historical {family} source mismatch: {name}')
         historical[family] = dict(matching_files=len(covered),
                                   additional_vendor_files=sorted(runtime.keys() - covered.keys()))
-    allowed = {'train.output_dir', 'train.project', 'train.exp_name', 'train.enable_wandb'}
+    allowed = {'data.data_path', 'train.output_dir', 'train.project', 'train.exp_name', 'train.enable_wandb'}
     recipes = {}
     for name in RECIPES:
         cfg = plain(ROOT / f'configs/{name}.yaml')

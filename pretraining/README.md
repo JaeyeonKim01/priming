@@ -5,11 +5,11 @@ B no-perceptual ablation. It does not launch training or claim a new numerical
 reproduction. All migrated runtime files are unchanged copies of retained
 source files; preparation and launch support live separately in `scripts/`.
 
-| Recipe | Runtime | Auxiliary loss | Production execution |
+| Recipe | Runtime | Auxiliary loss | Suggested execution |
 |---|---|---|---|
-| `b160_perceptual` | B production snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 4 nodes × 2 H200s |
-| `b160_no_perceptual` | Same B snapshot | Entire auxiliary branch disabled | 4 nodes × 2 H200s |
-| `l160_perceptual` | Retained L code snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 2 nodes × 4 H200s |
+| `b160_perceptual` | B production snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 8 H100/H200 GPUs |
+| `b160_no_perceptual` | Same B snapshot | Entire auxiliary branch disabled | 8 H100/H200 GPUs |
+| `l160_perceptual` | Retained L code snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 8 H100/H200 GPUs |
 
 All three use ImageNet-256, fixed corruption t=0.8, adaptive pixel MSE,
 label dropout 0, seed 1, Muon LR 0.001 with a constant schedule, BF16,
@@ -69,9 +69,9 @@ See [production provenance](provenance/README.md),
 - `tests/`: packaging checks. The original B recovery tests are also retained
   unchanged inside its runtime.
 
-Use Python 3.11 with [requirements.txt](requirements.txt). The local `fdloss`
-environment already provides these versions. CPU verification additionally
-requires `pytest`; see [requirements-dev.txt](requirements-dev.txt).
+Create and activate the shared `priming` environment using
+[the setup guide](../docs/setup.md). The pinned environment includes the CPU
+verification dependencies. All paths resolve from the `priming/` repository.
 
 Large assets remain external:
 
@@ -83,15 +83,13 @@ Large assets remain external:
    Hugging Face cache for `facebook/convnextv2-base-22k-224` in `HF_HOME/hub/`.
 
 The no-perceptual recipe does not require or construct those encoders.
-The supplied `configs/site.json` records this cluster's existing locations;
-change it or use preparation flags on another machine. No parent `OST` source
-imports or checkpoint links are needed to run the migrated Python code.
-The site example still points to externally stored assets in the original
-workspace; move those assets or supply new paths when moving the package.
+The supplied `configs/site.json` uses `data/imagenet`, `assets/huggingface`,
+`assets/torch`, and `assets/lpips/vgg.pth`, all relative to the repository.
+See [asset layout](../docs/assets.md). No parent OST source is required.
 
 ## Check and prepare
 
-From `OST_public`, using an environment with the dependencies installed:
+From `priming`, using an environment with the dependencies installed:
 
 ```bash
 python pretraining/scripts/verify.py --cpu
@@ -99,8 +97,8 @@ python -m pytest -q pretraining/tests
 
 python pretraining/scripts/prepare.py \
   --recipe b160_perceptual \
-  --bundle /scratch/my_pretraining/b160_bundle \
-  --output /scratch/my_pretraining/b160_run
+  --bundle outputs/pretraining/b160_bundle \
+  --output outputs/pretraining/b160_run
 ```
 
 Choose `b160_no_perceptual` or `l160_perceptual` for the other recipes.
@@ -124,21 +122,23 @@ On one eight-GPU machine:
 
 ```bash
 python -m torch.distributed.run --standalone --nproc_per_node=8 \
-  pretraining/scripts/train.py --bundle /scratch/my_pretraining/b160_bundle
+  pretraining/scripts/train.py --bundle outputs/pretraining/b160_bundle
 ```
 
-For the historical multi-node H200 layout on Kempner, from `OST_public`:
+On a Slurm cluster with H100/H200 GPUs, submit from `priming`:
 
 ```bash
 export PRETRAINING_ROOT="$PWD/pretraining"
-export PYTHON=/n/home10/jaykim/.conda/envs/fdloss/bin/python
-# B recipes:
-sbatch --nodes=4 --gpus-per-node=2 \
-  pretraining/scripts/run.sbatch /scratch/my_pretraining/b160_bundle
-# L recipe, after preparing its own bundle:
+export PYTHON="$(command -v python)"
+sbatch pretraining/scripts/run.sbatch "$PWD/outputs/pretraining/b160_bundle"
+# To use multiple nodes, keep the total at eight ranks:
 sbatch --nodes=2 --gpus-per-node=4 \
-  pretraining/scripts/run.sbatch /scratch/my_pretraining/l160_bundle
+  pretraining/scripts/run.sbatch "$PWD/outputs/pretraining/l160_bundle"
 ```
+
+The default is one node with eight GPUs. Add your cluster's partition/account
+flags if required. Hardware/topology changes do not imply bitwise equivalence;
+use the original microbatch, global batch, precision, and runtime settings.
 
 The Slurm script requests a checkpoint on USR1 and waits for the ranks to
 finish saving. A preempted segment exits with code 75. To continue in a new

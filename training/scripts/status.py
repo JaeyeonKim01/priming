@@ -1,6 +1,9 @@
 """Collect progress and audit complete online/EMA evaluation draws."""
 import argparse
 import csv
+import getpass
+import shutil
+from paths import load_config
 from datetime import datetime, timezone
 import json
 import math
@@ -15,14 +18,14 @@ from src.eval.dashboard_data import evaluation_groups
 
 
 def collect():
-    launch = TASK / 'reports/launch.json'
+    launch = TASK / 'state/launch.json'
     jobs = json.loads(launch.read_text())['jobs'] if launch.exists() else {}
-    queue = subprocess.check_output(['squeue', '-h', '-u', 'jaykim', '-o', '%i|%T|%R'], text=True)
+    queue = subprocess.check_output(['squeue', '-h', '-u', getpass.getuser(), '-o', '%i|%T|%R'], text=True) if shutil.which('squeue') else ''
     live = {row.split('|')[0]: row.split('|')[1:] for row in queue.splitlines()}
     result = dict(observed_at=datetime.now(timezone.utc).isoformat(), arms={}, jobs=live)
     milestones = {}
     for arm in ('b160', 'l160'):
-        cfg = json.loads((TASK / f'configs/{arm}.json').read_text())
+        cfg = load_config(arm)
         run = Path(cfg['logging']['output_dir']) / cfg['logging']['project'] / cfg['logging']['exp_name']
         diag = run / 'ot_diagnostics.jsonl'
         records = []
@@ -33,7 +36,7 @@ def collect():
                 except json.JSONDecodeError:
                     pass  # The final line can be in flight.
         row = dict(run_dir=str(run), updates=records[-1]['updates'] if records else 0,
-                   preflight=(TASK / f'reports/preflight_{arm}.json').exists(),
+                   preflight=(TASK / f'state/preflight_{arm}.json').exists(),
                    production_job=jobs.get('train_' + arm, {}).get('id'), evaluations=[])
         if records:
             row['latest'] = records[-1]

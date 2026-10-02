@@ -1,0 +1,798 @@
+{
+  "runtime/src/lora.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/lora.py",
+    "sha256": "965219356d58153d1c22d8bd31619439833f37b83dc79f7d94e325ef01b381d8"
+  },
+  "runtime/src/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/__init__.py",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "runtime/src/utils/schedule_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/schedule_util.py",
+    "sha256": "e01cb1ec3875f9b0cc05f769109a691003ac676656711ef65d052f73c75ef0b6"
+  },
+  "runtime/src/utils/eval_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/eval_util.py",
+    "sha256": "1ccd9af5fd954af0daff7b9ccbb464e575bb9944e700c0cd4a0517739edc0cf3"
+  },
+  "runtime/src/utils/optimizer_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/optimizer_util.py",
+    "sha256": "cadf08b955b4c0b1dce46de9c5f9f1746737297b81eacfd6f04214fef4b8a277"
+  },
+  "runtime/src/utils/muon_patch.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/muon_patch.py",
+    "sha256": "5dd75bdd728ea785cd3b4de3bea0efef1f7e4790ed747e39a3274918d35136aa"
+  },
+  "runtime/src/utils/builders.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/builders.py",
+    "sha256": "c1680590a90ce4c0d822aa69d46933e85595b848a819785dee0711c6dd97bd40"
+  },
+  "runtime/src/utils/ot_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/ot_util.py",
+    "sha256": "de8fba6fc8c9cb9740feb6d07d4bff5c30783b3a29aeadad5076f216c3a2dd8d"
+  },
+  "runtime/src/utils/setup_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/setup_util.py",
+    "sha256": "1fc1f6ba6f6c2b124a7f858a20591da0a2b384349db262f8a62e6e1d5d0b1423"
+  },
+  "runtime/src/utils/checkpoint_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/checkpoint_util.py",
+    "sha256": "c629380305fe34d82ec885c5b31f208def7c9872fca2a8050dd12cabc7475274"
+  },
+  "runtime/src/utils/loss_perceptual.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/loss_perceptual.py",
+    "sha256": "45e369abb2d9c74c1f64e0123500b02e3bddf750436a410aaee29130cebaabd0"
+  },
+  "runtime/src/utils/perception_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/perception_util.py",
+    "sha256": "a2abef5482fdff523cdf493b2450a4a904fc987f8644149dad76fa6987e09f05"
+  },
+  "runtime/src/utils/distributed_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/distributed_util.py",
+    "sha256": "7582b676686ed8dd7cc7c1daf02b7abbc447de454aea4059ce9911f5b412e42d"
+  },
+  "runtime/src/utils/logging_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/logging_util.py",
+    "sha256": "39027cd1adc6b756c4651be4a87f8362a84685b00c413018af991acc469754a3"
+  },
+  "runtime/src/utils/grad_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/grad_util.py",
+    "sha256": "2fedfe245e780d5d30d528026bfb1b63fdda900e61b6be734a486d2524c8d7af"
+  },
+  "runtime/src/utils/ema_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/ema_util.py",
+    "sha256": "d9dc77fa9ac4a350d9638bd393558387de92fe491f1b32dd53654e190f577011"
+  },
+  "runtime/src/utils/sampling_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/sampling_util.py",
+    "sha256": "af8f873f516d9a0c348ff6b7703f6e0e040e536cb44a76c2b569a82ba9775b34"
+  },
+  "runtime/src/utils/data_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/data_util.py",
+    "sha256": "30a1ec42a943307049b3fab0f981d6f4aa8a7ba9f5db63665df3a98dbfe68126"
+  },
+  "runtime/src/utils/xm_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/xm_util.py",
+    "sha256": "86c350fd658a1a34fd5944a6d9ca63c38223a3ffb2173016ca1b8be2e9b7ae01"
+  },
+  "runtime/src/utils/runtime_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/runtime_util.py",
+    "sha256": "05f4d06e6deedea94190010a456c61c04b94c968cbd4277e2110b91a5ff144d3"
+  },
+  "runtime/src/utils/rng_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/rng_util.py",
+    "sha256": "2a5d1ee39fe36f7c510a10d1a9aca1de448303358e9f86b441b1627fa39c4d05"
+  },
+  "runtime/src/utils/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/__init__.py",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "runtime/src/utils/vis_util.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/utils/vis_util.py",
+    "sha256": "a76faebf77f19fc521aed8dd1aa0a2a5332b2288e1dc5f101f009fed7eb38fff"
+  },
+  "runtime/src/eval/nearest_neighbor_audit.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/eval/nearest_neighbor_audit.py",
+    "sha256": "afbd1bc328ecfa9dc1e109dd30e98e3f85d504c279b90fd51a8e497c068de4c7"
+  },
+  "runtime/src/eval/support_motion.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/eval/support_motion.py",
+    "sha256": "b0bea4b4bf7bcf0d26cc9ad13bc4b7f38bc83929c91c2218e566132515aabffb"
+  },
+  "runtime/src/eval/inception.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/eval/inception.py",
+    "sha256": "0363a5e2bb75b0862e3889e3a642c09a543f07b33b3fe8377c1f2f2ecce9ad79"
+  },
+  "runtime/src/eval/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/eval/__init__.py",
+    "sha256": "f4265be9812a42fcbe10682769c95597946c675929ffc2a3693e9848bf67796c"
+  },
+  "runtime/src/eval/results.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/eval/results.py",
+    "sha256": "0376a093137f9b5f8cd2055771c9b0a70c31af27b3908e480895c25ecb5257a2"
+  },
+  "runtime/src/models/denoiser_rae.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/denoiser_rae.py",
+    "sha256": "4181672b0c59c126f04ad874d991dfbb55af17385481a4c4af4f28e903481119"
+  },
+  "runtime/src/models/jit.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/jit.py",
+    "sha256": "afa30bd05eabbf37ee4a8b687979f11ca5dfcaa411fe34aeb6b4ba029c8d6495"
+  },
+  "runtime/src/models/autoencoder.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/autoencoder.py",
+    "sha256": "461458e130ab2391e4e672383f7a3297ed8e19e174493142da57587001985656"
+  },
+  "runtime/src/models/denoiser_jit.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/denoiser_jit.py",
+    "sha256": "b7ef3069c41a96e7678f917ca2b7c9d5eec216a359aa7f50e294b0ceb3c9f63e"
+  },
+  "runtime/src/models/denoiser_mmjit.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/denoiser_mmjit.py",
+    "sha256": "1281b8bd7db1f9614e6dc5eb705a707c5040208c83d23b76d93f3b803378ca6e"
+  },
+  "runtime/src/models/ost.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/ost.py",
+    "sha256": "05a1f14cb47d5994f24ed3d2fe2d7c88818252ca59907fb380c53251e7c0e01a"
+  },
+  "runtime/src/models/tvm_jvp_attention.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/tvm_jvp_attention.py",
+    "sha256": "e43da787510a6e08c992fb9bc132f032c3f9d2e07fc1edb9f07b8fafd2083d32"
+  },
+  "runtime/src/models/commons.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/commons.py",
+    "sha256": "43bc5ee0c3d83bfd8a8828a13403593e78b1b22e5ed529869656820846586a1d"
+  },
+  "runtime/src/models/denoiser_ost.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/denoiser_ost.py",
+    "sha256": "1993fc5825ee60c9c52ff84f29ad3683a7909d7fd0ddfbfe49e72345a69b6dbd"
+  },
+  "runtime/src/models/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/__init__.py",
+    "sha256": "45608702dc5a191afd9c4cf9e18e3f421408b2889e99b18216a467e48e39899e"
+  },
+  "runtime/src/models/denoiser_imf.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/denoiser_imf.py",
+    "sha256": "31a226c4aacd9eb777e1b21c9fc27bc54c9c220c9f773c9920bdb6901cfcd064"
+  },
+  "runtime/src/models/mit.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/mit.py",
+    "sha256": "d6bcc18f4697fd2c59e6e98ad447669c23a5721601cad4dae68c5c66d0ce1879"
+  },
+  "runtime/src/models/denoiser_pmf.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/models/denoiser_pmf.py",
+    "sha256": "da05e67b562278b5fa96662cc249dfbba1bdd514c84ce95bb9466181c7887bd8"
+  },
+  "runtime/src/frechet_distance/queue.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/queue.py",
+    "sha256": "7eb73f0edbfe07258ebd6e19cf83cc6f34801ab7d2baa1a459f402b928993f23"
+  },
+  "runtime/src/frechet_distance/losses.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/losses.py",
+    "sha256": "a78f9eafbff8395647a5e28964b1f38b5608ca7c9b05b609d396a70b04916407"
+  },
+  "runtime/src/frechet_distance/grad_cache.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/grad_cache.py",
+    "sha256": "07193195b0887728cb4af4d84c46b29fcf30a0c30a3487c5f5ed8374a099e7b5"
+  },
+  "runtime/src/frechet_distance/datasets.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/datasets.py",
+    "sha256": "2445d1157f46367183c2f5bcadb443c5d6f2620cebbda1719bb93bab0ae67838"
+  },
+  "runtime/src/frechet_distance/metrics.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/metrics.py",
+    "sha256": "1f1904b19ff4d983b5c7e1befdcf95a56bfe230901b2295349a364ef21bf1bbd"
+  },
+  "runtime/src/frechet_distance/judges.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/judges.py",
+    "sha256": "4a25923334aa334b834afa9c7682994268a6063d9f16ea324f2bc614ff270c8f"
+  },
+  "runtime/src/frechet_distance/repr_models.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/repr_models.py",
+    "sha256": "9bcde9951dafb72935ab2b02845b7835e06ef42d4ff9c716d0f29cf50bd51e5f"
+  },
+  "runtime/src/frechet_distance/evaluator.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/evaluator.py",
+    "sha256": "c58cc7f6f14520cd0d073fa33776ae9846278d8a51ef8b68a4bbcd1c3f847eed"
+  },
+  "runtime/src/frechet_distance/joint_features.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/joint_features.py",
+    "sha256": "5db4e973f23f0a56fbdbe8108388b31641f036348c5f4ac9a4c241c02cced100"
+  },
+  "runtime/src/frechet_distance/pca_features.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/pca_features.py",
+    "sha256": "50e7e3889e926756cc2820db119041825795ab0ddde4575d5bb485b57f9b9181"
+  },
+  "runtime/src/frechet_distance/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/src/frechet_distance/__init__.py",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  "runtime/packages/distmatch/src/distmatch/images.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/images.py",
+    "sha256": "afc8cfd817d5ebffa77a7a5c9316301fed00ffcbf11025772b755928a1946d7e"
+  },
+  "runtime/packages/distmatch/src/distmatch/grad_caching.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/grad_caching.py",
+    "sha256": "da83d1beb42b7992ffdb2aec97d8b23b9ebacc2f128b9df9fe13fbd17f5f447b"
+  },
+  "runtime/packages/distmatch/src/distmatch/data.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/data.py",
+    "sha256": "fb548aa5267e2bb997fc007aa000486159d242b5b6d171ddf89ce323e1263d9b"
+  },
+  "runtime/packages/distmatch/src/distmatch/objective.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objective.py",
+    "sha256": "e2026691ffa2193bc0f6318b728ea743665b7d8179d0a5297ea31619c1ab0664"
+  },
+  "runtime/packages/distmatch/src/distmatch/evaluation.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/evaluation.py",
+    "sha256": "3f3626ec472c60b3beef842950ff19fa9dd0d0a20bb3b5d3a373c789fa6c906f"
+  },
+  "runtime/packages/distmatch/src/distmatch/features.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/features.py",
+    "sha256": "437b9375952b55129173289aa09e9638ab913c3c6c87d9ab1597c0e6744eea42"
+  },
+  "runtime/packages/distmatch/src/distmatch/distributed.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/distributed.py",
+    "sha256": "e1797f94e9526b3722a2cae577558d6c07bf27f717836d874986a8ea248f624f"
+  },
+  "runtime/packages/distmatch/src/distmatch/_version.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/_version.py",
+    "sha256": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed"
+  },
+  "runtime/packages/distmatch/src/distmatch/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/__init__.py",
+    "sha256": "a8f89a690606e6c769fb88e19388c12e9e9bf6fd918610be470744f32a7fe4a6"
+  },
+  "runtime/packages/distmatch/src/distmatch/aggregation.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/aggregation.py",
+    "sha256": "116005969c6310ce443e4b3d4b290f7a451a7c48a7ebc010cad19948cafac002"
+  },
+  "runtime/packages/distmatch/src/distmatch/extractors/base.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/extractors/base.py",
+    "sha256": "683380efd3379f525f33a99e1c4f9bec8cb20e348133d4f7a1982a20f0da3c1b"
+  },
+  "runtime/packages/distmatch/src/distmatch/extractors/pca.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/extractors/pca.py",
+    "sha256": "bb3566a5b63119a0a0aa1fd3628336e404c6ca4d9b49d8ebf9093526828bd08a"
+  },
+  "runtime/packages/distmatch/src/distmatch/extractors/inception.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/extractors/inception.py",
+    "sha256": "c7f6e687071bd8e839aad517597144f62a2c96f701fa713d3322989f208486df"
+  },
+  "runtime/packages/distmatch/src/distmatch/extractors/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/extractors/__init__.py",
+    "sha256": "44bcf8873d8e2b1a3ace7600e46e90bf839b917d3495e5f91e66abdf9b7cda8d"
+  },
+  "runtime/packages/distmatch/src/distmatch/extractors/model_families.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/extractors/model_families.py",
+    "sha256": "d5721de307ed044409a819ec65205efa0b2411217fed428e581ddc09dddf4804"
+  },
+  "runtime/packages/distmatch/src/distmatch/extractors/custom.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/extractors/custom.py",
+    "sha256": "e38a2c8844bd2e48d38efb2325a141d9cc597d892edcafe5b567fd115c0b2f48"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/sinkhorn_ot.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/sinkhorn_ot.py",
+    "sha256": "978041634dd0a84995139ab90cc3b6876905408df7dbf0c2fc3cef7b5830c6ff"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/forward_xm.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/forward_xm.py",
+    "sha256": "004e651b70265f4368ab25961ba796c03b473b43a2151cc95a493a2795c32fbc"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/__init__.py",
+    "sha256": "32ea3e72c0a391b7075700efa59d1d3f21d113b47861e64d195d1fde711a3100"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/frechet/loss.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/frechet/loss.py",
+    "sha256": "b17a30ea566fe2ea91b355ccd46f0cbbd21b0453035740313fba557ede43fd00"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/frechet/objective.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/frechet/objective.py",
+    "sha256": "5ed1322d6a7b720caad784585fb273adf5e90c52554c8b8f24ed280249ae7cdb"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/frechet/evaluation.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/frechet/evaluation.py",
+    "sha256": "8d462d179033bdd6aecfdab3305c551d903434f792cb311be83a4241d9c1ef9f"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/frechet/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/frechet/__init__.py",
+    "sha256": "c970ce1affdc96b446c404ed2b03be8f550f0adf37f6dfdefa316a25ca8dd895"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/frechet/artifacts.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/frechet/artifacts.py",
+    "sha256": "c8f3b8eb49bd98c04bdc7267d12198ec81c90f873b1413e7cf029530fb268854"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/frechet/reference.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/frechet/reference.py",
+    "sha256": "2603a2801d9fffd556b11f1dc58faaff7d2edb2a2969c8ba4d355eb2d71c8cd3"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/frechet/moments.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/frechet/moments.py",
+    "sha256": "90ba23c05836ea101b90f466dc9f27a91482acbace406510cf2b5e99d8f6ebe9"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/mmd/objective.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/mmd/objective.py",
+    "sha256": "6a90d130ab9e8c1790b400326819685ee3b549715537c54e10bc0081fd97e0b1"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/mmd/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/mmd/__init__.py",
+    "sha256": "de605ad302485eb29be262c38a25c2b1792444bebd257ba89252c162f375d743"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/mmd/reference.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/mmd/reference.py",
+    "sha256": "374239d0153beeb48768cf4eb7d831efb9946275323e2b1451c01b7ad6f1bf10"
+  },
+  "runtime/packages/distmatch/src/distmatch/objectives/mmd/kernels.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/src/distmatch/objectives/mmd/kernels.py",
+    "sha256": "fa42347f0ef5ec4da0b69b6551e975efe807fbd88a6c4af74fc7b2e44a74ce0f"
+  },
+  "runtime/packages/distmatch/tools/nearest_real_features.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/tools/nearest_real_features.py",
+    "sha256": "7cbe63be27ecd005cd1f0fdc40268d7b7f60b01d5a66d4e0d4089dc935b086e9"
+  },
+  "runtime/packages/distmatch/tools/__init__.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/tools/__init__.py",
+    "sha256": "910f30225fbca78ce596b121d40e1657110a48ad5d126c7742f09099e1d0098b"
+  },
+  "runtime/packages/distmatch/tools/eval_fd_checkpoint.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/packages/distmatch/tools/eval_fd_checkpoint.py",
+    "sha256": "3cf3cbab8f10fc1eae980d6face1765012c5d64fcf192e138242c2f722eabb48"
+  },
+  "runtime/scripts/main_mmd_and_eval.py": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/scripts/main_mmd_and_eval.py",
+    "sha256": "7d4f94d75c59468170e6152745edda82098c4bdf6e62eaeb2fd6fe1331c40dac"
+  },
+  "runtime/configs/main_mmd.yaml": {
+    "source": "tests/runs/ot_metric_climb_20260904/runtime/configs/main_mmd.yaml",
+    "sha256": "2fda6655057dca7b8efa6d5a81b94b662e267a5d96b2f8143e49211d2bbbc12c"
+  },
+  "vendor/torch-fidelity/.readthedocs.yaml": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/.readthedocs.yaml",
+    "sha256": "5a7db4f1213291987fcce809335eab2d38d93152b3ab8b6dd3dc37dd3958cddf"
+  },
+  "vendor/torch-fidelity/LICENSE.md": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/LICENSE.md",
+    "sha256": "3d1e0b75a53094ce367cb7847b31f548519a833329fb90c4ad002a6972eb0d12"
+  },
+  "vendor/torch-fidelity/requirements.txt": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/requirements.txt",
+    "sha256": "e5b7490795d51e4f1fecc1eadc43676ef482abe3ce3ecac478df4977f0fe2c39"
+  },
+  "vendor/torch-fidelity/pyproject.toml": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/pyproject.toml",
+    "sha256": "810e78be98d0c2d2ed4ef4b4a90388e92fc34a6fcebe58253f104f9d1b675f55"
+  },
+  "vendor/torch-fidelity/setup.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/setup.py",
+    "sha256": "cdd8eb53e54ac2d6e61b77940b212ceaa46a6cc53639824d3b772c344e0a7e50"
+  },
+  "vendor/torch-fidelity/utils/util_dump_dataset_as_images.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/utils/util_dump_dataset_as_images.py",
+    "sha256": "d00099b63b1a1272077e11878a13ce771d45135e9e0a05e528aa1ebb8ba82ca8"
+  },
+  "vendor/torch-fidelity/utils/util_convert_inception_weights.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/utils/util_convert_inception_weights.py",
+    "sha256": "6b5845687f7e80a9692cc4dc0d172dffdc2afa673ef12f81098d8be9315f051c"
+  },
+  "vendor/torch-fidelity/.circleci/smoke_tests.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/.circleci/smoke_tests.py",
+    "sha256": "07c1ac30559df1080391f716ff28c299cb1b118cc691df59aa7e75b86f3321bb"
+  },
+  "vendor/torch-fidelity/.circleci/config.yml": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/.circleci/config.yml",
+    "sha256": "26a5634112fbc052c8108b8a6edab906cdea115059364c72946224addd630a2a"
+  },
+  "vendor/torch-fidelity/torch_fidelity/metric_ppl.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/metric_ppl.py",
+    "sha256": "c3fac5f1fa8812e21b4404db463de680a59291e66cdb207e65e3ea8fb6ed62b9"
+  },
+  "vendor/torch-fidelity/torch_fidelity/feature_extractor_base.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/feature_extractor_base.py",
+    "sha256": "0ac0ac8aa4459941889e70fb0ac6dee6ad2df48da16c8b800255e0c25e6b66cd"
+  },
+  "vendor/torch-fidelity/torch_fidelity/feature_extractor_dinov2.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/feature_extractor_dinov2.py",
+    "sha256": "0dd35e1b099a70da9b139fa1b84470fb79277cc690aee54f1c4fdc4290516e14"
+  },
+  "vendor/torch-fidelity/torch_fidelity/metric_fid.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/metric_fid.py",
+    "sha256": "8caf90f0969932cabc66588b919f0519a68c411c52554272840218275a1bfbb8"
+  },
+  "vendor/torch-fidelity/torch_fidelity/generative_model_onnx.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/generative_model_onnx.py",
+    "sha256": "ea62debc044c2031ca6a60fb370ff28d6a04e4f796b1c2b385852a1ba63494cb"
+  },
+  "vendor/torch-fidelity/torch_fidelity/utils_torch.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/utils_torch.py",
+    "sha256": "9d76f03d2c3e0f25105d391a415ab233c7b41e02b85001e7cc4bb9fff4f23973"
+  },
+  "vendor/torch-fidelity/torch_fidelity/datasets.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/datasets.py",
+    "sha256": "092a29a0bc56d58bcc2a418aad730d1349059baea21d043d561eb396d9b89aa5"
+  },
+  "vendor/torch-fidelity/torch_fidelity/utils_torchvision.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/utils_torchvision.py",
+    "sha256": "603593c683f03a37766d62fbd20c58b1d7dfffa0dd8873de5e11ca1f9f888e10"
+  },
+  "vendor/torch-fidelity/torch_fidelity/helpers.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/helpers.py",
+    "sha256": "ed8683fbe790b4c48ce3c55e922cf1353f3286d7afcaa5082e09f6b956b80789"
+  },
+  "vendor/torch-fidelity/torch_fidelity/metric_kid.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/metric_kid.py",
+    "sha256": "304cc125efd0d0e7059c1ef7e0efbe4a5f0e0f5533ceaad9d444bb621463fb68"
+  },
+  "vendor/torch-fidelity/torch_fidelity/interpolate_compat_tensorflow.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/interpolate_compat_tensorflow.py",
+    "sha256": "e90a965f0c4f6e13b9d216308ba34f8162296bf4a440d82988f453a935ccee11"
+  },
+  "vendor/torch-fidelity/torch_fidelity/metrics.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/metrics.py",
+    "sha256": "d2cc846432bbaf4ddfcd5405687394481598809894c9d28eda76d26019209af7"
+  },
+  "vendor/torch-fidelity/torch_fidelity/feature_extractor_inceptionv3.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/feature_extractor_inceptionv3.py",
+    "sha256": "0aab0fe6cc121eb89b5e5b9730d186c8042622dc2923b31a633667a35b6dbe8e"
+  },
+  "vendor/torch-fidelity/torch_fidelity/deprecations.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/deprecations.py",
+    "sha256": "79b720b01578d1951155810a4b7954b27f9806380bf56192ce67637a9f804fb3"
+  },
+  "vendor/torch-fidelity/torch_fidelity/registry.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/registry.py",
+    "sha256": "83c75ebcfc29833192ed8bf002d6df8916369e15e99e5810d897b98de40ef062"
+  },
+  "vendor/torch-fidelity/torch_fidelity/generative_model_modulewrapper.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/generative_model_modulewrapper.py",
+    "sha256": "6e57d63a738588a2a6222b5efc1b4eb8a3a96cb14989b9c60aa821de65603a65"
+  },
+  "vendor/torch-fidelity/torch_fidelity/fidelity.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/fidelity.py",
+    "sha256": "7286939bb4f03fc8989b2e1cc6844862c411d1e2e43f51b3a540d7423c878bbe"
+  },
+  "vendor/torch-fidelity/torch_fidelity/defaults.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/defaults.py",
+    "sha256": "515b62573a1545f6bbca971f0314410b79afc40bcc4c61338874062ded9f364d"
+  },
+  "vendor/torch-fidelity/torch_fidelity/feature_extractor_clip.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/feature_extractor_clip.py",
+    "sha256": "1a9b27e9fdaed714669b615b2f33b90745707579174390ed953650e22b027256"
+  },
+  "vendor/torch-fidelity/torch_fidelity/noise.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/noise.py",
+    "sha256": "23cf6f1acd2518bca332908b975d3032cebbf4c583319f108091a2ab71eb520b"
+  },
+  "vendor/torch-fidelity/torch_fidelity/utils.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/utils.py",
+    "sha256": "e659e05778e0aeb03eb2b7ddb4f2327dc7fa3a08903f126775daa774c7806b7f"
+  },
+  "vendor/torch-fidelity/torch_fidelity/version.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/version.py",
+    "sha256": "ea8d750518e2707f90385f3f198782fd22da8090025c4ac790bb2520271fb885"
+  },
+  "vendor/torch-fidelity/torch_fidelity/generative_model_base.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/generative_model_base.py",
+    "sha256": "df1c48c4e3bc5cab676e6535a334b134b5b3f08e2e906ed86df5c3a1510cebd6"
+  },
+  "vendor/torch-fidelity/torch_fidelity/__init__.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/__init__.py",
+    "sha256": "e419bdf8c45ea1d0628af0470d8fe1ddca24d9c4484880648a8b33d953a7149c"
+  },
+  "vendor/torch-fidelity/torch_fidelity/metric_prc.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/metric_prc.py",
+    "sha256": "745dff77b2431bf22c36221ffc7df5f0d160e28e27c24bd013202c683e9673ab"
+  },
+  "vendor/torch-fidelity/torch_fidelity/feature_extractor_vgg16.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/feature_extractor_vgg16.py",
+    "sha256": "abcca6e6fc6efd5cd91af4fbfd26151e13bcee449a2b1c4a4aedb26e0c84b4d2"
+  },
+  "vendor/torch-fidelity/torch_fidelity/sample_similarity_lpips.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/sample_similarity_lpips.py",
+    "sha256": "aeddb5debc764d1012b878b53a7a3fa0a5c9fd9b7ed177f5b529182193c042e3"
+  },
+  "vendor/torch-fidelity/torch_fidelity/sample_similarity_base.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/sample_similarity_base.py",
+    "sha256": "ca21fa72f985b4aaa9011259c19580bf62f3d78ea3e2b9cea9586bff85893ff0"
+  },
+  "vendor/torch-fidelity/torch_fidelity/metric_isc.py": {
+    "source": "isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity/torch_fidelity/metric_isc.py",
+    "sha256": "f72986430dfa4fac5e9fb78ba057b79aa1de30ef79d98e0e080e98da21a1f097"
+  },
+  "vendor/pMF/LICENSE": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/LICENSE",
+    "sha256": "5a6f4d755c46be03147d1b6cf16596ed79a8a51bda5889c124b9d389d4b43b10"
+  },
+  "vendor/pMF/pmf.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/pmf.py",
+    "sha256": "0b8aa67ff0edccf3041d60aa92115f4c83e0df78d889723d56ed5a319709c23c"
+  },
+  "vendor/pMF/requirements.txt": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/requirements.txt",
+    "sha256": "2082093afb5b481e5aa31cc5f04e03d27758bd80fab81cf85ec21c8bed143697"
+  },
+  "vendor/pMF/evaluate.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/evaluate.py",
+    "sha256": "2fe7d4e588b29233dfad25a1adce09ea4c59d81314087fd502351fd49ee648cc"
+  },
+  "vendor/pMF/utils/torch_util.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/utils/torch_util.py",
+    "sha256": "905ac985527bdcceda21a846215c901ecddf90d6293508eb04054972ab01a661"
+  },
+  "vendor/pMF/utils/fidelity_wrapper.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/utils/fidelity_wrapper.py",
+    "sha256": "e4efab62f81b230aade9eae89d1b76d5d363f911e7f44d2d3ffbc1f2b5e67090"
+  },
+  "vendor/pMF/utils/torch_dist_util.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/utils/torch_dist_util.py",
+    "sha256": "8e9ddae2b3740d90b5f7e9e47ce00c8d4cc16b083df8da9751e877f80c38bce4"
+  },
+  "vendor/pMF/models/embedder.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/models/embedder.py",
+    "sha256": "7a8f13738d1de2148a58232ceca722f221b0888d6e8f74fc45e1192b4ee523a7"
+  },
+  "vendor/pMF/models/pmfDiT.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/models/pmfDiT.py",
+    "sha256": "6752bbd515f7d69dc4768c12173a706debc215b3ab43796e36c691c9233c0c3b"
+  },
+  "vendor/pMF/models/torch_models.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/pMF/models/torch_models.py",
+    "sha256": "a4369cee16b9e812717170c844a9882b1c31fc1b5afe016b3aed06e74c290aa4"
+  },
+  "vendor/iMF/LICENSE": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/LICENSE",
+    "sha256": "5a6f4d755c46be03147d1b6cf16596ed79a8a51bda5889c124b9d389d4b43b10"
+  },
+  "vendor/iMF/imf.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/imf.py",
+    "sha256": "33cdfa1baa4f2725f0181f993ee07f5e15fb7c55fbe5a2f303db0b238b7f436b"
+  },
+  "vendor/iMF/requirements.txt": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/requirements.txt",
+    "sha256": "4215eddb5e126eddcdc8324a055cd02c23f30d89292705aa613e363565546b65"
+  },
+  "vendor/iMF/evaluate.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/evaluate.py",
+    "sha256": "7ef85d91bd72ae0d86a7706d16b42164c2192eceaa437537fc443133ead66ac3"
+  },
+  "vendor/iMF/utils/torch_util.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/utils/torch_util.py",
+    "sha256": "905ac985527bdcceda21a846215c901ecddf90d6293508eb04054972ab01a661"
+  },
+  "vendor/iMF/utils/vae_util.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/utils/vae_util.py",
+    "sha256": "e87259fa956291d1aa8aecba14bc4c8079ab9bdb2d85a9b091551d0421806f38"
+  },
+  "vendor/iMF/utils/fidelity_wrapper.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/utils/fidelity_wrapper.py",
+    "sha256": "e4efab62f81b230aade9eae89d1b76d5d363f911e7f44d2d3ffbc1f2b5e67090"
+  },
+  "vendor/iMF/utils/torch_dist_util.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/utils/torch_dist_util.py",
+    "sha256": "8e9ddae2b3740d90b5f7e9e47ce00c8d4cc16b083df8da9751e877f80c38bce4"
+  },
+  "vendor/iMF/models/imfDiT.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/models/imfDiT.py",
+    "sha256": "9e607b251e58264403d61574fb99ed86dbe3e5fbc4eb21aa38f8dcad14c64309"
+  },
+  "vendor/iMF/models/embedder.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/models/embedder.py",
+    "sha256": "e8975428281faea5cb05b807a408c65609628230ca34dfad01dd84d46fc5d676"
+  },
+  "vendor/iMF/models/torch_models.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/iMF/models/torch_models.py",
+    "sha256": "a4369cee16b9e812717170c844a9882b1c31fc1b5afe016b3aed06e74c290aa4"
+  },
+  "vendor/JiT/LICENSE": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/LICENSE",
+    "sha256": "27658d5a15c520f7029fd1218696517e8d6b362c10d11c7e2a8e1977a0d7beb8"
+  },
+  "vendor/JiT/main_jit.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/main_jit.py",
+    "sha256": "00bf2423d4b28a66748a1d7695b392687e7fe32c032d61c47710f010740ce6c2"
+  },
+  "vendor/JiT/denoiser.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/denoiser.py",
+    "sha256": "3649319428f758080828b164266284a75dcd73b53ce81827302be0824bca91a4"
+  },
+  "vendor/JiT/environment.yaml": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/environment.yaml",
+    "sha256": "3729d82da2fa38d3bb1c4bb50b12be41475aa42859c7008c30868a38bc2a5519"
+  },
+  "vendor/JiT/model_jit.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/model_jit.py",
+    "sha256": "0293a23c01312317701c96704b85e7fe00b15d9261aa845731ea434103fd7563"
+  },
+  "vendor/JiT/engine_jit.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/engine_jit.py",
+    "sha256": "f3ef5b5df80734a4033da7e613325f7be5ef187c582dba1ea59d169ce1fbb3ce"
+  },
+  "vendor/JiT/prepare_ref.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/prepare_ref.py",
+    "sha256": "98cb886fa4b0d164404e0d42e13680a0208150ebf96d2598e37f40e54a06a333"
+  },
+  "vendor/JiT/util/crop.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/util/crop.py",
+    "sha256": "08da8c1300202e66773806085fcaf2415acf1e38ac8923d5cdf79cafd770ccb6"
+  },
+  "vendor/JiT/util/misc.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/util/misc.py",
+    "sha256": "7fbec8c02f58cd5cb168e64cfcdc02aa1af5eb772850fe0db4d1714aff4812d0"
+  },
+  "vendor/JiT/util/model_util.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/util/model_util.py",
+    "sha256": "f4f35cc86a41b374d9e3654c8a2cddc12fbb11d41a28d24f05cf667c008b912e"
+  },
+  "vendor/JiT/util/lr_sched.py": {
+    "source": "isolated_experiments/three_seed_eval_20260925/vendor/JiT/util/lr_sched.py",
+    "sha256": "47765fbc75affedb8c8c062d8b784fd00a6ee4527c8a82edb8cf514235d7e048"
+  },
+  "vendor/W-Flow/drift_loss.py": {
+    "source": "figures/W-Flow/drift_loss.py",
+    "sha256": "faff2e06640477fcb2f88e4625c1e257820b37192e2310d0e2d10213d6ee66e4"
+  },
+  "vendor/W-Flow/LICENSE": {
+    "source": "figures/W-Flow/LICENSE",
+    "sha256": "ee12cc1a4b06a05a337d9fb70b72867afaed7072d6ead0dfd3f64fd2249e3c12"
+  },
+  "vendor/W-Flow/memory_bank.py": {
+    "source": "figures/W-Flow/memory_bank.py",
+    "sha256": "58b24c3c164c6ac9774c8a972366282056e76b9c974b55412159ef75721d7c09"
+  },
+  "vendor/W-Flow/train.py": {
+    "source": "figures/W-Flow/train.py",
+    "sha256": "a6d38926c43058f24563e0353887e01f49a94845e738979885d9cb6e1a6d35af"
+  },
+  "vendor/W-Flow/requirements.txt": {
+    "source": "figures/W-Flow/requirements.txt",
+    "sha256": "92b713f8148a5d7521f4f52205d703d68d39eaae59c3f9e8d895cfcc7be50a9b"
+  },
+  "vendor/W-Flow/inference_ours.py": {
+    "source": "figures/W-Flow/inference_ours.py",
+    "sha256": "71b3c9a7577c47ed0130c849de49e80953592d77ce6ff06a16c1e7812b32d3a3"
+  },
+  "vendor/W-Flow/drift_loss_ot.py": {
+    "source": "figures/W-Flow/drift_loss_ot.py",
+    "sha256": "c987285caf69cb1085e3e50450936368373087d6066bb6fe15020bae8796b58e"
+  },
+  "vendor/W-Flow/utils/ckpt_util.py": {
+    "source": "figures/W-Flow/utils/ckpt_util.py",
+    "sha256": "3c346ae8de0097e4af4097e9b9438636e7103a7355ecb7fa49684156b6543313"
+  },
+  "vendor/W-Flow/utils/fidelity_wrapper.py": {
+    "source": "figures/W-Flow/utils/fidelity_wrapper.py",
+    "sha256": "c821312f70b480578b1ec2cfab2dac5f40ef3558bc37d72f18c827fc73040f7e"
+  },
+  "vendor/W-Flow/utils/init_util.py": {
+    "source": "figures/W-Flow/utils/init_util.py",
+    "sha256": "bde5cd7a8ecf9739466f8b23489175bd25637271b88e25b6b9456f0dcfc22e14"
+  },
+  "vendor/W-Flow/utils/fid_util.py": {
+    "source": "figures/W-Flow/utils/fid_util.py",
+    "sha256": "897f06e3a1167329abb36f5a79d90b710e1f944ed1b2146622711c91b1eed9c7"
+  },
+  "vendor/W-Flow/utils/model_builder.py": {
+    "source": "figures/W-Flow/utils/model_builder.py",
+    "sha256": "8b0546600f315cd4c1f10ba3b1cd44334218bfa06866a0dcbde1fbf788bb255e"
+  },
+  "vendor/W-Flow/utils/misc.py": {
+    "source": "figures/W-Flow/utils/misc.py",
+    "sha256": "f32dee784d3d3d1595f7bd43af68e2ff3cde0eaf4221928b9113aa4a77688d70"
+  },
+  "vendor/W-Flow/utils/logging.py": {
+    "source": "figures/W-Flow/utils/logging.py",
+    "sha256": "d6992abfbc42acfd7737229606ee729080586e9fa2ce83a006d8a94c9f87b465"
+  },
+  "vendor/W-Flow/utils/__init__.py": {
+    "source": "figures/W-Flow/utils/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "vendor/W-Flow/utils/env.py": {
+    "source": "figures/W-Flow/utils/env.py",
+    "sha256": "dc92022ce7872db801bd15e028d75519aa8609abed320ee1402c5cbc1d9816a5"
+  },
+  "vendor/W-Flow/utils/dist_util.py": {
+    "source": "figures/W-Flow/utils/dist_util.py",
+    "sha256": "fca3c5a63bf83f3c86209891fe537542d692c3e2afb30a6cbe805f884332bd81"
+  },
+  "vendor/W-Flow/utils/param_convert.py": {
+    "source": "figures/W-Flow/utils/param_convert.py",
+    "sha256": "a86029370ebed6e97248de7bc4e8b84b0aab1c04c53b8008305d7036b9cf255d"
+  },
+  "vendor/W-Flow/models/hf.py": {
+    "source": "figures/W-Flow/models/hf.py",
+    "sha256": "434708317eb8dddb356fc221cccb35da9dc0fc2dffc7d0ea7e608d8dcb256323"
+  },
+  "vendor/W-Flow/models/generator.py": {
+    "source": "figures/W-Flow/models/generator.py",
+    "sha256": "89b123ff3ca1f15ef3913a105023bdadb4fa0a7db89339d8b47fb793550c87f4"
+  },
+  "vendor/W-Flow/models/mae_model.py": {
+    "source": "figures/W-Flow/models/mae_model.py",
+    "sha256": "96020519077fcfc406e6bcb3c90a22576aa59497ecddf1986cf6ebc1b6c311a6"
+  },
+  "vendor/W-Flow/models/convnext.py": {
+    "source": "figures/W-Flow/models/convnext.py",
+    "sha256": "3deea14353da4754b88b987e6f37951789d2b67a22cefcc1c48f78f3d2b26864"
+  },
+  "vendor/W-Flow/dataset/dataset.py": {
+    "source": "figures/W-Flow/dataset/dataset.py",
+    "sha256": "26ddc544a66ebae7c82258c11d792d22842896b5b57419688f118c153d869783"
+  },
+  "vendor/W-Flow/dataset/latent.py": {
+    "source": "figures/W-Flow/dataset/latent.py",
+    "sha256": "fb4d515edb27fb6621f6369c7a73d75e032a31928147bf080142cfb7b3649ff9"
+  },
+  "vendor/W-Flow/dataset/vae.py": {
+    "source": "figures/W-Flow/dataset/vae.py",
+    "sha256": "98e7550b28af23fb2a1ad211ccb7c9fc0a43048afc2a39d411f3477431569670"
+  },
+  "vendor/W-Flow/misc/download_pretrained.py": {
+    "source": "figures/W-Flow/misc/download_pretrained.py",
+    "sha256": "11c82d6d506c9465d334269e3179ff6346e9f59c8f9f0e6f8dd67f42e1c05946"
+  },
+  "vendor/W-Flow/configs/mae/latent_ablation_256.yaml": {
+    "source": "figures/W-Flow/configs/mae/latent_ablation_256.yaml",
+    "sha256": "db3d2d61accf2b86394393472464a40eb4ceadee442b9a30a5e64dae3ac60131"
+  },
+  "vendor/W-Flow/configs/mae/latent_640.yaml": {
+    "source": "figures/W-Flow/configs/mae/latent_640.yaml",
+    "sha256": "3833164b30804c4aa91c006d5343d246a8971dbb1fb180ec75516d54b09847f2"
+  },
+  "vendor/W-Flow/configs/gen/ablation_ot_1node.yaml": {
+    "source": "figures/W-Flow/configs/gen/ablation_ot_1node.yaml",
+    "sha256": "9d07a50e5ebed1c96f63af439ac8ed07d16258492bf01163deccc27e41c69035"
+  },
+  "vendor/W-Flow/configs/gen/latent_sota_XL_ot_8node.yaml": {
+    "source": "figures/W-Flow/configs/gen/latent_sota_XL_ot_8node.yaml",
+    "sha256": "d817776f23909ae23f0509bce0c4db796940332added6f7fd04631a093d9de9e"
+  },
+  "vendor/W-Flow/configs/gen/latent_sota_B_ot_1node.yaml": {
+    "source": "figures/W-Flow/configs/gen/latent_sota_B_ot_1node.yaml",
+    "sha256": "f839b3f938b9064fe684a584ba8294c04ea0f6a46c83ce952889c1ead801eca6"
+  },
+  "vendor/W-Flow/configs/gen/latent_sota_L_ot_1node.yaml": {
+    "source": "figures/W-Flow/configs/gen/latent_sota_L_ot_1node.yaml",
+    "sha256": "adb4d088edf6dd0b93a5417ffdd8e9c51357414cf94f7fa66baf70f7a2ec7292"
+  },
+  "vendor/W-Flow/configs/gen/latent_sota_B_ot_8node.yaml": {
+    "source": "figures/W-Flow/configs/gen/latent_sota_B_ot_8node.yaml",
+    "sha256": "efe2268f3b0d71c45b5d60753e0b07b626cb61c20948f8b30977881b170131be"
+  },
+  "vendor/W-Flow/configs/gen/latent_sota_XL_ot_1node.yaml": {
+    "source": "figures/W-Flow/configs/gen/latent_sota_XL_ot_1node.yaml",
+    "sha256": "b511c7690de2a084f7ac48e829f9c6004d8c462c68a133bb5de304bb557d2abf"
+  },
+  "vendor/W-Flow/configs/gen/latent_sota_L_ot_8node.yaml": {
+    "source": "figures/W-Flow/configs/gen/latent_sota_L_ot_8node.yaml",
+    "sha256": "fb48c38d468a7ec7eeec2a400109937e9a54cea40898542a8fe34d72b9533b9b"
+  },
+  "runtime/external/tvm/LICENSE": {
+    "source": "OST_public/training/runtime/external/tvm/LICENSE",
+    "sha256": "8762150f9d23b8ff2028be44d3afa05489dcf974c42e4d044d5122e8a1ef759e"
+  },
+  "runtime/external/tvm/jvp_utils/flash_jvp_backward.py": {
+    "source": "OST_public/training/runtime/external/tvm/jvp_utils/flash_jvp_backward.py",
+    "sha256": "ac5ec3359bd172bfba2e19432a8d9a2c965a3fb8ed0e46641817933abae584f8"
+  },
+  "runtime/external/tvm/jvp_utils/ryu_triton.py": {
+    "source": "OST_public/training/runtime/external/tvm/jvp_utils/ryu_triton.py",
+    "sha256": "a641c61787b12f37807d9cc819d1ce639fa99c9c3921c10f3c9ae65fbb2e6052"
+  },
+  "runtime/external/tvm/jvp_utils/_debug_jvp_sdpa.py": {
+    "source": "OST_public/training/runtime/external/tvm/jvp_utils/_debug_jvp_sdpa.py",
+    "sha256": "951d3d0df96a89e6943786660cd3dac5310f9e8a884b83081f7e5235c3375f2f"
+  },
+  "runtime/external/tvm/jvp_utils/__init__.py": {
+    "source": "OST_public/training/runtime/external/tvm/jvp_utils/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/external/tvm/jvp_utils/flash_attn_triton.py": {
+    "source": "OST_public/training/runtime/external/tvm/jvp_utils/flash_attn_triton.py",
+    "sha256": "98b76e207ee4992190090904661962f75900c77f485f670d35b9075cf6df1392"
+  },
+  "runtime/external/tvm/jvp_utils/functional.py": {
+    "source": "OST_public/training/runtime/external/tvm/jvp_utils/functional.py",
+    "sha256": "a78fccbefe20ffa6a120b4b124b5f8ca0dd9f9c07d058fa8a7e3978bf54620c7"
+  }
+}

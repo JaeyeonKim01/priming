@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from paths import resolve
 
 TASK = Path(__file__).resolve().parents[1]
 
@@ -17,6 +18,7 @@ def sha(path):
 
 def write(path, value):
     path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix('.tmp')
     tmp.write_text(json.dumps(value, indent=2) + '\n')
     tmp.replace(path)
@@ -35,28 +37,27 @@ def verify(task=TASK, assets=False):
         differences = {f'{s}.{k}': [reference[s].get(k), v]
                        for s, fields in cfg.items() for k, v in fields.items()
                        if reference[s].get(k) != v}
-        assert set(differences) <= {'logging.output_dir', 'logging.project', 'logging.exp_name'}, differences
+        assert set(differences) <= {'logging.output_dir', 'logging.project', 'logging.exp_name', 'data.data_path', 'checkpointing.load_from', 'ot.ot_repr_cache', 'ot.ot_feature_asset_cache', 'ot.ot_feature_calibration_dir'}, differences
         assert cfg['train']['epochs'] * cfg['train']['steps_per_epoch'] == 25000
         assert cfg['train']['steps_per_epoch'] * cfg['logging']['save_freq'] == 1250
         assert cfg['evaluation']['online_eval'] and not cfg['evaluation']['skip_final_eval']
         assert cfg['evaluation']['num_images'] == cfg['evaluation']['num_images_for_eval_and_search'] == 50000
         assert cfg['optimizer']['eval_ema_labels'] == ['online', '0.999']
         assert cfg['checkpointing']['resume_from'] is None and not cfg['checkpointing']['auto_resume']
-        assert cfg['checkpointing']['load_from'] == sources[arm]['path']
-        source = Path(sources[arm]['path'])
-        assert source.stat().st_size == sources[arm]['bytes'], source
+        source = resolve(cfg['checkpointing']['load_from'])
         if assets:
+            assert source.stat().st_size == sources[arm]['bytes'], source
             assert sha(source) == sources[arm]['sha256'], source
         arms[arm] = dict(config_sha256=sha(cfg_path), differences=differences,
                          model=cfg['model']['model'], source=str(source))
     if assets:
-        asset_manifest = json.loads((task / 'provenance/assets.json').read_text())
+        asset_manifest = json.loads((task / 'assets.json').read_text())
         for row in asset_manifest['files']:
-            p = Path(row['path'])
+            p = resolve(row['path'])
             assert p.stat().st_size == row['bytes'] and sha(p) == row['sha256'], p
         for p in asset_manifest['directories']:
-            assert Path(p).is_dir(), p
-    frozen = task / 'reports/launch_manifest.json'
+            assert resolve(p).is_dir(), p
+    frozen = task / 'state/launch_manifest.json'
     if frozen.exists():
         for name, digest in json.loads(frozen.read_text()).items():
             assert sha(task / name) == digest, name
@@ -65,13 +66,13 @@ def verify(task=TASK, assets=False):
 
 def gate(task, arm):
     verify(task)
-    report = json.loads((task / f'reports/preflight_{arm}.json').read_text())
+    report = json.loads((task / f'state/preflight_{arm}.json').read_text())
     assert report['passed'] and report['resumed_updates'] == 135
     assert len(report['initialization']) == len(report['memory']) == 8
     assert all(all(row.values()) for row in report['initialization'])
     assert all(row['passed'] for row in report['audits'].values())
     assert len(report['audits']['resume_state_audit']['ranks']) == 8
-    for name in (f'configs/{arm}.json', 'reports/runtime_manifest.json', 'reports/launch_manifest.json'):
+    for name in (f'configs/{arm}.json', 'reports/runtime_manifest.json', 'state/launch_manifest.json'):
         assert (task / name).read_bytes() == (Path(report['job_dir']) / name).read_bytes(), name
     assert sha(report['flops_source']) == report['flops_source_sha256']
     print(f'{arm}: GPU preflight passed', flush=True)
@@ -86,5 +87,5 @@ if __name__ == '__main__':
         gate(TASK, a.gate)
     else:
         result = verify(assets=a.assets)
-        write(TASK / 'reports/validation.json', result)
+        write(TASK / 'state/validation.json', result)
         print(json.dumps(result, indent=2), flush=True)

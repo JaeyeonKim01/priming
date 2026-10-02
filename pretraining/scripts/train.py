@@ -7,7 +7,7 @@ import runpy
 import sys
 import tempfile
 
-from common import ROOT, sha, verify_runtime
+from common import ROOT, sha, verify_runtime, resolve
 
 
 def verify_bundle(bundle):
@@ -27,7 +27,7 @@ def main():
     parser.add_argument('--bundle', required=True, type=Path)
     parser.add_argument('--resume', action='store_true', help='Resume this bundle\'s latest checkpoint using its original trainer format.')
     args = parser.parse_args()
-    bundle = args.bundle.resolve()
+    bundle = resolve(args.bundle).resolve()
     launch, manifest = verify_bundle(bundle)
     if int(os.environ.get('WORLD_SIZE', '0')) != 8:
         raise ValueError('Production recipes require torchrun with exactly eight ranks.')

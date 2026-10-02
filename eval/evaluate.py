@@ -2,12 +2,15 @@
 import argparse, contextlib, csv, hashlib, json, os, sys, time
 from pathlib import Path
 from types import SimpleNamespace
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from priming_paths import asset, configure_caches, resolve
+configure_caches()
 HERE=Path(__file__).resolve().parent
-RUNTIME=ROOT/'tests/runs/ot_metric_climb_20260904/runtime'
-CACHE=Path(os.environ.get('OST_COMPARISON_CACHE','/n/netscratch/sham_lab/Lab/jaykim/OT_compute_comparison_20260905'))
-VENDOR=ROOT/'isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity'
-for p in (ROOT/'figures/W-Flow', RUNTIME, RUNTIME/'packages/distmatch/src', VENDOR): sys.path.insert(0,str(p))
+RUNTIME=HERE/'runtime'
+CACHE=asset('PRIMING_COMPARISON_CACHE','assets/baselines/comparison')
+VENDOR=HERE/'vendor/torch-fidelity'
+for p in (HERE/'vendor/W-Flow', RUNTIME, RUNTIME/'packages/distmatch/src', VENDOR): sys.path.insert(0,str(p))
 os.environ['DRIFT_COMPILE']='0'
 import numpy as np
 import torch
@@ -23,12 +26,11 @@ def load_generator(key):
  if key.startswith('priming'):
   from src.models import OSTDenoiser_models
   from src.utils.sampling_util import generate_images
-  item=json.loads((ROOT/'OST_public/checkpoints/manifest.json').read_text())[key]
-  ckpt=ROOT/'OST_public'/item['checkpoint']
-  argsfile=ROOT/'OST_public'/item['config']
+  item=json.loads((ROOT/'checkpoints/manifest.json').read_text())[key]
+  ckpt=ROOT/item['checkpoint']
+  argsfile=ROOT/item['config']
   config=json.loads(argsfile.read_text())
   assert ckpt.stat().st_size==item['checkpoint_bytes']
-  assert ckpt.is_symlink() and ckpt.resolve()==Path(item['source_checkpoint']).resolve()
   if dist.get_rank()==0: assert digest(ckpt)==item['checkpoint_sha256']
   dist.barrier()
   args=SimpleNamespace(**config['sampling_args'])
@@ -57,7 +59,7 @@ def load_generator(key):
   from models.generator import DitGen
   if key=='wflow_xl':
    ckpt=CACHE/'wflow/checkpoints/latent_sota_XL_ot/state_00180000.pt'
-   config=ROOT/'figures/W-Flow/configs/gen/latent_sota_XL_ot_8node.yaml'
+   config=HERE/'vendor/W-Flow/configs/gen/latent_sota_XL_ot_8node.yaml'
    config=yaml.safe_load(config.read_text())['model']; config={**config,'num_classes':1000}
    cfg=1.09
   else:
@@ -83,22 +85,22 @@ def load_generator(key):
 @torch.inference_mode()
 def main():
  p=argparse.ArgumentParser(); p.add_argument('--model',required=True); p.add_argument('--num-images',type=int,default=50000); p.add_argument('--seeds',type=int,nargs='+',default=[1,2,3]); p.add_argument('--batch',type=int,default=32); p.add_argument('--output-dir',type=Path,required=True)
- opt=p.parse_args(); rank=int(os.environ['RANK']); world=int(os.environ['WORLD_SIZE'])
+ opt=p.parse_args(); opt.output_dir=resolve(opt.output_dir); rank=int(os.environ['RANK']); world=int(os.environ['WORLD_SIZE'])
  assert opt.num_images%1000==0
  torch.cuda.set_device(int(os.environ['LOCAL_RANK'])); dist.init_process_group('nccl'); torch.set_num_threads(4)
  from scripts import main_mmd_and_eval as mmd
  from distmatch.objectives.frechet.evaluation import FrechetEvaluator
  from torch_fidelity.feature_extractor_inceptionv3 import FeatureExtractorInceptionV3
  from torch_fidelity.metric_fid import fid_features_to_statistics,fid_statistics_to_metric
- mmd.STATS_DIR=Path(os.environ.get('OST_FDR5_STATS',str(ROOT/'data/fid_stats')))
+ mmd.STATS_DIR=asset('PRIMING_FDR5_STATS','assets/fid_stats')
  specs=tuple(s for s in mmd.FDR6_SPECS if s[0]!='convnext')
  started=time.monotonic()
  evaluator=FrechetEvaluator(features=mmd._features(specs),stats=mmd._cached_stats(specs,device=torch.device('cuda')),stats_dtype=torch.float64,distributed=True,device='cuda')
- weights=Path(os.environ.get('OST_INCEPTION_WEIGHTS',str(ROOT/'tests/mmd/runs/torch_cache/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth')))
+ weights=asset('PRIMING_INCEPTION_WEIGHTS','assets/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth')
  official=FeatureExtractorInceptionV3('inception-v3-compat',['2048'],feature_extractor_weights_path=str(weights)).cuda().eval().requires_grad_(False)
  sample,swap,metadata=load_generator(opt.model)
  print('READY',opt.model,rank,'load_seconds',time.monotonic()-started,flush=True)
- refpath=Path(os.environ.get('OST_FID_REFERENCE','/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz'))
+ refpath=asset('PRIMING_FID_REFERENCE','assets/fid_stats/jit_in256_stats.npz')
  assert digest(refpath)=='412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c'
  with swap:
   for seed in opt.seeds:

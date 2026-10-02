@@ -1,0 +1,102 @@
+{
+  "priming_b_160": {
+    "checkpoint": "checkpoints/priming_b_160.pth",
+    "checkpoint_bytes": 1841641854,
+    "checkpoint_sha256": "6306b183a2e5e796396da0ebe02156b8ef70796141730b824b2e2f50b0497c55",
+    "config": "checkpoints/priming_b_160.json",
+    "config_sha256": "e73f8d14c6d2cb034d16bb2259c58d91194037f286bc772540269e89c68cdf53",
+    "ema_tensor_bytes": 460255744,
+    "ema_tensor_count": 218,
+    "key": "priming_b_160",
+    "link_target": "../../fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/checkpoints/step_0024999.pth",
+    "model": "OST_B",
+    "previous_ema_export": {
+      "bytes": 460278392,
+      "sha256": "991a886b444d1042105b36088cedbd5c105746f0ec57b0578797f1c5b8466d8f",
+      "tensor_count": 218,
+      "verification": "Every exported tensor equals source EMA 0.999 tensor exactly"
+    },
+    "source_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/args_2609160105.json",
+    "source_args_sha256": "612a37078b77d9684cf6b2f3c0848e11ca13211c4f97b40cd13424f181096f0e",
+    "source_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/checkpoints/step_0024999.pth",
+    "source_checkpoint_bytes": 1841641854,
+    "source_checkpoint_sha256": "6306b183a2e5e796396da0ebe02156b8ef70796141730b824b2e2f50b0497c55",
+    "storage": "symlink_to_production_full_checkpoint",
+    "verified": "Link resolves to the SHA256-identified production checkpoint; evaluator loads EMA 0.999 directly"
+  },
+  "priming_b_80": {
+    "checkpoint": "checkpoints/priming_b_80.pth",
+    "checkpoint_bytes": 1841641854,
+    "checkpoint_sha256": "87b45a8f1a49e366eacbd7e925f5eabecd877afc3d8dc016db64c7770505d3ab",
+    "config": "checkpoints/priming_b_80.json",
+    "config_sha256": "e73f8d14c6d2cb034d16bb2259c58d91194037f286bc772540269e89c68cdf53",
+    "ema_tensor_bytes": 460255744,
+    "ema_tensor_count": 218,
+    "key": "priming_b_80",
+    "link_target": "../../fdloss_work_dirs/OST/OST_B_perceptual_e80_full_featurewise_ot_s25000_20260916/checkpoints/step_0024999.pth",
+    "model": "OST_B",
+    "previous_ema_export": {
+      "bytes": 460278392,
+      "sha256": "8f58119dbdad65521b3f6f5c355687090e4af152af0e5e6601931ab04affa426",
+      "tensor_count": 218,
+      "verification": "Every exported tensor equals source EMA 0.999 tensor exactly"
+    },
+    "source_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_B_perceptual_e80_full_featurewise_ot_s25000_20260916/args_2609160103.json",
+    "source_args_sha256": "4d84442c02cb3782bba8d8863a43b66d52b8d9601762e021248e7347ff13316e",
+    "source_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_B_perceptual_e80_full_featurewise_ot_s25000_20260916/checkpoints/step_0024999.pth",
+    "source_checkpoint_bytes": 1841641854,
+    "source_checkpoint_sha256": "87b45a8f1a49e366eacbd7e925f5eabecd877afc3d8dc016db64c7770505d3ab",
+    "storage": "symlink_to_production_full_checkpoint",
+    "verified": "Link resolves to the SHA256-identified production checkpoint; evaluator loads EMA 0.999 directly"
+  },
+  "priming_l_160": {
+    "checkpoint": "checkpoints/priming_l_160.pth",
+    "checkpoint_bytes": 6481687594,
+    "checkpoint_sha256": "51586a8d847cb2b790572997249b8760ab37cd284354bffaa657fd2125623da0",
+    "config": "checkpoints/priming_l_160.json",
+    "config_sha256": "d212ac4b3725c191ca8b3960308fa89c0af6cf6ca62efd2821240824a36e8e82",
+    "ema_tensor_bytes": 1620180480,
+    "ema_tensor_count": 426,
+    "key": "priming_l_160",
+    "link_target": "../../fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/checkpoints/step_0024999.pth",
+    "model": "OST_L",
+    "previous_ema_export": {
+      "bytes": 1620225800,
+      "sha256": "00ff256d7e8c454bcf0f490d5dc21d791931cf6f15cab503ec79bc74f1f9a3c8",
+      "tensor_count": 426,
+      "verification": "Every exported tensor equals source EMA 0.999 tensor exactly"
+    },
+    "source_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/args_2609101721.json",
+    "source_args_sha256": "7bb9e58754c711e1a55dfcb2000fc44e116a597c32596acf6d19769156817522",
+    "source_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/checkpoints/step_0024999.pth",
+    "source_checkpoint_bytes": 6481687594,
+    "source_checkpoint_sha256": "51586a8d847cb2b790572997249b8760ab37cd284354bffaa657fd2125623da0",
+    "storage": "symlink_to_production_full_checkpoint",
+    "verified": "Link resolves to the SHA256-identified production checkpoint; evaluator loads EMA 0.999 directly"
+  },
+  "priming_l_80": {
+    "checkpoint": "checkpoints/priming_l_80.pth",
+    "checkpoint_bytes": 6481687594,
+    "checkpoint_sha256": "75f2957289af6e295e4432cc4ee1d58a26a71b0c2dba878ead5b1160bdda3537",
+    "config": "checkpoints/priming_l_80.json",
+    "config_sha256": "d212ac4b3725c191ca8b3960308fa89c0af6cf6ca62efd2821240824a36e8e82",
+    "ema_tensor_bytes": 1620180480,
+    "ema_tensor_count": 426,
+    "key": "priming_l_80",
+    "link_target": "../../fdloss_work_dirs/OST/OST_L_e80_full_featurewise_ot_s25000_20260910/checkpoints/step_0024999.pth",
+    "model": "OST_L",
+    "previous_ema_export": {
+      "bytes": 1620225800,
+      "sha256": "e8fd65667f9b3a8fc6f28c1082b2c9d719f68640359fec66c8f56d74a5ab474d",
+      "tensor_count": 426,
+      "verification": "Every exported tensor equals source EMA 0.999 tensor exactly"
+    },
+    "source_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_L_e80_full_featurewise_ot_s25000_20260910/args_2609101721.json",
+    "source_args_sha256": "9d83dffab83cd15a0ef8d4a3f6bc891492368daed2458843f3aace85a06c0cb2",
+    "source_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_L_e80_full_featurewise_ot_s25000_20260910/checkpoints/step_0024999.pth",
+    "source_checkpoint_bytes": 6481687594,
+    "source_checkpoint_sha256": "75f2957289af6e295e4432cc4ee1d58a26a71b0c2dba878ead5b1160bdda3537",
+    "storage": "symlink_to_production_full_checkpoint",
+    "verified": "Link resolves to the SHA256-identified production checkpoint; evaluator loads EMA 0.999 directly"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "priming_b_160": {
+    "checkpoint": "checkpoints/pretraining/priming_b_160.pth",
+    "checkpoint_bytes": 1455323158,
+    "checkpoint_sha256": "b1b6b85040a579a69ed819dcc6b128de424cf723a5d61c1d291a5b561a10193e",
+    "completed_pretraining_updates": 200160,
+    "ema": "0.9999",
+    "model": "OST_B",
+    "posttraining_initialization": "online",
+    "pretraining_epochs": 160,
+    "stage": "pretraining"
+  },
+  "priming_b_80": {
+    "checkpoint": "checkpoints/pretraining/priming_b_80.pth",
+    "checkpoint_bytes": 1455323158,
+    "checkpoint_sha256": "563685fc0fd3edeb85122f53bd399fab7f7ecd1e81e6d79808a1c6e4689c782e",
+    "completed_pretraining_updates": 100080,
+    "ema": "0.9999",
+    "model": "OST_B",
+    "posttraining_initialization": "online",
+    "pretraining_epochs": 80,
+    "stage": "pretraining"
+  },
+  "priming_l_160": {
+    "checkpoint": "checkpoints/pretraining/priming_l_160.pth",
+    "checkpoint_bytes": 3458613098,
+    "checkpoint_sha256": "ccf3ed74bdc5e60b6bd7060af4bcc6289d167fc0b2afe7b43f4a3a6712a8528e",
+    "completed_pretraining_updates": 200160,
+    "ema": "0.9999",
+    "model": "OST_L",
+    "posttraining_initialization": "online",
+    "pretraining_epochs": 160,
+    "stage": "pretraining"
+  },
+  "priming_l_80": {
+    "checkpoint": "checkpoints/pretraining/priming_l_80.pth",
+    "checkpoint_bytes": 3458613034,
+    "checkpoint_sha256": "2033381ec4f32f0001d95b7bd773a3c0c502147fe2c5a6791972b0856bd1b7ab",
+    "completed_pretraining_updates": 100080,
+    "ema": "0.9999",
+    "model": "OST_L",
+    "posttraining_initialization": "online",
+    "pretraining_epochs": 80,
+    "stage": "pretraining"
+  }
+}

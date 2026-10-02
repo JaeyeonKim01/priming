@@ -5,6 +5,20 @@ The source code and historical run names use **OST**.
 
 **Pipeline:** reconstruction pretraining → distributional post-training → evaluation.
 
+Clone this repository as `priming`; all commands and relative paths below start
+there. The code is self-contained and does not import a parent OST checkout.
+
+```bash
+git clone https://github.com/JaeyeonKim01/one_step_priming.git priming
+cd priming
+bash scripts/create_env.sh
+conda activate priming
+python scripts/check_environment.py
+```
+
+[Environment and H100/H200 setup](docs/setup.md) ·
+[Data and model assets](docs/assets.md) · [Checkpoint upload](docs/checkpoints.md)
+
 ## 1. Checkpoints
 
 Four model/epoch combinations, each available before and after post-training.
@@ -12,13 +26,14 @@ Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates
 
 | Model | Pretraining epochs | Before post-training | After post-training |
 |---|---:|---|---|
-| Priming-B | 80 | [Local checkpoint](../fdloss_work_dirs/OST/OST_B_t08_e160_perceptual_seed1_20260912/checkpoints/step_0100080.pth) | [Local checkpoint](checkpoints/priming_b_80.pth) |
-| Priming-B | 160 | [Local checkpoint](../fdloss_work_dirs/OST/OST_B_t08_e160_perceptual_seed1_20260912/checkpoints/step_0200160.pth) | [Local checkpoint](checkpoints/priming_b_160.pth) |
-| Priming-L | 80 | [Local checkpoint](../fdloss_work_dirs/OST/OST_L_aux_unif_t08_38545843/checkpoints/step_0100080.pth) | [Local checkpoint](checkpoints/priming_l_80.pth) |
-| Priming-L | 160 | [Local checkpoint](../fdloss_work_dirs/OST/OST_L_aux_unif_t08_38545843/checkpoints/step_0200160.pth) | [Local checkpoint](checkpoints/priming_l_160.pth) |
+| Priming-B | 80 | [Pretrained](checkpoints/pretraining/priming_b_80.pth) | [Post-trained](checkpoints/priming_b_80.pth) |
+| Priming-B | 160 | [Pretrained](checkpoints/pretraining/priming_b_160.pth) | [Post-trained](checkpoints/priming_b_160.pth) |
+| Priming-L | 80 | [Pretrained](checkpoints/pretraining/priming_l_80.pth) | [Post-trained](checkpoints/priming_l_80.pth) |
+| Priming-L | 160 | [Pretrained](checkpoints/pretraining/priming_l_160.pth) | [Post-trained](checkpoints/priming_l_160.pth) |
 
-These links currently resolve in the original local workspace; weights are not
-stored in Git. **Hugging Face download links are planned.**
+Weights are downloaded separately into these paths; they are not stored in Git.
+A Hugging Face release has not been published yet. See the
+[upload/download guide](docs/checkpoints.md) and the checked-in manifests.
 Pretraining checkpoints contain online and EMA weights; post-training initializes
 from online weights, and final evaluation uses post-training EMA 0.999.
 

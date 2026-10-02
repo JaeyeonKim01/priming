@@ -1,7 +1,7 @@
 # OT post-training reproduction
 
 Reproduce Priming-B and Priming-L from their **160-epoch pretrained online
-weights**, with **25,000 fresh AdamW updates**, eight H200s per model, and
+weights**, with **25,000 fresh AdamW updates**, eight H100/H200 GPUs per model, and
 **50,000-image online and EMA evaluations every 1,250 updates**, including
 the terminal update. The separate [pretraining package](../pretraining/README.md)
 contains the production reconstruction recipes and retained source snapshots;
@@ -12,7 +12,7 @@ its migration did not launch new pretraining runs.
 The numerical code in `runtime/` is copied from the identical frozen B and L
 production runtimes. [Provenance](provenance) records the original configs,
 checkpoint SHA256 values, and external asset identities. The scientific
-configs are unchanged; output directories, project, and run names are new.
+configs are unchanged; only asset paths, output directories, project, and run names differ.
 
 | Setting | Both models |
 |---|---|
@@ -24,7 +24,7 @@ configs are unchanged; output directories, project, and run names are new.
 | AdamW | LR 1e-5; 125-update warmup, then constant; betas .9/.95; weight decay 0; clip 1 |
 | EMA | Inherit source .9999 shadow/counter, then use decay .999 |
 | Seeds | Main 1; private OT stream 7919 |
-| Execution | Four nodes × two H200s, microbatch 128/rank, no accumulation |
+| Execution | Eight H100/H200 GPUs, microbatch 128/rank, no accumulation |
 | Precision | Compiled BF16 generator; eager production encoder precision; encoder microbatch 8 |
 | Evaluation | Online and EMA .999; 50k images each; every 1,250 updates; one step, CFG1 |
 
@@ -36,56 +36,59 @@ and all eight ranks' main and OT RNG states.
 ## Layout
 
 - `configs/b160.json`, `configs/l160.json`: full production recipes.
-- `configs/site.json`: Python environment, scratch output, and asset locations.
+- `configs/site.json`: output, GPU topology, and asset locations.
 - `runtime/`: training entrypoint, model and feature code, local DistMatch,
   and the TVM import dependency with its license.
 - `scripts/launch.py`: two independent `probe → production` Slurm chains.
 - `scripts/status.py`: progress and strict completeness checks for scheduled draws.
-- `reports/`: validation, preflight, launch, progress, and evaluation evidence.
+- `reports/` and `provenance/`: retained historical evidence.
+- `state/`: ignored fresh validation and scheduler state.
 - `results/`: symlinks to allocation snapshots on scratch; weights stay on scratch.
 
-## Run on Kempner
+## Run on H100/H200 GPUs
 
-From `OST_public` (commands also work with an absolute training path):
+From `priming`, activate the [shared environment](../docs/setup.md) and install
+[the external assets](../docs/assets.md). Paths in `configs/` resolve from the
+repository regardless of the caller's working directory. The default is one
+node with eight GPUs; the numerical recipe still uses eight ranks.
 
 ```bash
-PYTHON=/n/home10/jaykim/.conda/envs/fdloss/bin/python
-"$PYTHON" training/scripts/verify.py --assets
-"$PYTHON" training/scripts/launch.py          # show submission commands
-"$PYTHON" training/scripts/launch.py --submit
-"$PYTHON" training/scripts/status.py
+conda activate priming
+python training/scripts/verify.py --assets
+python training/scripts/check_cpu.py
+# Prepare a standalone eight-GPU run:
+python training/scripts/prepare.py --arm b160 --job outputs/posttraining_allocations/b160
+python -m torch.distributed.run --standalone --nproc_per_node=8 \
+  training/scripts/train.py --job outputs/posttraining_allocations/b160
 ```
 
-The launcher requests `kempner_h200`, account `kempner_sitanc_lab`, four nodes
-and two GPUs per node. Probes request two hours; production requests 48 hours
-with up to two checkpoint-based requeues. At most 16 H200s run concurrently.
-Each production job depends on its own successful probe and checks that the
-validated code/config manifests still match. Repeated launch commands reuse
-recorded job IDs. Fresh output directories are required.
+Use `l160` with a separate job directory for L. Choose a new `logging.exp_name`
+for each independent run. To resume a prepared standalone run, pass
+`--resume outputs/posttraining/priming/RUN_NAME/checkpoints/latest.pth` to
+`train.py`. The standalone entrypoint uses the retained initialization and
+recovery instrumentation; it does not automatically run the Slurm probe chain.
 
-The probe runs 130 updates through warmup, verifies saved state, checks exact
-identical-gradient Adam/EMA replay, and resumes for five more updates.
-CUDA backward repeatability is recorded separately; bitwise training
-trajectory agreement across GPU allocations is not promised.
+For Slurm, edit `configs/site.json` to set your optional partition/account and
+GPU layout (nodes × GPUs per node must equal eight):
 
-For another machine, install the versions in `reports/environment.json`,
-provide ImageNet images, encoder weights/calibrations, statistics, and the
-two pretrained checkpoints listed in `provenance/`, then adapt site and
-asset paths before freezing a new launch. The checked-in configs currently
-record this cluster's asset paths; datasets and large weights are external.
-This is a production reproduction package, not a one-command asset download.
+```bash
+python training/scripts/launch.py          # preview only
+python training/scripts/launch.py --submit
+python training/scripts/status.py
+```
 
-The September 30 reproduction exhausted the `sham_lab` scratch group quota
-before production could create its allocation directories. This experiment's
-storage was moved to
-`/n/netscratch/sitanc_lab/Lab/jaykim_OST_public_ot_20260930`; its original
-configured scratch path is a symlink to that directory. Production was
-resubmitted through `sg sitanc_lab -c 'sbatch ...'` so newly created files use
-the available Sitan C group quota. The Slurm account is still
-`kempner_sitanc_lab`. Scientific configs and preflight evidence are unchanged.
-See `reports/storage_relocation.json` and `reports/launch.json` for the
-storage mapping and current job IDs; the failed submissions are retained in
-`reports/quota_failure_launch.json`.
+The launcher creates two independent `probe → production` chains. Probes run
+130 updates, audit saved state, check identical-gradient Adam/EMA replay, and
+resume for five updates. Production requires the matching successful probe.
+Probes request two hours; production requests 48 hours with up to two
+checkpoint-based requeues. Up to 16 GPUs are requested concurrently.
+CPU/memory/time reservations can be adjusted for your system. GPU backward
+repeatability is recorded separately; bitwise agreement across hardware or
+allocations is not promised. H100 memory suitability must be checked by the
+probe; no new H100/H200 training run was performed for this portability change.
+
+Historical launch evidence is retained in `reports/` and `provenance/`.
+New launches use ignored `state/` files and never reuse historical job IDs.
 
 ## Evaluation and recovery
 
@@ -107,7 +110,7 @@ finite updates, allocation source hashes, complete draws, and historical
 metric comparison with:
 
 ```bash
-"$PYTHON" training/audit_milestone.py --through 2500
+python training/audit_milestone.py --through 2500
 ```
 
 The resulting `reports/verified_both_2500.json` reports measured differences

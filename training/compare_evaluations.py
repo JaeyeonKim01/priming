@@ -10,6 +10,7 @@ import sys
 TASK = Path(__file__).resolve().parent
 sys.path[:0] = [str(TASK / 'runtime'), str(TASK / 'scripts')]
 from audit_evaluations import audit_series
+from paths import load_config
 from src.eval.dashboard_data import evaluation_groups
 
 
@@ -40,8 +41,8 @@ def main():
         sources, series = {}, {}
         for label, relative in [('historical', f'provenance/{arm}_production.json'),
                                 ('new', f'configs/{arm}.json')]:
-            cfg = json.loads((TASK / relative).read_text())['logging']
-            source = Path(cfg['output_dir']) / cfg['project'] / cfg['exp_name'] / 'final_eval_summary.csv'
+            cfg = load_config(arm)['logging']
+            source = snapshots / f'{arm}_historical.csv' if label == 'historical' else Path(cfg['output_dir']) / cfg['project'] / cfg['exp_name'] / 'final_eval_summary.csv'
             raw = source.read_bytes()
             snapshot = snapshots / f'{arm}_{label}.csv'
             snapshot.write_bytes(raw)

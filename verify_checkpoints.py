@@ -1,47 +1,45 @@
-"""Verify release checkpoint/config checksums; optionally verify full sources."""
-
+"""Verify portable checkpoint identities; accepts ordinary files or local symlinks."""
 import argparse
 import hashlib
 import json
 from pathlib import Path
 
-
 HERE = Path(__file__).resolve().parent
 
 
-def digest(path: Path) -> str:
-    sha = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(16 << 20), b""):
-            sha.update(block)
-    return sha.hexdigest()
+def digest(path):
+    result = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(16 << 20), b''):
+            result.update(block)
+    return result.hexdigest()
 
 
-def main() -> None:
+def records(stage='all'):
+    for name in ('manifest.json', 'pretraining_manifest.json'):
+        rows = json.loads((HERE / 'checkpoints' / name).read_text())
+        for key, item in sorted(rows.items()):
+            if stage == 'all' or stage == item['stage']:
+                yield key, item
+
+
+def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--sources", action="store_true",
-                        help="Also hash the large original training checkpoints")
-    options = parser.parse_args()
-    manifest = json.loads((HERE / "checkpoints/manifest.json").read_text())
-    assert len(manifest) == 4
-    for key, item in sorted(manifest.items()):
-        weights = HERE / item["checkpoint"]
-        config = HERE / item["config"]
-        assert weights.is_symlink() and weights.readlink() == Path(item["link_target"])
-        assert weights.resolve() == Path(item["source_checkpoint"]).resolve()
-        assert weights.stat().st_size == item["checkpoint_bytes"]
-        assert digest(weights) == item["checkpoint_sha256"], key
-        assert digest(config) == item["config_sha256"], key
-        parsed = json.loads(config.read_text())
-        assert parsed["completed_updates"] == 25000 and parsed["ema"] == "0.999"
-        if options.sources:
-            source = Path(item["source_checkpoint"])
-            assert source.stat().st_size == item["source_checkpoint_bytes"]
-            assert digest(source) == item["source_checkpoint_sha256"], key
-            assert digest(Path(item["source_args"])) == item["source_args_sha256"], key
-        print(f"{key}: verified", flush=True)
-    print(f"All {len(manifest)} checkpoint packages verified")
+    parser.add_argument('--stage', choices=['all', 'pretraining', 'posttraining'], default='all')
+    parser.add_argument('--metadata-only', action='store_true', help='Check sizes/configs; skip large weight hashes')
+    args = parser.parse_args()
+    count = 0
+    for key, item in records(args.stage):
+        path = HERE / item['checkpoint']
+        assert path.is_file() and path.stat().st_size == item['checkpoint_bytes'], str(path)
+        if not args.metadata_only:
+            assert digest(path) == item['checkpoint_sha256'], str(path)
+        if 'config' in item:
+            assert digest(HERE / item['config']) == item['config_sha256'], item['config']
+        print(f'{item["stage"]}/{key}: verified', flush=True)
+        count += 1
+    print(f'{count} checkpoints checked; SHA256={not args.metadata_only}')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

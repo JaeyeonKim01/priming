@@ -22,7 +22,7 @@ def main():
     initializations = [json.loads((run / f'initialization_rank{rank}.json').read_text()) for rank in range(8)]
     assert all(all(row.values()) for row in initializations)
     memory = json.loads((reports / 'memory_audit.json').read_text())
-    assert len(memory) == 8 and all('H200' in row['device'] for row in memory)
+    assert len(memory) == 8 and all(any(gpu in row['device'] for gpu in ('H100', 'H200')) for row in memory)
     flops = json.loads((reports / 'training_flops.json').read_text())
     assert flops['global_step_flops'] > 0 and flops['reference_encoding'] == 'online'
     manifest = json.loads((reports / 'runtime_manifest.json').read_text())
@@ -37,7 +37,8 @@ def main():
         posttraining_25k_eflops=flops['global_step_flops']*25000/1e18,
         flops_source=str(reports / 'training_flops.json'),
         flops_source_sha256=hashlib.sha256((reports / 'training_flops.json').read_bytes()).hexdigest())
-    destination = task / f'reports/preflight_{a.arm}.json'
+    destination = task / f'state/preflight_{a.arm}.json'
+    destination.parent.mkdir(parents=True, exist_ok=True)
     temporary = destination.with_suffix('.tmp')
     temporary.write_text(json.dumps(result, indent=2)+'\n')
     temporary.replace(destination)

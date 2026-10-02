@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+from paths import load_config
 
 
 def main():
@@ -15,7 +16,7 @@ def main():
     p.add_argument('--resume')
     p.add_argument('--updates', type=int, default=130)
     a = p.parse_args()
-    cfg = json.loads((Path(a.task) / f'configs/{a.arm}.json').read_text())
+    cfg = load_config(a.arm, a.task)
     cfg['logging']['exp_name'] = a.run_name
     cfg['checkpointing']['resume_from'] = a.resume
     cfg['checkpointing']['auto_resume'] = False

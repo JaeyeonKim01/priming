@@ -96,7 +96,7 @@
     ]
   },
   "data": {
-    "data_path": "/n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data",
+    "data_path": "data/imagenet",
     "num_classes": 1000,
     "class_of_interest": [
       207,
@@ -122,7 +122,7 @@
   "checkpointing": {
     "auto_resume": false,
     "resume_from": null,
-    "load_from": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_aux_unif_t08_38545843/checkpoints/step_0200160.pth",
+    "load_from": "checkpoints/pretraining/priming_l_160.pth",
     "keep_n_ckpts": 40,
     "milestone_interval": 0
   },
@@ -191,9 +191,9 @@
     "ot_seed": 7919,
     "ot_log_grad_norms": false,
     "ot_representation_set": "pixel_drifting",
-    "ot_repr_cache": "/n/netscratch/sham_lab/Lab/jaykim/OT_repr_swap_20260905",
-    "ot_feature_asset_cache": "/n/netscratch/sham_lab/Lab/jaykim/feature_loss_screen_20260906",
-    "ot_feature_calibration_dir": "/n/netscratch/sham_lab/Lab/jaykim/feature_loss_screen_20260906/calibrations",
+    "ot_repr_cache": "assets/ot/representations",
+    "ot_feature_asset_cache": "assets/ot/features",
+    "ot_feature_calibration_dir": "assets/ot/features/calibrations",
     "ot_feature_stack": "convnext_full_mae",
     "discrepancy_kind": "featurewise_ot",
     "energy_delta": 0.04549544751644135,
@@ -214,7 +214,7 @@
     "merge_lora_on_save": false
   },
   "logging": {
-    "output_dir": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_ot_20260930/outputs",
+    "output_dir": "outputs/posttraining",
     "local_eval_dir": null,
     "print_freq": 10,
     "eval_freq": 0,
@@ -223,7 +223,7 @@
     "save_freq": 1,
     "vis_only": false,
     "disable_vis": false,
-    "project": "OST_public",
+    "project": "priming",
     "entity": "jaeyeon_kim-harvard-university",
     "exp_name": "priming_l160_ot25000_seed1",
     "enable_wandb": false

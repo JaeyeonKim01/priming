@@ -10,12 +10,13 @@ TASK = Path(__file__).resolve().parent
 sys.path[:0] = [str(TASK / 'runtime'), str(TASK / 'scripts')]
 from audit_evaluations import audit_series
 from verify import sha, write
+from paths import load_config, site_config
 
 
 def audit_arm(arm, through):
     import torch
     torch.set_num_threads(4)
-    cfg = json.loads((TASK / f'configs/{arm}.json').read_text())
+    cfg = load_config(arm)
     log = cfg['logging']
     run = Path(log['output_dir']) / log['project'] / log['exp_name']
     evaluation = audit_series(run / 'final_eval_summary.csv', through)
@@ -59,16 +60,15 @@ def audit_arm(arm, through):
     assert all(math.isfinite(r['loss']) and math.isfinite(r['gradient_norm']) and r['gradient_norm'] > 0
                for r in updates.values())
     assert all(r['learning_rate'] == 1e-5 for s, r in updates.items() if s >= 126)
-    launch = json.loads((TASK / 'reports/launch.json').read_text())
+    launch = json.loads((TASK / 'state/launch.json').read_text())
     job_id = launch['jobs'][f'train_{arm}']['id']
-    site = json.loads((TASK / 'configs/site.json').read_text())
+    site = site_config()
     allocation = Path(site['scratch_root']) / f'train_{arm}_{job_id}'
     for relative, digest in json.loads((TASK / 'reports/runtime_manifest.json').read_text()).items():
         assert sha(allocation / 'runtime' / relative) == digest, relative
-    for name in [f'configs/{arm}.json', 'reports/launch_manifest.json']:
+    for name in [f'configs/{arm}.json', 'state/launch_manifest.json']:
         assert (allocation / name).read_bytes() == (TASK / name).read_bytes(), name
-    original = json.loads((TASK / f'provenance/{arm}_production.json').read_text())['logging']
-    reference_csv = Path(original['output_dir']) / original['project'] / original['exp_name'] / 'final_eval_summary.csv'
+    reference_csv = TASK / f'reports/comparison_inputs/{arm}_historical.csv'
     historical = audit_series(reference_csv, through)
     comparisons = []
     for draw in evaluation['draws']:

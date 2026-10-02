@@ -1,5 +1,5 @@
 data:
-  data_path: /n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data
+  data_path: data/imagenet
   num_classes: 1000
   img_size: 256
   num_workers: 10
@@ -76,7 +76,7 @@ train:
   milestone_interval: 20
   output_dir: ./outputs
   local_eval_dir: null
-  project: OST_public
+  project: priming
   entity: jaeyeon_kim-harvard-university
   exp_name: l160_perceptual
   enable_wandb: false

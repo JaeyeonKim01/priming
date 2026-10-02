@@ -23,7 +23,7 @@ def main() -> None:
                         help="Scratch root of the fresh batch")
     parser.add_argument("--tag", default="20260930")
     parser.add_argument("--paper-scratch", type=Path,
-                        default=Path("/n/netscratch/sham_lab/Lab/jaykim/three_seed_eval_20260925"),
+                        default=HERE.parent / "outputs/paper_evaluation",
                         help="Retained paper-batch artifacts for rank-stream comparison")
     options = parser.parse_args()
     paper_rows = list(csv.DictReader((HERE / "paper_results.csv").open()))

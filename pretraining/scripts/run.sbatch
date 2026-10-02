@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# B: sbatch --nodes=4 --gpus-per-node=2 run.sbatch /absolute/bundle
-# L: sbatch --nodes=2 --gpus-per-node=4 run.sbatch /absolute/bundle
+# Default: one node with eight H100/H200 GPUs.
+# Multi-node example: sbatch --nodes=2 --gpus-per-node=4 run.sbatch /absolute/bundle
 #SBATCH --job-name=priming_pretrain
-#SBATCH --partition=kempner_h200
-#SBATCH --account=kempner_sitanc_lab
-#SBATCH --nodes=4
-#SBATCH --gpus-per-node=2
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=8
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=240G
@@ -14,7 +12,7 @@
 #SBATCH --open-mode=append
 #SBATCH --output=priming-pretrain-%j.out
 set -euo pipefail
-: "${PRETRAINING_ROOT:?Set PRETRAINING_ROOT to the absolute OST_public/pretraining path}"
+: "${PRETRAINING_ROOT:?Set PRETRAINING_ROOT to the absolute priming/pretraining path}"
 : "${PYTHON:=python}"
 export PYTHON PRETRAINING_ROOT
 export BUNDLE

@@ -1,0 +1,22 @@
+\begin{tabular}{lrrr}
+        \toprule
+        Method & FID $\downarrow$ & $\text{FDr}^5$ $\downarrow$ & EFLOPs \\
+        \midrule
+        pMF-L & 2.55 & 10.85 & 821.75 \\
+        pMF-H & 2.15 & \underline{8.14} & 1968.54 \\
+        JiT-H & 1.88 & 8.69 & 839.00 \\
+        iMF-XL/2 & 1.74 & 9.75 & 3201.12 \\
+        Drifting-B & 1.74 & 15.30 & 1048.23 \\
+        \tablecolor{tableHighlight}
+        \textbf{Priming-B} (80 ep.) & 1.47 & 12.71 & 85.75 \\
+        Drifting-L & 1.61 & 12.59 & 1476.39 \\
+        \tablecolor{tableHighlight}
+        \textbf{Priming-B} (160 ep.) & 1.38 & 11.23 & 124.18 \\
+        WF-XL/2 & 1.33 & 11.07 & 3744.43 \\
+        \tablecolor{tableHighlight}
+  \textbf{Priming-L} (80 ep.) & 
+  \underline{1.27} & 8.94 & 151.29 \\
+        \tablecolor{tableHighlight}
+        \textbf{Priming-L} (160 ep.) & \textbf{1.19} & \textbf{7.10} & 238.95 \\
+        \bottomrule
+    \end{tabular}
