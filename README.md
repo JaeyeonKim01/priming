@@ -26,14 +26,16 @@ Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates
 
 | Model | Pretraining epochs | Before post-training | After post-training |
 |---|---:|---|---|
-| Priming-B | 80 | [Pretrained](checkpoints/pretraining/priming_b_80.pth) | [Post-trained](checkpoints/priming_b_80.pth) |
-| Priming-B | 160 | [Pretrained](checkpoints/pretraining/priming_b_160.pth) | [Post-trained](checkpoints/priming_b_160.pth) |
-| Priming-L | 80 | [Pretrained](checkpoints/pretraining/priming_l_80.pth) | [Post-trained](checkpoints/priming_l_80.pth) |
-| Priming-L | 160 | [Pretrained](checkpoints/pretraining/priming_l_160.pth) | [Post-trained](checkpoints/priming_l_160.pth) |
+| Priming-B | 80 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_80.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_80.pth?download=true) |
+| Priming-B | 160 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_160.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_160.pth?download=true) |
+| Priming-L | 80 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_80.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_80.pth?download=true) |
+| Priming-L | 160 | [Pretrained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_160.pth?download=true) | [Post-trained](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_160.pth?download=true) |
 
 Weights are downloaded separately into these paths; they are not stored in Git.
-A Hugging Face release has not been published yet. See the
-[upload/download guide](docs/checkpoints.md) and the checked-in manifests.
+All eight files are hosted at [jaykim1102/priming](https://huggingface.co/jaykim1102/priming).
+The Hub repository is currently private, so downloads require an authorized
+Hugging Face login. See the [download guide](docs/checkpoints.md) and the
+checked-in manifests.
 Pretraining checkpoints contain online and EMA weights; post-training initializes
 from online weights, and final evaluation uses post-training EMA 0.999.
 

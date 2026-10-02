@@ -1,6 +1,9 @@
 # Data and external assets
 
-Source code is self-contained. Large datasets, checkpoints, encoder weights,
+The eight generator checkpoints are hosted on
+[Hugging Face](https://huggingface.co/jaykim1102/priming); see the
+[download commands](checkpoints.md). Source code is self-contained.
+Large datasets, checkpoints, encoder weights,
 and statistics are separate assets and are ignored by Git. Their default
 locations are inside the `priming` repository:
 
