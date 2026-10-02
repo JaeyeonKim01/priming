@@ -1,0 +1,33 @@
+{
+  "amp_dtype": "bfloat16",
+  "cfg": 1.0,
+  "completed_updates": 25000,
+  "ema": "0.999",
+  "enable_amp": true,
+  "model": "OST_L",
+  "sampling_args": {
+    "P_mean": 0.8,
+    "P_std": 0.8,
+    "cfg_beta": 1.0,
+    "cfg_omega_max": 7.0,
+    "class_tokens": 8,
+    "guidance_tokens": 0,
+    "img_size": 256,
+    "interval_max": 1.0,
+    "interval_min": 0.1,
+    "interval_tokens": 0,
+    "label_drop_prob": 0.0,
+    "learned_pe": true,
+    "model": "OST_L",
+    "noise_scale": 1.0,
+    "norm_eps": 0.01,
+    "norm_p": 1.0,
+    "num_classes": 1000,
+    "num_sampling_steps": 1,
+    "patch_size": 16,
+    "perceptual_threshold": 0.8,
+    "rope_2d": true,
+    "same_noise": false,
+    "token_channels": 3
+  }
+}

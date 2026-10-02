@@ -1,0 +1,31 @@
+{
+  "batch": "fresh_2026-09-30",
+  "status": "submitted",
+  "scratch_root": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_full_eval_20260930",
+  "partition": "kempner_h100_priority",
+  "account": "kempner_sham_lab",
+  "protocol": "50000 class-balanced ImageNet-256 images per sampling seed; seeds 1,2,3; FID and FDr5",
+  "jobs": {
+    "wflow_xl": 49472774,
+    "drifting_b": 49472777,
+    "drifting_l": 49472779,
+    "pmf_l": 49472782,
+    "pmf_h": 49472788,
+    "imf_xl": 49472796,
+    "priming_b_80": 49473239,
+    "priming_b_160": 49473241,
+    "priming_l_80": 49473873,
+    "priming_l_160": 49473899,
+    "jit_h_seed1": 49472798,
+    "jit_h_seed2": 49472800,
+    "jit_h_seed3": 49472802
+  },
+  "checkpoint_link_pilots": {
+    "priming_b_80": 49472147,
+    "priming_l_160": 49472253
+  },
+  "fid_moment_audit_job": 49476692,
+  "fid_moment_audit_partition": "shared",
+  "fid_moment_audit_replaced_job": 49476258,
+  "fid_moment_audit_replacement_reason": "Smaller CPU and memory request for faster shared-partition backfill"
+}

@@ -1,0 +1,34 @@
+{
+  "priming_b_160": {
+    "posttraining_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/args_2609160105.json",
+    "posttraining_args_sha256": "612a37078b77d9684cf6b2f3c0848e11ca13211c4f97b40cd13424f181096f0e",
+    "pretrained_source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_B_t08_e160_perceptual_seed1_20260912/checkpoints/step_0200160.pth",
+    "pretrained_bytes": 1455323158,
+    "epoch": 160,
+    "online_weights": true
+  },
+  "priming_b_80": {
+    "posttraining_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_B_perceptual_e80_full_featurewise_ot_s25000_20260916/args_2609160103.json",
+    "posttraining_args_sha256": "4d84442c02cb3782bba8d8863a43b66d52b8d9601762e021248e7347ff13316e",
+    "pretrained_source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_B_t08_e160_perceptual_seed1_20260912/checkpoints/step_0100080.pth",
+    "pretrained_bytes": 1455323158,
+    "epoch": 80,
+    "online_weights": true
+  },
+  "priming_l_160": {
+    "posttraining_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/args_2609101721.json",
+    "posttraining_args_sha256": "7bb9e58754c711e1a55dfcb2000fc44e116a597c32596acf6d19769156817522",
+    "pretrained_source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_aux_unif_t08_38545843/checkpoints/step_0200160.pth",
+    "pretrained_bytes": 3458613098,
+    "epoch": 160,
+    "online_weights": true
+  },
+  "priming_l_80": {
+    "posttraining_args": "/n/netscratch/sham_lab/Lab/jaykim/onestep/fdloss_work_dirs/OST/OST_L_e80_full_featurewise_ot_s25000_20260910/args_2609101721.json",
+    "posttraining_args_sha256": "9d83dffab83cd15a0ef8d4a3f6bc891492368daed2458843f3aace85a06c0cb2",
+    "pretrained_source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_aux_unif_t08_38545843/checkpoints/step_0100080.pth",
+    "pretrained_bytes": 3458613034,
+    "epoch": 80,
+    "online_weights": true
+  }
+}

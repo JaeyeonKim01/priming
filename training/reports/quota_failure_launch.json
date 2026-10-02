@@ -1,0 +1,91 @@
+{
+  "jobs": {
+    "probe_b160": {
+      "id": "49507187",
+      "arm": "b160",
+      "mode": "probe",
+      "gpus": 8,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--export=ALL",
+        "--job-name=Priming_probe_b160",
+        "--output=/n/home10/jaykim/woobin/OST/OST_public/training/logs/%x-%j.out",
+        "--time=02:00:00",
+        "/n/home10/jaykim/woobin/OST/OST_public/training/scripts/job.sbatch",
+        "b160",
+        "probe"
+      ],
+      "submitted_at": "2026-09-30T23:43:26.917076+00:00"
+    },
+    "train_b160": {
+      "id": "49507205",
+      "arm": "b160",
+      "mode": "train",
+      "gpus": 8,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--export=ALL",
+        "--job-name=Priming_train_b160",
+        "--output=/n/home10/jaykim/woobin/OST/OST_public/training/logs/%x-%j.out",
+        "--dependency=afterok:49507187",
+        "--kill-on-invalid-dep=yes",
+        "/n/home10/jaykim/woobin/OST/OST_public/training/scripts/job.sbatch",
+        "b160",
+        "train"
+      ],
+      "submitted_at": "2026-09-30T23:43:29.153254+00:00"
+    },
+    "probe_l160": {
+      "id": "49507233",
+      "arm": "l160",
+      "mode": "probe",
+      "gpus": 8,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--export=ALL",
+        "--job-name=Priming_probe_l160",
+        "--output=/n/home10/jaykim/woobin/OST/OST_public/training/logs/%x-%j.out",
+        "--time=02:00:00",
+        "/n/home10/jaykim/woobin/OST/OST_public/training/scripts/job.sbatch",
+        "l160",
+        "probe"
+      ],
+      "submitted_at": "2026-09-30T23:43:32.913021+00:00"
+    },
+    "train_l160": {
+      "id": "49507249",
+      "arm": "l160",
+      "mode": "train",
+      "gpus": 8,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--export=ALL",
+        "--job-name=Priming_train_l160",
+        "--output=/n/home10/jaykim/woobin/OST/OST_public/training/logs/%x-%j.out",
+        "--dependency=afterok:49507233",
+        "--kill-on-invalid-dep=yes",
+        "/n/home10/jaykim/woobin/OST/OST_public/training/scripts/job.sbatch",
+        "l160",
+        "train"
+      ],
+      "submitted_at": "2026-09-30T23:43:36.619083+00:00"
+    },
+    "monitor": {
+      "id": "49507257",
+      "gpus": 0,
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--export=ALL",
+        "--output=/n/home10/jaykim/woobin/OST/OST_public/training/logs/%x-%j.out",
+        "/n/home10/jaykim/woobin/OST/OST_public/training/scripts/monitor.sbatch"
+      ],
+      "submitted_at": "2026-09-30T23:43:37.876993+00:00"
+    }
+  },
+  "gpu_cap": 16
+}

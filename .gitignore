@@ -1,0 +1,54 @@
+# Python and development caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+.DS_Store
+
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+
+# Model weights and dataset artifacts stay in external storage.
+# Keep the JSON checkpoint configs/manifests and source code in Git.
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.arrow
+
+# Generated output, logs, and links to this cluster's allocations
+/outputs/
+/runs/
+/wandb/
+/pretraining/outputs/
+/pretraining/bundles/
+/training/logs/*
+!/training/logs/.gitkeep
+/training/results/*
+!/training/results/.gitkeep
+*.log
+*.out
+*.tmp
+*.lock
+
+# Live scheduler/launch state must not be reused by a fresh checkout.
+/training/reports/launch.json
+/training/reports/launch_preview.json
+/training/reports/submission_plan.json
+/training/reports/status.json
+/training/reports/status.md
+/training/reports/scheduler.json
+/training/reports/recovery_scheduler.json
+/training/reports/monitoring_cadence.json
+/training/reports/superseded_initial_submission/
+
+# Machine-readable test-run output; retain curated JSON validation reports.
+/training/reports/tests.xml
+/pretraining/reports/packaging_tests.xml

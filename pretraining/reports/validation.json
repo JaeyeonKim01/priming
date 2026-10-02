@@ -1,0 +1,180 @@
+{
+  "copied_files": 222,
+  "cpu": {
+    "b": {
+      "depth": 16,
+      "existing_recovery_tests": 11,
+      "local_modules": {
+        "jvp_utils": "external/tvm/jvp_utils/__init__.py",
+        "jvp_utils.functional": "external/tvm/jvp_utils/functional.py",
+        "scripts.train_ost": "scripts/train_ost.py",
+        "scripts.train_pixel_pair": "scripts/train_pixel_pair.py",
+        "src": "src/__init__.py",
+        "src.models": "src/models/__init__.py",
+        "src.models.autoencoder": "src/models/autoencoder.py",
+        "src.models.commons": "src/models/commons.py",
+        "src.models.denoiser_imf": "src/models/denoiser_imf.py",
+        "src.models.denoiser_jit": "src/models/denoiser_jit.py",
+        "src.models.denoiser_mmjit": "src/models/denoiser_mmjit.py",
+        "src.models.denoiser_ost": "src/models/denoiser_ost.py",
+        "src.models.denoiser_pmf": "src/models/denoiser_pmf.py",
+        "src.models.denoiser_rae": "src/models/denoiser_rae.py",
+        "src.models.jit": "src/models/jit.py",
+        "src.models.mit": "src/models/mit.py",
+        "src.models.ost": "src/models/ost.py",
+        "src.models.tvm_jvp_attention": "src/models/tvm_jvp_attention.py",
+        "src.utils": "src/utils/__init__.py",
+        "src.utils.builders": "src/utils/builders.py",
+        "src.utils.checkpoint_util": "src/utils/checkpoint_util.py",
+        "src.utils.data_util": "src/utils/data_util.py",
+        "src.utils.deterministic_crop": "src/utils/deterministic_crop.py",
+        "src.utils.distributed_util": "src/utils/distributed_util.py",
+        "src.utils.ema_util": "src/utils/ema_util.py",
+        "src.utils.grad_util": "src/utils/grad_util.py",
+        "src.utils.logging_util": "src/utils/logging_util.py",
+        "src.utils.loss_perceptual": "src/utils/loss_perceptual.py",
+        "src.utils.muon_patch": "src/utils/muon_patch.py",
+        "src.utils.optimizer_util": "src/utils/optimizer_util.py",
+        "src.utils.perception_util": "src/utils/perception_util.py",
+        "src.utils.rng_util": "src/utils/rng_util.py",
+        "src.utils.runtime_util": "src/utils/runtime_util.py",
+        "src.utils.schedule_util": "src/utils/schedule_util.py",
+        "src.utils.setup_util": "src/utils/setup_util.py"
+      },
+      "parameters": 115063936,
+      "passed": true
+    },
+    "l": {
+      "depth": 32,
+      "existing_recovery_tests": 0,
+      "local_modules": {
+        "jvp_utils": "external/tvm/jvp_utils/__init__.py",
+        "jvp_utils.functional": "external/tvm/jvp_utils/functional.py",
+        "scripts.train_ost": "scripts/train_ost.py",
+        "src": "src/__init__.py",
+        "src.models": "src/models/__init__.py",
+        "src.models.autoencoder": "src/models/autoencoder.py",
+        "src.models.commons": "src/models/commons.py",
+        "src.models.denoiser_imf": "src/models/denoiser_imf.py",
+        "src.models.denoiser_jit": "src/models/denoiser_jit.py",
+        "src.models.denoiser_mmjit": "src/models/denoiser_mmjit.py",
+        "src.models.denoiser_ost": "src/models/denoiser_ost.py",
+        "src.models.denoiser_pmf": "src/models/denoiser_pmf.py",
+        "src.models.denoiser_rae": "src/models/denoiser_rae.py",
+        "src.models.jit": "src/models/jit.py",
+        "src.models.mit": "src/models/mit.py",
+        "src.models.ost": "src/models/ost.py",
+        "src.models.tvm_jvp_attention": "src/models/tvm_jvp_attention.py",
+        "src.utils": "src/utils/__init__.py",
+        "src.utils.builders": "src/utils/builders.py",
+        "src.utils.checkpoint_util": "src/utils/checkpoint_util.py",
+        "src.utils.data_util": "src/utils/data_util.py",
+        "src.utils.distributed_util": "src/utils/distributed_util.py",
+        "src.utils.ema_util": "src/utils/ema_util.py",
+        "src.utils.grad_util": "src/utils/grad_util.py",
+        "src.utils.logging_util": "src/utils/logging_util.py",
+        "src.utils.loss_perceptual": "src/utils/loss_perceptual.py",
+        "src.utils.muon_patch": "src/utils/muon_patch.py",
+        "src.utils.optimizer_util": "src/utils/optimizer_util.py",
+        "src.utils.perception_util": "src/utils/perception_util.py",
+        "src.utils.rng_util": "src/utils/rng_util.py",
+        "src.utils.runtime_util": "src/utils/runtime_util.py",
+        "src.utils.schedule_util": "src/utils/schedule_util.py",
+        "src.utils.setup_util": "src/utils/setup_util.py"
+      },
+      "parameters": 405045120,
+      "passed": true
+    }
+  },
+  "historical_runtime_matches": {
+    "b": {
+      "additional_vendor_files": [
+        "external/tvm/LICENSE",
+        "external/tvm/jvp_utils/README.md"
+      ],
+      "matching_files": 103
+    },
+    "l": {
+      "additional_vendor_files": [
+        "external/tvm/LICENSE",
+        "external/tvm/jvp_utils/README.md",
+        "external/tvm/jvp_utils/__init__.py",
+        "external/tvm/jvp_utils/_debug_jvp_sdpa.py",
+        "external/tvm/jvp_utils/flash_attn_triton.py",
+        "external/tvm/jvp_utils/flash_jvp_backward.py",
+        "external/tvm/jvp_utils/functional.py",
+        "external/tvm/jvp_utils/ryu_triton.py"
+      ],
+      "matching_files": 93
+    }
+  },
+  "passed": true,
+  "recipes": {
+    "b160_no_perceptual": {
+      "completed_updates": 200160,
+      "config_sha256": "1c738c661217bf21dbf3e6ea56a88336caad35266830f2b4262a1ca0651a4a34",
+      "differences": {
+        "train.exp_name": [
+          "OST_B_t08_e160_no_perceptual_seed1_20260912",
+          "b160_no_perceptual"
+        ],
+        "train.output_dir": [
+          "./fdloss_work_dirs",
+          "./outputs"
+        ],
+        "train.project": [
+          "OST",
+          "OST_public"
+        ]
+      },
+      "retained_epoch80_step": 100080
+    },
+    "b160_perceptual": {
+      "completed_updates": 200160,
+      "config_sha256": "14f18e5fbf7676b95442407e8dae0d0d365bd9e45095c33d8da91502ed0ca588",
+      "differences": {
+        "train.exp_name": [
+          "OST_B_t08_e160_perceptual_seed1_20260912",
+          "b160_perceptual"
+        ],
+        "train.output_dir": [
+          "./fdloss_work_dirs",
+          "./outputs"
+        ],
+        "train.project": [
+          "OST",
+          "OST_public"
+        ]
+      },
+      "retained_epoch80_step": 100080
+    },
+    "l160_perceptual": {
+      "completed_updates": 200160,
+      "config_sha256": "61bbe4e0b2eb937d133705678d4ae91565aceccab292af517bb813dada9440d7",
+      "differences": {
+        "train.enable_wandb": [
+          true,
+          false
+        ],
+        "train.exp_name": [
+          "OST_L_aux_unif_t08_38545843",
+          "l160_perceptual"
+        ],
+        "train.output_dir": [
+          "./fdloss_work_dirs",
+          "./outputs"
+        ],
+        "train.project": [
+          "OST",
+          "OST_public"
+        ]
+      },
+      "retained_epoch80_step": 100080
+    }
+  },
+  "runtime_files": {
+    "b": 105,
+    "l": 101
+  },
+  "scope": "Migration checks only; no GPU training or numerical reproduction performed."
+}

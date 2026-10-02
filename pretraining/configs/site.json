@@ -1,0 +1,7 @@
+{
+  "python": "/n/home10/jaykim/.conda/envs/fdloss/bin/python",
+  "data_path": "/n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data",
+  "hf_home": "/n/netscratch/sham_lab/Lab/workdir/huggingface",
+  "torch_home": "/n/home10/jaykim/woobin/OST/tests/mmd/runs/torch_cache",
+  "lpips_weights": "/n/home10/jaykim/woobin/OST/isolated_experiments/ost_b_pretrain_pair_20260912/runtime/checkpoints/lpips/vgg.pth"
+}

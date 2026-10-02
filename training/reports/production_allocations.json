@@ -1,0 +1,18 @@
+{
+  "b160": {
+    "job": "49522272",
+    "allocation": "/n/netscratch/sitanc_lab/Lab/jaykim_OST_public_ot_20260930/train_b160_49522272",
+    "account": "kempner_sitanc_lab",
+    "group_id": 10324,
+    "resources": "cpu=64,mem=960G,node=4,billing=21308,gres/gpu=8,gres/gpu:nvidia_h200=8",
+    "production_config_verified": true
+  },
+  "l160": {
+    "job": "49522274",
+    "allocation": "/n/netscratch/sitanc_lab/Lab/jaykim_OST_public_ot_20260930/train_l160_49522274",
+    "account": "kempner_sitanc_lab",
+    "group_id": 10324,
+    "resources": "cpu=64,mem=960G,node=4,billing=21308,gres/gpu=8,gres/gpu:nvidia_h200=8",
+    "production_config_verified": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "model": "pmf_h",
+  "seed": 2,
+  "num_images": 50000,
+  "rng_rank_seed": 2000006,
+  "world_size": 4,
+  "batch": 32,
+  "fid": 2.162210895070416,
+  "fdr5": 8.141339175619466,
+  "fd_legacy": {
+    "FID(ADM)": 2.2765114645295625,
+    "dinov2_cls": 76.57113930642299,
+    "mae_cls": 0.26978545640074447,
+    "siglip_cls": 9.359433540719692,
+    "clip_cls": 65.02609887598828
+  },
+  "fdr_components": {
+    "FID(ADM)": 1.3550663479342635,
+    "dinov2_cls": 5.396133848232769,
+    "mae_cls": 6.744636410018612,
+    "siglip_cls": 15.599055901199488,
+    "clip_cls": 11.611803370712193
+  },
+  "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/three_seed_eval_20260925/assets/checkpoints/base/pMF-H_256.pth",
+  "expected_checkpoint_sha256": "0822f66af5be5d0a2d7e127779ade472e0a0a04c6b6db02d42e7af29a1377e99",
+  "checkpoint_release": "jjiaweiyang/FD-Loss@88ce2bb4061b0dd58839a1827235ffcffa51eed2",
+  "official_sampler_source": "/n/home10/jaykim/woobin/OST/isolated_experiments/three_seed_eval_20260925/vendor/pMF",
+  "adapter_sha256": "d000d537b2e68be4c9b0d46735663053d1b1213c54b63d94ae710ffb6943a7a3",
+  "official_sampler_commit": "990e81a84249dbd68a128accef67eb95621d10b1",
+  "cfg": 7.0,
+  "interval": [
+    0.2,
+    0.6
+  ],
+  "sampling_steps": 1,
+  "ema": "released_inference",
+  "generation_precision": "upstream FP32/TF32",
+  "noise_scale": 2.0,
+  "rng": "upstream CPU BatchGenerator; per-image seed = 1000003 * replicate + image_index",
+  "sampling_and_features_seconds": 114.01791275094729,
+  "seconds_since_load": 277.819104744005,
+  "official_reference": "/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz",
+  "official_reference_sha256": "412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c",
+  "script_sha256": "f82a7df6000a567fd9e2d624254a14b11b2388d671c48be925bc890a8ad8e968",
+  "protocol": "FID: LTH14 FP32 rounded uint8, JiT reference. FDr5: frozen BF16 float images, FP64 moments, excludes ConvNeXt; legacy ADM FID component retained.",
+  "gpu": "NVIDIA H100 80GB HBM3"
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "model": "wflow_xl",
+    "completed": 3,
+    "old_dashboard_fid": 1.3476836112471915,
+    "original_paper_fid": 1.29,
+    "official_release_fid": null,
+    "new_fid_mean": 1.3275378515471818,
+    "new_fid_sd": 0.013653714382572847,
+    "delta_vs_paper": 0.03753785154718181,
+    "source": "https://github.com/hanjq17/W-Flow"
+  },
+  {
+    "model": "drifting_b",
+    "completed": 3,
+    "old_dashboard_fid": 1.5469637818006277,
+    "original_paper_fid": 1.76,
+    "official_release_fid": 1.73,
+    "new_fid_mean": 1.7387076716307017,
+    "new_fid_sd": 0.01731535649943569,
+    "delta_vs_paper": -0.021292328369298286,
+    "source": "https://github.com/lambertae/drifting"
+  },
+  {
+    "model": "drifting_l",
+    "completed": 3,
+    "old_dashboard_fid": 1.426036859378371,
+    "original_paper_fid": 1.61,
+    "official_release_fid": 1.62,
+    "new_fid_mean": 1.6149073199527681,
+    "new_fid_sd": 0.020465994127442863,
+    "delta_vs_paper": 0.004907319952768052,
+    "source": "https://github.com/lambertae/drifting"
+  },
+  {
+    "model": "pmf_l",
+    "completed": 3,
+    "old_dashboard_fid": 2.72,
+    "original_paper_fid": 2.52,
+    "official_release_fid": 2.51,
+    "new_fid_mean": 2.554380494019957,
+    "new_fid_sd": 0.015150630007298188,
+    "delta_vs_paper": 0.03438049401995702,
+    "source": "https://github.com/Lyy-iiis/pMF/tree/990e81a84249dbd68a128accef67eb95621d10b1"
+  },
+  {
+    "model": "pmf_h",
+    "completed": 3,
+    "old_dashboard_fid": 2.29,
+    "original_paper_fid": 2.22,
+    "official_release_fid": 2.15,
+    "new_fid_mean": 2.1501173135671556,
+    "new_fid_sd": 0.018200723609347224,
+    "delta_vs_paper": -0.06988268643284457,
+    "source": "https://github.com/Lyy-iiis/pMF/tree/990e81a84249dbd68a128accef67eb95621d10b1"
+  },
+  {
+    "model": "jit_h",
+    "completed": 3,
+    "old_dashboard_fid": 1.97,
+    "original_paper_fid": 1.86,
+    "official_release_fid": null,
+    "new_fid_mean": 1.8799923851409517,
+    "new_fid_sd": 0.017672392182966904,
+    "delta_vs_paper": 0.019992385140951585,
+    "source": "https://arxiv.org/html/2511.13720v1"
+  },
+  {
+    "model": "imf_xl",
+    "completed": 3,
+    "old_dashboard_fid": 1.82,
+    "original_paper_fid": 1.72,
+    "official_release_fid": 1.72,
+    "new_fid_mean": 1.7397222566039166,
+    "new_fid_sd": 0.014994020658459532,
+    "delta_vs_paper": 0.019722256603916577,
+    "source": "https://github.com/Lyy-iiis/imeanflow/tree/04687983e821b3ad01f54f03dc44194a33c20c54"
+  }
+]

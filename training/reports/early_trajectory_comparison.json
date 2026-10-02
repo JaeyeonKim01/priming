@@ -1,0 +1,48 @@
+{
+  "observed_at": "2026-10-01T02:19:48.780927+00:00",
+  "scope": "Early trajectory comparison, not evaluation quality or bitwise reproducibility.",
+  "arms": {
+    "b160": {
+      "compared_updates": 150,
+      "through": 150,
+      "learning_rates_match": true,
+      "loss": {
+        "historical_first": 3.339512348175049,
+        "new_first": 3.3395261764526367,
+        "historical_last": 0.36802196502685547,
+        "new_last": 0.3690863251686096,
+        "mean_absolute_difference": 0.0010300676027933757,
+        "max_absolute_difference": 0.0067987143993377686
+      },
+      "gradient_norm": {
+        "historical_first": 29.731889724731445,
+        "new_first": 29.732664108276367,
+        "historical_last": 1.4371697902679443,
+        "new_last": 1.2684364318847656,
+        "mean_absolute_difference": 0.055366503794987997,
+        "max_absolute_difference": 0.6807041168212891
+      }
+    },
+    "l160": {
+      "compared_updates": 145,
+      "through": 145,
+      "learning_rates_match": true,
+      "loss": {
+        "historical_first": 2.7018656730651855,
+        "new_first": 2.7018542289733887,
+        "historical_last": 0.3373923897743225,
+        "new_last": 0.3357622027397156,
+        "mean_absolute_difference": 0.0022153776267479206,
+        "max_absolute_difference": 0.015007555484771729
+      },
+      "gradient_norm": {
+        "historical_first": 12.490457534790039,
+        "new_first": 12.492044448852539,
+        "historical_last": 1.7829898595809937,
+        "new_last": 2.46520733833313,
+        "mean_absolute_difference": 0.10691967585991169,
+        "max_absolute_difference": 0.871314525604248
+      }
+    }
+  }
+}

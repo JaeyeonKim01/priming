@@ -1,0 +1,52 @@
+{
+  "status": "pass",
+  "scratch_root": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_link_pilot_20260930",
+  "models": {
+    "priming_b_80": {
+      "job_id": 49472147,
+      "status": "pass",
+      "num_images": 1000,
+      "seed": 1,
+      "all_rank_uint8_streams_identical": true,
+      "rank_matches": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "previous_checkpoint_sha256": "8f58119dbdad65521b3f6f5c355687090e4af152af0e5e6601931ab04affa426",
+      "linked_source_checkpoint_sha256": "87b45a8f1a49e366eacbd7e925f5eabecd877afc3d8dc016db64c7770505d3ab",
+      "previous_fid": 38.52365985423313,
+      "linked_fid": 38.523660002257316,
+      "fid_delta": 1.4802418490944547e-07,
+      "previous_fdr5": 28.73607827612213,
+      "linked_fdr5": 28.736295379238708,
+      "fdr5_delta": 0.00021710311657940906,
+      "linked_script_sha256": "cbdf5983745655617302bbd89f2f48737c1c86883a641915f27adf07a6b22c05",
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_link_pilot_20260930/priming_b_80/n1000_seed1"
+    },
+    "priming_l_160": {
+      "job_id": 49472253,
+      "status": "pass",
+      "num_images": 1000,
+      "seed": 1,
+      "all_rank_uint8_streams_identical": true,
+      "rank_matches": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "previous_checkpoint_sha256": "00ff256d7e8c454bcf0f490d5dc21d791931cf6f15cab503ec79bc74f1f9a3c8",
+      "linked_source_checkpoint_sha256": "51586a8d847cb2b790572997249b8760ab37cd284354bffaa657fd2125623da0",
+      "previous_fid": 39.032887338303,
+      "linked_fid": 39.03288735827408,
+      "fid_delta": 1.9971082565461984e-08,
+      "previous_fdr5": 23.637130420002226,
+      "linked_fdr5": 23.637445899245318,
+      "fdr5_delta": 0.00031547924309194286,
+      "linked_script_sha256": "cbdf5983745655617302bbd89f2f48737c1c86883a641915f27adf07a6b22c05",
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_link_pilot_20260930/priming_l_160/n1000_seed1"
+    }
+  }
+}

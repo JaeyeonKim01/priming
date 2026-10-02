@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "checks": {
+    "pmf_l": {
+      "job_id": 49442866,
+      "partition": "kempner_h100_priority",
+      "num_images": 1000,
+      "seed": 1,
+      "fid": 38.84374262684588,
+      "fdr5": 26.67106163889835,
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_eval_20260930/pmf_l/n1000_seed1",
+      "comparison": "Original 1000-image pilot uses the same v2 rank RNG stream",
+      "all_rank_uint8_stream_hashes_equal": true,
+      "fid_delta_vs_archived_1k": -4.233078243487398e-08,
+      "fdr5_delta_vs_archived_1k": -0.000573980818224129
+    },
+    "priming_b_80": {
+      "job_id": 49442858,
+      "partition": "kempner_h100_priority",
+      "num_images": 1000,
+      "seed": 1,
+      "fid": 38.52365985423313,
+      "fdr5": 28.73607827612213,
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_eval_20260930/priming_b_80/n1000_seed1",
+      "comparison": "Rank 0 first image matches original v2 50000-image seed-1 run; archived L-160 1000-image pilot used v1 rank RNG and is not comparable",
+      "rank0_first_uint8_image_equal_to_headline_seed1": true
+    },
+    "priming_l_160": {
+      "job_id": 49443178,
+      "partition": "kempner_h100_priority",
+      "num_images": 1000,
+      "seed": 1,
+      "fid": 39.032887338303,
+      "fdr5": 23.637130420002226,
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_eval_20260930/priming_l_160/n1000_seed1",
+      "comparison": "Rank 0 first image matches original v2 50000-image seed-1 run; archived L-160 1000-image pilot used v1 rank RNG and is not comparable",
+      "rank0_first_uint8_image_equal_to_headline_seed1": true
+    },
+    "wflow_xl": {
+      "job_id": 49443571,
+      "partition": "kempner_h100_priority",
+      "num_images": 1000,
+      "seed": 1,
+      "fid": 39.103589237598385,
+      "fdr5": 27.693609809615886,
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_eval_20260930/wflow_xl/n1000_seed1",
+      "comparison": "Rank 0 first image matches original v2 50000-image seed-1 run",
+      "rank0_first_uint8_image_equal_to_headline_seed1": true
+    },
+    "drifting_b": {
+      "job_id": 49443573,
+      "partition": "kempner_h100_priority",
+      "num_images": 1000,
+      "seed": 1,
+      "fid": 38.03263577196401,
+      "fdr5": 30.757613380931296,
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_eval_20260930/drifting_b/n1000_seed1",
+      "comparison": "Rank 0 first image matches original v2 50000-image seed-1 run",
+      "rank0_first_uint8_image_equal_to_headline_seed1": true
+    },
+    "imf_xl": {
+      "job_id": 49443575,
+      "partition": "kempner_h100_priority",
+      "num_images": 1000,
+      "seed": 1,
+      "fid": 39.3641316008015,
+      "fdr5": 25.804220891452985,
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_eval_20260930/imf_xl/n1000_seed1",
+      "comparison": "Original 1000-image pilot uses v2 RNG; numerical agreement, not bitwise identical",
+      "fid_delta_vs_archived_1k": -3.285481062675899e-05,
+      "fdr5_delta_vs_archived_1k": 0.00010461372247760892,
+      "first_batch_max_uint8_delta": 1,
+      "first_batch_changed_pixel_fraction": 2.3245811462402344e-05
+    },
+    "jit_h": {
+      "job_id": 49443576,
+      "partition": "kempner_h100_priority",
+      "num_images": 1000,
+      "seed": 1,
+      "world_size": 8,
+      "batch": 64,
+      "fid": 38.330810682411084,
+      "fdr5": 24.707636663734448,
+      "new_artifacts": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_eval_20260930/jit_h/n1000_seed1",
+      "comparison": "Archived 1000-image pilot used four GPUs/batch 32; paper headline used eight GPUs/batch 64. First image from headline and release pilot has same class/noise seed but numerical pixel differences after 50-step sampling; full streams are not comparable because class ordering differs.",
+      "rank0_first_image_mean_abs_uint8_delta_vs_headline": 0.4941558837890625,
+      "rank0_first_image_max_abs_uint8_delta_vs_headline": 25
+    }
+  }
+}

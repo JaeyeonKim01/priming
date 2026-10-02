@@ -1,0 +1,20 @@
+% Three sampling seeds, 50k per seed, mean +/- sample SD. Fixed trained checkpoints.
+% FID: official FP32 uint8/JiT reference. FDr5: separately frozen legacy definition.
+% Training EFLOPs copied from existing audited compute sources; not remeasured.
+\begin{tabular}{lrrr}
+\toprule
+Model & FID $\downarrow$ & FDr5 $\downarrow$ & Training EFLOPs \\
+\midrule
+WF-XL/2 & $1.328 \pm 0.014$ & $11.070 \pm 0.046$ & 3744.43 \\
+Drifting-B/16 & $1.739 \pm 0.017$ & $15.303 \pm 0.040$ & 1048.23 \\
+Drifting-L/16 & $1.615 \pm 0.020$ & $12.589 \pm 0.070$ & 1476.39 \\
+pMF-L/16 & $2.554 \pm 0.015$ & $10.847 \pm 0.018$ & 821.75 \\
+pMF-H/16 & $2.150 \pm 0.018$ & $8.145 \pm 0.006$ & 1968.54 \\
+JiT-H/16 & $1.880 \pm 0.018$ & $8.693 \pm 0.053$ & 839.00 \\
+iMF-XL/2 & $1.740 \pm 0.015$ & $9.745 \pm 0.038$ & 3201.12 \\
+Priming-B-80 & $1.468 \pm 0.013$ & $12.709 \pm 0.019$ & 85.75 \\
+Priming-B-160 & $1.384 \pm 0.013$ & $11.229 \pm 0.016$ & 124.18 \\
+Priming-L-80 & $1.269 \pm 0.013$ & $8.943 \pm 0.013$ & 151.29 \\
+Priming-L-160 & $1.187 \pm 0.015$ & $7.105 \pm 0.020$ & 238.95 \\
+\bottomrule
+\end{tabular}

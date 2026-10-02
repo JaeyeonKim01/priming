@@ -1,0 +1,49 @@
+{
+  "model": "imf_xl",
+  "seed": 1,
+  "num_images": 1000,
+  "rng_rank_seed": 1000003,
+  "world_size": 4,
+  "batch": 32,
+  "fid": 39.364164455612126,
+  "fdr5": 25.804116277730508,
+  "fd_legacy": {
+    "FID(ADM)": 39.492669105358175,
+    "dinov2_cls": 481.45332465340243,
+    "mae_cls": 0.4094678897492887,
+    "siglip_cls": 19.673494256790548,
+    "clip_cls": 159.92551963214316
+  },
+  "fdr_components": {
+    "FID(ADM)": 23.50754113414177,
+    "dinov2_cls": 33.92905741038777,
+    "mae_cls": 10.236697243732218,
+    "siglip_cls": 32.78915709465092,
+    "clip_cls": 28.55812850573985
+  },
+  "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/three_seed_eval_20260925/assets/checkpoints/base/iMF-XL.pth",
+  "expected_checkpoint_sha256": "8a0b02d2fbd640e3a6d045d088946ef300314460a7e5d43bcad15d086095da67",
+  "checkpoint_release": "jjiaweiyang/FD-Loss@88ce2bb4061b0dd58839a1827235ffcffa51eed2",
+  "official_sampler_source": "/n/home10/jaykim/woobin/OST/isolated_experiments/three_seed_eval_20260925/vendor/iMF",
+  "adapter_sha256": "0815fc5b5b850cf9f4119f3dbe3f8b551dfcd40dcbbc9da9aaeffef8d4b27672",
+  "official_sampler_commit": "04687983e821b3ad01f54f03dc44194a33c20c54",
+  "vae_execution": "official VAEWrapper normalization + eager FP32 decode (compiler compatibility)",
+  "vae_revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+  "cfg": 8.0,
+  "interval": [
+    0.42,
+    0.62
+  ],
+  "sampling_steps": 1,
+  "ema": "released_inference",
+  "generation_precision": "upstream FP32/TF32",
+  "noise_scale": 1.0,
+  "rng": "upstream CPU BatchGenerator; per-image seed = 1000003 * replicate + image_index",
+  "sampling_and_features_seconds": 6.088530502980575,
+  "seconds_since_load": 77.24579000892118,
+  "official_reference": "/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz",
+  "official_reference_sha256": "412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c",
+  "script_sha256": "f82a7df6000a567fd9e2d624254a14b11b2388d671c48be925bc890a8ad8e968",
+  "protocol": "FID: LTH14 FP32 rounded uint8, JiT reference. FDr5: frozen BF16 float images, FP64 moments, excludes ConvNeXt; legacy ADM FID component retained.",
+  "gpu": "NVIDIA H100 80GB HBM3"
+}

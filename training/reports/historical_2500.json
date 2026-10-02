@@ -1,0 +1,148 @@
+{
+  "b160": {
+    "passed": true,
+    "through": 2500,
+    "required_milestones": [
+      1250,
+      2500
+    ],
+    "weights": [
+      "online",
+      "0.999"
+    ],
+    "complete_draws": 4,
+    "draws": [
+      {
+        "step": 1250,
+        "timestamp": "2026-09-16T03:05",
+        "weights": "online",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 2.2632394759563113,
+        "fdr5_no_convnext": 14.998585680934024,
+        "fdr6": 12.69215368775347,
+        "precision": 0.796720027923584,
+        "recall": 0.5404999852180481,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/final_eval_summary.csv"
+      },
+      {
+        "step": 2500,
+        "timestamp": "2026-09-16T04:57",
+        "weights": "online",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 1.9502885926448243,
+        "fdr5_no_convnext": 14.177364843268794,
+        "fdr6": 11.971467012419131,
+        "precision": 0.7879199981689453,
+        "recall": 0.58160001039505,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/final_eval_summary.csv"
+      },
+      {
+        "step": 1250,
+        "timestamp": "2026-09-16T03:06",
+        "weights": "0.999",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 18.076701341549494,
+        "fdr5_no_convnext": 46.805341540730936,
+        "fdr6": 39.9994386573585,
+        "precision": 0.6413999795913696,
+        "recall": 0.3407000005245209,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/final_eval_summary.csv"
+      },
+      {
+        "step": 2500,
+        "timestamp": "2026-09-16T04:57",
+        "weights": "0.999",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 3.525801008803626,
+        "fdr5_no_convnext": 15.690935524594503,
+        "fdr6": 13.33013422948675,
+        "precision": 0.8032400012016296,
+        "recall": 0.5148000121116638,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/final_eval_summary.csv"
+      }
+    ],
+    "fdr5_excluded_encoder": "convnext",
+    "grouping": "step, weight, timestamp, CFG, interval"
+  },
+  "l160": {
+    "passed": true,
+    "through": 2500,
+    "required_milestones": [
+      1250,
+      2500
+    ],
+    "weights": [
+      "online",
+      "0.999"
+    ],
+    "complete_draws": 4,
+    "draws": [
+      {
+        "step": 1250,
+        "timestamp": "2026-09-10T19:26",
+        "weights": "online",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 1.9224964440176677,
+        "fdr5_no_convnext": 9.696443458746362,
+        "fdr6": 8.225843960152785,
+        "precision": 0.7802799940109253,
+        "recall": 0.5927000045776367,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/final_eval_summary.csv"
+      },
+      {
+        "step": 2500,
+        "timestamp": "2026-09-10T21:23",
+        "weights": "online",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 1.6744598165747675,
+        "fdr5_no_convnext": 8.902975821581796,
+        "fdr6": 7.5334884371654915,
+        "precision": 0.7797600030899048,
+        "recall": 0.6065999865531921,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/final_eval_summary.csv"
+      },
+      {
+        "step": 1250,
+        "timestamp": "2026-09-10T19:27",
+        "weights": "0.999",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 11.774955678850972,
+        "fdr5_no_convnext": 31.610811835107814,
+        "fdr6": 27.07534225750003,
+        "precision": 0.7223399877548218,
+        "recall": 0.34779998660087585,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/final_eval_summary.csv"
+      },
+      {
+        "step": 2500,
+        "timestamp": "2026-09-10T21:23",
+        "weights": "0.999",
+        "n": 50000,
+        "cfg": 1.0,
+        "nfe": 1,
+        "fid": 2.9697235761877323,
+        "fdr5_no_convnext": 9.290642992909257,
+        "fdr6": 7.919809378882199,
+        "precision": 0.8121799826622009,
+        "recall": 0.5343999862670898,
+        "source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/final_eval_summary.csv"
+      }
+    ],
+    "fdr5_excluded_encoder": "convnext",
+    "grouping": "step, weight, timestamp, CFG, interval"
+  }
+}

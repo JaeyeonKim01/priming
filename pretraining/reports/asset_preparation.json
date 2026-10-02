@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "scope": "Temporary launch bundles only; no model construction or training.",
+  "recipes": {
+    "b160_perceptual": {
+      "passed": true,
+      "assets": {
+        "lpips": {
+          "path": "/n/home10/jaykim/woobin/OST/isolated_experiments/ost_b_pretrain_pair_20260912/runtime/checkpoints/lpips/vgg.pth",
+          "sha256": "a78928a0af1e5f0fcb1f3b9e8f8c3a2a5a3de244d830ad5c1feddc79b8432868"
+        },
+        "vgg16": {
+          "path": "/n/home10/jaykim/woobin/OST/tests/mmd/runs/torch_cache/hub/checkpoints/vgg16-397923af.pth",
+          "sha256": "397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0"
+        },
+        "convnext": {
+          "revision": "758ff0922dc09136abb55774e7f8b1e1bd0dc344",
+          "files": {
+            "/n/netscratch/sham_lab/Lab/workdir/huggingface/hub/models--facebook--convnextv2-base-22k-224/refs/main": "778abf3d0d60e4912c9881a07ea2d1737355ec4ec1d23db6ce0cc237ab99e0e9",
+            "/n/netscratch/sham_lab/Lab/workdir/huggingface/hub/models--facebook--convnextv2-base-22k-224/snapshots/758ff0922dc09136abb55774e7f8b1e1bd0dc344/config.json": "dac818f34972086f8171c444adac7752e13466b201eee2e248768597aa114732",
+            "/n/netscratch/sham_lab/Lab/workdir/huggingface/hub/models--facebook--convnextv2-base-22k-224/snapshots/758ff0922dc09136abb55774e7f8b1e1bd0dc344/model.safetensors": "8937dc20b1d7a63ea628752315a89b9a4fc0f58bf78b3299041e99c0ad3f93bb"
+          }
+        }
+      },
+      "data_metadata_files": 4,
+      "arrow_shards": 517
+    },
+    "b160_no_perceptual": {
+      "passed": true,
+      "assets": {},
+      "data_metadata_files": 4,
+      "arrow_shards": 517
+    },
+    "l160_perceptual": {
+      "passed": true,
+      "assets": {
+        "lpips": {
+          "path": "/n/home10/jaykim/woobin/OST/isolated_experiments/ost_b_pretrain_pair_20260912/runtime/checkpoints/lpips/vgg.pth",
+          "sha256": "a78928a0af1e5f0fcb1f3b9e8f8c3a2a5a3de244d830ad5c1feddc79b8432868"
+        },
+        "vgg16": {
+          "path": "/n/home10/jaykim/woobin/OST/tests/mmd/runs/torch_cache/hub/checkpoints/vgg16-397923af.pth",
+          "sha256": "397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0"
+        },
+        "convnext": {
+          "revision": "758ff0922dc09136abb55774e7f8b1e1bd0dc344",
+          "files": {
+            "/n/netscratch/sham_lab/Lab/workdir/huggingface/hub/models--facebook--convnextv2-base-22k-224/refs/main": "778abf3d0d60e4912c9881a07ea2d1737355ec4ec1d23db6ce0cc237ab99e0e9",
+            "/n/netscratch/sham_lab/Lab/workdir/huggingface/hub/models--facebook--convnextv2-base-22k-224/snapshots/758ff0922dc09136abb55774e7f8b1e1bd0dc344/config.json": "dac818f34972086f8171c444adac7752e13466b201eee2e248768597aa114732",
+            "/n/netscratch/sham_lab/Lab/workdir/huggingface/hub/models--facebook--convnextv2-base-22k-224/snapshots/758ff0922dc09136abb55774e7f8b1e1bd0dc344/model.safetensors": "8937dc20b1d7a63ea628752315a89b9a4fc0f58bf78b3299041e99c0ad3f93bb"
+          }
+        }
+      },
+      "data_metadata_files": 2,
+      "arrow_shards": 505
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "observed_at": "2026-09-30T23:41:34.698779+00:00",
+  "tests": 20,
+  "checks": [
+    "isolated runtime imports",
+    "B/L parsed configs",
+    "20 Sinkhorn/OT stream/evaluation audit regression tests",
+    "shell syntax",
+    "Slurm test-only GPU and monitor requests",
+    "disabled-dashboard completion hook imported and executed",
+    "all absolute src/scripts imports resolve inside migrated runtime"
+  ],
+  "environment": {
+    "torch": "2.6.0+cu124",
+    "torchvision": "0.21.0+cu124",
+    "timm": "1.0.27",
+    "omegaconf": "2.3.1",
+    "datasets": "5.0.0",
+    "diffusers": "0.38.0",
+    "transformers": "5.12.1",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "Pillow": "12.2.0",
+    "triton": "3.2.0",
+    "jaxtyping": "0.3.2",
+    "accelerate": "1.13.0",
+    "einops": "0.8.2",
+    "wandb": "0.27.0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "model": "priming_l_160",
+  "seed": 1,
+  "num_images": 50000,
+  "rng_rank_seed": 1000003,
+  "world_size": 4,
+  "batch": 32,
+  "fid": 1.1766798461069925,
+  "fdr5": 7.098294447102812,
+  "fd_legacy": {
+    "FID(ADM)": 1.242744055304854,
+    "dinov2_cls": 60.49994829726802,
+    "mae_cls": 0.1587904405824343,
+    "siglip_cls": 7.575575667286273,
+    "clip_cls": 77.79778117024739
+  },
+  "fdr_components": {
+    "FID(ADM)": 0.7397286043481275,
+    "dinov2_cls": 4.263562247869487,
+    "mae_cls": 3.9697610145608575,
+    "siglip_cls": 12.625959445477122,
+    "clip_cls": 13.892460923258463
+  },
+  "checkpoint": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/checkpoints/step_0024999.pth",
+  "cfg": 1.0,
+  "ema": "0.999",
+  "args_source": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_L_e160_full_featurewise_ot_s25000_20260910/args_2609101721.json",
+  "args_sha256": "7bb9e58754c711e1a55dfcb2000fc44e116a597c32596acf6d19769156817522",
+  "sampling_and_features_seconds": 87.59561165799823,
+  "seconds_since_load": 274.7942810059976,
+  "official_reference": "/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz",
+  "official_reference_sha256": "412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c",
+  "script_sha256": "f82a7df6000a567fd9e2d624254a14b11b2388d671c48be925bc890a8ad8e968",
+  "protocol": "FID: LTH14 FP32 rounded uint8, JiT reference. FDr5: frozen BF16 float images, FP64 moments, excludes ConvNeXt; legacy ADM FID component retained.",
+  "gpu": "NVIDIA H100 80GB HBM3"
+}

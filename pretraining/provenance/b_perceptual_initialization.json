@@ -1,0 +1,96 @@
+{
+  "seed": 1,
+  "initial_model_sha256": "3b12f0b709d89b4831b2fdb03b4541e097dfe1c41014f620d49e81359752f873",
+  "parameters": 115063936,
+  "depth": 16,
+  "auxiliary_enabled": true,
+  "contract": {
+    "version": 1,
+    "stream": "pixel_pair_stateless_v1",
+    "world_size": 8,
+    "global_batch": 1024,
+    "data": {
+      "data_path": "/n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data",
+      "num_classes": 1000,
+      "img_size": 256,
+      "num_workers": 10,
+      "pin_mem": true,
+      "random_horizontal_flip": true
+    },
+    "model": {
+      "model": "OST_B",
+      "patch_size": 16,
+      "tokenizer": null,
+      "token_channels": 3,
+      "tokenizer_patch_size": 1,
+      "class_tokens": 8,
+      "guidance_tokens": 0,
+      "interval_tokens": 0,
+      "label_drop_prob": 0.0,
+      "rope_2d": true,
+      "learned_pe": true,
+      "corruption": "denoising",
+      "t_dist": "uniform",
+      "t_min": 0.8,
+      "t_max": 0.8,
+      "P_mean": 0.8,
+      "P_std": 0.8,
+      "noise_scale": 1.0,
+      "cfg_beta": 1.0,
+      "cfg_omega_max": 7.0
+    },
+    "loss": {
+      "norm_eps": 0.0001,
+      "norm_p": 1.0,
+      "perceptual_threshold": 0.8,
+      "aux": {
+        "enabled": true,
+        "lpips_weight": 0.4,
+        "convnext_weight": 0.1,
+        "norm_eps": 0.01,
+        "norm_p": 1.0,
+        "random_crop": true,
+        "crop_scale": [
+          0.08,
+          1.0
+        ]
+      }
+    },
+    "optimizer": {
+      "optimizer": "muon",
+      "lr": 0.001,
+      "min_lr": 0.0,
+      "lr_sched": "constant",
+      "warmup_epochs": 0,
+      "warmup_rate": 0.0,
+      "weight_decay": 0.0,
+      "beta1": 0.9,
+      "beta2": 0.95,
+      "muon_momentum": 0.95,
+      "muon_weight_decay": 0.0,
+      "grad_clip": 0.0
+    },
+    "train": {
+      "epochs": 160,
+      "steps_per_epoch": 1251,
+      "micro_batch_size": 64,
+      "gradient_accumulation_steps": 2,
+      "seed": 1,
+      "dtype": "bf16",
+      "ema_rates": [
+        0.9999
+      ],
+      "compile": true
+    },
+    "numerical_backend": {
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "tf32": true,
+      "sdpa": "math",
+      "deterministic_algorithms": true,
+      "perceptual_crop_backward": "native_cpu_bicubic"
+    },
+    "manifest_sha256": "9666464951a607ce83b32e672c2a2f43be303e534298baa4b002854d7e47bd53",
+    "auxiliary_state_sha256": "d015fad6525bf2cbd516a948778134285f49514b29199e04c12ec96400a1ce46"
+  }
+}

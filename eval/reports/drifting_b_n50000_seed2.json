@@ -1,0 +1,34 @@
+{
+  "model": "drifting_b",
+  "seed": 2,
+  "num_images": 50000,
+  "world_size": 4,
+  "batch": 32,
+  "fid": 1.732428060002178,
+  "fdr5": 15.344998098194367,
+  "fd_legacy": {
+    "FID(ADM)": 1.5534556618263196,
+    "dinov2_cls": 111.27327602159721,
+    "mae_cls": 0.3428446363805371,
+    "siglip_cls": 16.491103451848062,
+    "clip_cls": 178.6532029635605
+  },
+  "fdr_components": {
+    "FID(ADM)": 0.9246759891823331,
+    "dinov2_cls": 7.8416685004649205,
+    "mae_cls": 8.571115909513427,
+    "siglip_cls": 27.48517241974677,
+    "clip_cls": 31.902357672064376
+  },
+  "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/OT_compute_comparison_20260905/drifting/models/gen/jax/pixel_B_sota/converted_ema.pt",
+  "cfg": 1.0,
+  "ema": "released_ema",
+  "sampler": "official DitGen; upstream batch-index RNG; PNG writes omitted",
+  "sampling_and_features_seconds": 57.396673418115824,
+  "seconds_since_load": 201.00473289610818,
+  "official_reference": "/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz",
+  "official_reference_sha256": "412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c",
+  "script_sha256": "ca4ef2ea0516ee18acae89c90cbc64ff63642beb584c31f69e070bf1183581e4",
+  "protocol": "FID: LTH14 FP32 rounded uint8, JiT reference. FDr5: frozen BF16 float images, FP64 moments, excludes ConvNeXt; legacy ADM FID component retained.",
+  "gpu": "NVIDIA H100 80GB HBM3"
+}

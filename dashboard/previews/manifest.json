@@ -1,0 +1,26 @@
+{
+  "priming_b_80": {
+    "file": "priming_b_80.png",
+    "source": "figures/samples/OST_B_perceptual_e80_full_featurewise_ot_s25000_20260916/overview.png",
+    "sha256": "fc8db4a2255e4f94c7b042981d15aef167f95b9803a0f9c4489d2fb5037914c2",
+    "bytes": 3136466
+  },
+  "priming_b_160": {
+    "file": "priming_b_160.png",
+    "source": "figures/samples/OST_B_perceptual_e160_full_featurewise_ot_s25000_20260916/overview.png",
+    "sha256": "4bad4baac7e4c51638ffb6b6571b8dcfea3f8cad8e931790f8f1bc9f8ecefeca",
+    "bytes": 3112309
+  },
+  "priming_l_80": {
+    "file": "priming_l_80.png",
+    "source": "figures/samples/OST_L_e80_full_featurewise_ot_s25000_20260910/overview.png",
+    "sha256": "433f6865db2114fd20971acac57c8f39cbdf22c3fb3b7991d62a634c1a4472cd",
+    "bytes": 3107238
+  },
+  "priming_l_160": {
+    "file": "priming_l_160.png",
+    "source": "figures/samples/OST_L_e160_full_featurewise_ot_s25000_20260910/overview.png",
+    "sha256": "d425c5988d96a7a782a51fc10864f50483ecbe5d88310cb811c36128ee39e1ee",
+    "bytes": 3168184
+  }
+}
