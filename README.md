@@ -135,5 +135,5 @@ scheduled evaluations, checkpoint recovery, and validation tools.
 
 ---
 
-See [reproduction status](REPRODUCTION_STATUS.md) for validated results and
+See the [evaluation guide](eval/README.md) for validated results and
 reproducibility notes.

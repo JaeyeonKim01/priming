@@ -52,7 +52,6 @@ def main() -> None:
     options = parser.parse_args()
     paper = {r["model"]: r for r in csv.DictReader((HERE / "paper_results.csv").open())}
     table = manuscript_rows(options.manuscript)
-    status = (HERE.parent / "REPRODUCTION_STATUS.md").read_text()
     assert len(paper) == len(table) == len(LABELS) == 11
     checked = {}
     for key, (csv_label, tex_label) in LABELS.items():
@@ -72,22 +71,18 @@ def main() -> None:
         assert f"{fid:.2f}" == f"{tex_fid:.2f}", key
         assert f"{fdr5:.2f}" == f"{tex_fdr5:.2f}", key
         assert f"{float(row['eflops']):.2f}" == f"{tex_compute:.2f}", key
-        expected_status = (f"| {csv_label} | 3/3 | {fid:.4f} ± {fid_sd:.4f} | "
-                           f"{fdr5:.4f} ± {fdr5_sd:.4f} |")
-        assert expected_status in status, key
         checked[key] = {"model": csv_label, "fid_mean": fid, "fid_sd": fid_sd,
                         "fdr5_mean": fdr5, "fdr5_sd": fdr5_sd,
                         "manuscript_fid": tex_fid, "manuscript_fdr5": tex_fdr5,
                         "status": "match"}
     result = {"checked_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
               "source": "33 individual saved 50,000-image result JSON files",
-              "compared_with": ["release full-precision CSV", "final paper ImageNet LaTeX table",
-                                "OST_public reproduction status table"],
+              "compared_with": ["release full-precision CSV", "final paper ImageNet LaTeX table"],
               "models_checked": len(checked), "status": "pass", "rows": checked,
               "scope_note": "Recomputed summary arithmetic from saved evaluations; no new 50,000-image sampling"}
     output = HERE / "reports/table_recheck_20260930.json"
     output.write_text(json.dumps(result, indent=2) + "\n")
-    print(f"Matched all {len(checked)} models against CSV, paper table, and status table")
+    print(f"Matched all {len(checked)} models against CSV and paper table")
 
 
 if __name__ == "__main__":
