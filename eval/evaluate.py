@@ -2,6 +2,7 @@
 import argparse, contextlib, csv, hashlib, json, os, sys, time
 from pathlib import Path
 from types import SimpleNamespace
+from output_paths import prepare_output_directory
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from priming_paths import asset, configure_caches, resolve
@@ -22,17 +23,21 @@ def digest(p):
   for b in iter(lambda:f.read(8<<20),b''): h.update(b)
  return h.hexdigest()
 
-def load_generator(key):
+def load_generator(key, checkpoint=None):
  if key.startswith('priming'):
   from src.models import OSTDenoiser_models
   from src.utils.sampling_util import generate_images
   item=json.loads((ROOT/'checkpoints/manifest.json').read_text())[key]
-  ckpt=ROOT/item['checkpoint']
+  ckpt=resolve(checkpoint) if checkpoint is not None else ROOT/item['checkpoint']
   argsfile=ROOT/item['config']
   config=json.loads(argsfile.read_text())
-  assert ckpt.stat().st_size==item['checkpoint_bytes']
-  if dist.get_rank()==0: assert digest(ckpt)==item['checkpoint_sha256']
-  dist.barrier()
+  if checkpoint is None:
+   assert ckpt.stat().st_size==item['checkpoint_bytes']
+  checkpoint_hash=[None]
+  if dist.get_rank()==0:
+   checkpoint_hash[0]=digest(ckpt)
+   if checkpoint is None: assert checkpoint_hash[0]==item['checkpoint_sha256']
+  dist.broadcast_object_list(checkpoint_hash,src=0)
   args=SimpleNamespace(**config['sampling_args'])
   args.enable_amp,args.amp_dtype=True,torch.bfloat16
   assert args.num_sampling_steps==1 and config['completed_updates']==25000
@@ -53,7 +58,7 @@ def load_generator(key):
   net.load_state_dict(shadow,strict=True,assign=True)
   net.cuda().eval().requires_grad_(False)
   def sample(labels,seed,start): return generate_images(args,net,labels=labels,cfg=1.)
-  return sample,contextlib.nullcontext(),dict(checkpoint=str(ckpt),checkpoint_sha256=item['checkpoint_sha256'],cfg=1.,ema='0.999',args_source=str(argsfile),args_sha256=digest(argsfile))
+  return sample,contextlib.nullcontext(),dict(checkpoint=str(ckpt),checkpoint_sha256=checkpoint_hash[0],cfg=1.,ema='0.999',args_source=str(argsfile),args_sha256=digest(argsfile))
  if key in ('wflow_xl','drifting_b','drifting_l'):
   import yaml
   from models.generator import DitGen
@@ -84,8 +89,11 @@ def load_generator(key):
 
 @torch.inference_mode()
 def main():
- p=argparse.ArgumentParser(); p.add_argument('--model',required=True); p.add_argument('--num-images',type=int,default=50000); p.add_argument('--seeds',type=int,nargs='+',default=[1,2,3]); p.add_argument('--batch',type=int,default=32); p.add_argument('--output-dir',type=Path,required=True)
- opt=p.parse_args(); opt.output_dir=resolve(opt.output_dir); rank=int(os.environ['RANK']); world=int(os.environ['WORLD_SIZE'])
+ p=argparse.ArgumentParser(); p.add_argument('--checkpoint',type=Path,help='Evaluate your own terminal Priming checkpoint using the selected model architecture'); p.add_argument('--model',required=True); p.add_argument('--num-images',type=int,default=50000); p.add_argument('--seeds',type=int,nargs='+',default=[1,2,3]); p.add_argument('--batch',type=int,default=32); p.add_argument('--output-dir',type=Path,required=True)
+ opt=p.parse_args()
+ if opt.checkpoint is not None and not opt.model.startswith('priming'):
+  p.error('--checkpoint requires a Priming model key')
+ opt.output_dir=resolve(opt.output_dir); rank=int(os.environ['RANK']); world=int(os.environ['WORLD_SIZE'])
  assert opt.num_images%1000==0
  torch.cuda.set_device(int(os.environ['LOCAL_RANK'])); dist.init_process_group('nccl'); torch.set_num_threads(4)
  from scripts import main_mmd_and_eval as mmd
@@ -98,16 +106,14 @@ def main():
  evaluator=FrechetEvaluator(features=mmd._features(specs),stats=mmd._cached_stats(specs,device=torch.device('cuda')),stats_dtype=torch.float64,distributed=True,device='cuda')
  weights=asset('PRIMING_INCEPTION_WEIGHTS','assets/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth')
  official=FeatureExtractorInceptionV3('inception-v3-compat',['2048'],feature_extractor_weights_path=str(weights)).cuda().eval().requires_grad_(False)
- sample,swap,metadata=load_generator(opt.model)
+ sample,swap,metadata=load_generator(opt.model, checkpoint=opt.checkpoint)
  print('READY',opt.model,rank,'load_seconds',time.monotonic()-started,flush=True)
  refpath=asset('PRIMING_FID_REFERENCE','assets/fid_stats/jit_in256_stats.npz')
  assert digest(refpath)=='412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c'
  with swap:
   for seed in opt.seeds:
    out=opt.output_dir.resolve()/opt.model/f'n{opt.num_images}_seed{seed}'
-   if out.exists() and any(out.iterdir()): raise RuntimeError(f'Refusing to overwrite {out}')
-   out.mkdir(parents=True,exist_ok=True)
-   if (out/'results.json').exists(): raise RuntimeError(f'Refusing to overwrite {out}')
+   prepare_output_directory(out, rank, dist)
    torch.manual_seed(seed*1000003+rank); np.random.seed(seed*1000003+rank)
    evaluator.reset(); parts=[]; ids=[]; ihash=hashlib.sha256(); tick=time.monotonic()
    # Same balanced class ordering and padded batches as upstream W-Flow.

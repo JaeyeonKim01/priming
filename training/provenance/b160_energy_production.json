@@ -1,0 +1,243 @@
+{
+  "train": {
+    "start_epoch": 0,
+    "epochs": 20,
+    "steps_per_epoch": 1250,
+    "rollout_size": 1024,
+    "batch_size": 128,
+    "grad_accum": 1,
+    "noise_scale": 1.0,
+    "same_noise": false,
+    "grad_checkpointing": false,
+    "measure_flops": true,
+    "last_elapsed_time": 0.0,
+    "current_step": 0,
+    "samples_seen": 0
+  },
+  "model": {
+    "model": "OST_B",
+    "img_size": 256,
+    "patch_size": 16,
+    "train_last_n_blocks": null,
+    "label_drop_prob": 0.0,
+    "attn_dropout": 0.0,
+    "proj_dropout": 0.0,
+    "class_tokens": 8,
+    "time_tokens": 0,
+    "guidance_tokens": 0,
+    "interval_tokens": 0,
+    "norm_eps": 0.01,
+    "norm_p": 1.0,
+    "rope_2d": true,
+    "learned_pe": true,
+    "disable_v_head": false,
+    "sampling_head": "u",
+    "freeze_inactive_head": true,
+    "t_eps": 0.05
+  },
+  "tokenizer": {
+    "tokenizer": null,
+    "token_channels": 3,
+    "tokenizer_patch_size": 1
+  },
+  "optimizer": {
+    "optimizer": "adamw",
+    "lr": 1e-05,
+    "min_lr": 0.0,
+    "lr_sched": "constant",
+    "warmup_rate": 0.0,
+    "warmup_epochs": 0.1,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "beta1": 0.9,
+    "beta2": 0.95,
+    "muon_momentum": 0.95,
+    "muon_weight_decay": 0.0,
+    "ema_type": "const",
+    "ema_rates": [
+      0.999
+    ],
+    "ema_halflife_kimg": [
+      250,
+      500,
+      1000,
+      2000
+    ],
+    "eval_ema_labels": [
+      "online",
+      "0.999"
+    ]
+  },
+  "diffusion": {
+    "P_mean": 0.8,
+    "P_std": 0.8,
+    "legacy_time_convention": false,
+    "tr_uniform": false,
+    "ratio_r_neq_t": 0.5,
+    "cfg_beta": 1.0,
+    "cfg_omega_max": 7.0,
+    "aux_head_depth": 8,
+    "loss_type": "v",
+    "aux_pred_type": "v",
+    "perceptual_threshold": 0.8,
+    "perceptual_loss_on_aux": false
+  },
+  "sampling": {
+    "sampling_method": "heun",
+    "num_sampling_steps": 1,
+    "cfg": 1.0,
+    "cfg_list": [
+      1.0
+    ],
+    "interval_min": 0.1,
+    "interval_max": 1.0,
+    "vis_steps": [
+      1
+    ]
+  },
+  "data": {
+    "data_path": "/n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data",
+    "num_classes": 1000,
+    "class_of_interest": [
+      207,
+      360,
+      387,
+      974,
+      88,
+      979,
+      417,
+      279,
+      1,
+      22,
+      130,
+      281,
+      530,
+      817,
+      980
+    ],
+    "force_class_of_interest": false,
+    "num_workers": 10,
+    "pin_mem": true
+  },
+  "checkpointing": {
+    "auto_resume": false,
+    "resume_from": null,
+    "load_from": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs/OST/OST_B_t08_e160_perceptual_seed1_20260912/checkpoints/step_0200160.pth",
+    "keep_n_ckpts": 40,
+    "milestone_interval": 0
+  },
+  "evaluation": {
+    "skip_final_eval": false,
+    "online_eval": true,
+    "num_images_for_eval_and_search": 50000,
+    "num_images": 50000,
+    "eval_bsz": 64,
+    "fid_stats_path": "data/fid_stats/guided_diffusion_stats.npz",
+    "keep_eval_folder": false,
+    "save_eval_images": false,
+    "cfg_min": 1.0,
+    "cfg_max": 25.0,
+    "overwrite_cache": false,
+    "prc_ref_dir": "data/prc/VIRTUAL_imagenet256_labeled",
+    "prc_k": 3,
+    "prc_batch_size": 10000
+  },
+  "mmd": {
+    "mmd_feature_bank_dir": "data/mmd_feature_banks/imagenet256_n1281167_class_conditional",
+    "mmd_feature_bank_device": "cuda",
+    "mmd_kernel": "rbf",
+    "mmd_sigmas": "feature_bank",
+    "mmd_repr_weights": null,
+    "mmd_normalize": "none",
+    "mmd_normalize_eps": 0.01,
+    "mmd_kernel_chunk_size": 1024,
+    "mmd_local_generated_scoring": true,
+    "mmd_include_real_constant": false,
+    "mmd_repulsion_queue_size": 4,
+    "mmd_repulsion_queue_weight": 0.0,
+    "mmd_repulsion_queue_kernel": "laplacian_l2",
+    "mmd_repulsion_queue_bandwidths": {
+      "siglip": 17.802997589111328,
+      "mae": 2.7689664363861084,
+      "inception": 18.54016876220703
+    }
+  },
+  "xm": {
+    "xm_enabled": false,
+    "xm_weight": 0.0,
+    "xm_num_classes_per_step": 16,
+    "xm_targets_per_class": 4,
+    "xm_candidates_per_class": 4,
+    "xm_assignment": "row_wise_min",
+    "xm_seed": 7919,
+    "xm_log_branch_grad_norms": false
+  },
+  "ot": {
+    "ot_enabled": true,
+    "ot_objective": "sinkhorn_divergence",
+    "ot_baseline_weight": 0.0,
+    "lambda_ot": 5.0,
+    "ot_num_classes": 16,
+    "ot_samples_per_class": 64,
+    "ot_num_real_refs": 128,
+    "ot_epsilon": 0.001,
+    "ot_epsilon_mixture": {
+      "0.001": 0.75,
+      "0.01": 0.25
+    },
+    "ot_log_feature_grad_norms": false,
+    "ot_num_iters": 1000,
+    "ot_tolerance": 1e-06,
+    "ot_seed": 7919,
+    "ot_log_grad_norms": false,
+    "ot_representation_set": "pixel_drifting",
+    "ot_repr_cache": "/n/netscratch/sham_lab/Lab/jaykim/OT_repr_swap_20260905",
+    "ot_feature_asset_cache": "/n/netscratch/sham_lab/Lab/jaykim/feature_loss_screen_20260906",
+    "ot_feature_calibration_dir": "/n/netscratch/sham_lab/Lab/jaykim/feature_loss_screen_20260906/calibrations",
+    "ot_feature_stack": "convnext_full_mae",
+    "discrepancy_kind": "featurewise_energy",
+    "energy_delta": 0.0,
+    "ot_encoder_microbatch": 8,
+    "ot_encoder_checkpointing": false,
+    "ot_reference_workers": 4,
+    "ot_feature_gradient_replay": true,
+    "ot_compile_encoders": false
+  },
+  "lora": {
+    "use_lora": false,
+    "lora_mode": "attention",
+    "lora_rank": 8,
+    "lora_alpha": 16.0,
+    "lora_dropout": 0.0,
+    "lora_adapter_path": null,
+    "save_lora_adapter": null,
+    "merge_lora_on_save": false
+  },
+  "logging": {
+    "output_dir": "/n/home10/jaykim/woobin/OST/fdloss_work_dirs",
+    "local_eval_dir": null,
+    "print_freq": 10,
+    "eval_freq": 0,
+    "vis_freq": 1,
+    "val_freq": 0,
+    "save_freq": 1,
+    "vis_only": false,
+    "disable_vis": false,
+    "project": "OST",
+    "entity": "jaeyeon_kim-harvard-university",
+    "exp_name": "OST_B_perceptual_e160_full_featurewise_energy_s25000_20260919",
+    "enable_wandb": false
+  },
+  "system": {
+    "seed": 1,
+    "dtype": "bf16",
+    "compile": true
+  },
+  "dashboards": {
+    "dashboard_enabled": false,
+    "dashboard_pretrain_eflops": 76.87029800589853,
+    "dashboard_step_tflops": null,
+    "dashboard_compute_model": "OST_B",
+    "dashboard_compute_source": null
+  }
+}

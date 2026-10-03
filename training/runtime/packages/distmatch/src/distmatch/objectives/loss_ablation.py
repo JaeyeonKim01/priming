@@ -1,4 +1,4 @@
-"""Controlled featurewise OT and joint energy on the frozen stage-2 features.
+"""Controlled OT, energy, and Laplacian MMD on frozen stage-2 features.
 
 The inherited joint-OT branch is unchanged. Featurewise OT solves each named
 output at its original normalized scale, applying output weights afterwards.
@@ -11,6 +11,31 @@ import math
 import torch
 
 from .sinkhorn_ot import BalancedSinkhornOT, SinkhornOTResult
+
+
+# CUDA direct-cdist backward may materialize a [B, N, M, D] buffer.
+# Bound each tile for the full spatial features (up to 655,360 dimensions).
+_CDIST_PAIRWISE_BYTE_BUDGET = 1 << 30
+
+
+def _laplacian_cost(q, p, bandwidth):
+    classes, rows, dimensions = q.shape
+    columns = p.shape[1]
+    pair_bytes = max(1, classes * dimensions * q.element_size())
+    max_pairs = max(1, _CDIST_PAIRWISE_BYTE_BUDGET // pair_bytes)
+    column_chunk = min(columns, max_pairs)
+    row_chunk = max(1, min(rows, max_pairs // column_chunk))
+    # Chunking only bounds direct-distance temporaries; every pair remains in
+    # the same uniform mean. No sampled pairs or population approximation.
+    return torch.cat([
+        torch.cat([
+            -torch.exp(-torch.cdist(q[:, start:start + row_chunk],
+                p[:, target:target + column_chunk], p=2,
+                compute_mode="donot_use_mm_for_euclid_dist") / bandwidth)
+            for target in range(0, columns, column_chunk)
+        ], dim=-1)
+        for start in range(0, rows, row_chunk)
+    ], dim=-2)
 
 
 @torch.no_grad()
@@ -53,12 +78,13 @@ the others continue; no shared stopping time changes an individual solve.
 class LossAblationOT(BalancedSinkhornOT):
     def __init__(self, *, discrepancy_kind="joint_ot", energy_delta=0.05, **kwargs):
         super().__init__(**kwargs)
-        if discrepancy_kind not in {"joint_ot", "featurewise_ot", "joint_energy"}:
+        if discrepancy_kind not in {"joint_ot", "featurewise_ot", "joint_energy", "featurewise_energy", "featurewise_laplacian_mmd"}:
             raise ValueError(f"unsupported discrepancy {discrepancy_kind!r}")
-        if not math.isfinite(float(energy_delta)) or float(energy_delta) <= 0:
+        unsmoothed = discrepancy_kind in {"featurewise_energy", "featurewise_laplacian_mmd"}
+        if not unsmoothed and (not math.isfinite(float(energy_delta)) or float(energy_delta) <= 0):
             raise ValueError("energy_delta must be finite and positive")
         self.discrepancy_kind = discrepancy_kind
-        self.energy_delta = float(energy_delta)
+        self.energy_delta = 0.0 if unsmoothed else float(energy_delta)
 
     def score_features(self, generated_features, target_features, *, generated_labels, target_labels):
         if self.discrepancy_kind == "joint_ot":
@@ -88,8 +114,51 @@ class LossAblationOT(BalancedSinkhornOT):
             p = p.detach().float().reshape(classes, columns, -1)
             if torch.is_inference(p):
                 p = p.clone()
-            costs.append(self._squared_cost(q, p) / (2.0 * self.bandwidths[name] ** 2))
+            if self.discrepancy_kind == "featurewise_laplacian_mmd":
+                # Direct L2 avoids cancellation and sqrt(0) gradients in a
+                # Gram-matrix distance. Sigma is the frozen per-output median.
+                costs.append(_laplacian_cost(q, p, self.bandwidths[name]))
+            elif self.discrepancy_kind == "featurewise_energy":
+                # cdist supplies a finite zero subgradient at coincident pairs.
+                # No smoothing: one unsquared Euclidean norm per named output.
+                costs.append(torch.cdist(q, p, p=2) / self.bandwidths[name])
+            else:
+                costs.append(self._squared_cost(q, p) / (2.0 * self.bandwidths[name] ** 2))
         weights = costs[0].new_tensor([self.weights[name] for name in names])
+        if self.discrepancy_kind in {"featurewise_energy", "featurewise_laplacian_mmd"}:
+            cost = torch.stack(costs)
+            per_class = (weights[:, None] * cost.mean(dim=(-2, -1))).sum(0)
+            loss = self.context.differentiable_sum(per_class.sum() / self.global_classes_per_step)
+            zero = cost.new_zeros(())
+            is_kernel = self.discrepancy_kind == "featurewise_laplacian_mmd"
+            metrics = {
+                "loss_ot": loss.detach(), "cost_mean": loss.detach(),
+                "cost_min": self.context.detached_min(cost.detach().amin()),
+                "cost_max": self.context.detached_max(cost.detach().amax()),
+                "row_marginal_max_error": zero, "column_marginal_max_error": zero,
+                "sinkhorn_iterations": zero, "discrepancy_is_energy": cost.new_tensor(float(not is_kernel)),
+                "energy_delta": zero, "feature_outputs": cost.new_tensor(len(names)),
+            }
+            if is_kernel:
+                # The host subtracts a second call on independent detached
+                # generated references: -mean K(X,Y) + mean K(X,sg(X')).
+                # Its expected gradient is half the population MMD² gradient;
+                # the scalar itself is a surrogate, not an MMD² estimate.
+                kernel = -cost.detach()
+                metrics.update({
+                    "discrepancy_is_laplacian_mmd": cost.new_ones(()),
+                    "kernel_mean": -loss.detach(),
+                    "kernel_min": -metrics["cost_max"],
+                    "kernel_max": -metrics["cost_min"],
+                    "kernel_near_zero_fraction": self.context.detached_sum(
+                        (weights[:, None] * (kernel < 1e-6).float().mean(dim=(-2, -1))).sum()
+                    ) / self.global_classes_per_step,
+                })
+            return SinkhornOTResult(
+                loss=loss, cost_matrix=cost,
+                transport_plan=torch.full_like(cost, 1.0 / (rows * columns)).detach(),
+                metrics=metrics,
+            )
         if self.discrepancy_kind == "joint_energy":
             # Match the baseline's accumulation order, with weights inside d².
             joint = None

@@ -51,6 +51,14 @@ For JiT, use `--nproc_per_node=8 --model jit_h --batch 64` and one seed per job.
 The evaluator refuses to overwrite an existing nonempty seed directory.
 A pilot checks execution; it does not establish a headline metric.
 
+For your own terminal Priming checkpoint, add `--checkpoint PATH` and select
+the matching `--model` architecture. The evaluator uses EMA 0.999, requires
+25,000 completed updates, and records the supplied file's SHA256. Omit this
+option to retain the released-checkpoint identity check. See the
+[SIM, Laplacian MMD, and energy reproduction guide](../training/ablations/README.md#checkpoints-and-evaluation)
+for complete examples. Pass the same `--checkpoint PATH` to `verify_batch.py`
+to validate your evaluation against that file's hash.
+
 ```bash
 python eval/verify_batch.py --output-dir outputs/evaluation/pilot_b80 \
   --model priming_b_80 --num-images 1000 --seeds 1

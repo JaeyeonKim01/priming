@@ -1,0 +1,20 @@
+{
+  "b160_sim": {
+    "source_config": "isolated_experiments/ost_b_perceptual_e160_sim_ot_20260921/configs/e160.json",
+    "source_sha256": "552b38eab594514a3849b15bac30bc90fb025f604863f745cd54ea3ce5de60c6",
+    "initialization": "b160",
+    "updates": 25000
+  },
+  "b160_energy": {
+    "source_config": "isolated_experiments/ost_b_featurewise_energy_20260919/configs/e160.json",
+    "source_sha256": "d306a663b5592e9d8abd3e37dc9dee6541e0543b9329cc5666004d8a2a7777ff",
+    "initialization": "b160",
+    "updates": 25000
+  },
+  "b160_laplacian": {
+    "source_config": "isolated_experiments/ost_b_featurewise_laplacian_mmd_20260921/configs/e160.json",
+    "source_sha256": "a6c94f6e2db899cfe1bd42d7e9bf0904dd36f07b318e820bcb7a824427423405",
+    "initialization": "b160",
+    "updates": 25000
+  }
+}

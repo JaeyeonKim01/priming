@@ -26,7 +26,22 @@ def digest(path: Path) -> str:
     return sha.hexdigest()
 
 
-def verify_one(batch: Path, key: str, count: int, seeds: list[int]) -> dict:
+def checkpoint_hashes(key: str, checkpoint: Path | None = None) -> set[str]:
+    if checkpoint is not None:
+        if not key.startswith("priming"):
+            raise ValueError("--checkpoint requires a Priming model key")
+        return {digest(checkpoint)}
+    manifest = json.loads((HERE.parent / "checkpoints/manifest.json").read_text())
+    accepted = {manifest[key]["checkpoint_sha256"]}
+    previous = manifest[key].get("previous_ema_export")
+    if previous:
+        accepted.add(previous["sha256"])
+    return accepted
+
+
+def verify_one(batch: Path, key: str, count: int, seeds: list[int],
+               checkpoint_path: Path | None = None) -> dict:
+    accepted = checkpoint_hashes(key, checkpoint_path) if key.startswith("priming") or checkpoint_path else None
     streams = set()
     results = []
     checkpoint = None
@@ -44,11 +59,6 @@ def verify_one(batch: Path, key: str, count: int, seeds: list[int]) -> dict:
             checkpoint = report["checkpoint"]
         assert report["checkpoint"] == checkpoint
         if key.startswith("priming"):
-            manifest = json.loads((HERE.parent / "checkpoints/manifest.json").read_text())
-            accepted = {manifest[key]["checkpoint_sha256"]}
-            previous = manifest[key].get("previous_ema_export")
-            if previous:
-                accepted.add(previous["sha256"])
             assert report["checkpoint_sha256"] in accepted
         ids = np.concatenate([np.load(out / f"ids_rank{rank}.npy")
                               for rank in range(report["world_size"])])
@@ -79,12 +89,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument("--model", required=True)
+    parser.add_argument("--checkpoint", type=Path, help="Validate against your own Priming checkpoint")
     parser.add_argument("--num-images", type=int, default=50000)
     parser.add_argument("--seeds", type=int, nargs="+", default=[1, 2, 3])
     options = parser.parse_args()
     assert options.num_images % 1000 == 0 and len(set(options.seeds)) == len(options.seeds)
     print(json.dumps(verify_one(options.output_dir, options.model,
-                                options.num_images, options.seeds), indent=2))
+                                options.num_images, options.seeds, options.checkpoint), indent=2))
 
 
 if __name__ == "__main__":

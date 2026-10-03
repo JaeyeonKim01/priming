@@ -3,7 +3,8 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from paths import resolve
+from paths import resolve, resolve_asset, load_config, site_config
+from recipes import INITIALIZATION
 
 TASK = Path(__file__).resolve().parents[1]
 
@@ -24,16 +25,22 @@ def write(path, value):
     tmp.replace(path)
 
 
-def verify(task=TASK, assets=False):
+def verify(task=TASK, assets=False, arms=None):
+    selected = tuple(INITIALIZATION if arms is None else arms)
+    if not selected or any(arm not in INITIALIZATION for arm in selected):
+        raise ValueError(f'Unknown or empty recipe selection: {selected}')
     manifest = json.loads((task / 'reports/runtime_manifest.json').read_text())
     for name, digest in manifest.items():
         assert sha(task / 'runtime' / name) == digest, name
     sources = json.loads((task / 'provenance/sources.json').read_text())
     arms = {}
-    for arm in ('b160', 'l160'):
+    for arm in selected:
         cfg_path = task / f'configs/{arm}.json'
         cfg = json.loads(cfg_path.read_text())
         reference = json.loads((task / f'provenance/{arm}_production.json').read_text())
+        assert cfg.keys() == reference.keys(), f'{arm}: recipe sections changed'
+        for section in reference:
+            assert cfg[section].keys() == reference[section].keys(), f'{arm}: {section} fields changed'
         differences = {f'{s}.{k}': [reference[s].get(k), v]
                        for s, fields in cfg.items() for k, v in fields.items()
                        if reference[s].get(k) != v}
@@ -46,17 +53,24 @@ def verify(task=TASK, assets=False):
         assert cfg['checkpointing']['resume_from'] is None and not cfg['checkpointing']['auto_resume']
         source = resolve(cfg['checkpointing']['load_from'])
         if assets:
-            assert source.stat().st_size == sources[arm]['bytes'], source
-            assert sha(source) == sources[arm]['sha256'], source
+            identity = sources[INITIALIZATION[arm]]
+            assert source.stat().st_size == identity['bytes'], source
+            assert sha(source) == identity['sha256'], source
         arms[arm] = dict(config_sha256=sha(cfg_path), differences=differences,
                          model=cfg['model']['model'], source=str(source))
     if assets:
         asset_manifest = json.loads((task / 'assets.json').read_text())
-        for row in asset_manifest['files']:
-            p = resolve(row['path'])
-            assert p.stat().st_size == row['bytes'] and sha(p) == row['sha256'], p
-        for p in asset_manifest['directories']:
-            assert resolve(p).is_dir(), p
+        site = site_config(task)
+        checked = set()
+        for arm in selected:
+            config = load_config(arm, task)
+            for row in asset_manifest['files']:
+                p = resolve_asset(row['path'], config, site)
+                if p not in checked:
+                    assert p.stat().st_size == row['bytes'] and sha(p) == row['sha256'], p
+                    checked.add(p)
+            for directory in asset_manifest['directories']:
+                assert resolve_asset(directory, config, site).is_dir(), directory
     frozen = task / 'state/launch_manifest.json'
     if frozen.exists():
         for name, digest in json.loads(frozen.read_text()).items():
@@ -81,11 +95,12 @@ def gate(task, arm):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--assets', action='store_true')
+    p.add_argument('--arm', choices=INITIALIZATION, help='Verify one arm (default: all)')
     p.add_argument('--gate', choices=['b160', 'l160'])
     a = p.parse_args()
     if a.gate:
         gate(TASK, a.gate)
     else:
-        result = verify(assets=a.assets)
+        result = verify(assets=a.assets, arms=[a.arm] if a.arm else None)
         write(TASK / 'state/validation.json', result)
         print(json.dumps(result, indent=2), flush=True)

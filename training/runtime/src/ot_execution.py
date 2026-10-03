@@ -16,7 +16,10 @@ def configure_execution(provider, args):
 
 
 def create_provider(args, device):
-    if args.ot_feature_stack == 'convnext_full_mae':
+    if args.ot_feature_stack == 'sim':
+        from .ot_representations_sim.provider import RepresentationProvider
+        provider = RepresentationProvider(args, device)
+    elif args.ot_feature_stack == 'convnext_full_mae':
         from .ot_representations_full.provider import RepresentationProvider
 
         class FullFeaturewiseProvider(RepresentationProvider):

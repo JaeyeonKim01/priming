@@ -31,6 +31,28 @@ def load_config(arm, task=TASK):
     return cfg
 
 
+def resolve_asset(value, config, site):
+    """Map manifest locations to the same roots the configured runtime uses."""
+    path = Path(value)
+    mappings = (
+        ('data/imagenet', config['data']['data_path']),
+        ('assets/ot/representations', config['ot']['ot_repr_cache']),
+        ('assets/ot/features/calibrations', config['ot']['ot_feature_calibration_dir']),
+        ('assets/ot/features', config['ot']['ot_feature_asset_cache']),
+        ('assets/huggingface', site['hf_home']),
+        ('assets/torch', site['torch_home']),
+        ('assets/fid_stats', site['fid_stats']),
+        ('data', site['data_root']),
+    )
+    for prefix, destination in mappings:
+        try:
+            relative = path.relative_to(prefix)
+        except ValueError:
+            continue
+        return Path(destination) / relative
+    return resolve(path)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--site-key')

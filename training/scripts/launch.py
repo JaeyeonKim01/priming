@@ -36,6 +36,7 @@ def main():
         elif a.submit:
             validation = json.loads((TASK / 'state/validation.json').read_text())
             assert validation['passed'] and validation['assets_hashed']
+            assert {'b160', 'l160'} <= set(validation['arms']), 'Validate both reference arms with verify.py --assets'
             assert json.loads((TASK / 'state/cpu_checks.json').read_text())['passed']
             write(frozen, manifest)
         commands = []

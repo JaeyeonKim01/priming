@@ -4,12 +4,13 @@ import hashlib
 import json
 from pathlib import Path
 from paths import load_config
+from recipes import INITIALIZATION
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--task', required=True)
-    p.add_argument('--arm', choices=['b160', 'l160'], required=True)
+    p.add_argument('--arm', choices=INITIALIZATION, required=True)
     p.add_argument('--mode', choices=['probe', 'train'], required=True)
     p.add_argument('--out', required=True)
     p.add_argument('--run-name', required=True)

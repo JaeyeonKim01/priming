@@ -9,8 +9,9 @@ its migration did not launch new pretraining runs.
 
 ## Recipe and source
 
-The numerical code in `runtime/` is copied from the identical frozen B and L
-production runtimes. [Provenance](provenance) records the original configs,
+The reference numerical code in `runtime/` is copied from the identical frozen B and L
+production runtimes, with SIM and alternative-loss extensions from their completed
+ablation runs. [Provenance](provenance) records the original configs,
 checkpoint SHA256 values, and external asset identities. The scientific
 configs are unchanged; only asset paths, output directories, project, and run names differ.
 
@@ -121,3 +122,14 @@ latest checkpoint. A missing intermediate evaluation is completed before
 the next training update. The final checkpoint is named
 `step_0024999.pth`, representing **25,000 completed updates**. The four
 released reference checkpoint links are separate from these new outputs.
+
+## Post-training ablations
+
+- [Ablation study 1: SIM feature-space training](ablations/README.md#sim-feature-space-training)
+  uses SigLIP, Inception, and ViT-MAE with feature-wise OT.
+- [Ablation study 2: Other distributional losses](ablations/README.md#other-distributional-losses)
+  uses Laplacian MMD or energy distance in the full ResNet-MAE and ConvNeXt spaces.
+
+All three recipes preserve perceptual B-160 initialization and 25,000 updates.
+The ablation guide includes standalone launch commands, terminal-checkpoint
+evaluation, source identities, and the retained three-seed results.

@@ -104,7 +104,7 @@ results and per-seed scores; open it locally in a browser.
 
 </details>
 
-## 2. ImageNet experiments
+## ImageNet experiments
 
 <details>
 <summary><strong>Click to expand ImageNet pretraining and post-training</strong></summary>
@@ -130,6 +130,11 @@ scheduled evaluations, checkpoint recovery, and validation tools.
 [Post-training guide](training/README.md) ·
 [Production configs](training/configs) ·
 [Source code](training/runtime)
+
+- **Ablation study 1: SIM feature-space training.** Post-train with SigLIP,
+  Inception, and ViT-MAE features. [Code, configs, and instructions](training/ablations/README.md#sim-feature-space-training).
+- **Ablation study 2: Other distributional losses.** Replace OT with Laplacian
+  MMD or energy distance. [Code, configs, and instructions](training/ablations/README.md#other-distributional-losses).
 
 </details>
 

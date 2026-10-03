@@ -1,0 +1,24 @@
+{
+  "results.csv": {
+    "source": "final_paper/data/table4_three_seed_20260926.csv",
+    "source_sha256": "df028ab05002de4162d52b2c58f7af0d33ab3f22a4d91b975df0ed6a203348ca",
+    "selection": [
+      "reference",
+      "sim",
+      "energy",
+      "laplacian"
+    ],
+    "sha256": "fbabbdc80ae7a979facbb811942e735a4a7b57cf715cf5944b0ebd8ebe97d007"
+  },
+  "per_seed.csv": {
+    "source": "isolated_experiments/table4_fid_20260926/reports/per_seed.csv",
+    "source_sha256": "269ae714e80c0e4ed094b6b0508d039044c264601741cc5fe12b7f9d9ed224d1",
+    "selection": [
+      "reference",
+      "sim",
+      "energy",
+      "laplacian"
+    ],
+    "sha256": "e66670ff47a2e50a8b3fa20beab4ff105670d486eee4b391134939af67e87528"
+  }
+}
