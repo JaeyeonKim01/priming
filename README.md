@@ -8,9 +8,7 @@
 <p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University<br>
 <sup>*</sup> Equal contribution (co-first authors)</p>
 
-<p><strong>arXiv:</strong> coming soon &nbsp;·&nbsp; <strong>X post:</strong> coming soon &nbsp;·&nbsp;
-<a href="https://github.com/JaeyeonKim01/one_step_priming">Code</a> &nbsp;·&nbsp;
-<a href="https://huggingface.co/jaykim1102/priming">Checkpoints</a></p>
+<p><strong>arXiv:</strong> coming soon &nbsp;·&nbsp; <strong>X post:</strong> coming soon</p>
 
 </div>
 
@@ -20,10 +18,6 @@ The source code and historical run names use **OST**.
 **Pipeline:** reconstruction pretraining → distributional post-training → evaluation.
 
 [![Figure 1: Priming Models improve the training compute vs. FID trade-off (left); reconstruction pretraining accelerates distributional post-training (right).](docs/figures/figure1.png)](docs/figures/figure1.pdf)
-
-**Figure 1.** Priming Models improve the training compute vs. FID trade-off on
-ImageNet (left). Reconstruction pretraining provides an effective initialization
-for efficient distributional post-training (right). [View PDF](docs/figures/figure1.pdf).
 
 ## Getting started
 
@@ -54,21 +48,14 @@ Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates
 | Priming-L | 80 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_l_80.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_l_80.pth) |
 | Priming-L | 160 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_l_160.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_l_160.pth) |
 
-Weights are downloaded separately into these paths; they are not stored in Git.
 All eight files are hosted at [jaykim1102/priming](https://huggingface.co/jaykim1102/priming).
-The Hub repository is currently private, so downloads require an authorized
-Hugging Face login. See the [download guide](docs/checkpoints.md) and the
-checked-in manifests.
+See the [download guide](docs/checkpoints.md) and the checked-in manifests.
 Pretraining checkpoints contain online and EMA weights; post-training initializes
 from online weights, and final evaluation uses post-training EMA 0.999.
 
 ### Sampling from checkpoints
 
 [![Figure 2: One-step samples from Priming Models across class-conditional image generation, text-to-image generation, and world modeling.](docs/figures/figure2.png)](docs/figures/figure2.pdf)
-
-**Figure 2.** One-step samples from Priming Models across three visual domains.
-[View PDF](docs/figures/figure2.pdf). The released checkpoints and sampling commands
-below cover ImageNet-256.
 
 Download one checkpoint and generate samples on a single GPU:
 
@@ -84,7 +71,7 @@ supported. Use `--stage pretraining` for pretrained weights after downloading
 the corresponding file under `checkpoints/pretraining/`.
 See [sampling options](docs/checkpoints.md#sampling-options).
 
-## 2. Evaluation
+### Evaluation: ImageNet
 
 Evaluate the released models and comparison baselines with **FID** and **FDr⁵**.
 The reproduced batch covers 11 checkpoints × 3 sampling seeds × 50,000 images;
@@ -99,24 +86,28 @@ all 33 runs passed validation and match the paper means at two decimal places.
 Original paper figures showing training compute vs. generation quality.
 Click either preview to open its PDF.
 
-**Training compute vs. FID**
-
-[![Paper trade-off figure: training compute vs. FID on ImageNet-256.](dashboard/figures/compute_vs_fid.png)](dashboard/figures/compute_vs_fid.pdf)
-
-[View FID PDF](dashboard/figures/compute_vs_fid.pdf)
-
-**Training compute vs. FDr⁵**
-
-[![Paper trade-off figure: training compute vs. FDr⁵ on ImageNet-256.](dashboard/figures/compute_vs_fdr5.png)](dashboard/figures/compute_vs_fdr5.pdf)
-
-[View FDr⁵ PDF](dashboard/figures/compute_vs_fdr5.pdf)
+<table>
+  <tr>
+    <th align="center">Training compute vs. FID</th>
+    <th align="center">Training compute vs. FDr⁵</th>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="dashboard/figures/compute_vs_fid.pdf"><img src="dashboard/figures/compute_vs_fid.png" width="420" alt="Training compute vs. FID on ImageNet-256"></a></td>
+    <td width="50%" align="center"><a href="dashboard/figures/compute_vs_fdr5.pdf"><img src="dashboard/figures/compute_vs_fdr5.png" width="420" alt="Training compute vs. FDr⁵ on ImageNet-256"></a></td>
+  </tr>
+</table>
 
 The [offline HTML dashboard](dashboard/index.html) also includes reproduced
 results and per-seed scores; open it locally in a browser.
 
 </details>
 
-## 3. Training 1: Reconstruction pretraining
+## 2. ImageNet experiments
+
+<details>
+<summary><strong>Click to expand ImageNet pretraining and post-training</strong></summary>
+
+### Training 1: Reconstruction pretraining
 
 Train at fixed corruption t=0.8 with adaptive pixel MSE, optionally adding
 LPIPS and ConvNeXt perceptual losses. Production recipes cover **B with/without
@@ -127,7 +118,7 @@ both the 80- and 160-epoch checkpoints.
 [Production configs](pretraining/configs) ·
 [Source code](pretraining/runtime)
 
-## 4. Training 2: Distributional post-training
+### Training 2: Distributional post-training
 
 Apply feature-wise optimal transport in ResNet-MAE and ConvNeXt feature spaces,
 starting from pretrained online weights with a fresh AdamW optimizer.
@@ -137,6 +128,8 @@ scheduled evaluations, checkpoint recovery, and validation tools.
 [Post-training guide](training/README.md) ·
 [Production configs](training/configs) ·
 [Source code](training/runtime)
+
+</details>
 
 ---
 

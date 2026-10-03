@@ -86,7 +86,7 @@ def main() -> None:
 <main><div class="eyebrow">ImageNet-256 · final paper evaluation</div><h1>Priming Models and comparison baselines</h1>
 <p class="intro">Fixed checkpoints, 50,000 class-balanced images per sampling seed, seeds 1–3. Values show mean ± sample SD across separate evaluations. Displayed batch: {batch_label}.</p>
 <div class="cards"><div class="card"><strong>11 / 11</strong><small>models complete</small></div><div class="card"><strong>33 / 33</strong><small>sampling replicates validated</small></div><div class="card"><strong>1.65M</strong><small>generated images</small></div><div class="card"><strong>{float(best['fid_mean']):.4f}</strong><small>best FID · {html.escape(best['model'])}</small></div></div>
-<h2>Paper figures</h2><p class="note">Original figures from the submission manuscript. Model selection follows the paper; the full reproduced comparison is shown below.</p>
+<h2>Paper figures</h2><p class="note">Original figures from the ICLR manuscript. Model selection follows the paper; the full reproduced comparison is shown below.</p>
 <div class="plots">{''.join(paper_figures)}</div>
 <h2>Reproduced trade-offs</h2><div class="plots"><section class="panel"><h2>FID ↓</h2>{chart(rows,"fid","FID")}</section><section class="panel"><h2>FDr⁵ ↓</h2>{chart(rows,"fdr5","FDr5")}</section></div>
 <div class="legend">{legend}</div><section class="panel" style="margin-top:22px"><h2>Results</h2><div class="scroll"><table><thead><tr><th>Model</th><th>FID ↓</th><th>FDr⁵ ↓</th>{delta_header}<th>Training EFLOPs</th><th>Seed scores<br><small>FID / FDr⁵</small></th></tr></thead><tbody>{''.join(table)}</tbody></table></div></section>
