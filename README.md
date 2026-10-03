@@ -16,10 +16,7 @@
 
 </div>
 
-Code, checkpoints, and reproduction records for Priming Models on ImageNet-256.
-The source code and historical run names use **OST**.
-
-**Pipeline:** reconstruction pretraining → distributional post-training → evaluation.
+Official implementation of [Are We Overthinking One-Step Generation?](#paper-links) (arXiv coming soon).
 
 [![Figure 1: Priming Models improve the training compute vs. FID trade-off (left); reconstruction pretraining accelerates distributional post-training (right).](docs/figures/figure1.png)](docs/figures/figure1.pdf)
 
@@ -40,7 +37,7 @@ python scripts/check_environment.py
 - [Data and model assets](docs/assets.md): ImageNet training data and evaluation encoders/statistics; sampling needs only a checkpoint.
 - [Checkpoint downloads](docs/checkpoints.md): download and verify the pretrained and post-trained models.
 
-## 1. Checkpoints
+## Checkpoints
 
 Four model/epoch combinations, each available before and after post-training.
 Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates.
