@@ -31,6 +31,7 @@ def verify():
             raise ValueError(f'Copied source changed: {name}')
     runtimes = {family: len(verify_runtime(family)) for family in ('b', 'l')}
     historical = {}
+    sanitized = json.loads((ROOT / 'provenance/path_sanitization.json').read_text())
     for family, filename in [('b', 'b_production_manifest.json'), ('l', 'l_snapshot_manifest.json')]:
         record = json.loads((ROOT / 'provenance' / filename).read_text())
         record = record.get('runtime', record)
@@ -38,7 +39,9 @@ def verify():
         covered = {name: value for name, value in runtime.items() if name in record}
         for name, value in covered.items():
             if value != record[name]:
-                raise ValueError(f'Historical {family} source mismatch: {name}')
+                change = sanitized.get(f'runtime/{family}/{name}', {})
+                if change.get('original_sha256') != record[name] or change.get('public_sha256') != value:
+                    raise ValueError(f'Historical {family} source mismatch: {name}')
         historical[family] = dict(matching_files=len(covered),
                                   additional_vendor_files=sorted(runtime.keys() - covered.keys()))
     allowed = {'data.data_path', 'train.output_dir', 'train.project', 'train.exp_name', 'train.enable_wandb'}
@@ -80,5 +83,6 @@ if __name__ == '__main__':
             if proc.returncode:
                 raise RuntimeError(f'{family} CPU checks failed:\n{proc.stdout}\n{proc.stderr}')
             result['cpu'][family] = json.loads(proc.stdout.strip().splitlines()[-1])
+    (ROOT / 'reports').mkdir(exist_ok=True)
     write_json(ROOT / 'reports/validation.json', result)
     print(json.dumps(result, indent=2))

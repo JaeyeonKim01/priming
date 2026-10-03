@@ -84,7 +84,7 @@ train:
   local_eval_dir: null
   project: priming
   exp_name: b160_perceptual
-  entity: jaeyeon_kim-harvard-university
+  entity: priming
   enable_wandb: false
   print_freq: 50
   eval_freq: 0

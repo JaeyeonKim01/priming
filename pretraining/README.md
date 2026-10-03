@@ -5,9 +5,9 @@ loss, using the production reconstruction recipes below.
 
 | Recipe | Runtime | Auxiliary loss | Suggested execution |
 |---|---|---|---|
-| `b160_perceptual` | B production snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 8 H100/H200 GPUs |
-| `b160_no_perceptual` | Same B snapshot | Entire auxiliary branch disabled | 8 H100/H200 GPUs |
-| `l160_perceptual` | Retained L code snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 8 H100/H200 GPUs |
+| `b160_perceptual` | B production snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 8 H200 GPUs (validated) |
+| `b160_no_perceptual` | Same B snapshot | Entire auxiliary branch disabled | 8 H200 GPUs (validated) |
+| `l160_perceptual` | Retained L code snapshot | LPIPS 0.4 + ConvNeXt 0.1 | 8 H200 GPUs (validated) |
 
 All three use ImageNet-256, fixed corruption t=0.8, adaptive pixel MSE,
 label dropout 0, seed 1, Muon LR 0.001 with a constant schedule, BF16,
@@ -30,15 +30,14 @@ comparing a new run with the released checkpoints.
   including model registry imports, local DistMatch, and the TVM JVP dependency
   with its license. Disabled endpoint-OT code is retained because the original
   generic trainer imports it; these recipes do not enable endpoint OT.
-- `provenance/`: original configs/arguments, source hashes, historical evidence,
-  environment versions, and links from released models to pretraining sources.
+- `provenance/`: sanitized source recipes, runtime hashes, and reproducibility notes.
 - `scripts/`: bundle preparation, torchrun/Slurm launch support, and CPU checks.
 - `tests/`: packaging checks. The original B recovery tests are also retained
   unchanged inside its runtime.
 
 Create and activate the shared `priming` environment using
 [the setup guide](../docs/setup.md). The pinned environment includes the CPU
-verification dependencies. All paths resolve from the `priming/` repository.
+verification dependencies. All paths resolve from the `Priming/` repository.
 
 Large assets remain external:
 
@@ -56,7 +55,7 @@ See [asset layout](../docs/assets.md). No parent OST source is required.
 
 ## Check and prepare
 
-From `priming`, using an environment with the dependencies installed:
+From `Priming`, using an environment with the dependencies installed:
 
 ```bash
 python pretraining/scripts/verify.py --cpu
@@ -92,7 +91,7 @@ python -m torch.distributed.run --standalone --nproc_per_node=8 \
   pretraining/scripts/train.py --bundle outputs/pretraining/b160_bundle
 ```
 
-On a Slurm cluster with H100/H200 GPUs, submit from `priming`:
+On a Slurm cluster with H200 GPUs, submit from `Priming`:
 
 ```bash
 export PRETRAINING_ROOT="$PWD/pretraining"
@@ -119,14 +118,15 @@ checkpoints.
 
 Runtime files and prepared bundle configs must remain unchanged during a run.
 Changing them requires a new bundle and output. Large checkpoints stay in the
-explicit output directory. The B trainer retains its original fixed diagnostic
-panels; no terminal 50k evaluation jobs are attached by this migration.
+explicit output directory. The B trainer retains its fixed diagnostic
+panels; pretraining does not launch a terminal 50k evaluation.
 
 ## Post-training handoff
 
-Use the selected 80/160-epoch checkpoint's **online generator weights** with
-a fresh post-training optimizer. Preserve the existing post-training EMA
+The packaged post-training reproduction uses the **released 160-epoch online
+weights** and pins their SHA256. A newly pretrained checkpoint needs its own
+post-training recipe/source record; it is not automatically accepted by that
+verifier. Start with a fresh optimizer and preserve the post-training EMA
 loading convention described in [the OT guide](../training/README.md).
-This migration does not change the existing OT reproduction package or its
-historical checkpoint identities. Final release evaluation remains in
+Released checkpoint identities remain pinned. Final release evaluation remains in
 [eval](../eval/README.md).

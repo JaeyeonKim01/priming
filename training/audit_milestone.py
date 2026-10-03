@@ -1,4 +1,4 @@
-"""Read-only milestone audit and comparison with the original production draws."""
+"""Read-only milestone audit of a newly launched training run."""
 import argparse
 from datetime import datetime, timezone
 import json
@@ -68,26 +68,13 @@ def audit_arm(arm, through):
         assert sha(allocation / 'runtime' / relative) == digest, relative
     for name in [f'configs/{arm}.json', 'state/launch_manifest.json']:
         assert (allocation / name).read_bytes() == (TASK / name).read_bytes(), name
-    reference_csv = TASK / f'reports/comparison_inputs/{arm}_historical.csv'
-    historical = audit_series(reference_csv, through)
-    comparisons = []
-    for draw in evaluation['draws']:
-        if draw['step'] != through:
-            continue
-        old = next(row for row in historical['draws']
-                   if row['step'] == through and row['weights'] == draw['weights'])
-        metrics = ['fid', 'fdr5_no_convnext', 'precision', 'recall']
-        comparisons.append(dict(weights=draw['weights'],
-            new={k: draw[k] for k in metrics}, historical={k: old[k] for k in metrics},
-            delta={k: draw[k] - old[k] for k in metrics}))
     return dict(passed=True, arm=arm, through=through, checkpoint=str(checkpoint),
         checkpoint_bytes=checkpoint.stat().st_size, production_job=job_id,
         completed_updates=state['current_step'], samples_seen=state['samples_seen'],
         ema_step_count=state['model_ema']['step_count'], optimizer_steps=steps,
         finite_updates=len(updates), initialized_ranks=8, rng_ranks=8,
-        allocation_source_verified=True, evaluation=evaluation, comparison=comparisons,
-        historical_csv=str(reference_csv), historical_csv_sha256=sha(reference_csv),
-        scope='Historical BF16 online metric protocol; numerical agreement is reported, not assumed.')
+        allocation_source_verified=True, evaluation=evaluation,
+        scope='Training-time BF16 metric protocol; audit of the current run only.')
 
 
 if __name__ == '__main__':
@@ -99,4 +86,4 @@ if __name__ == '__main__':
     result = dict(observed_at=datetime.now(timezone.utc).isoformat(), through=a.through,
                   arms={arm: audit_arm(arm, a.through) for arm in arms})
     write(TASK / f'reports/verified_{a.arm}_{a.through}.json', result)
-    print(json.dumps({arm: row['comparison'] for arm, row in result['arms'].items()}, indent=2))
+    print(json.dumps({arm: row['passed'] for arm, row in result['arms'].items()}, indent=2))

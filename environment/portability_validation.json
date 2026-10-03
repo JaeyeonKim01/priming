@@ -23,13 +23,6 @@
     "eval/run_4gpu.sbatch syntax",
     "eval/run_fid_audit.sbatch syntax",
     "eval/run_jit_8gpu.sbatch syntax",
-    "eval/archive/run.sbatch syntax",
-    "eval/archive/run_baseline.sbatch syntax",
-    "eval/archive/run_jit_8gpu.sbatch syntax",
-    "eval/archive/run_v2.sbatch syntax",
-    "pretraining/provenance/b_original_environment.sh syntax",
-    "pretraining/provenance/b_original_launch.sbatch syntax",
-    "pretraining/provenance/l_original_launch.sh syntax",
     "pretraining/scripts/run.sbatch syntax",
     "scripts/create_env.sh syntax",
     "training/scripts/common.sh syntax",
@@ -42,5 +35,6 @@
     "outputs/snapshot_check/scripts/worker.sh syntax"
   ],
   "source_only_relocation": true,
-  "scope": "CPU/import/config/source checks in a temporary priming checkout; no GPU execution or asset download."
+  "scope": "CPU/import/config/source checks in a temporary priming checkout; no GPU execution or asset download.",
+  "date": "2026-10-03"
 }

@@ -5,7 +5,7 @@ The eight generator checkpoints are hosted on
 [download commands](checkpoints.md). Source code is self-contained.
 Large datasets, checkpoints, encoder weights,
 and statistics are separate assets and are ignored by Git. Their default
-locations are inside the `priming` repository:
+locations are inside the `Priming` repository:
 
 ```text
 priming/
@@ -69,7 +69,7 @@ statistics are needed for exact production comparisons. They are not yet a
 published downloadable asset bundle. The repository supplies their identities
 and paths; it does not pretend that downloading a generic encoder reconstructs
 these calibrated assets. After receiving the asset export, copy its `assets/`
-and `data/` trees into `priming/`. Checkpoint publishing instructions are
+and `data/` trees into `Priming/`. Checkpoint download instructions are
 [separate](checkpoints.md).
 
 ## Evaluation

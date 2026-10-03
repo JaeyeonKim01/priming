@@ -21,10 +21,9 @@
     "siglip_cls": 11.81744210716308,
     "clip_cls": 20.230160450148926
   },
-  "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/three_seed_eval_20260925/assets/checkpoints/base/JiT-H.pth",
+  "checkpoint": "assets/baselines/checkpoints/JiT-H.pth",
   "expected_checkpoint_sha256": "f89a34c373fce0d5189fad4c8802119028837be94634e535794308ccbcfe2039",
   "checkpoint_release": "jjiaweiyang/FD-Loss@88ce2bb4061b0dd58839a1827235ffcffa51eed2",
-  "official_sampler_source": "/n/home10/jaykim/woobin/OST/isolated_experiments/three_seed_eval_20260925/vendor/JiT",
   "adapter_sha256": "d000d537b2e68be4c9b0d46735663053d1b1213c54b63d94ae710ffb6943a7a3",
   "cfg": 2.2,
   "interval": [
@@ -39,7 +38,6 @@
   "official_sampler_commit": "cbc743a2ada5e9762697da2c83f8c4f8379e8c17",
   "sampling_and_features_seconds": 2173.9483695053495,
   "seconds_since_load": 2267.983563345857,
-  "official_reference": "/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz",
   "official_reference_sha256": "412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c",
   "script_sha256": "f82a7df6000a567fd9e2d624254a14b11b2388d671c48be925bc890a8ad8e968",
   "protocol": "FID: LTH14 FP32 rounded uint8, JiT reference. FDr5: frozen BF16 float images, FP64 moments, excludes ConvNeXt; legacy ADM FID component retained.",

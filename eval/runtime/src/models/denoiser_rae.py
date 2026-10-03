@@ -13,7 +13,7 @@ logger = logging.getLogger("FD_loss")
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _DEFAULT_RAE_ROOT = _REPO_ROOT / "external" / "RAE"
 _DEFAULT_COLLECTIONS_DIR = Path(
-    "/n/netscratch/sham_lab/Lab/jaykim/woobin/RAE/RAE-collections"
+    "assets/rae"
 )
 
 _PRESET_CONFIGS = {

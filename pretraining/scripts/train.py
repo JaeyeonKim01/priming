@@ -26,7 +26,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bundle', required=True, type=Path)
     parser.add_argument('--resume', action='store_true', help='Resume this bundle\'s latest checkpoint using its original trainer format.')
+    parser.add_argument('--smoke-steps', type=int, help='Stop after this many updates in a fresh bundle; preserves production batch and losses.')
     args = parser.parse_args()
+    if args.smoke_steps is not None and (args.smoke_steps < 1 or args.resume):
+        parser.error('--smoke-steps must be positive and cannot be combined with --resume')
     bundle = resolve(args.bundle).resolve()
     launch, manifest = verify_bundle(bundle)
     if int(os.environ.get('WORLD_SIZE', '0')) != 8:
@@ -34,6 +37,8 @@ def main():
     rank = int(os.environ['RANK'])
     family = launch['family']
     if rank == 0:
+        if args.smoke_steps and Path(launch['output']).exists():
+            raise FileExistsError('A smoke check requires a fresh output directory.')
         if family == 'l' and Path(launch['output']).exists() and not args.resume:
             raise FileExistsError('Output already exists; pass --resume for the historical L continuation behavior.')
         if args.resume and not (Path(launch['output']) / 'checkpoints/latest.pth').is_file():
@@ -62,11 +67,15 @@ def main():
     os.environ.setdefault('OPENBLAS_NUM_THREADS', '1')
     os.environ.setdefault('TORCHINDUCTOR_COMPILE_THREADS', '4')
     # Private per-rank, per-allocation compiler caches; set before importing Torch.
-    cache = Path(tempfile.gettempdir()) / 'ost_public_pretraining' / sha(bundle / 'launch.json')[:16]
+    cache = Path(os.environ.get('PRIMING_LOCAL_TMP', '/tmp')) / f'priming-{os.getuid()}'
+    cache = cache / 'pretraining' / sha(bundle / 'launch.json')[:16]
     cache = cache / os.environ.get('SLURM_JOB_ID', str(os.getppid())) / f'rank_{rank}'
-    for variable, name in [('TORCHINDUCTOR_CACHE_DIR', 'inductor'), ('TRITON_CACHE_DIR', 'triton'), ('CUDA_CACHE_PATH', 'cuda')]:
+    for variable, name in [('TMPDIR', 'tmp'), ('TORCHINDUCTOR_CACHE_DIR', 'inductor'), ('TRITON_CACHE_DIR', 'triton'), ('CUDA_CACHE_PATH', 'cuda')]:
         folder = cache / name; folder.mkdir(parents=True, exist_ok=True)
         os.environ[variable] = str(folder)
+    # Triton loads a temporary shared library before unlinking it. Network
+    # filesystems can leave open-file placeholders and fail directory cleanup.
+    tempfile.tempdir = os.environ['TMPDIR']
     runtime = ROOT / 'runtime' / family
     sys.path[:0] = [str(runtime), str(runtime / 'packages/distmatch/src')]
     os.chdir(bundle / 'work')
@@ -74,9 +83,13 @@ def main():
         entry = runtime / 'scripts/train_pixel_pair.py'
         sys.argv = [str(entry), '--config', str(bundle / 'config.yaml'), '--output', launch['output'],
                     '--manifest', str(bundle / 'manifest.json')]
+        if args.smoke_steps:
+            sys.argv += ['--until', str(args.smoke_steps)]
     else:
         entry = runtime / 'scripts/train_ost.py'
         sys.argv = [str(entry), '--config', str(bundle / 'config.yaml')]
+        if args.smoke_steps:
+            sys.argv.append('train.stop_after_steps=' + str(args.smoke_steps))
         if args.resume:
             # Preserve L's historical rank-zero optimizer restore. This does
             # not claim the complete all-rank recovery supplied by the B trainer.

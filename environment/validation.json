@@ -4,8 +4,13 @@
   "platform": "Linux-4.18.0-553.155.1.el8_10.x86_64-x86_64-with-glibc2.28",
   "torch": "2.6.0+cu124",
   "cuda_build": "12.4",
-  "cuda_available": false,
-  "devices": [],
+  "cuda_available": true,
+  "devices": [
+    "NVIDIA H200",
+    "NVIDIA H200",
+    "NVIDIA H200",
+    "NVIDIA H200"
+  ],
   "packages": {
     "absl-py": "2.4.0",
     "accelerate": "1.13.0",

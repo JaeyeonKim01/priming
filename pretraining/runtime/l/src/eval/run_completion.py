@@ -17,8 +17,9 @@ def matches_compute_audit(args):
         mmd_repulsion_queue_weight=0.0, dtype="bf16", compile=True)
     if any(getattr(args, key, object()) != value for key, value in expected.items()):
         return False
-    source = ROOT / "fdloss_work_dirs/OST/past/OST_B_aux_unif_t08_20260629_140029/01_ost/checkpoints/step_0100080.pth"
-    return bool(args.load_from) and Path(args.load_from).resolve() == source.resolve()
+    # The private calibration lineage is not part of this release.
+    # New runs must measure their own compute before reporting it.
+    return False
 
 
 def publish_completed_run(args, model, ema):

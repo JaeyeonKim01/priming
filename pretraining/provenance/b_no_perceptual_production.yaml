@@ -1,7 +1,7 @@
 # Proposed recipe for discussion; GPU preflight/restart work is tracked in
 # docs/ost_b_pretraining_plan_20260912.md. Fresh pretraining only.
 data:
-  data_path: /n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data
+  data_path: data/imagenet
   num_classes: 1000
   img_size: 256
   num_workers: 10
@@ -90,11 +90,11 @@ train:
   save_freq: 1
   milestone_interval: 20
 
-  output_dir: ./fdloss_work_dirs
+  output_dir: ./outputs
   local_eval_dir: null
   project: OST
-  exp_name: OST_B_t08_e160_no_perceptual_seed1_20260912
-  entity: jaeyeon_kim-harvard-university
+  exp_name: priming_reference
+  entity: priming
   enable_wandb: false
   print_freq: 50
   eval_freq: 0

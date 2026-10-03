@@ -93,7 +93,7 @@ sampling:
 
 data:
   # Retain the ImageNet root used to build the class-conditional feature banks.
-  data_path: /n/netscratch/sham_lab/Lab/jaykim/woobin/iREPA/data
+  data_path: data/imagenet
   num_classes: 1000
   # Controlled qualitative panel: the historical eight classes first, followed
   # by seven diverse held-out audit classes. This affects visualization only;
@@ -243,7 +243,7 @@ logging:
   vis_only: false
   disable_vis: false
   project: OST
-  entity: jaeyeon_kim-harvard-university
+  entity: priming
   exp_name: null
   enable_wandb: false
 

@@ -1,7 +1,6 @@
 {
   "status": "pass",
   "completed_at_utc": "2026-09-30T20:58:43.062784+00:00",
-  "scratch_root": "/n/netscratch/sham_lab/Lab/jaykim/OST_public_full_eval_20260930",
   "count_models": 11,
   "count_replicates": 33,
   "images_per_replicate": 50000,

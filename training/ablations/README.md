@@ -9,7 +9,7 @@ Use the [shared environment](../../docs/setup.md), download
 `checkpoints/pretraining/priming_b_160.pth`, and install the
 [training and evaluation assets](../../docs/assets.md). Configure asset locations
 in the selected JSON recipe and cache locations in [site.json](../configs/site.json).
-The standalone commands below require **eight H100/H200 GPUs** for training.
+The standalone commands below require **eight H200 GPUs** for training.
 Run all commands from the repository root with `conda activate priming`.
 
 ## SIM feature-space training
@@ -140,15 +140,19 @@ standard deviations, not independent training replicates.
 [Result provenance](provenance.json)
 
 Use these retained measurements as the reference; a new training run can vary.
-The source notes also retain historical single-draw training-time FID/FDr⁵:
-OT 1.3924/11.2936, SIM 1.7013/6.1291, Laplacian 1.8472/11.2718, and
-energy 1.9072/11.5544. Those use a different FID protocol and should not be
-mixed with the table above. Some ICLR manuscript FDr⁵ cells retain earlier
-values; the table above follows the saved three-seed evaluation records.
-
 [Original recipe identities](../provenance/ablations.json) and
 [runtime source hashes](../provenance/ablation_runtime.json) record the completed
 experiments used for this package. Scientific config fields are preserved;
 only data/checkpoint/cache/output locations and run names are made portable.
 Run `python training/scripts/check_cpu.py` to check the packaged loss gradients,
 SIM replay, sampling streams, and all existing training regressions.
+
+For a bounded startup check, add `--smoke-steps 2 --output-dir EXTERNAL_OUTPUT`
+to preparation and use a new job directory. See [GPU startup checks](../../docs/validation.md).
+After a bounded or complete run, audit its saved counters, optimizer/EMA,
+per-rank RNG state, configured loss contract, and finite updates with:
+
+```bash
+python training/scripts/audit_checkpoint.py --config JOB/config.json \
+  --output JOB/checkpoint_audit.json
+```

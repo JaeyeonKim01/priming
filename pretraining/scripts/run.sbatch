@@ -27,6 +27,7 @@ trap 'touch "$PREEMPT_FLAG_FILE"' USR1
 srun --kill-on-bad-exit=1 --export=ALL bash -c '
     args=(--bundle "$BUNDLE")
     if [[ ${RESUME:-0} == 1 ]]; then args+=(--resume); fi
+    if [[ -n ${SMOKE_STEPS:-} ]]; then args+=(--smoke-steps "$SMOKE_STEPS"); fi
     exec "$PYTHON" -m torch.distributed.run \
         --nnodes="$SLURM_JOB_NUM_NODES" --nproc_per_node="$SLURM_GPUS_ON_NODE" \
         --node_rank="$SLURM_NODEID" --master_addr="$MASTER_ADDR" --master_port="$MASTER_PORT" \

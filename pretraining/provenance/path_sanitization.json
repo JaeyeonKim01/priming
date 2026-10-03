@@ -1,0 +1,22 @@
+{
+  "runtime/b/src/eval/run_completion.py": {
+    "original_sha256": "d7482e2ca78f6fab83eebe4087f74433ef688b1d104a2ce8ea8d28bb02448339",
+    "public_sha256": "001c0f5c5909a6e1e0cbc3e3ee6cc155dd1306766a542a317c7d1f4f5ac2eb18",
+    "reason": "Disable reuse of private compute calibration; optimizer and training code unchanged."
+  },
+  "runtime/b/src/models/denoiser_rae.py": {
+    "original_sha256": "4181672b0c59c126f04ad874d991dfbb55af17385481a4c4af4f28e903481119",
+    "public_sha256": "5da96468e47e42c38ecdfe590e66e1421b5a3378c0001549ac61e7d96d80123b",
+    "reason": "Replace private storage/logging defaults with portable paths; numerical code unchanged."
+  },
+  "runtime/l/src/eval/run_completion.py": {
+    "original_sha256": "d7482e2ca78f6fab83eebe4087f74433ef688b1d104a2ce8ea8d28bb02448339",
+    "public_sha256": "001c0f5c5909a6e1e0cbc3e3ee6cc155dd1306766a542a317c7d1f4f5ac2eb18",
+    "reason": "Disable reuse of private compute calibration; optimizer and training code unchanged."
+  },
+  "runtime/l/src/models/denoiser_rae.py": {
+    "original_sha256": "4181672b0c59c126f04ad874d991dfbb55af17385481a4c4af4f28e903481119",
+    "public_sha256": "5da96468e47e42c38ecdfe590e66e1421b5a3378c0001549ac61e7d96d80123b",
+    "reason": "Replace private storage/logging defaults with portable paths; numerical code unchanged."
+  }
+}

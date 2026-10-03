@@ -68,6 +68,22 @@ def test_prepare_relocated_ablations_without_parent_checkout(tmp_path):
                                cwd=tmp_path, env=env, capture_output=True)
         assert retry.returncode != 0
 
+    smoke = repo / 'outputs/smoke'
+    external_output = tmp_path / 'external runs'
+    subprocess.run([sys.executable, str(task / 'scripts/prepare.py'),
+                    '--arm', 'b160', '--job', str(smoke), '--smoke-steps', '2',
+                    '--output-dir', str(external_output)],
+                   cwd=tmp_path, env=env, check=True, capture_output=True)
+    cfg = json.loads((smoke / 'config.json').read_text())
+    manifest = json.loads((smoke / 'config.manifest.json').read_text())
+    assert manifest['mode'] == 'smoke' and manifest['horizon'] == 2
+    assert cfg['logging']['output_dir'] == str(external_output)
+    assert cfg['train']['batch_size'] == 128 and cfg['train']['grad_accum'] == 1
+    assert cfg['optimizer']['warmup_epochs'] * cfg['train']['steps_per_epoch'] == 125
+    assert cfg['ot']['ot_num_classes'] * cfg['ot']['ot_samples_per_class'] == 1024
+    assert not cfg['evaluation']['online_eval'] and cfg['evaluation']['skip_final_eval']
+    assert cfg['logging']['save_freq'] == 2
+
 
 def test_reference_results_match_saved_sampling_replicates():
     with (TASK / 'ablations/results.csv').open() as stream:

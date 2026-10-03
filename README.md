@@ -22,20 +22,24 @@ Official implementation of [Are We Overthinking One-Step Generation?](#paper-lin
 
 ## Getting started
 
-Clone this repository as `priming`; all commands and relative paths below start
+Clone this repository as `Priming`; all commands and relative paths below start
 there.
+For limited home-directory quotas, use the [external-storage setup](docs/setup.md#keep-large-files-outside-home)
+to place the environment, downloads, and outputs on a larger disk.
 
 ```bash
-git clone https://github.com/JaeyeonKim01/one_step_priming.git priming
-cd priming
+git clone https://github.com/JaeyeonKim01/one_step_priming.git Priming
+cd Priming
 bash scripts/create_env.sh
 conda activate priming
+export PYTHONNOUSERSITE=1
 python scripts/check_environment.py
 ```
 
-- [Environment setup](docs/setup.md): create `priming` and configure H100/H200 execution.
+- [Environment setup](docs/setup.md): create `priming` and configure CUDA/GPU execution.
 - [Data and model assets](docs/assets.md): ImageNet training data and evaluation encoders/statistics; sampling needs only a checkpoint.
 - [Checkpoint downloads](docs/checkpoints.md): download and verify the pretrained and post-trained models.
+- [Pipeline validation](docs/validation.md): tested H200 startup checks, bounded commands, and scope.
 
 ## Checkpoints
 
@@ -103,6 +107,16 @@ The [offline HTML dashboard](dashboard/index.html) also includes reproduced
 results and per-seed scores; open it locally in a browser.
 
 </details>
+
+## Experiment scope
+
+This release contains ImageNet-256 sampling/evaluation for B/L at 80/160
+pretraining epochs, three reconstruction recipes, B/L-160 OT post-training,
+and B-160 SIM, Laplacian MMD, and energy ablations. Text-to-image and world
+modeling are illustrated in the paper figure; their training pipelines are
+not included here. Training needs the separately supplied dataset and encoder
+assets described in [assets.md](docs/assets.md); generator checkpoints alone
+are sufficient for sampling.
 
 ## ImageNet experiments
 

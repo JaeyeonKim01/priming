@@ -67,9 +67,7 @@ def test_l_recipe_uses_original_160_epoch_arguments():
     result = verify()
     assert result['passed']
     source = json.loads((ROOT / 'provenance/l_original_arguments.json').read_text())
-    later = OmegaConf.load(ROOT / 'provenance/l_later_320epoch_config.yaml')
     current = OmegaConf.load(ROOT / 'configs/l160_perceptual.yaml')
     assert source['config']['train']['epochs'] == current.train.epochs == 160
     assert current.train.micro_batch_size == 64
     assert current.train.gradient_accumulation_steps == 2
-    assert later.train.epochs == 320 and later.train.micro_batch_size == 128

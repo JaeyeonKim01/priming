@@ -43,8 +43,13 @@ def main():
     feature=c['mmd_repulsion_queue_state']
     assert feature['feature_stack']==cfg['ot']['ot_feature_stack']
     contract=feature['loss_contract']
-    assert contract['kind']=='featurewise_ot' and contract['coefficient']==5.
-    assert contract['iterations']==1000 and contract['tolerance']==1e-6 and contract['self_weight']==1.
+    assert contract['kind']==cfg['ot']['discrepancy_kind']
+    assert contract['coefficient']==cfg['ot']['lambda_ot']
+    assert contract['energy_delta']==cfg['ot']['energy_delta']
+    assert contract['iterations']==cfg['ot']['ot_num_iters']
+    assert contract['tolerance']==cfg['ot']['ot_tolerance'] and contract['self_weight']==1.
+    assert {float(k): v for k, v in contract['epsilon_mixture'].items()} == {
+        float(k): v for k, v in cfg['ot']['ot_epsilon_mixture'].items()}
     diagnostics=[json.loads(line) for line in (run/'ot_diagnostics.jsonl').read_text().splitlines()]
     records={int(row['updates']):row for row in diagnostics}
     assert set(records)==set(range(start+1,horizon+1)),(min(records),max(records),len(records))

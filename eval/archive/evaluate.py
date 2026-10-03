@@ -1,13 +1,14 @@
+# Reference source for interpreting released metrics; run ../evaluate.py for new evaluations.
 """Three sampling seeds, paired official FID and frozen legacy FDr5."""
 import argparse, contextlib, csv, hashlib, json, os, sys, time
 from pathlib import Path
 from types import SimpleNamespace
-ROOT=Path('/n/home10/jaykim/woobin/OST')
+ROOT=Path(__file__).resolve().parents[2]
 HERE=Path(__file__).resolve().parent
 RUNTIME=ROOT/'tests/runs/ot_metric_climb_20260904/runtime'
-CACHE=Path('/n/netscratch/sham_lab/Lab/jaykim/OT_compute_comparison_20260905')
-OUTPUT=Path('/n/netscratch/sham_lab/Lab/jaykim/three_seed_eval_20260925')
-VENDOR=ROOT/'isolated_experiments/fid_protocol_audit_20260925/vendor/torch-fidelity'
+CACHE=ROOT/'assets/baselines/comparison'
+OUTPUT=ROOT/'outputs/reference'
+VENDOR=ROOT/'eval/vendor/torch-fidelity'
 for p in (ROOT/'figures/W-Flow', RUNTIME, RUNTIME/'packages/distmatch/src', VENDOR): sys.path.insert(0,str(p))
 os.environ['DRIFT_COMPILE']='0'
 import numpy as np
@@ -85,7 +86,7 @@ def main():
  official=FeatureExtractorInceptionV3('inception-v3-compat',['2048'],feature_extractor_weights_path=str(weights)).cuda().eval().requires_grad_(False)
  sample,swap,metadata=load_generator(opt.model)
  print('READY',opt.model,rank,'load_seconds',time.monotonic()-started,flush=True)
- refpath=Path('/n/home10/jaykim/woobin/JiT/fid_stats/jit_in256_stats.npz')
+ refpath=ROOT/'assets/fid_stats/jit_in256_stats.npz'
  with swap:
   for seed in opt.seeds:
    out=OUTPUT/opt.model/f'n{opt.num_images}_seed{seed}'; out.mkdir(parents=True,exist_ok=True)

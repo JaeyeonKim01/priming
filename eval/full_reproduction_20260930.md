@@ -20,4 +20,4 @@ The fresh and paper means match at the manuscript's two-decimal precision. Δ is
 
 Byte-stream counts compare each GPU rank and seed with the retained paper batch; differing streams can still yield close aggregate metrics. FDr⁵ uses the five frozen normalized feature distances and excludes ConvNeXt. The three seeds are sampling replicates of one checkpoint per model, not training replicates.
 
-Full-precision results: [CSV](full_reproduction_20260930.csv), [per-seed CSV](full_reproduction_20260930_per_seed.csv), and [validation/comparison JSON](full_reproduction_20260930.json). Raw artifacts: `/n/netscratch/sham_lab/Lab/jaykim/OST_public_full_eval_20260930`.
+Full-precision results: [CSV](full_reproduction_20260930.csv), [per-seed CSV](full_reproduction_20260930_per_seed.csv), and [validation/comparison JSON](full_reproduction_20260930.json). Raw image and rank artifacts are not distributed.

@@ -226,9 +226,7 @@ non-overlapping local image stream on each rank. If sampling bypasses a DDP
 forward, `distmatch.distributed.sync_gradients(..., reduction="mean")` provides
 the explicit parameter-gradient synchronization used by the direct workflow.
 
-## OST integration material
+## Priming integration
 
-The legacy FD interface demo and FD parity tests live in
-[`integrations/ost`](integrations/ost/). They are development and migration
-assets, not dependencies of the repository-independent runtime package. The
-active OST MMD integration is owned and documented by the host repository.
+The host training runtime supplies the distributional objective and distributed
+training loop. Upstream development-only integration demos are not included.

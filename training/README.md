@@ -1,11 +1,10 @@
 # OT post-training reproduction
 
 Reproduce Priming-B and Priming-L from their **160-epoch pretrained online
-weights**, with **25,000 fresh AdamW updates**, eight H100/H200 GPUs per model, and
+weights**, with **25,000 fresh AdamW updates**, eight H200 GPUs per model, and
 **50,000-image online and EMA evaluations every 1,250 updates**, including
 the terminal update. The separate [pretraining package](../pretraining/README.md)
-contains the production reconstruction recipes and retained source snapshots;
-its migration did not launch new pretraining runs.
+contains the production reconstruction recipes and retained source snapshots.
 
 ## Recipe and source
 
@@ -25,9 +24,15 @@ configs are unchanged; only asset paths, output directories, project, and run na
 | AdamW | LR 1e-5; 125-update warmup, then constant; betas .9/.95; weight decay 0; clip 1 |
 | EMA | Inherit source .9999 shadow/counter, then use decay .999 |
 | Seeds | Main 1; private OT stream 7919 |
-| Execution | Eight H100/H200 GPUs, microbatch 128/rank, no accumulation |
+| Execution | Eight H200 GPUs, microbatch 128/rank, no accumulation |
 | Precision | Compiled BF16 generator; eager production encoder precision; encoder microbatch 8 |
 | Evaluation | Online and EMA .999; 50k images each; every 1,250 updates; one step, CFG1 |
+
+This reproduction workflow pins the released 160-epoch checkpoint hashes.
+A checkpoint from a new pretraining run requires a separate recipe/source
+record; changing only `checkpointing.load_from` does not bypass the identity check.
+The packaged post-training recipes cover B/L-160; B/L-80 are provided for sampling
+and evaluation, without a packaged 80-epoch post-training recipe.
 
 B uses perceptual pretraining. The generator initializes from pretrained
 **online** weights with a fresh optimizer; probe weights never initialize
@@ -42,13 +47,13 @@ and all eight ranks' main and OT RNG states.
   and the TVM import dependency with its license.
 - `scripts/launch.py`: two independent `probe → production` Slurm chains.
 - `scripts/status.py`: progress and strict completeness checks for scheduled draws.
-- `reports/` and `provenance/`: retained historical evidence.
+- `provenance/` and `reports/runtime_manifest.json`: sanitized recipes and source identities.
 - `state/`: ignored fresh validation and scheduler state.
 - `results/`: symlinks to allocation snapshots on scratch; weights stay on scratch.
 
-## Run on H100/H200 GPUs
+## Run on eight H200 GPUs
 
-From `priming`, activate the [shared environment](../docs/setup.md) and install
+From `Priming`, activate the [shared environment](../docs/setup.md) and install
 [the external assets](../docs/assets.md). Paths in `configs/` resolve from the
 repository regardless of the caller's working directory. The default is one
 node with eight GPUs; the numerical recipe still uses eight ranks.
@@ -85,11 +90,11 @@ Probes request two hours; production requests 48 hours with up to two
 checkpoint-based requeues. Up to 16 GPUs are requested concurrently.
 CPU/memory/time reservations can be adjusted for your system. GPU backward
 repeatability is recorded separately; bitwise agreement across hardware or
-allocations is not promised. H100 memory suitability must be checked by the
-probe; no new H100/H200 training run was performed for this portability change.
+allocations is not promised. The L startup check peaked at 85.01 GiB allocated / 87.58 GiB reserved,
+exceeding 80 GB device capacity at this batch size. Other GPU types and
+modified execution settings require their own probe. See [startup validation](../docs/validation.md) for the bounded H200 checks.
 
-Historical launch evidence is retained in `reports/` and `provenance/`.
-New launches use ignored `state/` files and never reuse historical job IDs.
+New launches use ignored `state/` and `reports/` files.
 
 ## Evaluation and recovery
 
@@ -107,15 +112,13 @@ components; fragments from separate draws cannot fill missing results.
 `reports/milestone_2500.json` appears once both models pass through 2,500.
 
 After both milestones finish, verify their saved optimizer/EMA/RNG state,
-finite updates, allocation source hashes, complete draws, and historical
-metric comparison with:
+finite updates, allocation source hashes, and complete draws with:
 
 ```bash
 python training/audit_milestone.py --through 2500
 ```
 
-The resulting `reports/verified_both_2500.json` reports measured differences
-from the historical trajectory without assuming bitwise reproducibility.
+The resulting `reports/verified_both_2500.json` checks the new run without relying on private training logs.
 
 Slurm requeue restores complete training state from the allocation's own
 latest checkpoint. A missing intermediate evaluation is completed before

@@ -224,7 +224,7 @@
     "vis_only": false,
     "disable_vis": false,
     "project": "priming",
-    "entity": "jaeyeon_kim-harvard-university",
+    "entity": "priming",
     "exp_name": "priming_l160_ot25000_seed1",
     "enable_wandb": false
   },

@@ -1,5 +1,0 @@
-{
-  "repo": "stabilityai/sd-vae-ft-mse",
-  "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
-  "path": "/n/netscratch/sham_lab/Lab/workdir/huggingface/hub/models--stabilityai--sd-vae-ft-mse/snapshots/31f26fdeee1355a5c34592e401dd41e45d25a493/diffusion_pytorch_model.safetensors"
-}

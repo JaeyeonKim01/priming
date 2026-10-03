@@ -49,6 +49,7 @@ def manuscript_rows(path) -> dict[str, tuple[float, float, float]]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manuscript", type=Path, default=HERE / "provenance/manuscript_table.tex")
+    parser.add_argument("--report", type=Path, help="Optional destination for this validation result")
     options = parser.parse_args()
     paper = {r["model"]: r for r in csv.DictReader((HERE / "paper_results.csv").open())}
     table = manuscript_rows(options.manuscript)
@@ -80,8 +81,9 @@ def main() -> None:
               "compared_with": ["release full-precision CSV", "final paper ImageNet LaTeX table"],
               "models_checked": len(checked), "status": "pass", "rows": checked,
               "scope_note": "Recomputed summary arithmetic from saved evaluations; no new 50,000-image sampling"}
-    output = HERE / "reports/table_recheck_20260930.json"
-    output.write_text(json.dumps(result, indent=2) + "\n")
+    if options.report:
+        options.report.parent.mkdir(parents=True, exist_ok=True)
+        options.report.write_text(json.dumps(result, indent=2) + "\n")
     print(f"Matched all {len(checked)} models against CSV and paper table")
 
 

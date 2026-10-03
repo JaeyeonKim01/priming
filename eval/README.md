@@ -1,6 +1,6 @@
 # Evaluation: FID and FDr⁵
 
-Run from `priming` in the [shared environment](../docs/setup.md). All evaluator,
+Run from `Priming` in the [shared environment](../docs/setup.md). All evaluator,
 baseline sampler, and metric source code is included under `runtime/` and
 `vendor/`; [source hashes](provenance/copied_sources.json) and
 [vendor revisions](provenance/vendors.json) preserve their identities.
@@ -14,8 +14,9 @@ The September 30 reproduction contains 11 models × three sampling seeds ×
 [full report](full_reproduction_20260930.md),
 [full-precision CSV](full_reproduction_20260930.csv), and
 [quantitative dashboard](../dashboard/index.html).
-`archive/`, `reports/`, and dated reports retain original run paths as provenance;
-those paths are not dependencies of the public entrypoint.
+Result records retain metrics and scientific identities with portable asset paths.
+`archive/` preserves sanitized reference evaluator source. Executed and public
+source hashes are recorded separately in `provenance/evaluator_identity.json`.
 
 ```bash
 python eval/verify_results.py

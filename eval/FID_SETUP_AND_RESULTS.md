@@ -70,13 +70,11 @@ Seed streams:
 - pMF/iMF: original CPU BatchGenerator with `1000003 * seed + sample_index`. Small-seed XOR would mostly permute the same noises and was deliberately avoided.
 - Priming/JiT: `1000003 * seed + rank`. For matching draws, preserve world size and batch: **4 GPUs, batch 32** for all except **JiT: 8 GPUs, batch 64**.
 
-The retained `archive/evaluate.py` and `archive/evaluate_v2.py` are frozen; completed reports record source hashes. iMF uses the official MSE VAE wrapper with **eager FP32 decode** to avoid a Torch 2.6/diffusers 0.38 compiler error. Its weights and latent mean/std normalization are unchanged; do not replace that normalization with W-Flow's `/0.18215`. VAE revision: `31f26fdeee1355a5c34592e401dd41e45d25a493`.
+The retained `archive/evaluate.py` and `archive/evaluate_v2.py` have sanitized path defaults; completed reports retain their executed source hashes. iMF uses the official MSE VAE wrapper with **eager FP32 decode** to avoid a Torch 2.6/diffusers 0.38 compiler error. Its weights and latent mean/std normalization are unchanged; do not replace that normalization with W-Flow's `/0.18215`. VAE revision: `31f26fdeee1355a5c34592e401dd41e45d25a493`.
 
 ## Portable execution
 
 Use [README.md](README.md) for current commands and [the asset guide](../docs/assets.md)
 for repository-relative paths. The retained numbers above describe the September
 25 batch; [the September 30 reproduction](full_reproduction_20260930.md) is also
-included. The [original report](archive/FID_SETUP_AND_RESULTS_20260925.md) retains
-historical cluster paths and paper-build commands as provenance, not operational
-instructions for a new checkout.
+included. Private cluster paths and paper-build logs are not distributed.

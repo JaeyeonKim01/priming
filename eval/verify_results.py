@@ -37,8 +37,10 @@ def verify(scratch_root: Path | None = None) -> dict:
     paper = list(csv.DictReader((HERE / "paper_results.csv").open()))
     assert len(summary) == len(paper) == 11 and len(per_seed) == 33
     paper_by_key = dict(zip(KEYS, paper, strict=True))
-    frozen_hashes = {digest(HERE / "archive" / name)
-                     for name in ("evaluate.py", "evaluate_v2.py")}
+    identities = json.loads((HERE / 'provenance/evaluator_identity.json').read_text())
+    for name, identity in identities.items():
+        assert digest(HERE / 'archive' / name) == identity['public_sha256'], name
+    frozen_hashes = {identity['executed_sha256'] for identity in identities.values()}
     artifacts = sorted(reports.glob("*_n50000_seed*.json"))
     assert len(artifacts) == 33
     checked = []

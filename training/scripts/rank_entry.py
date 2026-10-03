@@ -1,14 +1,19 @@
 """Private compiler caches and read-only initialization/memory instrumentation."""
 import os
+import hashlib
 from pathlib import Path
 import runpy
+import tempfile
 
-root = Path(os.environ['JOB_DIR']) / 'compiler_cache' / f"rank_{os.environ['RANK']}"
-for variable, folder in (('TORCHINDUCTOR_CACHE_DIR', 'inductor'),
+identity = hashlib.sha256(os.environ['JOB_DIR'].encode()).hexdigest()[:16]
+root = Path(os.environ.get('PRIMING_LOCAL_TMP', '/tmp')) / f'priming-{os.getuid()}'
+root = root / 'posttraining' / identity / os.environ.get('SLURM_JOB_ID', str(os.getppid())) / f"rank_{os.environ['RANK']}"
+for variable, folder in (('TMPDIR', 'tmp'), ('TORCHINDUCTOR_CACHE_DIR', 'inductor'),
                          ('TRITON_CACHE_DIR', 'triton'), ('CUDA_CACHE_PATH', 'cuda')):
     path = root / folder
     path.mkdir(parents=True, exist_ok=True)
     os.environ[variable] = str(path)
+tempfile.tempdir = os.environ['TMPDIR']
 
 if os.environ.get('RANK_MODE') == 'restore':
     runpy.run_path(str(Path(__file__).with_name('resume_state.py')), run_name='__main__')
