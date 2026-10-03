@@ -8,7 +8,11 @@
 <p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University<br>
 <sup>*</sup> Equal contribution (co-first authors)</p>
 
-<p><strong>arXiv:</strong> coming soon &nbsp;·&nbsp; <strong>X post:</strong> coming soon</p>
+<!-- Replace the placeholder href values with the paper and announcement URLs when available. -->
+<p id="paper-links">
+  <a href="#paper-links" title="arXiv preprint coming soon"><img src="https://img.shields.io/badge/ArXiv-Coming_soon-red" alt="ArXiv: coming soon"></a>
+  <a href="#paper-links" title="X announcement coming soon"><img src="https://img.shields.io/badge/X-Coming_soon-black?logo=x&amp;logoColor=white" alt="X: coming soon"></a>
+</p>
 
 </div>
 
