@@ -98,6 +98,7 @@ Click either preview to open its PDF.
   </tr>
 </table>
 
+See the [dashboard README](dashboard/README.md) for result files and figure sources.
 The [offline HTML dashboard](dashboard/index.html) also includes reproduced
 results and per-seed scores; open it locally in a browser.
 
