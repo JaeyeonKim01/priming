@@ -127,8 +127,8 @@ def prepare(dataset, representations, stage, card, workers, repo_id='jaykim1102/
     print(json.dumps(dict(files=len(sources), bytes=sum(row['bytes'] for _, row in sources))), flush=True)
 
 
-def upload(stage, repo_id, workers):
-    from huggingface_hub import HfApi
+def upload(stage, repo_id, workers, batch_files=8):
+    from huggingface_hub import HfApi, CommitOperationAdd
     manifest = json.loads((stage / 'dataset_manifest.json').read_text())
     if manifest['repo_id'] != repo_id:
         raise ValueError('Repo ID differs from staged manifest')
@@ -141,9 +141,26 @@ def upload(stage, repo_id, workers):
                     path_or_fileobj=(stage / 'README.md').read_bytes(),
                     commit_message='Document ImageNet access terms and dataset layout')
     api.update_repo_settings(repo_id, repo_type='dataset', gated='auto', private=False)
-    allowed = [row['path'] for row in manifest['files']] + ['README.md', 'dataset_manifest.json']
-    api.upload_large_folder(repo_id, repo_type='dataset', folder_path=stage,
-                            allow_patterns=allowed, num_workers=workers)
+    remote = {row.rfilename: row for row in api.repo_info(
+        repo_id, repo_type='dataset', files_metadata=True).siblings}
+    pending = []
+    for row in manifest['files']:
+        found = remote.get(row['path'])
+        if found and found.size == row['bytes'] and found.lfs and found.lfs.sha256 == row['sha256']:
+            continue
+        pending.append(row['path'])
+    pending += ['README.md', 'dataset_manifest.json']
+    print(f'{len(pending)} files to commit; at most {batch_files} per upload batch', flush=True)
+    # Keep batches bounded: large concurrent Xet batches can exceed a login
+    # node's memory limit. Each successful commit is independently resumable.
+    for start in range(0, len(pending), batch_files):
+        names = pending[start:start + batch_files]
+        api.create_commit(repo_id, repo_type='dataset',
+                          operations=[CommitOperationAdd(path_in_repo=name, path_or_fileobj=stage / name)
+                                      for name in names],
+                          num_threads=workers,
+                          commit_message=f'Add processed ImageNet release files ({start + 1}-{start + len(names)})')
+        print(f'Committed {start + len(names)}/{len(pending)} pending files', flush=True)
     info = api.repo_info(repo_id, repo_type='dataset', files_metadata=True)
     remote = {row.rfilename: row for row in info.siblings}
     for row in manifest['files']:
@@ -173,18 +190,19 @@ def main():
     p.add_argument('--stage-dir', type=Path, required=True)
     p.add_argument('--repo-id', default='jaykim1102/priming')
     p.add_argument('--workers', type=int, default=4)
+    p.add_argument('--batch-files', type=int, default=8, help='Bound upload memory and checkpoint transfer progress')
     p.add_argument('--upload', action='store_true')
     p.add_argument('--upload-existing', action='store_true')
     a = p.parse_args()
-    if a.workers < 1:
-        p.error('--workers must be positive')
+    if a.workers < 1 or a.batch_files < 1:
+        p.error('--workers and --batch-files must be positive')
     if not a.upload_existing:
         if a.dataset_dir is None or a.representations_dir is None:
             p.error('Preparation requires --dataset-dir and --representations-dir')
         prepare(a.dataset_dir, a.representations_dir, a.stage_dir,
                 Path(__file__).resolve().parents[1] / 'docs/huggingface-dataset-card.md', a.workers, a.repo_id)
     if a.upload or a.upload_existing:
-        upload(a.stage_dir, a.repo_id, a.workers)
+        upload(a.stage_dir, a.repo_id, a.workers, a.batch_files)
 
 
 if __name__ == '__main__':

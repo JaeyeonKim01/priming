@@ -32,7 +32,7 @@ Challenge*, IJCV 2015.
 ## Use with Priming
 
 Get the code and environment from
-[Priming](https://github.com/JaeyeonKim01/one_step_priming).
+[Priming](https://github.com/JaeyeonKim01/priming).
 Accept the access terms once on this page, then authenticate your machine:
 
 ```bash

@@ -28,7 +28,7 @@ For limited home-directory quotas, use the [external-storage setup](docs/setup.m
 to place the environment, downloads, and outputs on a larger disk.
 
 ```bash
-git clone https://github.com/JaeyeonKim01/one_step_priming.git Priming
+git clone https://github.com/JaeyeonKim01/priming.git Priming
 cd Priming
 bash scripts/create_env.sh
 conda activate priming

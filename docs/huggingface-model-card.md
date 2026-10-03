@@ -20,7 +20,7 @@ These are original PyTorch training checkpoints, including optimizer state,
 not standalone Diffusers pipelines or safetensors exports.
 
 The two JSON manifests identify all eight files with sizes and SHA256 hashes.
-See [the code and setup guide](https://github.com/JaeyeonKim01/one_step_priming)
+See [the code and setup guide](https://github.com/JaeyeonKim01/priming)
 for model definitions, evaluation, training recipes, and reproduction records.
 
 ## Evaluation reference assets
