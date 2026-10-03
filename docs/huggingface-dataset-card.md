@@ -37,7 +37,7 @@ Accept the access terms once on this page, then authenticate your machine:
 
 ```bash
 hf auth login
-hf download jaykim1102/priming --repo-type dataset --local-dir /large-disk/Priming
+python scripts/download_assets.py --group dataset --root /large-disk/Priming
 ```
 
 The download preserves the repository-relative `data/` and `assets/` layout.

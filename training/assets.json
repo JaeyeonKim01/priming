@@ -4,8 +4,8 @@
       "path": "assets/ot/representations/downloads.json",
       "bytes": 1964,
       "sha256": "b4d2df79ca0af5cb503e6b1fcdf66f4fa742a765621efde386709e574373570c",
-      "published_bytes": 1724,
-      "published_sha256": "69a2aeefd56c43c2cb4dc9c10f228743fc45103687061e506442318cc1ffc445"
+      "published_bytes": 1799,
+      "published_sha256": "a341d41e989d301bf82953ce4324d8dacb07edb24c14c259601f783f95609460"
     },
     {
       "path": "assets/ot/representations/converted_manifest.json",

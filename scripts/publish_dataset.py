@@ -103,7 +103,7 @@ def prepare(dataset, representations, stage, card, workers, repo_id='jaykim1102/
         obj = json.loads((representations / name).read_text())
         if name == 'downloads.json':
             for row in obj:
-                row['path'] = f"sources/{row['family']}/{row['filename']}"
+                row['path'] = f"assets/encoder_sources/{row['family']}/{row['filename']}"
         elif name == 'converted_manifest.json':
             for family, row in obj['conversions'].items():
                 row['path'] = f'assets/ot/representations/{family}_encoder.pt'

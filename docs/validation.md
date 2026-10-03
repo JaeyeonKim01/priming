@@ -8,6 +8,10 @@ records an additional check of the public preparation workflow:
 - All 517 packed ImageNet Arrow shards were hashed; image path fields were
   null and images were embedded. The train/validation counts and all training
   labels were checked against the included class indices.
+- All 527 dataset artifacts matched the published Hub sizes and checksums.
+  One image shard was downloaded again and passed the byte and image/label
+  checks. The public repository has automatic approval and an ImageNet terms
+  checkbox; anonymous image access was denied as expected.
 - Rebuilding the three class index files produced the released SHA256 values.
   The frozen calibration's row selection and encoder source identity matched.
 - Conversion from the pinned upstream MAE and ConvNeXt weights reproduced

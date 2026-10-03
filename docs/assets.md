@@ -20,9 +20,8 @@ from the release are rejected.
 
 Dataset repository: [jaykim1102/priming](https://huggingface.co/datasets/jaykim1102/priming).
 This is separate from the generator's **model** repository with the same name.
-The [release manifest](../releases/dataset.json) records publication status,
-revision, and checksums. A null revision means publication is still in progress;
-the helper will not silently use an incomplete `main` branch.
+The [release manifest](../releases/dataset.json) pins the complete dataset
+snapshot and checksums. The helper downloads that verified revision.
 
 Accept the ImageNet terms on the dataset page once. Access uses automatic
 approval, with no manual approval queue. Authenticate the download client:

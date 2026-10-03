@@ -2632,8 +2632,8 @@
     },
     {
       "path": "assets/ot/representations/downloads.json",
-      "bytes": 1724,
-      "sha256": "69a2aeefd56c43c2cb4dc9c10f228743fc45103687061e506442318cc1ffc445"
+      "bytes": 1799,
+      "sha256": "a341d41e989d301bf82953ce4324d8dacb07edb24c14c259601f783f95609460"
     },
     {
       "path": "assets/ot/representations/converted_manifest.json",
@@ -2646,6 +2646,6 @@
       "sha256": "aff37e1b790371357f75e51fa55c32e02a553282490453d6317d8cf58039b7de"
     }
   ],
-  "revision": null,
-  "publication_status": "uploading"
+  "revision": "a73162d84a6a48baf79f38fc2983cb0f746018e7",
+  "publication_status": "complete"
 }
