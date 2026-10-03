@@ -1,5 +1,26 @@
 # Pipeline validation
 
+## Downloaded assets and conversion
+
+The [asset release validation](../environment/asset_release_validation.json)
+records an additional check of the public preparation workflow:
+
+- All 517 packed ImageNet Arrow shards were hashed; image path fields were
+  null and images were embedded. The train/validation counts and all training
+  labels were checked against the included class indices.
+- Rebuilding the three class index files produced the released SHA256 values.
+  The frozen calibration's row selection and encoder source identity matched.
+- Conversion from the pinned upstream MAE and ConvNeXt weights reproduced
+  both released encoder files byte-for-byte.
+- A new evaluation cache was populated with the download helper. A 1,000-image
+  Priming-B-160 pilot on four H200 GPUs passed the saved-result audit using
+  those encoders and precomputed statistics. It used no ImageNet dataset and
+  did not recompute real-image statistics. This pilot is an execution check,
+  not a replacement for the 50,000-image paper evaluation.
+
+Dataset publication status and the pinned download revision are recorded in
+[the dataset release manifest](../releases/dataset.json).
+
 A startup check exercises asset loading, distributed forward/backward passes,
 optimizer updates, EMA, and checkpoint writing. It does not establish a full
 160-epoch or 25,000-update reproduction, final metrics, or recovery fidelity.

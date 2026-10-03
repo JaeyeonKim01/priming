@@ -49,6 +49,15 @@ Large assets remain external:
    Hugging Face cache for `facebook/convnextv2-base-22k-224` in `HF_HOME/hub/`.
 
 The no-perceptual recipe does not require or construct those encoders.
+The exact processed dataset and pinned perceptual weights can be prepared with:
+
+```bash
+# Accept the dataset's ImageNet terms on HF first; see the asset guide.
+hf auth login
+python scripts/download_assets.py --group dataset
+python scripts/download_assets.py --group pretraining
+```
+
 The supplied `configs/site.json` uses `data/imagenet`, `assets/huggingface`,
 `assets/torch`, and `assets/lpips/vgg.pth`, all relative to the repository.
 See [asset layout](../docs/assets.md). No parent OST source is required.

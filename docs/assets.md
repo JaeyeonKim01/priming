@@ -1,95 +1,193 @@
 # Data and external assets
 
-The eight generator checkpoints are hosted on
-[Hugging Face](https://huggingface.co/jaykim1102/priming); see the
-[download commands](checkpoints.md). Source code is self-contained.
-Large datasets, checkpoints, encoder weights,
-and statistics are separate assets and are ignored by Git. Their default
-locations are inside the `Priming` repository:
+Run from `Priming` with the [pinned environment](setup.md) active. Keep the
+checkout on a large disk, or pass `--root /large-disk/Priming` to the download
+helper and configure the asset paths as described in [setup](setup.md).
 
-```text
-priming/
-  data/imagenet/imagenet-latents-images/  # packed Hugging Face dataset
-  data/prc/VIRTUAL_imagenet256_labeled/   # precision/recall reference
-  data/prc/VIRTUAL_imagenet256_labeled_inception.pt
-  checkpoints/                          # four post-trained release checkpoints
-  checkpoints/pretraining/              # four pretrained checkpoints
-  assets/lpips/vgg.pth
-  assets/huggingface/hub/                # full Hub cache, including refs/snapshots/blobs
-  assets/torch/hub/checkpoints/          # VGG16 and Inception
-  assets/fid_stats/                      # reference .npz statistics
-  assets/ot/representations/             # converted OT encoders, labels, calibration
-  assets/ot/features/                    # OT feature assets and calibrations/
-  assets/baselines/checkpoints/          # pMF, iMF, JiT weights
-  assets/baselines/comparison/           # W-Flow, converted Drifting, VAE
-  outputs/                              # new runs, bundles, evaluation artifacts
-```
+| Operation | Required assets |
+|---|---|
+| Sampling | One [generator checkpoint](checkpoints.md) |
+| FID/FDr5 evaluation | Generator, evaluation encoders, precomputed reference statistics |
+| Reconstruction pretraining | Packed ImageNet; perceptual recipes also need LPIPS, VGG16, ConvNeXt |
+| OT post-training | Packed ImageNet with indices/calibration, converted MAE/ConvNeXt, pretrained generator, training diagnostic assets |
 
-Use real directories when exporting a portable copy. Symlinks to external
-storage are supported locally, but their targets must be copied or mounted on
-the destination machine. Neither the code nor default configs reference an
-original user's home directory.
+The [encoder manifest](../releases/encoders.json) pins upstream revisions,
+filenames, sizes, and SHA256. The helper verifies every downloaded file and
+prepares the offline Hub cache. Existing files or cache revisions that differ
+from the release are rejected.
 
-## Reconstruction pretraining
+## Packed ImageNet dataset
 
-Obtain ImageNet using your own authorized access, and supply the packed
-`imagenet-latents-images` dataset: 1,281,167 training images, decoded RGB at
-256×256, with its original Arrow shards, `dataset_info.json`, and `state.json`.
-B also requires the 50,000-image `val/` split used by its diagnostic panels.
-This format is a Hugging Face dataset saved to disk, not an ImageFolder tree.
-Preparation validates layout, metadata and shard identities. A newly repacked
-dataset is not claimed to have the original byte identity or ordering.
+Dataset repository: [jaykim1102/priming](https://huggingface.co/datasets/jaykim1102/priming).
+This is separate from the generator's **model** repository with the same name.
+The [release manifest](../releases/dataset.json) records publication status,
+revision, and checksums. A null revision means publication is still in progress;
+the helper will not silently use an incomplete `main` branch.
 
-Perceptual runs additionally need:
-
-- `assets/lpips/vgg.pth`: original LPIPS calibration (MD5
-  `d507d7349b931f0638a25a48a722f98a`).
-- `assets/torch/hub/checkpoints/vgg16-397923af.pth`: torchvision VGG16 weights.
-- Complete Hub cache for `facebook/convnextv2-base-22k-224`, including the
-  `refs/main` revision and corresponding snapshot.
-
-The B no-perceptual recipe does not load these encoders. Pretraining preparation
-hashes the selected perceptual assets and uses them offline thereafter.
-
-## Distributional post-training
-
-Place the 160-epoch pretrained weights at the paths in
-[pretraining_manifest.json](../checkpoints/pretraining_manifest.json).
-[training/assets.json](../training/assets.json) records repository-relative
-locations, sizes and SHA256 for the retained production assets. Copy the whole
-OT cache and Hub cache trees, preserving relative symlinks and snapshots, not
-just individual weight blobs. The OT stack is `convnext_full_mae`.
+Accept the ImageNet terms on the dataset page once. Access uses automatic
+approval, with no manual approval queue. Authenticate the download client:
 
 ```bash
+hf auth login
+python scripts/download_assets.py --group dataset
+```
+
+Allow approximately **259 GB** for data and index files, plus weights and
+training outputs. The release preserves the original Arrow shards and row
+ordering: **1,281,167 train and 50,000 validation images**, RGB 256x256.
+No image preprocessing, repacking, or latent encoding is needed.
+
+```text
+data/imagenet/imagenet-latents-images/
+  dataset_info.json
+  state.json
+  data-*.arrow
+  val/
+    dataset_info.json
+    state.json
+    data-*.arrow
+assets/ot/representations/
+  dataset_labels.npy
+  class_order.npy
+  class_counts.npy
+  calibration.json
+  downloads.json
+  converted_manifest.json
+```
+
+Use `datasets.load_from_disk` on the training directory or its `val/`
+subdirectory, not `load_dataset` or an ImageFolder loader. Despite the retained
+directory name, the data contain images, not latent tensors. To check every
+local file without downloading:
+
+```bash
+python scripts/download_assets.py --group dataset --verify-only
+```
+
+The [ImageNet Terms of Access](https://image-net.org/download.php) apply;
+see the [dataset card](huggingface-dataset-card.md) for attribution.
+[HF documents](https://huggingface.co/docs/hub/datasets-gated) browser acceptance
+and authenticated downloads.
+
+## Reconstruction pretraining encoders
+
+```bash
+python scripts/download_assets.py --group pretraining
+```
+
+No weight conversion is needed:
+
+| Component | Pinned source |
+|---|---|
+| LPIPS VGG calibration | LPIPS v0.1 `vgg.pth`; MD5 `d507d7349b931f0638a25a48a722f98a` |
+| VGG16 | torchvision `vgg16-397923af.pth` |
+| ConvNeXt V2 | `facebook/convnextv2-base-22k-224`, revision `758ff0922dc09136abb55774e7f8b1e1bd0dc344` |
+
+Exact filenames and SHA256 are in the encoder manifest. The B no-perceptual
+recipe does not require these encoders. Continue with the
+[pretraining guide](../pretraining/README.md).
+
+## Post-training encoders and OT calibration
+
+First download the dataset and the [160-epoch pretrained generator](checkpoints.md).
+Then prepare diagnostic encoders/statistics and the original conversion inputs:
+
+```bash
+python scripts/download_assets.py --group posttraining
+python scripts/download_assets.py --group conversion
+python -m pip install -r environment/requirements-conversion.txt
+python scripts/convert_ot_encoders.py
+```
+
+Conversion runs on CPU; allow sufficient RAM (64 GB recommended) and about
+20 GB for source/converted weights. The optional MessagePack package is only
+needed for conversion. The converter verifies source hashes, requires strict
+parameter loading, verifies the output hashes, and refuses existing outputs.
+
+- **Pixel MAE:** `Goodeat/drifting`, revision
+  `1a5afa9fc22c3beefe06e4689e84d3e6500b5983`, files under
+  `models/mae/jax/mae_pixel_640/`. Map its EMA parameter tree to the included
+  PyTorch encoder, including Dense/kernel layouts, and exclude the unused
+  decoder/classifier. This pixel MAE differs from the evaluation timm ViT MAE.
+- **ConvNeXt:** the same pinned Facebook source as above, using the original
+  `pytorch_model.bin`. Map parameter names to the included encoder and exclude
+  the classification head.
+- **Runtime behavior:** the full-MAE encoder preserves Flax GroupNorm semantics
+  with epsilon `1e-6`. MAE uses BF16 compute and ConvNeXt uses FP32. Keep these
+  implementations with the frozen calibration.
+
+The dataset includes **class indices and frozen OT calibration**; reuse them
+for the released experiment. Calibration contains 97 feature bandwidths,
+weights, dimensions, 2,000 selected training rows, and the encoder source hash.
+Selection uses a seed-0 PyTorch permutation of stable class-sorted training
+rows, without generator samples or evaluation scores.
+
+```bash
+python scripts/prepare_ot_indices.py \
+  --dataset-dir data/imagenet/imagenet-latents-images \
+  --output-dir assets/ot/representations --verify-only \
+  --calibration assets/ot/representations/calibration.json
 python training/scripts/verify.py --assets
 ```
 
-The original converted encoders, dataset index/calibration files, and reference
-statistics are needed for exact production comparisons. They are not yet a
-published downloadable asset bundle. The repository supplies their identities
-and paths; it does not pretend that downloading a generic encoder reconstructs
-these calibrated assets. After receiving the asset export, copy its `assets/`
-and `data/` trees into `Priming/`. Checkpoint download instructions are
-[separate](checkpoints.md).
+To independently rebuild the three index files, omit `--verify-only` and
+choose a new `--output-dir`. Read labels in dataset order, stable-sort by label
+for `class_order.npy`, and count each class for `class_counts.npy`. Changing
+images or row ordering requires new calibration; the index tool does not
+recalibrate a changed dataset.
 
-## Evaluation
+Public provenance JSON has portable paths. The asset verifier accepts the
+explicitly recorded original and published metadata identities; numerical
+calibration and weights are unchanged. Resume checkpoints record the metadata
+digest, so do not swap metadata editions during a run.
 
-Priming evaluation needs only the selected post-trained generator, frozen
-FDr⁵ encoder caches/statistics, and the official Inception weights/reference;
-it does not require ImageNet training shards. FDr⁵ uses the original DINOv2,
-MAE, CLIP, SigLIP and Inception components. Keep their timm Hub revisions from
-the supplied cache and checksums from `training/assets.json`.
+The post-training group also supplies precomputed Inception reference features
+for training-time precision/recall diagnostics, avoiding another reference-image
+download. SIM calibration is included in the source tree and reuses the
+downloaded timm/Inception encoders. Continue with the
+[training guide](../training/README.md).
 
-The official FID reference `assets/fid_stats/jit_in256_stats.npz` must have
+## Evaluation: download existing reference statistics
+
+```bash
+python scripts/download_assets.py --group evaluation
+```
+
+**No ImageNet dataset, OT calibration, or reference-statistics computation is
+required for released FID/FDr5 evaluation.** Download the frozen evaluation
+encoders and precomputed real-image statistics. The evaluator generates images,
+measures their features, and compares their moments with the supplied references.
+
+| Component | Reference in `assets/fid_stats/` |
+|---|---|
+| Official FID | `jit_in256_stats.npz` |
+| FDr5 Inception/ADM | `guided_diffusion_stats.npz` |
+| FDr5 DINOv2 | `vit_large_patch14_dinov2_lvd142m_in256_t256_stats.npz` |
+| FDr5 MAE | `vit_large_patch16_224_mae_in256_t224_stats.npz` |
+| FDr5 SigLIP | `vit_so400m_patch16_siglip_256_v2_webli_in256_t224_stats.npz` |
+| FDr5 CLIP | `vit_large_patch14_clip_224_openai_in256_t256_stats.npz` |
+
+The official FID reference is from the pinned
+[JiT release](https://github.com/LTH14/JiT/blob/cbc743a2ada5e9762697da2c83f8c4f8379e8c17/fid_stats/jit_in256_stats.npz),
 SHA256 `412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c`.
-It must not be substituted with the training-time BF16 statistics.
+Frozen FDr5 statistics are hosted alongside the Priming generator weights.
+These are distinct references; do not substitute one for the other.
+FDr5 excludes ConvNeXt; its additional statistic is used by training diagnostics.
 
-Baselines additionally use `pMF-L_256.pth`, `pMF-H_256.pth`, `iMF-XL.pth`, and
-`JiT-H.pth` in `assets/baselines/checkpoints`; their checksums are recorded in
+Encoder model IDs and exact revisions are in the [manifest](../releases/encoders.json).
+The helper prepares the pinned snapshots and `refs/main` for offline loading.
+See [evaluation commands](../eval/README.md) for the sampling/precision protocol
+and a 1,000-image pilot.
+
+## Baseline generators
+
+Baseline evaluation additionally requires the respective released generator
+and, where applicable, VAE. These are separate from shared evaluation encoders:
+`pMF-L_256.pth`, `pMF-H_256.pth`, `iMF-XL.pth`, and `JiT-H.pth` belong in
+`assets/baselines/checkpoints/`; identities are recorded in
 [the baseline adapter](../eval/baseline_loaders.py). W-Flow uses
 `assets/baselines/comparison/wflow/checkpoints/latent_sota_XL_ot/state_00180000.pt`
-and the VAE in `assets/baselines/comparison/vae`. Drifting uses
+and `assets/baselines/comparison/vae`. Converted Drifting uses
 `assets/baselines/comparison/drifting/models/gen/jax/pixel_{B,L}_sota/converted_ema.pt`.
-iMF uses the original cached VAE selected by its included upstream sampler.
-All corresponding sampler and metric code is included in `eval/vendor` and
-`eval/runtime`; a second source checkout is not required.
+The asset helper covers Priming data and shared encoders/references; it does
+not download these baseline generator checkpoints.

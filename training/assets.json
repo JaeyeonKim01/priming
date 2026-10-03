@@ -3,17 +3,23 @@
     {
       "path": "assets/ot/representations/downloads.json",
       "bytes": 1964,
-      "sha256": "b4d2df79ca0af5cb503e6b1fcdf66f4fa742a765621efde386709e574373570c"
+      "sha256": "b4d2df79ca0af5cb503e6b1fcdf66f4fa742a765621efde386709e574373570c",
+      "published_bytes": 1724,
+      "published_sha256": "69a2aeefd56c43c2cb4dc9c10f228743fc45103687061e506442318cc1ffc445"
     },
     {
       "path": "assets/ot/representations/converted_manifest.json",
       "bytes": 2428,
-      "sha256": "8cf3866d055611816ea34da8ea41760cd0a1f7a928e92aad6d4d1149116a34dc"
+      "sha256": "8cf3866d055611816ea34da8ea41760cd0a1f7a928e92aad6d4d1149116a34dc",
+      "published_bytes": 2368,
+      "published_sha256": "90a6e7745fc338b359c6416dd32338df72da979ed568124e8b22b563329e39ba"
     },
     {
       "path": "assets/ot/representations/calibration.json",
       "bytes": 61931,
-      "sha256": "bf9f6ca86712989431b7cccc9e67b460bed14a0b8647bdeb0ab6c37c1c1f9942"
+      "sha256": "bf9f6ca86712989431b7cccc9e67b460bed14a0b8647bdeb0ab6c37c1c1f9942",
+      "published_bytes": 61890,
+      "published_sha256": "aff37e1b790371357f75e51fa55c32e02a553282490453d6317d8cf58039b7de"
     },
     {
       "path": "assets/ot/representations/class_order.npy",
@@ -142,7 +148,6 @@
     }
   ],
   "directories": [
-    "data/imagenet/imagenet-latents-images",
-    "data/prc/VIRTUAL_imagenet256_labeled"
+    "data/imagenet/imagenet-latents-images"
   ]
 }

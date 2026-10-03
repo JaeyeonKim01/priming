@@ -37,7 +37,7 @@ python scripts/check_environment.py
 ```
 
 - [Environment setup](docs/setup.md): create `priming` and configure CUDA/GPU execution.
-- [Data and model assets](docs/assets.md): ImageNet training data and evaluation encoders/statistics; sampling needs only a checkpoint.
+- [Data and model assets](docs/assets.md): processed ImageNet, pinned encoder downloads/conversion, OT indices/calibration, and precomputed evaluation statistics; sampling needs only a checkpoint.
 - [Checkpoint downloads](docs/checkpoints.md): download and verify the pretrained and post-trained models.
 - [Pipeline validation](docs/validation.md): tested H200 startup checks, bounded commands, and scope.
 

@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-03",
+  "dataset_preparation": {
+    "train_images": 1281167,
+    "validation_images": 50000,
+    "arrow_shards": 517,
+    "artifact_files": 527,
+    "total_bytes": 258290639253,
+    "all_shards_hashed": true,
+    "embedded_image_paths_all_null": true,
+    "class_indices_match_dataset": true,
+    "image_decode_scope": "First image of each Arrow record batch; RGB 256x256 checked."
+  },
+  "encoder_conversion": {
+    "mae": "exact released file SHA256",
+    "convnext": "exact released file SHA256",
+    "device": "CPU",
+    "upstream_files": "releases/encoders.json"
+  },
+  "class_index_regeneration": {
+    "passed": true,
+    "all_three_files_match_release_sha256": true,
+    "calibration_indices_and_source_hash": true
+  },
+  "evaluation": {
+    "passed": true,
+    "model": "priming_b_160",
+    "images": 1000,
+    "seeds": [
+      1
+    ],
+    "gpus": 4,
+    "gpu_type": "H200",
+    "batch_per_gpu": 32,
+    "assets": "Downloaded evaluation encoders and statistics into a new cache; generator verified against release manifest.",
+    "training_dataset_used": false,
+    "reference_stats_recomputed": false,
+    "result_audit": "eval/verify_batch.py passed",
+    "scope": "Startup and numerical validity only; a 1000-image pilot does not reproduce the paper metrics."
+  },
+  "asset_downloads": {
+    "groups_verified": [
+      "pretraining",
+      "posttraining",
+      "evaluation"
+    ],
+    "posttraining_asset_verifier": "passed with published metadata and reconstructed encoders",
+    "guard_tests": 9
+  }
+}

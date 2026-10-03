@@ -58,6 +58,11 @@ From `Priming`, activate the [shared environment](../docs/setup.md) and install
 repository regardless of the caller's working directory. The default is one
 node with eight GPUs; the numerical recipe still uses eight ranks.
 
+The [asset preparation commands](../docs/assets.md#post-training-encoders-and-ot-calibration)
+cover the processed dataset, matching class indices and frozen OT calibration,
+pinned MAE/ConvNeXt conversion, and precomputed training diagnostic references.
+There is no need to rebuild ImageNet or recalibrate the released experiment.
+
 ```bash
 conda activate priming
 python training/scripts/verify.py --assets

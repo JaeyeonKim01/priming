@@ -1,0 +1,295 @@
+{
+  "format": "priming.assets.v1",
+  "files": [
+    {
+      "path": "assets/huggingface/hub/models--facebook--convnextv2-base-22k-224/snapshots/758ff0922dc09136abb55774e7f8b1e1bd0dc344/config.json",
+      "groups": [
+        "pretraining"
+      ],
+      "bytes": 69727,
+      "sha256": "dac818f34972086f8171c444adac7752e13466b201eee2e248768597aa114732",
+      "kind": "hub_cache",
+      "repo_id": "facebook/convnextv2-base-22k-224",
+      "revision": "758ff0922dc09136abb55774e7f8b1e1bd0dc344",
+      "filename": "config.json"
+    },
+    {
+      "path": "assets/huggingface/hub/models--facebook--convnextv2-base-22k-224/snapshots/758ff0922dc09136abb55774e7f8b1e1bd0dc344/model.safetensors",
+      "groups": [
+        "pretraining"
+      ],
+      "bytes": 354917376,
+      "sha256": "8937dc20b1d7a63ea628752315a89b9a4fc0f58bf78b3299041e99c0ad3f93bb",
+      "kind": "hub_cache",
+      "repo_id": "facebook/convnextv2-base-22k-224",
+      "revision": "758ff0922dc09136abb55774e7f8b1e1bd0dc344",
+      "filename": "model.safetensors"
+    },
+    {
+      "path": "assets/huggingface/hub/models--timm--convnextv2_base.fcmae_ft_in22k_in1k/snapshots/9e250ed8f88b436472d2b24af26f82a8aa8c719d/model.safetensors",
+      "groups": [
+        "posttraining"
+      ],
+      "bytes": 354909632,
+      "sha256": "3b04d2fd7f5268b706210542bd6b6833ad75d6a5e4612a1ae34e8414dbd50b81",
+      "kind": "hub_cache",
+      "repo_id": "timm/convnextv2_base.fcmae_ft_in22k_in1k",
+      "revision": "9e250ed8f88b436472d2b24af26f82a8aa8c719d",
+      "filename": "model.safetensors"
+    },
+    {
+      "path": "assets/huggingface/hub/models--timm--vit_large_patch14_clip_224.openai/snapshots/18d0535469bb561bf468d76c1d73aa35156c922b/pytorch_model.bin",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 1710633285,
+      "sha256": "eb70c15b117effa76315db43fcbd9f32a655292fc861798343939a02f561c6ae",
+      "kind": "hub_cache",
+      "repo_id": "timm/vit_large_patch14_clip_224.openai",
+      "revision": "18d0535469bb561bf468d76c1d73aa35156c922b",
+      "filename": "pytorch_model.bin"
+    },
+    {
+      "path": "assets/huggingface/hub/models--timm--vit_large_patch14_dinov2.lvd142m/snapshots/4741e1cafbf45415e77074bb0cb42dba76c8684a/model.safetensors",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 1217502758,
+      "sha256": "0424a5d1b515278cba3c6640ccbeaacc41de59d3a93df0dd5e494285eea2b355",
+      "kind": "hub_cache",
+      "repo_id": "timm/vit_large_patch14_dinov2.lvd142m",
+      "revision": "4741e1cafbf45415e77074bb0cb42dba76c8684a",
+      "filename": "model.safetensors"
+    },
+    {
+      "path": "assets/huggingface/hub/models--timm--vit_large_patch16_224.mae/snapshots/126727e9b8ccd632d08a0d75fff095017c225e54/model.safetensors",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 1213234508,
+      "sha256": "d58a1a547a07c3c41917c23069dcaadab6f469a8cf793a3cba5fe404c344ab68",
+      "kind": "hub_cache",
+      "repo_id": "timm/vit_large_patch16_224.mae",
+      "revision": "126727e9b8ccd632d08a0d75fff095017c225e54",
+      "filename": "model.safetensors"
+    },
+    {
+      "path": "assets/huggingface/hub/models--timm--vit_so400m_patch16_siglip_256.v2_webli/snapshots/a8dedb158968170d6fb45a000e0d5755d8021386/model.safetensors",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 1711584976,
+      "sha256": "68c976f5691fd6a20187da6b3c6132601dba52242c349acf8534c64b99ab2b96",
+      "kind": "hub_cache",
+      "repo_id": "timm/vit_so400m_patch16_siglip_256.v2_webli",
+      "revision": "a8dedb158968170d6fb45a000e0d5755d8021386",
+      "filename": "model.safetensors"
+    },
+    {
+      "path": "assets/lpips/vgg.pth",
+      "groups": [
+        "pretraining"
+      ],
+      "bytes": 7289,
+      "sha256": "a78928a0af1e5f0fcb1f3b9e8f8c3a2a5a3de244d830ad5c1feddc79b8432868",
+      "kind": "url",
+      "url": "https://raw.githubusercontent.com/richzhang/PerceptualSimilarity/master/lpips/weights/v0.1/vgg.pth"
+    },
+    {
+      "path": "assets/torch/hub/checkpoints/vgg16-397923af.pth",
+      "groups": [
+        "pretraining"
+      ],
+      "bytes": 553433881,
+      "sha256": "397923af8e79cdbb6a7127f12361acd7a2f83e06b05044ddf496e83de57a5bf0",
+      "kind": "url",
+      "url": "https://download.pytorch.org/models/vgg16-397923af.pth"
+    },
+    {
+      "path": "assets/torch/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 95628359,
+      "sha256": "6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2",
+      "kind": "url",
+      "url": "https://github.com/toshas/torch-fidelity/releases/download/v0.2.0/weights-inception-2015-12-05-6726825d.pth"
+    },
+    {
+      "path": "assets/fid_stats/convnext_in256_t224_stats.npz",
+      "groups": [
+        "posttraining"
+      ],
+      "bytes": 8397300,
+      "sha256": "44a6c391f5b17aedcd5f5d3ce32f6e0793b273d957442972c9c604756726a88b",
+      "kind": "hub_file",
+      "repo_id": "jaykim1102/priming",
+      "repo_type": "model",
+      "revision": "e2065caa4809c4b0105f454deba06339a62e5dfd",
+      "filename": "assets/fid_stats/convnext_in256_t224_stats.npz"
+    },
+    {
+      "path": "assets/fid_stats/guided_diffusion_stats.npz",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 33571316,
+      "sha256": "374aa549982adbfd595eaecc8a014eea6566156f8b227fc2d9052c0482bb4a2f",
+      "kind": "hub_file",
+      "repo_id": "jaykim1102/priming",
+      "repo_type": "model",
+      "revision": "e2065caa4809c4b0105f454deba06339a62e5dfd",
+      "filename": "assets/fid_stats/guided_diffusion_stats.npz"
+    },
+    {
+      "path": "assets/fid_stats/vit_large_patch14_clip_224_openai_in256_t256_stats.npz",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 16794594,
+      "sha256": "3c0846c5c7b9da1b79d9f06b112b86179c6754a4368bf30d430cec8ce8514bc7",
+      "kind": "hub_file",
+      "repo_id": "jaykim1102/priming",
+      "repo_type": "model",
+      "revision": "e2065caa4809c4b0105f454deba06339a62e5dfd",
+      "filename": "assets/fid_stats/vit_large_patch14_clip_224_openai_in256_t256_stats.npz"
+    },
+    {
+      "path": "assets/fid_stats/vit_large_patch14_dinov2_lvd142m_in256_t256_stats.npz",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 16794594,
+      "sha256": "1913abbc82cd236166e6c15bed258264c6656f9a60a59375e5aa7c4458e66cb1",
+      "kind": "hub_file",
+      "repo_id": "jaykim1102/priming",
+      "repo_type": "model",
+      "revision": "e2065caa4809c4b0105f454deba06339a62e5dfd",
+      "filename": "assets/fid_stats/vit_large_patch14_dinov2_lvd142m_in256_t256_stats.npz"
+    },
+    {
+      "path": "assets/fid_stats/vit_large_patch16_224_mae_in256_t224_stats.npz",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 16794594,
+      "sha256": "a9ef2577a9622eab5f5f6324186fac76cf8d1690e6bc35d47857ad3bbcc6164c",
+      "kind": "hub_file",
+      "repo_id": "jaykim1102/priming",
+      "repo_type": "model",
+      "revision": "e2065caa4809c4b0105f454deba06339a62e5dfd",
+      "filename": "assets/fid_stats/vit_large_patch16_224_mae_in256_t224_stats.npz"
+    },
+    {
+      "path": "assets/fid_stats/vit_so400m_patch16_siglip_256_v2_webli_in256_t224_stats.npz",
+      "groups": [
+        "evaluation",
+        "posttraining"
+      ],
+      "bytes": 21253090,
+      "sha256": "93ce10881fb3e439ea0de23e6527bd02bbe9a49195dfd98bd9d931ba67a6d3d5",
+      "kind": "hub_file",
+      "repo_id": "jaykim1102/priming",
+      "repo_type": "model",
+      "revision": "e2065caa4809c4b0105f454deba06339a62e5dfd",
+      "filename": "assets/fid_stats/vit_so400m_patch16_siglip_256_v2_webli_in256_t224_stats.npz"
+    },
+    {
+      "path": "assets/fid_stats/jit_in256_stats.npz",
+      "groups": [
+        "evaluation"
+      ],
+      "bytes": 33563124,
+      "sha256": "412046720c0d496dc6d72a30eac3e22b9ef6ddac3501cce7f996674ad227ba4c",
+      "kind": "url",
+      "url": "https://raw.githubusercontent.com/LTH14/JiT/cbc743a2ada5e9762697da2c83f8c4f8379e8c17/fid_stats/jit_in256_stats.npz"
+    },
+    {
+      "path": "assets/encoder_sources/mae/models/mae/jax/mae_pixel_640/metadata.json",
+      "groups": [
+        "conversion"
+      ],
+      "bytes": 601,
+      "sha256": "56e53d27913a8403a0d1cae3ec8ec033a52306ae23fcb8bbbf606020244ffc8a",
+      "kind": "hub_file",
+      "repo_id": "Goodeat/drifting",
+      "repo_type": "model",
+      "revision": "1a5afa9fc22c3beefe06e4689e84d3e6500b5983",
+      "filename": "models/mae/jax/mae_pixel_640/metadata.json"
+    },
+    {
+      "path": "assets/encoder_sources/mae/models/mae/jax/mae_pixel_640/ema_params.msgpack",
+      "groups": [
+        "conversion"
+      ],
+      "bytes": 10756285387,
+      "sha256": "1d68c26b1b491888c028fcdbcd6e03aab14ab3aa9bc8f6be68adf22d3a86125c",
+      "kind": "hub_file",
+      "repo_id": "Goodeat/drifting",
+      "repo_type": "model",
+      "revision": "1a5afa9fc22c3beefe06e4689e84d3e6500b5983",
+      "filename": "models/mae/jax/mae_pixel_640/ema_params.msgpack"
+    },
+    {
+      "path": "assets/encoder_sources/convnext/config.json",
+      "groups": [
+        "conversion"
+      ],
+      "bytes": 69727,
+      "sha256": "dac818f34972086f8171c444adac7752e13466b201eee2e248768597aa114732",
+      "kind": "hub_file",
+      "repo_id": "facebook/convnextv2-base-22k-224",
+      "repo_type": "model",
+      "revision": "758ff0922dc09136abb55774e7f8b1e1bd0dc344",
+      "filename": "config.json"
+    },
+    {
+      "path": "assets/encoder_sources/convnext/preprocessor_config.json",
+      "groups": [
+        "conversion"
+      ],
+      "bytes": 352,
+      "sha256": "9ef34d18dbf7909143a91f05ad23457180fcfed05034bf94843f300e32a9b968",
+      "kind": "hub_file",
+      "repo_id": "facebook/convnextv2-base-22k-224",
+      "repo_type": "model",
+      "revision": "758ff0922dc09136abb55774e7f8b1e1bd0dc344",
+      "filename": "preprocessor_config.json"
+    },
+    {
+      "path": "assets/encoder_sources/convnext/pytorch_model.bin",
+      "groups": [
+        "conversion"
+      ],
+      "bytes": 354998778,
+      "sha256": "175a54bbcf71a1a34b26143db4f0f24ddea99ef30981d596860d43b4b76031c1",
+      "kind": "hub_file",
+      "repo_id": "facebook/convnextv2-base-22k-224",
+      "repo_type": "model",
+      "revision": "758ff0922dc09136abb55774e7f8b1e1bd0dc344",
+      "filename": "pytorch_model.bin"
+    },
+    {
+      "path": "data/prc/VIRTUAL_imagenet256_labeled_inception.pt",
+      "bytes": 81921458,
+      "sha256": "e35a126424593d9bd966907752d29909e924cee8708e1a1e351f971142e400e4",
+      "groups": [
+        "posttraining"
+      ],
+      "kind": "hub_file",
+      "repo_id": "jaykim1102/priming",
+      "repo_type": "model",
+      "revision": "3b32afa31a7b962bdbc08d7f1dbc01bb35ccf19a",
+      "filename": "data/prc/VIRTUAL_imagenet256_labeled_inception.pt"
+    }
+  ]
+}

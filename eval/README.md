@@ -32,6 +32,19 @@ and reference choices; preserve those for comparisons against the paper.
 
 ## Generate a new evaluation
 
+Download the evaluation encoders and **precomputed** reference statistics:
+
+```bash
+python scripts/download_assets.py --group evaluation
+```
+
+This path needs neither ImageNet images nor OT training assets. There is no
+reference-statistics computation step: `evaluate.py` loads frozen real moments
+and computes moments only for newly generated images. See the
+[reference table](../docs/assets.md#evaluation-download-existing-reference-statistics)
+for the distinct official FID and FDr5 references. The helper pins and verifies
+the encoder/statistic files before offline evaluation.
+
 Start with a 1,000-image pilot. Use four GPUs and batch 32 except for JiT-H,
 which uses eight GPUs and batch 64. The production protocol uses 50,000 images
 and seeds 1, 2, 3. Changing rank count/batch size can change the sampling stream.

@@ -1,0 +1,2 @@
+# Only needed to reconstruct the OT MAE encoder from its upstream MessagePack.
+msgpack==1.1.2

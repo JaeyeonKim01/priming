@@ -1,0 +1,2651 @@
+{
+  "format": "priming.dataset.v1",
+  "repo_id": "jaykim1102/priming",
+  "repo_type": "dataset",
+  "train_images": 1281167,
+  "validation_images": 50000,
+  "image_size": [
+    256,
+    256
+  ],
+  "ordering": "original packed Arrow row order",
+  "files": [
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00000-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e2e3dbb14acd7abce97f8376afee43d1079af3d6d44c448e5f48c62ae0d780a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00001-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1bda3afdf7b32ffb99455b506b3a3900fe8fccdccfa9f721c132e1f2a6eac91a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00002-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d6aae1bb214102bed1b13270c3c5adf57af74948134810c85c8db148e6648135"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00003-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3887ecb33c9d26ec3b6a768d969fe8643251d3eb8bfa535dc91c4ce18c702010"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00004-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "af72a2a458497a748835d62e2c15cac67010d55ce49015eeb9315796de9cdc7a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00005-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "12b9ca9bdcb04cc3f58e7d794b7327a01249881c9b9dd2ce2f3bc7fb5dd4c164"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00006-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e4b7df16ff39188bc2eae5f6e26baa1dc718949826c68652fcbaf591f8a4547a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00007-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "78251491f6faf33c8e501f52eac8db79d5563a7cfe03bf04767438d1c8b5e9c5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00008-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "71ce39ab4a3669c70c4f50aeeeba522678e4e04ad4ce2da49b25a53b8a8b08c5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00009-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6b3afbf743be4d2ec6c96038ca6a7c729b3d6c302b584f91a6fd1c4c9549242c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00010-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6c538717c333fbdfdb64c201deae3370530a4ce70abd05520d8a28bfcd06b886"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00011-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e1f7ec5a05dbc019a89482473a710ed48b0279d226f89f61f9dc0f6073def77e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00012-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a1174d95f1ebf330b288b2dff845c7423bd6b8e42d59e33fe6ef9dde048f76db"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00013-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "91371ede5803c26038e35581d41ed880fe7366c674400eca737e4d1de308b881"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00014-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5de626cc92ae895a6b2037212207ed36f25c4d5c298790edca0fb3f177c95f7d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00015-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "25a09df1cac35096ba4c5dd57b633a390a0508823245f1560db2d2004e43d66d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00016-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "902158132a6e5d21d7591cea829a5721efd237394104399915ce05db78dcccb7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00017-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a99cfd5b6b24cf903efc2113a291af52cba89e809b31c974057eea24e722a9d7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00018-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5906d59450dce31d942ba9c13abd863146a47e4a51b6c7a0592b076ed16f42a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00019-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "72fc6d8b2c5c3f994b0371e883ee2ef86459ca6e21bf81da9da86623e57490b8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00020-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6de4f5b5dfd9465613d3a248a912c40e7d1d51599bf52a25394dd89ec4627b0c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00021-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "acf91534fd63807af521404e8aef85c95597c02d15903ff8c673e24484f8d487"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00022-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f47fbfe509e231b6f9d4e3dcbb319b9a352b70c9eb28052774be8e0d50459d60"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00023-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "528181191766bb8e065fb591245059c6703d63d19aaabe9701b29f2d1b45b7f8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00024-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "920464bdb1724272887cc4808855b64f618fd783703b461be4e6aee597b159d8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00025-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ee17e9f28bda4222faedbd33d49066d686b168c6987baab5574d08d32620b2b7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00026-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "807666405f49a4457987804dc3cf88d5c55272889cd3708ee666059bdba827bf"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00027-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "43d523ec60f87b6448801e5fcd63c5918d878ac5d1236424be2888738c5cf3ad"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00028-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c93321cc53a206b612d30ec2c55f94a3f5b9466ffefabf5621fa1e662231b6ef"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00029-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3a07e253b1c733cc7db8484f296bc29e4415eafb01ec68c82273e590a461939a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00030-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "acf63969bcf8c8e8d360ecf986964a7d33c6ceaf3c4c6bdb29ea7134f653e2c0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00031-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "912b6d1d35fa2c703b0622e85145af14ea34c91cf733ae7373faf25353732d79"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00032-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b67e2f4224506ad478109bfdff477f9b2bf45554bb0c8e69b5f5c5931b8ce11c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00033-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "62324720c244275416ced6df407aa7f68c17d821124bca5122cc8008d2e914f8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00034-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4ac858195e1830f907e0c35087135059676f17c49060debce2afc7ae628b282c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00035-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2e0debcb030c44a78e07a674ee242ba53a4e210db61608272a70fba245908f7e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00036-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4cc4fba194abd70c55fa742c9d4f6dd3afc37e27b8fcb3ac58494aecdcaa5c2a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00037-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e416e6dcea3d7f30f8b2e0f4d2619264aa5e8c06af8a7560add56bf7aeddf084"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00038-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "022dc566823b7c16c6cc520cef473972391e90c0fd8d8396fe5a9e8e69e237c6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00039-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5c3469e727f3aeb71e1ffce45070b03d5ef05220ac359522f5685a306b801f17"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00040-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3b6bbbb680cea2ef0d1a5428059b43a55def643227d4e663ab74cb45b88ff937"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00041-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c6132de0d8c890698d963df81273af0d3630a54280a9637c71ce4d047131c1d2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00042-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "683128f5ede357c3368ffd21cc80889d8668a28edbb0ad76503c47eff2a9c605"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00043-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f057930c26e7d30a85d95cfc8b8ae643974e6fb43ab79991fa3d647b2a3d35a4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00044-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5654b8340f32ce205b12dc765bc6807f0fd0790c30047ff307c569f64823a750"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00045-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1623394797db18f291090bb1fe5bc6d27fda224327630278ab87be6537b88116"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00046-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "53429aeb145f0029c533076badea8a90f6a6fdafc26d7eef41e57b4e055913a5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00047-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a68afcb3f716682c2a62426fdd3788fdb84d84572a1c276485e28d92481dfdad"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00048-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "397d5b57ee70d581c34e0320119af7aea49a8453d688743788e95f70dae183c1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00049-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8601fc890d8d3d4d9e70cdfb04784d9f0e3148e3728f0d90e726b7fd55faad51"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00050-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "62870c2decf512b50bb75711d6821291db5ed065e89063e4c7a400b1cfc374cc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00051-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1f3a8978437d4556fd6945d37264a5d5c09f43e3c01a54bd5e15209df1a40913"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00052-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b8721cf826f365d1d2251178326885fdb764506bf3249607dd7f129d2a5888c7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00053-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "64bd579fc973792ee9f1c7da77c3b1f6d328268c838cc5d2d00aa21d0b32dc2b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00054-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a1868fec71b60b5447b4a1e2e6de63cc236d150d24bd5f1832ce3e6f98e186ba"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00055-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "acf9280fd16f78773cc6011b89e11d362390d506faa7c4e668d6575937fc5252"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00056-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fd597fbd68d51cba0d3102372380603f495e50bbe9672632488595dad1db2037"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00057-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "51380d09b09f6bdb00ec907d44b884df563d8fb8f7737e009af5174d88107c67"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00058-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e5ab51512b5d7d414a931d932f87c4566e4f3be299b4488078cfac0d4e1a33fb"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00059-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "34023fc87cd840232d358ebaf1c9f233c1d5825df47955e1b0236914f30ac40e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00060-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6b608e24e3c2fcd1824177fa9cf8b83fddf7d3210dc97545442464514d069f76"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00061-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5b3fe4f8d8604b6157277ff93de0ea73fed60f7fe35ebd1d088c9a7cf8b783f6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00062-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1ce11510d1c9c8e5add3b80561b671dff7d3bea535fd44d9f43266c5fb592b1d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00063-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "67eee81a708466e3d6d07d8e3ad8f1ef6147083f0255fed9572f27e86f3405c3"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00064-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "38ee42f97e2beb349f969225d6ef3b2427d76b1e79aa04b6f9998bf7b5e68b67"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00065-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ce6a4fccdbc99f43a1bd7e6f9534661f2c3c61e94958ee9b01d60167210bd1df"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00066-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "94e686eda3a0ec7f528581e721ebb9799c80ca508210fd25869231e9a24a65ed"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00067-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "08e80d0ff6c4610ea1a37712dab3a23bab20308bda1de3444b7e4a271fb698aa"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00068-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "70973d1ffb6934b0fddc92f8465114ae14a853693c02826c9c2d886c7f44ab17"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00069-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "96e5c3ceab24269cb7affc36fb9119e6e8fc43edc57c6977e2dd6103fd7efc54"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00070-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6b0de555cc2f58d08c0e2e95a27201843039eb21a7b52937fbc4ea59e47d0fb0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00071-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8fa546c5b161dbbe8bf61553a6118afb94ed94c7b90002afa4a3a24fd4a03f6c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00072-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "95640edf20ffc4b63038f03b12d5d525164664655fd451b22bacfd2b75a08d12"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00073-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1406868bc7e8145f0bf3a26f231590d0f91488896c194e60b045d806a71123d3"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00074-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "bb9f2f4f8caf08991f37eea55e75836ac08dd9e7fedd06923fe96584ebec8486"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00075-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ee19341f52ae6e898a5e69be9ec068559b6421fbc46ebfb889286b8410d35cd3"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00076-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5adf393611fdc3bf7789261a7d0e43a89f5f7de2660837752f2867e28e4523d0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00077-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d621ea7485b1789349e7764e8639030d92a93fe06d504a7ebf4e758543daf4e3"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00078-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f202d55489bb7a0f33ac79b41ee2f194fd2dfa9b1d9fca607b1068cd4ac22dd6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00079-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1d27c8c9265448c6b605cb40f73ca2a99de89ba12d72c7aaaa1099b22be6b1c7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00080-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8cc3866f46a69a82b9e6abf6fbe6bbdf81311c74acbf87bd67f9cc2f6bf6dd4c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00081-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "293e2ecb78eaf6a97c2e0f89e03daa33d8d9632db314ed8c5314bfebddc97f58"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00082-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "294052d45e9e1223589ce6003400be561d718c4faf3d592365f6a7659d21e78a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00083-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9f7880870c44615b1f330726b5b0daeb37d4fdc1c8f8b091706b714b1874e214"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00084-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0ef67f5c1df735a5423bd63955f7aeb39a922f965e2cc103d1a3f847893ca03b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00085-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "47d8bcf77fabfbf0624d3784fa33ae5cca2a93c2fbfce700a87d1b8a8cb5e4e1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00086-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b763a56ff2fa45d20e87ce93f5f25628886c330b2c26d1c47a922b6397125aca"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00087-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "269a6053a447607547f1a1a4c8f27f274ec9d1f30fbd5666ce6a3c0eea27b32b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00088-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e952821f4ce10037c5b2eda8c8165039c0388b2598250dae0ba86a5dddadf34d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00089-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e686a117301b34c800c7c96de0041574d3336ed534682bea0b54110678b700ce"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00090-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5f9155b11344d0c871ead8b340c2ad811ec61cea10f69efcb2f47fbae15cd195"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00091-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ae66e72836fd72adb92acb6ace62307ded220621fc946dabbecedfee2fa56bb9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00092-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "78081668c4783d9c2b80a228913d4d10f6e60fe3b3337ef2ac8dde6ca4fe7d6b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00093-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1f5c92b57bef69a62c846a28e5215616d1eacf3131893243e5336497971df464"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00094-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a33fc86c91e424850e29dde7c1dacb5818241795df068a543f88d14f821b3ac1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00095-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7e34a5135dffdc4ba9433ca94b2f4dc0c970ff3830947542998d93bf2dd51858"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00096-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "eee4b5524738f534e4c432a90602eaa9e2604845e04bd3c87b910b8a3ce63387"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00097-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fb6a41d41070fad1dbe77c7648fc3773b3e255961ee47cbe66a65a571ed4e885"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00098-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ab1d7750c3fe09c81a9545f74cc15842e0d56423927e75ebb84c43e464c90152"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00099-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f48e146c3fe76593df7a8a375aefa230dcc6739a02be64f8ccaf28d466aecdef"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00100-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "664e1cc22324ae7925e37348cdf3590b0f217322d28a5c67e7cb064e59c317fe"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00101-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d174d0b24b42c1b49a5e06b645ff427b9a01eb6879592e852e6331823c076952"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00102-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "511fb615461926aa48be7aa1325098ade248e8e5d6f5a499db08a6beb0fc0db0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00103-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c454488e7f46d0ce3aaa829655c467b5108aa4c5f1ff40d51847eb0a535e59e6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00104-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f491e7348ffc8b0663bbbe9e385386c7aa4c307f79bb8193bc01c1a40c66b86b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00105-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2cbd0fdd945a11def3a918ecfbc7b6862132b95882e084fda8508a6e17ded028"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00106-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "109fbf6ef8f27fcee91c9345d7d9bdcde00685a4db7367c496bc73dc893d68ca"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00107-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ce22cd768f00ec92bf34c973249dfd0129f007ab57770ee7e20e9134a7b1dc9d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00108-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0dcfe63ef5d1cdf4676007fdce8878580c5852ad2ae2d56a408bab15e4a54dba"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00109-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "021ef1025c7e0a5487876b62df3ee0af5fa2791a08b295ae44a002d4061a8e38"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00110-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "bb68686105923dcfc08968242d93f782fc8c54fa5f97f36094cfb0ad9017924d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00111-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "dee78c0a62987a50638a5fea48dc29301b5a974076fb9aeea401000496a3907f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00112-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "631b2e08f8386020cfef39b6931aff436a4a709fc63cb2459e5c1c5bedc6a666"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00113-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "092cf46f704357455d93613da0bddf0f0bd26eb5997481d5443e3dba631523d0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00114-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b2bca2a44847d1b73e39a8401c9fb9e01ea19f2393092680844a745eb9b125a5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00115-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c8629e4b2a837a2b3853f1fbdcc2127f5de00acc1a4bd124adf8bbbc8942aa41"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00116-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1c4060ae3495d42ad3df6bb1297fe8cb14d4310c5e9751d0684af4f659a58dde"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00117-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3fd962767200cd326914b7edf843ce4a3b61f375abc58b2bfab5428109384cf7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00118-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b44de7d08e18b86802582fd202832585456302ad8fc6248894dc3ec55aadc429"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00119-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "551899d7e3fcde42c37d06524b20c2f5b92222d937d0de082e0f87c7f334379b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00120-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b67f11f228c517e700cad0964a56e3bc89af1490dde16f651a406a009a71008f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00121-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0bd53ec7f6c39256c0fca573f163c0493feb2064e682d070a4f3bba63e861448"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00122-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "939f6a8ea802bb1071cdab53a659b76f3fd4c0f44a96ea7d4122a6c1378b044d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00123-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "370f2dedd723cdd75ae2d0208e26bc3f40d87145af3364e405d1d4914bea5689"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00124-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fd67ad176cbfe3789eb9a1d4c3a94e33902a8600819ce1cedce121d6ac587ad9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00125-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "56c4f516f61c38ad97fd45ee08a61a9e262c1cb07373c3be6c2b158c12445f9c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00126-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "741884870cc90e8f1800f981d0a312e01681d92d6ea233595ad920da3ebcee82"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00127-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c9eb05b7af80646ce54c08d9601050cf4b42acf96128919942311cd9d4789d15"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00128-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "101bd54f4dd8ea9b2644625a9aa27f388b9c3ad8fc5373367a546093fd2bac4d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00129-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "225fef0dec6c0efd74eeafe24074f91f0ccd089caa2752e42b02c1f188804e63"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00130-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "564d9792c0e49a7ea525796d5ee82480d9cdec478cf962d5701e08458b02c3f4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00131-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e3748c3cf29aaccb533c2b2105b31a59b74bba1f35f85b770f3c485d4a9df9d5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00132-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c62a5b5280f51e1a5dfe4f1d6c77715835317fa29f543c9dc570ef579ea8e981"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00133-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "196a2c1a40585b3f3e0cf745a16f26da44dd0644f7ad0d65f07c9aeee1cad838"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00134-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d14d34c64100ca7f605c3660c4ee393cb2725e877e96f0dc9d8be8005e51936a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00135-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f63e01ac2eb3dc25cfa253b54fa541d2052653dc802730fafe52e7bfea202a06"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00136-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5438d5d13f0bbd2e109f29f4b2bbd7e8132810eb2902481c423ca810acb56272"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00137-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2bb584f0da0caaacb9ae27c5c21dc5e297c1116de2b217590564b662760500ba"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00138-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "aeabf5d11cfd1cf00c791aba8f5ee3493b79cb6b3acacd0142ded5828e1cffe5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00139-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b7763ea4a15e5d2274b39e2c0b86daed957a25806211da73671d9ca2a94b287d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00140-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4938885c32622f17170a8aa11a25f30d6560244da94349493916a34f6b6429a9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00141-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c960b9cae5e732b5ec7461452f4accb417e67333aab557abdd3ade6398b197bc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00142-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "54a38885c91659a6bb071efe3d8db5b342abb9642d2afe6e8135a346e6935ceb"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00143-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9e694fa63e376daf8919275e69cc84f24219a76dd7c49a2810e63c2185e8e951"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00144-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9fb9988bdc437d6f8dc895fecdf3f0b31d60c03f2ca4babccae588d55872422c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00145-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d3e5719679fd5e414bc6d0fa658120563d68575f460860e54244e35cf08e106e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00146-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "dbf6639a2c8dd8b3445e54f2a3bc8f2ca74be0c93da17d0d1a6338c872fa95c7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00147-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a4f049a644688b2956e9c8fb5cd9d9e4ac60fc928acc6ab462b0b239700d27d5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00148-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5991dc70034d7ac0045fa86efa198e9a92d8bbf6ff42e7e99a6e36f0053ea193"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00149-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ebf646398a36692101330c90174f401d3a974eb683eaac6c2fd4ecb8f3126491"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00150-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c3bdb73f55aa14343b60d347aac0a559de2fa8f4cdfd8b593a16932151c3f3b1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00151-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "476bf6af2284d10e68ff326da45e9559263bb4f3a6181e979fe2abe8d501b3ee"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00152-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "70823368661903a8f425bfcbf649f4502233b23350b27e2113127f92267d65ad"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00153-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d309eef102ab3eef0996ec170af13277a28fadbd550fe64ae5c5f9d7cd7d4c63"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00154-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8d99066ddbf9c2b334cbcf508805b93ebdeec267031dc4cbfd73608f8f48ab3a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00155-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d1153251287191f3fc8b125bf24e7e680f302cd9b3e4e43974a515185b63d946"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00156-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "dad34b872e6e8c99e9f9b71fe08323ca1f0ed17119259d3005656249ce118d48"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00157-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5c97798ca202734e98a6fcf763fe16e3a9bd7fe948d8cc3006bdb5ba6c1475c2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00158-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2855c67cd46152d324b95eef2bedb79fd24317f891b9d4309fa49549894d54eb"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00159-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4cb9cdfc6dcb85d353383d7672f0f7c7f7a2be0ca9ec37a8ddbb8668bd58a191"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00160-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "10dc0e186cea66ec8a3f27388a7de3bcd0756e5ae1ff3aed47c54da3036a85fc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00161-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a614328112a26cdcdd238ede1657d93b988d03870500174e22a0a3a5d7aee594"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00162-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "52ec35ecd7a83c27c5136f80813168e14e959367671f1229069c4746668c46ff"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00163-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c86397e772fd244f1562e5db94cbaa969f6079f22d0b28285563ff868d84f249"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00164-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a4ff9ad49c190736d6b0d7a692735b5ce5e765e2cffd4318e992b93df5bef7f5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00165-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "99a46cf6e52276a22908d821702587c55c07c3e6aac7a856ab223680c21548c8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00166-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "40cb05543034b56725c903e45002c3b98149d7ff553d45ae9a2af7e23cf8bf98"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00167-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "adbea1b93be00b0c51555a35a91158a8c2dd62d47fffadc16844aa466a033eea"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00168-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5da248c4879fb5464b616314049d1e9d73323359f957af33fe12d96bdcad8821"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00169-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1fac8b769119dfd33ff947bda8f4c03df49007cf8d9417b752aa422d4a132531"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00170-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "aec6260435257473d2d7da9cece78c4d94b14aabefdb2e65daa648d4363c3a5d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00171-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c352f8eedea2427ef5dbf4f732f07d7d5ee12f62db10be96eb7cd3fd40d842a2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00172-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c516295a55122dca23b1f89049d7e146447dd7fa8f21d271039350cf31e6c179"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00173-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2d454c33b0c0d6cb4a460e19e999f3cccb304d9ee842fcfa819e3c5969677564"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00174-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "49ca30c1ba536fbb3ecd738b2cccc0fc1f699b9498e19f00ebda54db40d13e5d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00175-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b9483117ef42e8fd399c9702c79a7928eeccc12b77d9decd206118a339fc4b51"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00176-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0774ebf2e7287e0d695e86d14fd9dd5c46bd938df9c63d9665a58df104d6cb02"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00177-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6d62f2bb033e0beecc8e7f330fdde47eff4ff6119f6ff7cb176d859bd408d2fe"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00178-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "962b0e6481c56f4041bc9e37488d740a1abc5c38a494f2950fba748dc448fb43"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00179-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a717758e022da603dafb633f809fa7c9bbae30bb58eefe6d165808d89e20ffb5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00180-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5a54b344175e62d7b3c45f9a2b0236ffb4811a851f81bdf24157a5b0217431b8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00181-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e41ea99868877e1e85399eef19cfda70d4bb075d19cfa6b62c788d38a14287f2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00182-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9d6213cdd6903f5906c7c45cdf994db705afddcc19b39b57667e91b571684446"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00183-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cd46cce0444c12c0da46f94628b8daadbc917659ec6f84356faedc37d83273dd"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00184-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c661aeb760400cde08871063d826236d0849f6ecbba33b2fcb38cab89b2dbb03"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00185-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "bca2ff3e142d02e7580ca0619b12a2d5ae2cda76618ae5febe79a2d6f431d8b0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00186-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "06a804da17ec6af94169c1dc0fb7e89a1773889a5393717fc7e7c8d808033f63"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00187-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "69b6f1ff488096d178f0b688e2c4e73ac4e38ed5615eedf2afdb2500b2d0436c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00188-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "83f8119080841b375bc59306fe62a5b3043507f9e2a750a104d865f64e18ba0f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00189-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1574fa52936e27761ef6832b7c6f98490d0df5798e6c3989bf6d29e9a152f079"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00190-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "296b135e5d68cf283187eda07132741ab1c421600dad89954d8a81a1ecd0fd17"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00191-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a8ba5af6472f503854441c56652f005605d8252e4a4de6a4743997aea44d21a1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00192-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "064c60dc04f82b84e5c49539ac4f1a0911b465e195b8a9244b03d2a80f991264"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00193-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d53ef67a93638880a72c03f8f51831b8fe6291e57db065ba0d939390fb9a3b7a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00194-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8c0d8e7592fab3feb83686fb40fb608e9fceb92aec53b5119c523614b9c210fa"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00195-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2834d965fd9996d8378bc8ae917057ef237c2eee90404daee710d8280cbad21d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00196-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8a9f6448a88fcd19c139bd0025d6293e602d2fee1ca2754bc0ff2c74ca3ba9d0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00197-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0e414b9fc79db19e9adfc5aee37a5ba7676131bef36d7fa9d95a36f2a8618cf7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00198-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d405e3c77587191faf515fe5a4c15ac58cc89a845ddc810ed7720323469e9639"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00199-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "86b41fe5e4bc96099650087dc5a5373681313d8c43744dbce65c264b51f828d5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00200-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2972b805d9415d47a5881aade5ac3703568d86691e93bc8aa306226f01ea4839"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00201-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "09a5b103bed3553226299818e179cbca60a8ff1705a7eda6293915dddcc2f83e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00202-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c842cd502b716ae82f8421a11e6804d3b6892560b7bb307fd278cdc85769ccc9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00203-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5a06df2b7ace654199548c5e06e46a737269cf9192bf50a21e6a396a78ae1f8d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00204-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d810fb3fe0c856366c2c25bcd36fd1a874dd8f20bd461c7ca15520b49355c070"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00205-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1ed4a582b096d81c3713d3e27658a14946c4a0408f3959dfd4e4520ed67bad24"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00206-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7ca007ff06f6c24b73421a931d5f82bb016c0f296eac7d1aac88b650448f0697"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00207-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a8b9ece86d090ee6686d0248c8fb239c5041933c3e5febf12b21d1b68ab909be"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00208-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6b6f9a62c8b4f890b85fc48d81571d2fb98fe78fff08134ccd48d8e94658bbbc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00209-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a20c42b42fda5c6fcaba12ac59eaf09a27dd3ab495f12933c76728a688e90c29"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00210-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d71e123a41680e915e67998fe519cfafb0615718fc228602b3618e663080ab3f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00211-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9eb856b3c80abce6c9e7e8d932ba0bc90df8495522207b50c05ae0ff37133351"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00212-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4e19593fa72da5b969d2e45a501fca6a00c2d98b050c36ae939c2628565be5e9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00213-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c1b8902a8771539e9482338cd22d6d7b3debe74786c60ae0144c4d93e69cc9d2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00214-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d7b82a8946fd968d81bd498ccda633cf8a358cc1c74448ef7b0ee8356304cc70"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00215-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9b579f08dafca1b01ebad6ef944b31275e2907f7debd7d53128d6784f02e2681"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00216-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9b37922989c7693caad99337ba4364d76ec101d1fb48d3b56b043953e0af1922"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00217-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2636de10c86aa8b881fe6fee1dfe8586b936edad482ec757fad3b16ffac8cde2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00218-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0f9aa9f8ea23b7a209ea0e5ab65c06de46b27fddbdc548f5f0258d2dab5a608d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00219-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "32a61868cdf8964464d70d2a85e3aeac82cc05892192503f7e7673c4eaccde59"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00220-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "45de789b6dc528534e4f50994db5f8dd98c6b70135c28fdeb5a31b73e4057680"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00221-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d7c1ba158dd69af7c12d4ee39f6addd890d59b7402a474e2ed9790ff219e5512"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00222-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "72959fbefa64b171d301a2ba380302dc5c4d44a3e5cbed1c437817e08ef03ec8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00223-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f4de13a91d5ae45669f556277ac6d4072bf799a3cb94718556c7afbbb74d0e31"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00224-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "98f5ec3294b7b04475ada11598cc934ed1cf977cdf5b88941072ec8e0823c484"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00225-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9260b2c231b5c4e6ad7aa278760a67f96bebd4021e33fc8bd5f6f35048c6c9a4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00226-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cccfd7c3395807c539b4dee3f55978cc1469d371ca423210dd80a2d0e0d5d6ee"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00227-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1587b284fd1a58e6bc0badebc44dc087a5fd787347a52370b0218a3b86c82569"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00228-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "709b625f629eb838bd79f4d3124974cbb3192da4fd6539f09f3c43db4e724035"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00229-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e630e40d15a67050a63d717366f0563776990331dcb39f8f40310d65095feab6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00230-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d6d3aba3a077db615af77d6a29a8bc514b5c908836e6bc5f68acc962da720f63"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00231-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d85dc7d1524ced6865cd8bcf8ddda7ed788d498aa4ffa25c06a2b66e96528289"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00232-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "738986fa1431ddd0379dcd84e4a29eb1ec0da0c43ffabd5ac39544ba2976172f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00233-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "380108afaec8b50c95d36dae280bc09bf485c67b9b3b6bf46710a444a13da65d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00234-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "02750560feeaef813030bd5e8995e15d48e60aecc09a942f5c15131c9ca32f96"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00235-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ba4f1a9d32baadb93b9aa4bd537b42eb53c5ba514f395c11619ae4c163ad399c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00236-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "eb9ac861c5d70a6185566e29dbb448fc9b3236aa87a52d5b9b0c5118aec632e0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00237-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "989cfc95380945d16a4ff0bb7309f7aa1495eb6e62d4f84aaa333ccfee86d26c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00238-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "11f3d3891e0955dc62331c0edce54278982e01ab1c10e2d521e29639f4ac4cd9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00239-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c6e3acdd7bfc822a53b7b34e3a35b616fd2db1c5e88cacd1a4eb0f8fe485a195"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00240-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0d793d08192a2237f61557492fb89902147b2e0d11a5849a590b612ba6f92d9d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00241-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c25cce11b1cb53023dcc8f44232a57d00f03108d0286db4ab63189b34a8f0e5a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00242-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6e5b23e9e3d7d646fffafde9bdace0ef27030e1745879be26373bf235d373f19"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00243-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "05b25246f29540d825395743eb0742a6e93f3fcf127bb294c46f933ef3cec766"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00244-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "03be8967d6410c2e51aa377551053e6c373854ff6c469cc09193ffffd85c0e10"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00245-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "064df2dcec78f2a13efcc2e28807c7c4aa317278d33302cadc57ff635203a67b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00246-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1c07ba8a82f974b51888aa4bd3a32511424a585c583f61fb372e648d43cf733f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00247-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5110f36663458630815eb309d875f7364ac9d153e81eca5fea2f2e33d8c5daf4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00248-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cb884e4167b91e5c55cdfa086a78dd7670e02c60048053f9633ffd94ba894b3c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00249-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e27ccff2a3aef96c8bc7117e105a342cef764b26eb78aee6f5df037e8cf8dbe2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00250-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "bf120871b2072b77f0e4379b7b4ac5bc8c0f5deee1749526e5e18e4091b84681"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00251-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "684d98ce91c0b8bbab36a7fb60f5c568a23b6bbbad1ae5b4543e895fadc8665f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00252-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "658a326753a3c5462519fb08db70e4e6e6bdfd6129debf0268b1c2fa7a35372b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00253-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1b117c06e5d803346389fe49c8bdc42aa305b56e2bdc58fcc8ac9dd430f8ee20"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00254-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5523cfa1584d4d1654027e75b9bf909a292844c3c01fe139eebf50a453a07c28"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00255-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b94be8808e586f4196dfd053a5c42e491dfaff413000a49d5193dea3a6ade226"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00256-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4c83e59be8531684cfff8d4f55199b599eea543076fe909d70a743615348bff7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00257-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "755604e1cb78d766b30784481d9a93ef53aa54270f19101c1d56c6eb7b21ebca"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00258-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "acfdebe0e6ce422be05f4e41158fa47416c649706ac806525aee2b48fd1c3472"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00259-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ad6dd5d12a01be4e241de65fd64dbda7192055def618b87887f36a169045a849"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00260-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a44cef1f23c00098efde9ee5c037e5fbd298a16cb79301f4e184232bd7a90329"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00261-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "afe61f341588cbdb28122837aac4a9add438319e0cf5ffe876fa6fbd4667a655"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00262-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "adcae37ebd4828f225eb894a28efe4f9a5dc5fc31680e457d0972eda34b966f8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00263-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c87072af9a65018afb189cb6912f3f5b16738f09402c2c8f5bf830ada05a6eb5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00264-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "713dce24d7f08a090fa3fb4c18a8f621b6beaa7795f51d1f44ab257432203c6b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00265-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8ae58e549323d9055712603dd8b7c785b96163ec14e790b986d0cb2b477b940f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00266-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9df4443c2d76746653648c64bd3c698efd20928a109fd5a001cc82c029afbdc6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00267-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8c3c3aca8176e05ed73d8d9b57472277d510fe059ea3f76ca7b0444653a63ee5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00268-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "325afe3240fe7d7f1ef6e0106970078c122c9d89f1aa755d07a9b5a5acda9543"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00269-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4c76dba918e2f7290b671b24da62f13ffe60e45d9eaba0a9a8a1ce8af1afd4e5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00270-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d5d5c22ff43286292b26824e00354feeae540309ab432739fac5fcb27eaf32ff"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00271-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2b280cc907d4a23ce70c5fbad311d8d5988bb083978b55d0c772f7dc2f5274ff"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00272-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2b7bd985bc6412f407077c26c4eeaa029b8b23ce74fe734d41ce46aa45ab8cd1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00273-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a3fc334b3c96a93b20765ffc3d7910a241161f2a255ff99d31e4a2fd01e7e695"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00274-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4842de4c4eb515e7704e46edcd9d2cb9427d1ba4a5a05ad69b1b8bbfeb61fb21"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00275-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7bbe2ead3561527d521d65fc010b3fa777abf79a27892016f7d53033edc4add9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00276-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "28a0a181fc7fa53a3ec625708e31dff7148a7db02e5a469964bedde6c370f869"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00277-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9212817ed37857d12ae6f3cc84fd623fe4d73d758926213757b159fe9fb4de63"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00278-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "13b26374b9555e02dcfbcf5f3b65f1211b42bbb9460d134d3c8b3914cf304bba"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00279-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "bef66e01d933af056bd598c3e79e23949b7c589535103a1a131251b647879189"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00280-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "accebafa41c3410aef9dd8a81bbd3ba0f73ac4c0caa11ffc4b8a7ec85a33d25d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00281-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "83967885c6153a4bed31237add42571d25544d3e0d17baae83b0c01d9cfc2709"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00282-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ba20398b40d894ece1bcfaabe8969bd9575cb5732ac76d3fea8f9206b08182f6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00283-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "44bbe13c65b3b3d7a195794a6fe6618ecf0c991236d5f265303009707cbcbd41"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00284-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7eb61b2883b02bc5da09c8bea381e713a19828cf5ec56f7d8f8f7bd8b397d5b0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00285-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4a0d7b8ccf82c802cd186e16c67a6530fb937b1e900e0518233b9c0b08bd55e5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00286-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "978689822f24398e6f86d35608b326b896a2fafd5f165c658c63262fbafe2fc4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00287-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d946eca3863a7224d50e7faf498cda85519ac7c7a987af0bfbf91762d716e637"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00288-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "79bc3e15ccb8a5dd19573e2eccad28c89f63f809ae42f70301e8ec82499b5ccb"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00289-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ce1fbe389f90de6bcfa8424bd980ba45d4b92856afea626aa74741a44ecd6cc4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00290-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "67c26e107d782d1eb49a68051a61cc664af15661b0423b0cb384ce0de6f502fc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00291-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "83fe68f66b866f9358a46b1bb66cbcebd5f893a09d5efad61e4216006efeb1a6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00292-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "414f9c546dd4683bcd6a5ec04ca28c4d41c2007e336c6a2325e21b5fffe8d273"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00293-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "03ba339db639cf7d91e4dd80fe2732b4143e18ed7f62ddda7a454600ae94a581"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00294-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "75a4b4f71e5ae7e338fe7ee11e998293e0e8d7aec75cc4a9670d12baf82cf72a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00295-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "04ad1b4fc2ca3462db78a3982bb0a5888f81fbbe05086918d930934c6179fc15"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00296-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f2e3a0c1beaf4131920ff1e2b5412b46e4b583e6ea126e30ee04e00d6f8288df"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00297-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "9e06bb25d07ab2c89daa19d5a6e709607cb4734694a9fffee3b260539e505964"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00298-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fa7b997565387a18ca5f923ef17c00d3345e72c41d3ca0f748714d80e785b8a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00299-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "955aebbf79047d20f55e068d8b7900672e5145c898ebd647bdf37b364facba56"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00300-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "92ef3a6aaaa5905e2ada18f7734e9c82d72abb23dbe5e1e841c877169e5f662a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00301-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f593a5f982bbc0d4d0ccb99ed277c9157ab556fcd32dc15bdf6f60a838b89097"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00302-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "27a02b53baf89f3088af7af5a6fdd86dbd514b0780cbcaf81d38a23d20902b25"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00303-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "aa76f8b78892c1cefbe722cf706088f73d07619acb3dcdda1edb5ce063465cf4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00304-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ec30082c5e0281e696f23f5f06c6e93e75a92bc662c2cf079a24f43609d07da4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00305-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8fbb066f3e655f4aef70c8e881d1bfc75d047188409725add2d9f390cfcce326"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00306-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2ec9331f3c5a1f913d0c2c038e97af123792b231ab318f9269c64b0679f0de89"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00307-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "031c1d27328f8399aea7dd57504d408a25c9885e00602ea2c60d411f005c7d9f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00308-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fd7ae7a3e58f5e4b549b2a555ae9e096fc633c61e4874186801efba0fa002e7d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00309-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6f51d4ea835c6146869e8ef0d962c3365c8019d8fc4e55fb8f249bdfb4f81b73"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00310-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a922945ed2d275bfaa0994a5494c9bec6e11190693ca7f3530217de1a8f91f93"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00311-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6d737a75fd128ad851a2fd3071fa80e2c0909df95c3292e42163a3a46893118c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00312-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a12c0503bbd8eb17a93bca66dff7fb82c512eb43c447223a384a218426c4da47"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00313-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1ed49af9bda8e1642c563ce61e6aafa3f652dee638ed32fd137bc2343ba10795"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00314-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "85da34da30b046ccacc584b77bdb76244393aa0ee594dd5f55ac504d2dfe0b50"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00315-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8e63b375164407307b32830e36cf440ac63f2c6904372c51bf6b49382830179c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00316-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d0fd10100cbd86dca5d50d1932b00c308b0fd21a18739a2e45b42f2d2b9de31d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00317-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "50920d37907451475b595b6b437b2b92d1f15ac148b63355e97b745e08c97273"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00318-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "da3dc06d0e6ed5a5eb8970374962cfc93af1aec2b51fabb4deda19cef6404725"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00319-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "de392011d9e2d43d3540a546f07cf78d9b44dfebeb8bef40c92caf6181d97283"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00320-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4da5d299f724db6096ed7552e824828eaca86626206a75a103cf696bbcd876f1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00321-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "333dead9a116ca98ebf55737c7dafe56edf0dc080794da02c3113c39af180576"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00322-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1bfa0bff8382f7b7a9ee3ff87e5166891ece8b64b03cb8c12413e36a37790a7a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00323-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4f27e1456ef3658ec1c72d6445a7904b9f6f674a12bdf32f1c6e0bd5db965936"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00324-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c98f01f3eab6c76402a206f79df6f1e1530d022080667e039b4c3a7bc0809dad"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00325-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c40427afa196a23afbcd7f054a84d19998d03bf17aa69c0f78c884b2c18d3733"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00326-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "acee0ae9c81fba57d181010c6532eb1c7d8326bd533480af7ec599c779437b33"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00327-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "22f1f0acf7df9a3ff2c3140acca3ec7b8bb345a8a94e31561cef2dc998a8241f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00328-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d75da4cb1077c135d63d4ddbc7347369918ed4fe58148586993528151c331718"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00329-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "28cd7fce0a2ec76ba077854b616e1087b1019849351a6f89fa80effac0da0c64"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00330-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "37e5cd01c7f5fced8729084ae00080e485796ea2dd82ba1a6b8645d73865b3dd"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00331-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7d0dd1848cc382807aa43b84dc00478f4bedca1a09918a877c573952c5d18188"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00332-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c6d039edc1230ce49551cc08f9f9a79a05071f28427ead9905e2d773a08fe218"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00333-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "672abcd31ff1fd0a351cadf4ec5a6130104258416b5c71074e2d5d8b7a3f4328"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00334-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "29b53271af9ccae55ce56d3b745086f05dcc92ffa9a303b321d9f4a55be022a7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00335-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2d177acf7a5301e66e454313076fffc90ced925a42bd1d15a7b9d6dcf7a4bc64"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00336-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "02556b20c1645bac5f8f177183cbbf252ec36d1d1bff409e4255d7b6dffdef97"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00337-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b278b8d4b16fdf536a40435c02d02fbb2b05587026ca322b7704b7ed263bb1f1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00338-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "17c5b613650c3938cbe0d4d44d04f4e0b950a699e5e40065483473cc04742eae"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00339-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3a0ac69af9428b121c529964e41504a12fe91164602c035c31d300415e8886a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00340-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7d626cf263b9ffc66ac9d2e9020ea40cb2526a8a394fc43cb32c85db12d91f5d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00341-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4614c0cf99ae454b3b379695e442c2c6a51a3a1b87bc1b51d8358b0b51ca20a1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00342-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6c038df8e9cf31a46f64532fb38f17b334559e55ee93bb834be6acd9d8324a0f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00343-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7a5ee6c2c2508c6833be5779c5cc72a8b9578c5302a4a537b0ce8ae85e8ca85e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00344-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1c722a992d8f4da632e81d1a8de15703881dbaa2bd00b0c3e7af6b1e216ade5f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00345-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a7bc2c93bfe39d8629724b9f99fcca0ddffae656fdf62aa3f8414bda338c7e1c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00346-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8beadf2ab4de9bfc1543a5ecfb24939e195878ab52902613c0efc3a77f9bb379"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00347-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cf1735af6a8e1e1a52c640982b2990bf0dcfb10dd8c38d9de2dfa4f6d9f12715"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00348-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ee574507ae47e9fcd50b70cdfafa215bcf32ff3eb5db3c00c7dc580aad9f38c6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00349-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0d10c1c6198ac75b36b5ea9d49d578d90827ee1f8e864dc68686c8172ecff078"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00350-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1742087e59662c4d8855cdb683a882ae85eaed39d9267722e869e7bbe2bfa73a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00351-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "182b4654aec29a7de6e42d4a7a282668df3dc4904a51ba61e02f65cc46120d20"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00352-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6aa031b6afb9fdd46cf41d5be009a48576ac184d6b40c845bf2dcc9c849da884"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00353-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a29ad76468ea65f6e37e2265d0e83b12901567806e8c314f20ac845443554d65"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00354-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f6cb8418dde6c266140eb8da677184ccc6e19861eed76c781e20fdd2759479a7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00355-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8e81db842a97c92d805ac1bfb6baf19fe92a6b43caafe55df1e2ecdfc9dbbeac"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00356-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f2956f4d5d0bee41d6a2813c369b37c0d7a0ac2a367bd8579c77ff6e52cf3715"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00357-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "aada7af16aa8fd57d1991d1320debdaecdcdc92804dae3f36efaa260d6281588"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00358-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cc87136906dc152d6a6cc0f29d124bf27c2cc268975f952b7427936043206ced"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00359-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b0f97d97c490c42df3f05d796a704ddd9dbf7cd31e90df4731996813c27a8660"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00360-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2d9216ed713593d8e5095b1487b9329d8ebb3d5bb8d575e561e6f609d4d35f14"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00361-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f181ba4c404f4a853b24c77653e997a02d7a4533ee5f6324cd9a6c2ee7b6a976"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00362-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fa0f67fd6e309b6c9009ed9b4c6a471b451fbc2bb841d7880df29c22388b95c2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00363-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6f7fa22f1e6a848dde1f714a563ad62db4b8d7c6687fafa73cac5be73ed9fdcc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00364-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fd7af809215c90aa07e7dfccd6fd2d00a6c17d18af7e585992fb0382d7dc40a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00365-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "54f18a455aacb65b7915cc189bd6bbe108270fe2a794dc90f49fba36fd1d9b30"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00366-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "18fb1720497bf9578222ec55923a8ab45d1bcc589f29d8d8380b3159cbe35ac4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00367-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cdd1e43f00dfe345e246b9d22076ae5e15692d62e0889ed1e5eb1ae038c85e5b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00368-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f47305d6de44a481efb49f39b3b9d9646128a187f436e6a1c3ae0cf15979cc64"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00369-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0e3ffc7bee0175072237f5b32a3974832e6d204a1b8110e4f09f82cf54f69f7b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00370-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5f267d608d42e8c6fb5a0aa2a456842903b480b498e564f48a595e7dfe65efe2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00371-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0205731b362affca0cca75a174fffeade738e35d26d488f6b3f9605c33aa210f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00372-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "72e56c71c6018f9ec8d18314f1487118d515981a3776d5ce303adf7b121815d1"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00373-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f0bc3d82d74096ad739d8df45d06c968e10a91a9f8d40f73bc85f5616675619a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00374-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5b9ccfb67d9b5f388d108a1130c301ca414f66463fe965afea239733fdc8b108"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00375-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6cbf3c8438f4a07776df8181547f491c58481053913bcf97e2b6b9f36a9ea56e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00376-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b94b649691631bf35552fa6930d7b5c499836cf6e033531c2890b68ade19d134"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00377-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d2f43b89bc989fd9f4c69b45e4c83bb370c645638e36bc391bd35c74095c0403"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00378-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "662da904147693dcb133f2f30b473bc3d28878c4b9a3bb13bf5968e2b8f8c44e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00379-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1ccfe7152b1a1380f41b775786c78cbdb19db7f0bb1bfc2765701a116eb65655"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00380-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "2850fa46bcad924331f150bf6629527f10dd8fbeeb724d00746759bcdfac59b3"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00381-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7ac9648e4c822c5a987800c6b6d764e0d55bd014be4ce9b170bf7e1a81d79c83"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00382-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5f39d20480e3c11fbb13521be99f4fdf91f40692e9763cb5e9ca877d2d63b518"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00383-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "223bf0f1c23cf872da84f6e6365454fabc5ede0ee8bbf0eb04252fbcd64317fa"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00384-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5d7ff4b7879094072602a2e3fcda88d8828ef90bd44638094e94bf885a1d8b9c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00385-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d477a3c44ab7ebec2684c452d718c31c2721cfe1ff3bbde2e7faaef5f213c048"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00386-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cd1ef70508b1d3d21bff0afd4b8273db7aa69537a9ca39423ff4dc1fb257706b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00387-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "70d12bbeaa6e5ebec865a8e84834d943cdc9e797390c07dd15e83b0cdd8e3616"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00388-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cbbee1f5e1570a74b9141bf552fb0eef4ee0ccc6907c31ade734dd5fa46020bc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00389-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c66eda2f8688e1a8a04900dcc357eb8381d4b9325b42552ce59b1b208f7b735f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00390-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ff4a92f33f26ac641014df73fe5c99d4255b76f78254ed962be807fde3d9e3b7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00391-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3a98719a560d93cc91da0505888d3fb242840b563ec4e7428d5165f06795dda0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00392-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a00322e56b1e50fe57e3763732c1962a630c0fe7d2c241c5e8e69f866d17e451"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00393-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d13137bb8584ce0689839390ad166373ecd6dbbc42b0d8320ea955994c897ebd"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00394-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "dab0332fb9ebeffb26f710c5a75b29e8cf343446fe5317ced20aae3e0d668f63"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00395-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ea8d16f4a523b0f8fa6b2b1f48d89157c376082094b66e28248bff1c95663843"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00396-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "306c258e07619072bb2b0e78618b0d04afc6e40ae3a859d7f4b65ce5e06a2fa8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00397-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "773898ed2ca03e559b67ffafc83fc86ef996e25cfb750a7f6c1bf6539f4aff5d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00398-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "17d9c9b67c0eb5ee3903b8aeb211249e1c37dfe9bb156e11b9d39d0ab78f5307"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00399-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "637d7252e61bbde590cb6078115cc028addf99f007c058760d8f8e08a2af3fec"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00400-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "55d43b5a1d0e249b961c9f9038570b71f1eada0aa3a3ae9eabcbad6d625ffa0b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00401-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e20d9fa359c64a47b1683a5c5986bf34c7579a41a4965aeb09257c68c2e8b5b6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00402-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d52ecbd46954a2807da02c25be2b6ba9a2e5a2a0e17fb92ccedba6d23db9e43f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00403-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "215fc435029bd10ac3f89898ff1cd089f1ca9c2e28178db67841114e2d6a6697"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00404-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f6f2aa69941956c223b2d4950f6e5b5ffe5aab1ae7cd8c4c8cdd6d68b423cf14"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00405-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7c500972a367835ea17192d9a8bedf4652b51e9479b29ef4b423a5c350ebae92"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00406-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b35f028608ca50c480533848b9fa761deff8f5a516cc09b0042005ea8050985d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00407-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "270d927f0636a8fa38dd2a1a1a34aa7b4fd6a08432bbc19eb451ec1e1dcb198f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00408-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "404078a8de8dd9b10204f2509630ed8d65ebc95d8fe6dfd3d020939429e93f03"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00409-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "225c8a285b990fe58151bd2a38279b6c14ca2b4bc02a8c455208a8c2b928e895"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00410-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "47db8854f2ffe8e6803720658c4258ca407ac4939d41592076f13b23b7f54bce"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00411-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6cf58d6df88cff4d154ed674f111e917f10a38160960b99836dc7c3368ef753a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00412-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7e4877d81d4acff438d40d66cb4ef77cd99fca43c19f501e953b77561fecb3b4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00413-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4b22e9b138693adf714c99579edfce2f396c2f8ecebc4e5f5013f8d1312e7113"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00414-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "76bdfe662b586de6fedc2c577c9d840f38318178a98c0d635241af2c94f6600c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00415-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "03c545b02b2e7e8b897987d252881c94f892dae5cc2fb379a9ce93b7eac22d65"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00416-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "fc7dd2da77e1a3aa59601beda02afbfca96913af5acaa03ddccc5a6609943c96"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00417-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1f7e935a4e597f9a2939db814c9e41d1bcebd876e895ae1f2a985e8e08fa3aae"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00418-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7ec0c3626709fb98399b3983dcfbe8694812f59f15d1b164baf1c7ab2836b77f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00419-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "153632e05b2a9972f8d49176b465edae24314f27e1bf0e91bbecf4aa38b99f62"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00420-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ab890d8fd7a33a7aaac4a8e8fa7e0a08ebd53a859d945de5bde82d88c01ede7e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00421-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "055b0a79e1381fa2c753df4b35c2ca732a56660d59217d5f038b939eb7afe3d5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00422-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e3be938e9b14fbbd98f781d6e2c67661df87d5d7509542f98e3f0b7777ad49ad"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00423-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f714b078448a001e3721c0a127c81714c01ab86a40809b84550ad02e46dfb73b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00424-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7135247d1e32aad30139b31316841d3447bc1c1815520865fcf2ecf57329fc17"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00425-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "76fa8e0ee3ac7bdaad3ca678d2ff28248e86eed85180d6c4b8cb6d58eb2ea08c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00426-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a520fdbbcf8a88c8aa842b67ffc07fc68aa64ed70145573f05e1ae6eb1be5d61"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00427-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "878b62324d628368147ccccb91817060e8ed6ca3757f8d47f219e0f7c1238e41"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00428-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e9268079259aa68fb15909923a68218dd78ee86b44ddb6a3411b0f9865366427"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00429-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "cd5d5da962556371a4d7c55c4ffc158dc8b07bb11310707173150465c1e31619"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00430-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3ded187fe97aca0c93b727f353faf43be121d491b4af285021bc88ee97d7f21c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00431-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e31298b1c6fa834a8c4906059ebb2bb1bec4f9228c7aa910481d107f0fb87ff7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00432-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "842e173c63d2590190ae4d55bce0f814edb191c5a546fce1b59ba739354ca342"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00433-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5e73264c047eed4c13a52be078b57c61cb0241bfe90d73fc6a7d3e1531f1960f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00434-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "c26ac044428c122ec70f2d1b2f4481f53196e2ac3dafbb866d94552ad8a1574a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00435-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b3647e355bf253d3e62d3bca3aa70d73391c783991ef8e62157bcccdbc61f43d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00436-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5361c7c33b85c6245fff3cda80bc10245384d4fb59684fa7bb3a56b6635a85e8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00437-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "36a3e92953182ade1a885822cdd791ba084711592b809dc58f3731ab09048628"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00438-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "23a41b7ab62c2dfe38256ec143b0b7c7e134fb28b84de00206b0f313282fd03c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00439-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "3200591f71d001d3b6a2ba850beb0520f2ef03c438545f52d53cf6997f734415"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00440-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f4dc0a432feb5bfe79c1c350be0fb42c710493109857c1a505dbf8b7fc51e8e6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00441-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b6f258e2bd523476a43328b321fc4e413f63e7ae42f850650510ae290f992aa2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00442-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "7ae82660fe4f0ab4178e9fe85c0ece3066e630bad79be85307eb06dbeca3cac7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00443-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d13890a649c5a8c577e8a37835e9426da5ca4d66af601829a84941b74f89193b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00444-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "191da026f6fa1cfa12c8a71c3e7e27f021146998be1d352993e769160c303edd"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00445-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "525cba655adda87f66999ac06ef69956311b9b308c2d3b6651914dd38ffe98a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00446-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "5c9a5d98bf614486326855f986349a1c2fbea52715c7ea83a19d34b4f8280914"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00447-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "99114c3eb4ec9425172c47eff3c6dd4bcb7ab8a41124330b17e44011324017bc"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00448-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a0e26c64326c7ff578c3b1cd836cb6cf1820ca2afd86f1fa953402ff01444aef"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00449-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "4bfd7ce59bec1abe89a1f7ef14e5cc845e211a94bc0c7475997999a5c3ee8c0d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00450-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "d7e333e075b3819b5f7bd5e3c5e98a4db483026616121e931de7812f0200600e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00451-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "04eef1aacc8c22efb664034548c408090c613a66029bf3f02c0ffe7e3f88265e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00452-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6bb980319ae52953070d6f8cbc759e1fc06c384dbce26b3686b98a8d75a01e41"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00453-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "27ee469cbcd579fb15981d2ff88513f37390ee37a6c2643285eba88fd8fec81c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00454-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "522d5ad94df32e21f94068516fa631582c98824326f074866444796e4700cfaa"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00455-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "000147da36d9bd2d47833e8b0f2c65f341d91afeae276a5b3c3060fb8886d01d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00456-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "bb20efee1256d3d7662eee2b92c7922703a650ff08513a33a342426d66f45df2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00457-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "57f1e45c63f988146b5f2c54988de80abe82f347de45b671e588dd318a09fa4b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00458-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "6aa918afc9891a72a70cc0ccb9938a6bbf6a459b12d5c2f94b6f3dcf473ec454"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00459-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "a033d0f06095da304c807536b3670023bc82e476c76c58dd17d26896d854788e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00460-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8d8e87675efb4b163dfc09d31a4d1be8a4cd2be8947484ebbc98240e7a8d7445"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00461-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f2d0ce4509915ca25301a13cd5114ed59a0e6553af66d0379b9c4c970ea89a81"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00462-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e3cceb494ce5ea169ebb70715564f4199ddf9852d565094821ab0233bda58ecf"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00463-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "17a830a82129bb2caac5db2a07a3ba34626c49d4642f80c59de3709a08c5d74f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00464-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f5577c5c101b061493db118caa461b5b8827d803ca21a46042c1f470a6efc6a7"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00465-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "0ac0cd2d3d1e3d5f3f54eaee1c446c619db34540463c4d7349ead160799874a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00466-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f55ea3b0608d985d6728972300dde4b3308e6757b5ff9b4cacfc7a6d1b6c96d4"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00467-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "8607a440b34c6f8d05d750e6b52947f28cda6d7f234a390fab5bae577110f553"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00468-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ac1700dd4d3c2a95cf772dbb5019e1265a74df43b5ac3cc135f8b7996cca5128"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00469-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e795b9ff8ae36950f24ee06896808a06bd46277bb0852032505f33eb172abae6"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00470-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b2eea40364e22848e16a345698d10f939e5a043077a0063b481e10187e3730a5"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00471-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "1b3c747d68180b3c80743105625d1f5b76b3ff22fedbd0301e4ea95c274188fa"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00472-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "298f66be600e18000319a5fbe0720ff3af919830d2bd3e285233472c7e119ca0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00473-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e8983042e7a992a0083132ceb539abe0ff2e98a50c5c6e227a0df7be0571d9e8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00474-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "40e944e1eb72d10b49ffab73f2d96d2f1fb53dab03bb388ae6ae6f37d6571fd2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00475-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "12dd6aec36460b22915e4300640e4afff90bb99ecb0426fb67b6ee130a289a7c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00476-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "db3a4b8cebe257c87f6a3f08fc1063d6eb6bbb704baf364417ad101d90996a34"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00477-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "22d8ccbe0b833c08e1bbe6b7795ad28a651742e2d40056d222b768eeefc5d60f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00478-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "017678230436fcf31bb26e2dad5a772459d4cea4650dbbe5b7f36caf646c6352"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00479-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "64c56299543cd6196a4015c0d584bf343d82e338ba72a16660d84e8aa036810f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00480-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "b1c15a0730b30a66567e0872b0516b229b961ec0fac8e39fe38346e642584f9f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00481-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "13a51c0369b0d97a9f2c29ffbcdd465f42b12e0003fad5087933a9bf5ad333d8"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00482-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "696897ed72f6d18cf7ea4cb01b3583cb1dd0f0297c74bea4753adefc4163356d"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00483-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "ce3a71aa3a27eee85eaef6767e8eda73fd49f056789c3a8abf8b9f2991cd1362"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00484-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "06aeab071434634294eabfa731a4027ed7cddb66dacc7d349783e6254fbd46c9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00485-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "f682dd4d0351389c24b01fbc219a9f567ebf5826c04999b7745346584602f188"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00486-of-00505.arrow",
+      "bytes": 499822992,
+      "sha256": "e6410190ea5add8aab16c069d165acf5c687cb6f00701c694fe3af01c1e93ba2"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00487-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "7b019598cba03328321214ea8d890e88e9217a819e981e094a8987a3436078ad"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00488-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "49af473f8f105c545ee0a0ac6239eeacbb65febf44dee804255fdcb7f45b7f6f"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00489-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "d9587497e82d3dd6e362ab2d689ee6ef2f22aa4794e4e38557bc78920725e300"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00490-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "6f7181caed49563a7b5e21faa6d87c49764c2094f0210ab50f9d56c3dad3192c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00491-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "2fa07574645686c308ad190a2c0fed44d5969c2ee6dbdde5467579aecff47aec"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00492-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "4b8723d36cca120e5a29b3a6f110afcd6291b39130fe74045d0d09555737510b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00493-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "0ad3988aa739e441bb045e9afaff5e9e18ee8ce49f247735357baf5da10e471e"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00494-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "d18fbabbb4b5bf2372af317d3f58d771d9def716daa8c12cdc31b5abf2b67859"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00495-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "6635badf5a9d434f09f5c9cfcb913b8aada5e333ccbd7e82d2f0150507b394ef"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00496-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "1005a74f26feb88987afc14dd7a532b72370e988e29c790ad5935a0f4f3a5e20"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00497-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "416513cbe9f7c92862da06803cbe29ea746409ff9ac6d030dace412abee94245"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00498-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "04d594acd52ed4fae379ccb357572b3541c563b484b8f7180b3c45b188012b9a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00499-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "06ef47d10b0924423b337979f4c8168c53f26718d4e4d9275fc4e6ca46d789ac"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00500-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "5a869449ca2438c8ffc6a1f6e206650d49fa92d65e61dd5434ace2774e35e615"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00501-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "a9f47b03c34e280d02f298c28997de451e33b8f504bf4000accbe4e52d4e5c31"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00502-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "6e2aff841ba66d60e0c60faf276dfa164549a8ae10c1f81c2976cd53f31d4467"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00503-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "220fa93e784b2ab57c5754db81f1951d76e054723620009dadbc933fdfdc66ba"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/data-00504-of-00505.arrow",
+      "bytes": 499625984,
+      "sha256": "d05b9fec958939dfb3e2a8d13ce4cfc55e18a9212d0e8227a8e92e5cea8c8c34"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/dataset_info.json",
+      "bytes": 7672,
+      "sha256": "743b8d3908db2c3e89bab70deed909a1aa6485c8696a6e2a2d621b2d78dc07aa"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/state.json",
+      "bytes": 30022,
+      "sha256": "f3171c31d477ef9f723268e1ee0ac6b38b12a426bd7dd0ab6d4ba20c767c4355"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00000-of-00012.arrow",
+      "bytes": 513566408,
+      "sha256": "be6b005777a544b8051838e7d25c8060526289a731e11cc94e94d752e4a26725"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00001-of-00012.arrow",
+      "bytes": 514736632,
+      "sha256": "19cde121a4b5ae96d97962b188f69ee48cdbbbd9b42b5129d366c77ab0b06090"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00002-of-00012.arrow",
+      "bytes": 521911664,
+      "sha256": "0a0dc21d61cc79f19284b6e796771854e965cd3ea95057d1e75315b0d6f13b6b"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00003-of-00012.arrow",
+      "bytes": 502659232,
+      "sha256": "c7a9fb9d8bf213e33b899bc602a4c8a2e5d95d640bf018a963369198b25180f9"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00004-of-00012.arrow",
+      "bytes": 515130312,
+      "sha256": "2301bf59e291b3297cf24a11ef49b1c6d859cd357de1c7f8c25c54fa77bca3a0"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00005-of-00012.arrow",
+      "bytes": 467003296,
+      "sha256": "b09d590b2fe246ac3f6e084416d47bbd14c5a80ebe2ab1418dcc4dc3129b13af"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00006-of-00012.arrow",
+      "bytes": 465109624,
+      "sha256": "273e471bad1bf3b360b9a2cf8cbdf95caae0cfd6febd5246bd271c53e89d6c3c"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00007-of-00012.arrow",
+      "bytes": 464407992,
+      "sha256": "7dbd03a124ca0fd9489a2322e0410b63bb648f8eb66a37acb239ac8209a67417"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00008-of-00012.arrow",
+      "bytes": 459850712,
+      "sha256": "ca1bcec6bdf31326f68f83248bb0e585f6890ad4d11391b723962b6ae45dfe08"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00009-of-00012.arrow",
+      "bytes": 469816432,
+      "sha256": "2a1d96a2f9b52b2f11cb1b98e1787b369d331d9b5958923b3b86f516864f6684"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00010-of-00012.arrow",
+      "bytes": 469531520,
+      "sha256": "4678174056b6cd8ff107ec2dcfe7469020ddf1639c4423f456a7abff49ee7c68"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/data-00011-of-00012.arrow",
+      "bytes": 499238016,
+      "sha256": "4c12b96aa4d3a5d779143b5323d1e5b0278e0bc76731c2d7f07cf91f91a1919a"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/dataset_info.json",
+      "bytes": 930,
+      "sha256": "505c95c4049fdc77ce68b2307c2675a9ce5a6ca65f10a2060a7e7c8cf42e2594"
+    },
+    {
+      "path": "data/imagenet/imagenet-latents-images/val/state.json",
+      "bytes": 935,
+      "sha256": "a2ec0b2080ee7dae08473e291ebd0edf5ebffb1aac5adee4e8b3a064b9389ac2"
+    },
+    {
+      "path": "assets/ot/representations/dataset_labels.npy",
+      "bytes": 10249464,
+      "sha256": "31157dfdc33be7d7f83ce46f744812269c6dd7ceac058da12a8f089734fdbc23"
+    },
+    {
+      "path": "assets/ot/representations/class_order.npy",
+      "bytes": 10249464,
+      "sha256": "8eac26afb61e97a1c0ae647425fa1984f1ef9b8a8e379f95aaa3f9888b5c29ba"
+    },
+    {
+      "path": "assets/ot/representations/class_counts.npy",
+      "bytes": 8128,
+      "sha256": "998193745040c74b8f5dffd3951ec59e336bcd8fd2d2875b7481c4303b257fb5"
+    },
+    {
+      "path": "assets/ot/representations/downloads.json",
+      "bytes": 1724,
+      "sha256": "69a2aeefd56c43c2cb4dc9c10f228743fc45103687061e506442318cc1ffc445"
+    },
+    {
+      "path": "assets/ot/representations/converted_manifest.json",
+      "bytes": 2368,
+      "sha256": "90a6e7745fc338b359c6416dd32338df72da979ed568124e8b22b563329e39ba"
+    },
+    {
+      "path": "assets/ot/representations/calibration.json",
+      "bytes": 61890,
+      "sha256": "aff37e1b790371357f75e51fa55c32e02a553282490453d6317d8cf58039b7de"
+    }
+  ],
+  "revision": null,
+  "publication_status": "uploading"
+}

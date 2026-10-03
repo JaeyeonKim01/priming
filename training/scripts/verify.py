@@ -67,7 +67,10 @@ def verify(task=TASK, assets=False, arms=None):
             for row in asset_manifest['files']:
                 p = resolve_asset(row['path'], config, site)
                 if p not in checked:
-                    assert p.stat().st_size == row['bytes'] and sha(p) == row['sha256'], p
+                    accepted = {(row['bytes'], row['sha256'])}
+                    if 'published_sha256' in row:
+                        accepted.add((row['published_bytes'], row['published_sha256']))
+                    assert (p.stat().st_size, sha(p)) in accepted, p
                     checked.add(p)
             for directory in asset_manifest['directories']:
                 assert resolve_asset(directory, config, site).is_dir(), directory
