@@ -1,12 +1,12 @@
 {
   "compute_vs_fid.pdf": {
-    "source": "final_paper/onestep_newer/figures/figure1_fid_panel_v2_wide.pdf",
-    "sha256": "16767f55a9a16e1f01b99f3a152a7e7fb5f1701f6bac979a389055d67310b313",
-    "description": "Original paper training compute vs. FID figure; September 25 paper batch and manuscript model selection."
+    "source": "final_paper/onestep_submission/figures/figure1_fid_panel_v2_wide.pdf",
+    "sha256": "68e76eb0ab21716b58671edf9dc074df29a09d7c5fe3e20047b722ccbd05c0b4",
+    "description": "Submission manuscript training compute vs. FID figure; manuscript model selection."
   },
   "compute_vs_fdr5.pdf": {
-    "source": "final_paper/onestep_newer/figures/figure1_fdr5_panel_v2_wide.pdf",
-    "sha256": "12751083fc6c2510da5b34b1287a3fd1dd78e90dc6f01fa29ba714a3aa488bb1",
-    "description": "Original paper training compute vs. FDR5 figure; September 25 paper batch and manuscript model selection."
+    "source": "final_paper/onestep_submission/figures/figure1_fdr5_panel_v2_wide.pdf",
+    "sha256": "5396298a2d1cad1f7a1f16a8f5f9bb1a2f05ba8f45f655541f3ce42ea1b193f5",
+    "description": "Submission manuscript training compute vs. FDr⁵ figure; manuscript model selection."
   }
 }

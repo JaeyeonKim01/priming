@@ -1,9 +1,31 @@
-# Priming Models
+<div align="center">
+
+<h1>Are We Overthinking One-Step Generation?</h1>
+<h2>Priming Models</h2>
+
+<p><strong>Woobin Park<sup>1,*</sup>, Jaeyeon Kim<sup>2,*</sup>, Yilun Du<sup>2</sup>, Sitan Chen<sup>2</sup>, Bohyung Han<sup>1</sup></strong></p>
+
+<p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University<br>
+<sup>*</sup> Equal contribution (co-first authors)</p>
+
+<p><strong>arXiv:</strong> coming soon &nbsp;·&nbsp; <strong>X post:</strong> coming soon &nbsp;·&nbsp;
+<a href="https://github.com/JaeyeonKim01/one_step_priming">Code</a> &nbsp;·&nbsp;
+<a href="https://huggingface.co/jaykim1102/priming">Checkpoints</a></p>
+
+</div>
 
 Code, checkpoints, and reproduction records for Priming Models on ImageNet-256.
 The source code and historical run names use **OST**.
 
 **Pipeline:** reconstruction pretraining → distributional post-training → evaluation.
+
+[![Figure 1: Priming Models improve the training compute vs. FID trade-off (left); reconstruction pretraining accelerates distributional post-training (right).](docs/figures/figure1.png)](docs/figures/figure1.pdf)
+
+**Figure 1.** Priming Models improve the training compute vs. FID trade-off on
+ImageNet (left). Reconstruction pretraining provides an effective initialization
+for efficient distributional post-training (right). [View PDF](docs/figures/figure1.pdf).
+
+## Getting started
 
 Clone this repository as `priming`; all commands and relative paths below start
 there.
@@ -27,10 +49,10 @@ Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates
 
 | Model | Pretraining epochs | Pretrained | Post-trained |
 |---|---:|---|---|
-| Priming-B | 80 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_80.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_80.pth?download=true) |
-| Priming-B | 160 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_b_160.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_b_160.pth?download=true) |
-| Priming-L | 80 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_80.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_80.pth?download=true) |
-| Priming-L | 160 | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/pretraining/priming_l_160.pth?download=true) | [link](https://huggingface.co/jaykim1102/priming/resolve/main/checkpoints/priming_l_160.pth?download=true) |
+| Priming-B | 80 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_b_80.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_b_80.pth) |
+| Priming-B | 160 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_b_160.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_b_160.pth) |
+| Priming-L | 80 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_l_80.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_l_80.pth) |
+| Priming-L | 160 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_l_160.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_l_160.pth) |
 
 Weights are downloaded separately into these paths; they are not stored in Git.
 All eight files are hosted at [jaykim1102/priming](https://huggingface.co/jaykim1102/priming).
@@ -41,6 +63,12 @@ Pretraining checkpoints contain online and EMA weights; post-training initialize
 from online weights, and final evaluation uses post-training EMA 0.999.
 
 ### Sampling from checkpoints
+
+[![Figure 2: One-step samples from Priming Models across class-conditional image generation, text-to-image generation, and world modeling.](docs/figures/figure2.png)](docs/figures/figure2.pdf)
+
+**Figure 2.** One-step samples from Priming Models across three visual domains.
+[View PDF](docs/figures/figure2.pdf). The released checkpoints and sampling commands
+below cover ImageNet-256.
 
 Download one checkpoint and generate samples on a single GPU:
 
@@ -63,10 +91,30 @@ The reproduced batch covers 11 checkpoints × 3 sampling seeds × 50,000 images;
 all 33 runs passed validation and match the paper means at two decimal places.
 
 [Evaluation guide and commands](eval/README.md) ·
-[Reproduced results](eval/full_reproduction_20260930.md) ·
-[Results dashboard](dashboard/index.html) ·
-Paper figures: [compute vs. FID](dashboard/figures/compute_vs_fid.pdf) /
-[compute vs. FDr⁵](dashboard/figures/compute_vs_fdr5.pdf)
+[Reproduced results](eval/full_reproduction_20260930.md)
+
+<details>
+<summary><strong>Results dashboard — click to view the two paper trade-off figures</strong></summary>
+
+Original paper figures showing training compute vs. generation quality.
+Click either preview to open its PDF.
+
+**Training compute vs. FID**
+
+[![Paper trade-off figure: training compute vs. FID on ImageNet-256.](dashboard/figures/compute_vs_fid.png)](dashboard/figures/compute_vs_fid.pdf)
+
+[View FID PDF](dashboard/figures/compute_vs_fid.pdf)
+
+**Training compute vs. FDr⁵**
+
+[![Paper trade-off figure: training compute vs. FDr⁵ on ImageNet-256.](dashboard/figures/compute_vs_fdr5.png)](dashboard/figures/compute_vs_fdr5.pdf)
+
+[View FDr⁵ PDF](dashboard/figures/compute_vs_fdr5.pdf)
+
+The [offline HTML dashboard](dashboard/index.html) also includes reproduced
+results and per-seed scores; open it locally in a browser.
+
+</details>
 
 ## 3. Training 1: Reconstruction pretraining
 
