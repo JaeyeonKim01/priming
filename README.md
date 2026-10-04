@@ -3,7 +3,7 @@
 <h1>Are We Overthinking One-Step Generation?</h1>
 <h2>Priming Models</h2>
 
-<p><strong><a href="https://parkwbin.github.io/">Woobin Park</a><sup>1,*</sup>, <a href="https://jaeyeonkim01.github.io/">Jaeyeon Kim</a><sup>2,*</sup>, Yilun Du<sup>2</sup>, Sitan Chen<sup>2</sup>, Bohyung Han<sup>1</sup></strong></p>
+<p><strong><a href="https://parkwbin.github.io/">Woobin Park</a><sup>1,*</sup>, <a href="https://jaeyeonkim01.github.io/">Jaeyeon Kim</a><sup>2,*</sup>, <a href="https://yilundu.github.io/">Yilun Du</a><sup>2</sup>, <a href="https://www.sitanchen.com/">Sitan Chen</a><sup>2</sup>, <a href="https://cv.snu.ac.kr/index.php/~bhhan/">Bohyung Han</a><sup>1</sup></strong></p>
 
 <p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University<br>
 <sup>*</sup> Equal contribution (co-first authors)</p>
