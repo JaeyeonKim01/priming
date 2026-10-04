@@ -132,10 +132,29 @@ panels; pretraining does not launch a terminal 50k evaluation.
 
 ## Post-training handoff
 
-The packaged post-training reproduction uses the **released 160-epoch online
-weights** and pins their SHA256. A newly pretrained checkpoint needs its own
-post-training recipe/source record; it is not automatically accepted by that
-verifier. Start with a fresh optimizer and preserve the post-training EMA
-loading convention described in [the OT guide](../training/README.md).
-Released checkpoint identities remain pinned. Final release evaluation remains in
-[eval](../eval/README.md).
+The default post-training reproduction uses the **released 160-epoch online
+weights** and pins their SHA256. To use your own perceptual B/L checkpoint,
+pass `--init-checkpoint` when preparing a standalone post-training job:
+
+```bash
+python training/scripts/prepare.py --arm b160 \
+  --init-checkpoint outputs/pretraining/b160_run/checkpoints/step_0100080.pth \
+  --run-name my_b_posttraining --job outputs/posttraining_allocations/my_b
+python -m torch.distributed.run --standalone --nproc_per_node=8 \
+  training/scripts/train.py --job outputs/posttraining_allocations/my_b
+```
+
+The example uses the 80-epoch milestone; any saved pretraining step is accepted
+if its model and EMA are compatible. `b160` and `l160` select the packaged
+post-training recipe, not a required source epoch. Use `--arm l160` for L.
+Prepare the [post-training assets](../docs/assets.md#post-training-encoders-and-ot-calibration)
+first; with an explicit source, downloading the released pretrained generator
+is unnecessary.
+
+Preparation records and verifies your source's SHA256, model schema, and EMA
+counter. Post-training starts from online weights, inherits the EMA shadow and
+counter, and uses a fresh optimizer and post-training counter. B checkpoints
+must retain the perceptual pretraining contract. See
+[source requirements and recovery](../training/README.md#start-from-your-own-pretraining-checkpoint).
+Use [the final evaluator](../eval/README.md) with `--checkpoint` after the new
+post-training run completes its 25,000 updates.

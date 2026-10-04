@@ -1,5 +1,77 @@
 # Pipeline validation
 
+## End-to-end routes
+
+The release supports two Priming workflows: use released weights to reproduce
+sampling/metrics, or train a new perceptual B/L model through both stages and
+evaluate its terminal checkpoint. Repository visibility is a separate release
+step. The following table distinguishes executable paths from narrower scopes:
+
+| Route | Entry point and coverage |
+|---|---|
+| Released B/L × 80/160, before/after post-training: PNG sampling | [Checkpoint guide](checkpoints.md); all eight released files |
+| Released post-trained B/L × 80/160: official FID/FDr5 | [Evaluation guide](../eval/README.md); four Priming model keys, frozen encoder/reference assets |
+| Reconstruction from random initialization | [Pretraining guide](../pretraining/README.md); B perceptual, B no-perceptual, L perceptual |
+| Released B/L-160 initialization → 25k post-training updates | [Post-training guide](../training/README.md); pinned sources, standalone or Slurm probe chain |
+| Your perceptual B/L pretraining at any saved step → post-training → official evaluation | [`--init-checkpoint`](../training/README.md#start-from-your-own-pretraining-checkpoint), then `evaluate.py --checkpoint`; standalone launch |
+| SIM, Laplacian MMD, energy | [Ablation guide](../training/ablations/README.md); B recipes and terminal checkpoint evaluation |
+| Comparison baseline evaluation | Samplers and metric commands are included; baseline generator/VAE downloads and Drifting conversion are not a complete automated preparation path. See [baseline assets](assets.md#baseline-generators). |
+
+Explicit source selection reuses the packaged B/L-160 post-training settings;
+it does not certify the original B/L-80 training trajectories. The no-perceptual
+B recipe is available for reconstruction training, but the packaged post-training
+initialization format requires perceptual B weights. The standalone final
+evaluator accepts 25,000-update post-training checkpoints; evaluation of
+intermediate or reconstruction checkpoints and sampling from arbitrary user
+checkpoints are not exposed by those release entrypoints. Text-to-image and
+world-modeling training are outside this release.
+
+### Train your own B model through both stages
+
+Start in a fresh checkout with the [shared environment](setup.md) active and
+the dataset terms accepted. These commands use repository-local asset paths;
+for scratch storage, configure the paths in [setup.md](setup.md#keep-large-files-outside-home).
+Use new bundle, job, and output directories. The two training commands require
+eight GPUs; final evaluation uses four. These are full training commands, not
+short startup checks.
+
+```bash
+hf auth login
+python scripts/download_assets.py --group dataset
+python scripts/download_assets.py --group pretraining
+python scripts/download_assets.py --group posttraining
+python scripts/download_assets.py --group conversion
+python -m pip install -r environment/requirements-conversion.txt
+python scripts/convert_ot_encoders.py
+python scripts/download_assets.py --group evaluation
+
+python pretraining/scripts/prepare.py --recipe b160_perceptual \
+  --bundle outputs/pretraining/my_b_bundle --output outputs/pretraining/my_b_run
+python -m torch.distributed.run --standalone --nproc_per_node=8 \
+  pretraining/scripts/train.py --bundle outputs/pretraining/my_b_bundle
+
+python training/scripts/prepare.py --arm b160 \
+  --init-checkpoint outputs/pretraining/my_b_run/checkpoints/step_0200160.pth \
+  --run-name my_b_posttraining --job outputs/posttraining_allocations/my_b
+python -m torch.distributed.run --standalone --nproc_per_node=8 \
+  training/scripts/train.py --job outputs/posttraining_allocations/my_b
+
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+python -m torch.distributed.run --standalone --nproc_per_node=4 \
+  eval/evaluate.py --model priming_b_160 \
+  --checkpoint outputs/posttraining/priming/my_b_posttraining/checkpoints/step_0024999.pth \
+  --num-images 50000 --seeds 1 2 3 --batch 32 --output-dir outputs/evaluation/my_b
+python eval/verify_batch.py --model priming_b_160 \
+  --checkpoint outputs/posttraining/priming/my_b_posttraining/checkpoints/step_0024999.pth \
+  --num-images 50000 --seeds 1 2 3 --output-dir outputs/evaluation/my_b
+```
+
+No released generator checkpoint is required by this route. Substitute any
+other saved perceptual checkpoint at `--init-checkpoint`. For L, use
+`l160_perceptual`, `--arm l160`, `--model priming_l_160`, and distinct paths/run
+names. The [evaluation guide](../eval/README.md) also provides a 1,000-image
+pilot to run before the final three-seed evaluation.
+
 ## Downloaded assets and conversion
 
 The [asset release validation](../environment/asset_release_validation.json)

@@ -44,11 +44,14 @@ else:
             del checkpoint
         if args.current_step == 0:
             source = torch.load(args.load_from, map_location='cpu', mmap=True, weights_only=False)
+            manifest = json.loads((Path(os.environ['JOB_DIR']) / 'config.manifest.json').read_text())
+            initialization = manifest.get('initialization')
             checks = dict(online_weights=equal(model.state_dict(), source['model']),
                 source_ema=equal(ema.shadows['0.999'], source['model_ema']['shadows']['0.9999']),
                 fresh_optimizer=not optimizer.state, samples_zero=args.samples_seen == 0,
                 source_ema_counter=ema.step_count == source['model_ema']['step_count'],
-                source_epoch_160=source['model_ema']['step_count'] == 200160,
+                source_steps=(source['model_ema']['step_count'] == initialization['ema_step_count']
+                    if initialization else source['model_ema']['step_count'] == 200160),
                 perceptual_source=(source['contract']['loss']['aux']['enabled'] is True
                     if args.model == 'OST_B' else True),
                 source_model=(source['contract']['model']['model'] == args.model

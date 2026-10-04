@@ -3,7 +3,7 @@
 <h1>Are We Overthinking One-Step Generation?</h1>
 <h2>Priming Models</h2>
 
-<p><strong>Woobin Park<sup>1,*</sup>, Jaeyeon Kim<sup>2,*</sup>, Yilun Du<sup>2</sup>, Sitan Chen<sup>2</sup>, Bohyung Han<sup>1</sup></strong></p>
+<p><strong><a href="https://parkwbin.github.io/">Woobin Park</a><sup>1,*</sup>, <a href="https://jaeyeonkim01.github.io/">Jaeyeon Kim</a><sup>2,*</sup>, Yilun Du<sup>2</sup>, Sitan Chen<sup>2</sup>, Bohyung Han<sup>1</sup></strong></p>
 
 <p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University<br>
 <sup>*</sup> Equal contribution (co-first authors)</p>
@@ -39,7 +39,7 @@ python scripts/check_environment.py
 - [Environment setup](docs/setup.md): create `priming` and configure CUDA/GPU execution.
 - [Data and model assets](docs/assets.md): processed ImageNet, pinned encoder downloads/conversion, OT indices/calibration, and precomputed evaluation statistics; sampling needs only a checkpoint.
 - [Checkpoint downloads](docs/checkpoints.md): download and verify the pretrained and post-trained models.
-- [Pipeline validation](docs/validation.md): tested H200 startup checks, bounded commands, and scope.
+- [Pipeline routes and validation](docs/validation.md): reproduction coverage, a complete from-scratch training/evaluation command sequence, and tested startup checks.
 
 ## Checkpoints
 
@@ -65,6 +65,7 @@ from online weights, and final evaluation uses post-training EMA 0.999.
 Download one checkpoint and generate samples on a single GPU:
 
 ```bash
+hf auth login
 hf download jaykim1102/priming checkpoints/priming_b_160.pth --local-dir .
 python scripts/sample.py --model priming_b_160 --num-images 16 \
   --class-ids 207 --output-dir outputs/samples/b160
@@ -117,6 +118,11 @@ modeling are illustrated in the paper figure; their training pipelines are
 not included here. Training needs the separately supplied dataset and encoder
 assets described in [assets.md](docs/assets.md); generator checkpoints alone
 are sufficient for sampling.
+
+Post-training uses the pinned released pretrained weights by default. To start
+from your own compatible pretraining checkpoint at any step, use
+[`--init-checkpoint PATH`](training/README.md#start-from-your-own-pretraining-checkpoint).
+New terminal post-training checkpoints can be evaluated with `--checkpoint`.
 
 ## ImageNet experiments
 

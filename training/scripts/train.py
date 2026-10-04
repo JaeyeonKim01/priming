@@ -21,6 +21,10 @@ if __name__ == '__main__':
     if sha(job / 'config.json') != manifest['config_sha256']:
         raise ValueError('Prepared config changed; prepare a new job.')
     config = json.loads((job / 'config.json').read_text())
+    if 'initialization' in manifest:
+        from initialization import verify_prepared_source
+        verify_prepared_source(manifest['initialization'], config,
+                               check_hash=not args.resume and int(os.environ['RANK']) == 0)
     site = site_config(job)
     os.environ.update(PRIMING_ROOT=str(ROOT), JOB_DIR=str(job), MODE='train',
         HF_HOME=site['hf_home'], HF_HUB_CACHE=str(Path(site['hf_home']) / 'hub'),

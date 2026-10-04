@@ -88,7 +88,10 @@ recipe does not require these encoders. Continue with the
 
 ## Post-training encoders and OT calibration
 
-First download the dataset and the [160-epoch pretrained generator](checkpoints.md).
+First download the dataset. For default reproduction, also download the
+[160-epoch pretrained generator](checkpoints.md). With
+[`--init-checkpoint`](../training/README.md#start-from-your-own-pretraining-checkpoint),
+use your own compatible pretraining checkpoint instead.
 Then prepare diagnostic encoders/statistics and the original conversion inputs:
 
 ```bash
@@ -126,8 +129,14 @@ python scripts/prepare_ot_indices.py \
   --dataset-dir data/imagenet/imagenet-latents-images \
   --output-dir assets/ot/representations --verify-only \
   --calibration assets/ot/representations/calibration.json
-python training/scripts/verify.py --assets
+python training/scripts/verify.py --assets --arm b160
 ```
+
+Select `--arm l160` for L. Omitting `--arm` verifies every packaged recipe and
+therefore requires both B-160 and L-160 pretrained generator checkpoints.
+For a custom initialization, `prepare.py --init-checkpoint PATH` performs asset
+verification together with validation of your source; the default released-source
+verification command above is unnecessary.
 
 To independently rebuild the three index files, omit `--verify-only` and
 choose a new `--output-dir`. Read labels in dataset order, stable-sort by label
@@ -175,6 +184,8 @@ FDr5 excludes ConvNeXt; its additional statistic is used by training diagnostics
 
 Encoder model IDs and exact revisions are in the [manifest](../releases/encoders.json).
 The helper prepares the pinned snapshots and `refs/main` for offline loading.
+Reference files hosted in the Priming model repository require the same read
+access as [generator checkpoints](checkpoints.md), independently of dataset access.
 See [evaluation commands](../eval/README.md) for the sampling/precision protocol
 and a 1,000-image pilot.
 

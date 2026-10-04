@@ -25,10 +25,12 @@ def write(path, value):
     tmp.replace(path)
 
 
-def verify(task=TASK, assets=False, arms=None):
+def verify(task=TASK, assets=False, arms=None, init_checkpoint=None):
     selected = tuple(INITIALIZATION if arms is None else arms)
     if not selected or any(arm not in INITIALIZATION for arm in selected):
         raise ValueError(f'Unknown or empty recipe selection: {selected}')
+    if init_checkpoint is not None and (not assets or len(selected) != 1):
+        raise ValueError('An explicit initialization requires asset verification of one arm')
     manifest = json.loads((task / 'reports/runtime_manifest.json').read_text())
     for name, digest in manifest.items():
         assert sha(task / 'runtime' / name) == digest, name
@@ -52,12 +54,20 @@ def verify(task=TASK, assets=False, arms=None):
         assert cfg['optimizer']['eval_ema_labels'] == ['online', '0.999']
         assert cfg['checkpointing']['resume_from'] is None and not cfg['checkpointing']['auto_resume']
         source = resolve(cfg['checkpointing']['load_from'])
+        initialization = None
         if assets:
-            identity = sources[INITIALIZATION[arm]]
-            assert source.stat().st_size == identity['bytes'], source
-            assert sha(source) == identity['sha256'], source
+            if init_checkpoint is not None:
+                from initialization import inspect_checkpoint
+                source = resolve(init_checkpoint).resolve()
+                initialization = inspect_checkpoint(source, cfg)
+            else:
+                identity = sources[INITIALIZATION[arm]]
+                assert source.stat().st_size == identity['bytes'], source
+                assert sha(source) == identity['sha256'], source
         arms[arm] = dict(config_sha256=sha(cfg_path), differences=differences,
                          model=cfg['model']['model'], source=str(source))
+        if initialization is not None:
+            arms[arm]['initialization'] = initialization
     if assets:
         asset_manifest = json.loads((task / 'assets.json').read_text())
         site = site_config(task)

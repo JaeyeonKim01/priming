@@ -27,10 +27,13 @@ def main():
     for value in c['model'].values():assert torch.isfinite(value).all()
     ema=c['model_ema'];assert '0.999' in ema['shadows']
     for value in ema['shadows']['0.999'].values():assert torch.isfinite(value).all()
-    source=torch.load(cfg['checkpointing']['load_from'],map_location='cpu',mmap=True,weights_only=False)
-    initial_ema_steps=source.get('model_ema',{}).get('step_count',0)
+    if 'initialization' in manifest:
+        initial_ema_steps=manifest['initialization']['ema_step_count']
+    else:
+        source=torch.load(cfg['checkpointing']['load_from'],map_location='cpu',mmap=True,weights_only=False)
+        initial_ema_steps=source.get('model_ema',{}).get('step_count',0)
+        del source
     assert ema['step_count']==initial_ema_steps+horizon
-    del source
     streams=c['sinkhorn_ot_stream_state'];rng=c['mmd_rng_state']
     for container in [streams,rng]:
         assert container['world_size']==8 and len(container['rank_states'])==8

@@ -88,8 +88,52 @@ python scripts/sample.py --model priming_b_160 \
   --num-images 2 --output-dir "$PRIMING_STORAGE/samples/b160"
 ```
 
-For training, set the site/config asset paths to the corresponding external
-locations. Pretraining accepts an absolute `--output`; post-training preparation
+For training assets, `download_assets.py --root "$PRIMING_STORAGE"` creates
+`data/` and `assets/` underneath that directory. The helper uses this layout
+even when `HF_HOME` or `TORCH_HOME` points elsewhere; those variables do not
+redirect its destinations. Point runtime caches at the downloaded layout:
+
+```bash
+export HF_HOME="$PRIMING_STORAGE/assets/huggingface"
+export HF_HUB_CACHE="$HF_HOME/hub"
+export TORCH_HOME="$PRIMING_STORAGE/assets/torch"
+hf auth login
+python scripts/download_assets.py --group dataset --root "$PRIMING_STORAGE"
+python scripts/download_assets.py --group pretraining --root "$PRIMING_STORAGE"
+```
+
+For post-training, also download `--group posttraining` and `--group conversion`
+with that same `--root`, then pass `--root "$PRIMING_STORAGE"` to
+`convert_ot_encoders.py` after installing its conversion dependency.
+For final evaluation, download `--group evaluation` with the same root and set:
+
+```bash
+export PRIMING_FDR5_STATS="$PRIMING_STORAGE/assets/fid_stats"
+export PRIMING_FID_REFERENCE="$PRIMING_FDR5_STATS/jit_in256_stats.npz"
+export PRIMING_INCEPTION_WEIGHTS="$TORCH_HOME/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth"
+```
+
+Training launchers read the site files and override inherited cache environment
+variables. Set these fields to absolute paths (substitute your storage location;
+the JSON files do not interpolate shell variables automatically in every stage):
+
+| File | Field | Location under `PRIMING_STORAGE` |
+|---|---|---|
+| `pretraining/configs/site.json` | `data_path` | `data/imagenet` |
+| same | `hf_home`, `torch_home`, `lpips_weights` | `assets/huggingface`, `assets/torch`, `assets/lpips/vgg.pth` |
+| selected `training/configs/ARM.json` | `data.data_path` | `data/imagenet` |
+| same | `checkpointing.load_from` | `checkpoints/pretraining/priming_b_160.pth` (or L) |
+| same | `ot.ot_repr_cache` | `assets/ot/representations` |
+| `training/configs/site.json` | `hf_home`, `torch_home` | `assets/huggingface`, `assets/torch` |
+| same | `data_root`, `fid_stats` | `data`, `assets/fid_stats` |
+| same | `scratch_root` | `outputs/posttraining_allocations` |
+
+Keep `data_path` at the **parent** of `imagenet-latents-images`; each loader
+appends that subdirectory. The `ot_feature_asset_cache` and
+`ot_feature_calibration_dir` fields are inactive in the packaged full-MAE and
+SIM recipes; SIM reads its checked-in calibration from the runtime.
+
+Pretraining accepts an absolute `--output`; post-training preparation
 accepts `--output-dir`. Store bundles/jobs on shared scratch as well. Conda
 activation in batch jobs needs `source "$(conda info --base)/etc/profile.d/conda.sh"`
 before `conda activate`. Do not assume login-shell activation is inherited.

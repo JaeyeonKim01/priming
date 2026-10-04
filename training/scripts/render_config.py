@@ -16,9 +16,16 @@ def main():
     p.add_argument('--out', required=True)
     p.add_argument('--run-name', required=True)
     p.add_argument('--resume')
+    p.add_argument('--initialization-record', type=Path, help='Validated source record written by prepare.py')
     p.add_argument('--updates', type=int, default=130)
     a = p.parse_args()
     cfg = load_config(a.arm, a.task)
+    initialization = None
+    if a.initialization_record:
+        from initialization import verify_prepared_source
+        initialization = json.loads(a.initialization_record.read_text())
+        cfg['checkpointing']['load_from'] = initialization['path']
+        verify_prepared_source(initialization, cfg)
     cfg['logging']['exp_name'] = a.run_name
     if a.output_dir:
         cfg['logging']['output_dir'] = str(Path(a.output_dir).resolve())
@@ -43,6 +50,8 @@ def main():
     out.write_text(json.dumps(cfg, indent=2)+'\n')
     manifest = dict(arm=a.arm, mode=a.mode, start_update=0, horizon=horizon,
         run_dir=str(run), config_sha256=hashlib.sha256(out.read_bytes()).hexdigest())
+    if initialization is not None:
+        manifest['initialization'] = initialization
     out.with_suffix('.manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
     print(json.dumps(manifest), flush=True)
 

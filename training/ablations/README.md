@@ -96,7 +96,8 @@ and 25,000-update counters.
 
 ```bash
 export PYTHONNOUSERSITE=1 OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
-export HF_HOME="$PWD/assets/huggingface" TORCH_HOME="$PWD/assets/torch"
+export HF_HOME="${HF_HOME:-$PWD/assets/huggingface}"
+export TORCH_HOME="${TORCH_HOME:-$PWD/assets/torch}"
 export HF_HUB_CACHE="$HF_HOME/hub" HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 
 # Start with a 1,000-image pilot in a separate output directory.

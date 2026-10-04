@@ -32,9 +32,13 @@ and reference choices; preserve those for comparisons against the paper.
 
 ## Generate a new evaluation
 
-Download the evaluation encoders and **precomputed** reference statistics:
+Download the generator checkpoint used by the pilot, evaluation encoders, and
+**precomputed** reference statistics. Encoder downloads do not include the
+generator. See [checkpoint downloads](../docs/checkpoints.md) for access details:
 
 ```bash
+hf auth login
+hf download jaykim1102/priming checkpoints/priming_b_80.pth --local-dir .
 python scripts/download_assets.py --group evaluation
 ```
 
@@ -52,7 +56,8 @@ and seeds 1, 2, 3. Changing rank count/batch size can change the sampling stream
 ```bash
 conda activate priming
 export PYTHONNOUSERSITE=1 OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
-export HF_HOME="$PWD/assets/huggingface" TORCH_HOME="$PWD/assets/torch"
+export HF_HOME="${HF_HOME:-$PWD/assets/huggingface}"
+export TORCH_HOME="${TORCH_HOME:-$PWD/assets/torch}"
 export HF_HUB_CACHE="$HF_HOME/hub" HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 python -m torch.distributed.run --standalone --nproc_per_node=4 \
   eval/evaluate.py --model priming_b_80 --num-images 1000 --seeds 1 \
@@ -61,6 +66,9 @@ python -m torch.distributed.run --standalone --nproc_per_node=4 \
 
 Other model keys: `priming_b_160`, `priming_l_80`, `priming_l_160`, `wflow_xl`,
 `drifting_b`, `drifting_l`, `pmf_l`, `pmf_h`, `imf_xl`, and `jit_h`.
+Download the matching checkpoint before selecting another model. Baseline
+generators require the separate assets listed in the
+[baseline asset section](../docs/assets.md#baseline-generators).
 For JiT, use `--nproc_per_node=8 --model jit_h --batch 64` and one seed per job.
 The evaluator refuses to overwrite an existing nonempty seed directory.
 A pilot checks execution; it does not establish a headline metric.

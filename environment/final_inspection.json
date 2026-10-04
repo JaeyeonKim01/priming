@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-03",
+  "scope": "Final user-workflow inspection of Priming; existing pinned environment and local assets; no new GPU execution, full training, conversion, or bulk downloads.",
+  "public_repository_access": "Excluded from readiness assessment at user request; publication is planned.",
+  "assessment": "Packaged workflows pass CPU/source/asset checks. Standalone preparation now accepts compatible perceptual pretraining checkpoints at any saved step through --init-checkpoint; the default released-source identity checks remain intact.",
+  "checks": {
+    "source_only_relocation": {
+      "passed": true,
+      "report_source": "scripts/check_portability.py",
+      "checks": [
+        "environment",
+        "pretraining B/L imports and recovery",
+        "pretraining packaging",
+        "post-training CPU regressions",
+        "post-training recipe and source",
+        "post-training Slurm preview",
+        "retained 33 evaluation records",
+        "paper table arithmetic",
+        "quantitative dashboard build",
+        "checkpoint upload preview",
+        "post-training allocation snapshot",
+        "post-training config rendering",
+        "standalone post-training CLI",
+        "evaluation source hashes (199 files)",
+        "evaluation metrics imports",
+        "evaluation pMF imports",
+        "evaluation iMF imports",
+        "evaluation JiT imports",
+        "evaluation W-Flow imports",
+        "eval/run_4gpu.sbatch syntax",
+        "eval/run_fid_audit.sbatch syntax",
+        "eval/run_jit_8gpu.sbatch syntax",
+        "pretraining/scripts/run.sbatch syntax",
+        "scripts/create_env.sh syntax",
+        "training/scripts/common.sh syntax",
+        "training/scripts/job.sbatch syntax",
+        "training/scripts/monitor.sbatch syntax",
+        "training/scripts/worker.sh syntax",
+        "outputs/snapshot_check/scripts/common.sh syntax",
+        "outputs/snapshot_check/scripts/job.sbatch syntax",
+        "outputs/snapshot_check/scripts/monitor.sbatch syntax",
+        "outputs/snapshot_check/scripts/worker.sh syntax"
+      ]
+    },
+    "entrypoint_and_asset_tests": {
+      "passed": true,
+      "command": "python -m pytest -q tests eval/tests scripts/tests",
+      "tests": 22,
+      "subtests": 3
+    },
+    "pretraining_preparation_with_actual_assets": {
+      "passed": true,
+      "recipes": [
+        "b160_perceptual",
+        "b160_no_perceptual",
+        "l160_perceptual"
+      ],
+      "temporary_bundles_removed": true
+    },
+    "dataset_indices_and_calibration": {
+      "passed": true,
+      "command": "python scripts/prepare_ot_indices.py --dataset-dir data/imagenet/imagenet-latents-images --output-dir assets/ot/representations --verify-only --calibration assets/ot/representations/calibration.json"
+    },
+    "dataset_decoding": {
+      "passed": true,
+      "train_rows": 1281167,
+      "validation_rows": 50000,
+      "sampled_indices": "first, middle, last in each split",
+      "expected_image": "RGB 256x256",
+      "label_range": [
+        0,
+        999
+      ]
+    },
+    "posttraining_assets": {
+      "passed": true,
+      "command": "python training/scripts/verify.py --assets --arm b160",
+      "additional_check": "L-160 initialization size and SHA256 match training/provenance/sources.json"
+    },
+    "asset_release_manifest_consistency": {
+      "passed": true,
+      "dataset_files": 527,
+      "encoder_files": 23,
+      "scope": "Direct shared paths agree with training/assets.json, including allowed published metadata identities."
+    },
+    "public_tree_scan": {
+      "passed": true,
+      "text_files": 718
+    },
+    "documentation_links": {
+      "passed": true,
+      "local_link_targets": 112
+    }
+  },
+  "documentation_fixes": [
+    "Evaluation quick start explicitly downloads its matching generator checkpoint.",
+    "Single-arm post-training verification no longer asks B-only users to supply L checkpoints.",
+    "Documented exact external-storage mappings, download-root semantics, and runtime cache overrides.",
+    "Evaluation examples preserve configured external cache roots.",
+    "Added terminal post-training checkpoint to official evaluation and verification commands.",
+    "Linked Woobin Park and Jaeyeon Kim to their supplied author websites.",
+    "Documented pretraining-to-post-training handoff at any source step, with frozen checkpoint identity and fresh optimizer/counters."
+  ],
+  "remaining_limitations": [
+    {
+      "severity": "scope_limit",
+      "issue": "Official standalone evaluation accepts terminal 25000-update post-training checkpoints; reconstruction and intermediate checkpoint evaluation are not exposed by this entrypoint. Sampling is restricted to released checkpoint identities.",
+      "locations": [
+        "eval/evaluate.py",
+        "scripts/sample.py"
+      ]
+    },
+    {
+      "severity": "documentation_gap",
+      "issue": "Baseline checkpoint destinations are listed, but download/conversion commands for every baseline generator are not supplied. This does not block Priming model training/evaluation.",
+      "locations": [
+        "docs/assets.md#baseline-generators"
+      ]
+    }
+  ],
+  "custom_initialization": {
+    "training_cpu_tests": 84,
+    "training_cpu_subtests": 3,
+    "real_checkpoint_schema_checks": [
+      "B-80",
+      "L-80"
+    ],
+    "tested_source_steps": [
+      0,
+      37,
+      100080,
+      200160,
+      200161
+    ],
+    "validated_behaviors": [
+      "exact online and EMA tensor schemas",
+      "finite weights",
+      "consistent pretraining/EMA counters",
+      "B model and perceptual contract",
+      "rejection of altered source bytes",
+      "default release source pin retained",
+      "online and EMA inherited with fresh optimizer and post-training counters",
+      "preparation without released generator checkpoint present",
+      "resume does not need the original initialization file"
+    ],
+    "gpu_execution": false,
+    "actual_asset_preparation": {
+      "passed": true,
+      "source": "released B-80",
+      "mode": "two-step smoke configuration prepared; GPU training not launched",
+      "source_step": 100080,
+      "posttraining_current_step": 0
+    }
+  },
+  "pipeline_routes": {
+    "released_priming_sampling": "All eight B/L x 80/160 x pre/post checkpoints.",
+    "released_priming_metrics": "All four post-trained Priming checkpoints; official FID/FDr5 commands and verification.",
+    "pretraining": "Three packaged recipes from random initialization.",
+    "posttraining": "Pinned B/L-160 default; explicit compatible perceptual pretraining sources at any step; three B ablation arms.",
+    "new_model_end_to_end": "Complete B command sequence in docs/validation.md, with L substitutions and no released generator prerequisite.",
+    "scope_boundaries": [
+      "No automatic complete baseline generator/VAE download and Drifting conversion path.",
+      "No claim that custom B/L-80 initialization reproduces the original B/L-80 training trajectory.",
+      "B no-perceptual is a reconstruction-only recipe in the packaged workflow.",
+      "Release sampling only accepts released identities; standalone metric evaluation requires terminal 25000-update post-training weights."
+    ]
+  }
+}
