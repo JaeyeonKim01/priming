@@ -188,7 +188,9 @@ torchrun --standalone --nproc_per_node=8 posttrain.py \
 - **Ablation study 2: Other distributional losses.** Replace OT with [Laplacian MMD](configs/posttrain/b160_laplacian.yaml) or [energy distance](configs/posttrain/b160_energy.yaml).
 
 Prepare the dataset and encoders using the [asset guide](docs/assets.md) before
-training. See the stage guides for custom initialization and checkpoint recovery.
+training. Start with the [two-update training check](docs/validation.md#check-the-training-setup-before-a-full-run)
+to verify pretraining → post-training on your setup. See the stage guides for
+custom initialization and checkpoint recovery.
 
 </details>
 

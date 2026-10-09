@@ -145,6 +145,11 @@ Conversion runs on CPU; allow sufficient RAM (64 GB recommended) and about
 20 GB for source/converted weights. The optional MessagePack package is only
 needed for conversion. The converter verifies source hashes, requires strict
 parameter loading, verifies the output hashes, and refuses existing outputs.
+It pins PyTorch's non-tensor ZIP `serialization_id` to the release metadata
+before checking the original whole-file SHA256. This handles packaging variation
+between environments without changing tensor bytes or relaxing verification.
+Only a verified complete file is published; a failed conversion leaves no
+partial encoder at the destination.
 
 - **Pixel MAE:** `Goodeat/drifting`, revision
   `1a5afa9fc22c3beefe06e4689e84d3e6500b5983`, files under

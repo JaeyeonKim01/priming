@@ -39,6 +39,70 @@ These commands assume assets under the repository defaults. The
 Training requires eight ranks; follow your scheduler's multi-node torchrun
 launch procedure if those GPUs span nodes.
 
+## Check the training setup before a full run
+
+After preparing the same data and encoders, run two updates of each stage in
+new output directories. Two updates exercise the nonzero post-training learning
+rate after its first, zero-LR warmup update:
+
+```bash
+torchrun --standalone --nproc_per_node=8 pretrain.py \
+  --config configs/pretrain/b160_perceptual.yaml \
+  --output outputs/pretrain/check_b --smoke-steps 2
+torchrun --standalone --nproc_per_node=8 posttrain.py \
+  --config configs/posttrain/b160.yaml \
+  --init-checkpoint outputs/pretrain/check_b/checkpoints/latest.pth \
+  --output outputs/posttrain/check_b --smoke-steps 2
+```
+
+The first command creates the checkpoint used by the second; no released
+generator checkpoint is needed for this route. To check released initialization,
+download the matching pretrained checkpoint and omit `--init-checkpoint` in a
+separate post-training run. For L, use `l160_perceptual.yaml`, `l160.yaml`, distinct
+output paths, and eight H200s. On a multi-node allocation, replace the standalone
+launcher with the [Slurm example](setup.md#training-across-multiple-nodes).
+
+Pretraining writes `checkpoints/latest.pth`; the post-training check writes
+`checkpoints/step_000002.pth` and `checkpoints/latest.json`. A successful check
+establishes startup, updates, and saving; it does not establish convergence or
+exercise the scheduled evaluation at update 1,250. Start full training in new
+output directories without `--smoke-steps`.
+
+### Fresh training workflow audit — October 9
+
+A separate checkout and newly created pinned Conda environment passed the
+setup script, dependency checks, CPU/reference suite, and source-only
+portability checks. Training encoder inputs, diagnostic weights/statistics,
+dataset metadata/indices/calibration, and a released B pretrained checkpoint
+were downloaded again through the public preparation tools. The 517 large
+ImageNet Arrow shards reused the previously downloaded public release, with
+sizes checked again; their class indices and calibration were revalidated.
+
+This exposed a conversion packaging issue: the fresh MAE archive differed only
+in PyTorch's non-tensor `serialization_id`. SHA256 comparisons matched all
+119 other archive records. The converter now pins that metadata and its ZIP
+CRCs, then requires the **unchanged whole-file release SHA256** before publishing
+the file. Fresh MAE and ConvNeXt conversions both passed. Changed tensor data
+remain rejected; the training and evaluation implementations are unchanged.
+
+Using that new environment and newly converted encoders, eight H200 GPUs
+completed two updates and saved-state audits for all five checks:
+
+- B perceptual pretraining → its own checkpoint → B post-training.
+- L perceptual pretraining → its own checkpoint → L post-training.
+- Downloaded released B-160 pretraining checkpoint → B post-training.
+
+All eight ranks completed each stage. Saved weights, optimizer and EMA states
+were finite; post-training inherited the source EMA counters and changed online
+weights. GPU execution used offline asset loading. These checks do not cover
+full-training convergence, scheduled 50,000-image training evaluation, or GPU
+resume equivalence. Prior B no-perceptual and released-L initialization checks
+are in the [refactor audit](imagenet_refactor_audit.md).
+
+See the [machine-readable workflow record](training_workflow_audit.json) for
+environment versions, public-access checks, release identities, and per-case
+results. ImageNet still requires accepting its dataset terms and logging in.
+
 ## CPU and source checks
 
 The simplified workflows are `pretrain.py`, `posttrain.py`, and `eval.py`.

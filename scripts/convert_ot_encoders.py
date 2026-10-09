@@ -2,12 +2,95 @@
 import argparse
 import gc
 import json
+import os
 from pathlib import Path
+import struct
 import sys
+import tempfile
+import zipfile
+import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from download_assets import matches
+
+
+def normalize_serialization_id(path, identity):
+    """Pin PyTorch's non-tensor ZIP metadata before checking the full file hash.
+
+    The generated ID can differ across environments even with byte-identical
+    pickle/tensor records. Change only that stored record and its ZIP CRCs;
+    preserve all other bytes, including PyTorch's alignment and ZIP64 headers.
+    """
+    if len(identity) != 40 or not identity.isascii() or not identity.isdigit():
+        raise ValueError('Expected the released 40-digit serialization ID')
+    replacement = identity.encode('ascii')
+    with zipfile.ZipFile(path) as archive:
+        records = archive.infolist()
+        candidates = [r for r in records if r.filename.endswith('/.data/serialization_id')]
+        if len(candidates) != 1:
+            raise ValueError('Expected one PyTorch serialization ID record')
+        record = candidates[0]
+        if record.compress_type != zipfile.ZIP_STORED or record.file_size != 40:
+            raise ValueError('Unexpected serialization ID encoding')
+        original = archive.read(record)  # Also validates the original CRC.
+        central_offset = archive.start_dir
+    if original == replacement:
+        return
+    crc = zlib.crc32(replacement)
+    with Path(path).open('r+b') as stream:
+        stream.seek(record.header_offset)
+        header = stream.read(30)
+        if header[:4] != b'PK\x03\x04':
+            raise ValueError('Invalid ZIP local header')
+        name_size, extra_size = struct.unpack_from('<HH', header, 26)
+        data_offset = record.header_offset + 30 + name_size + extra_size
+        # Find the central-directory CRC using the standard ZIP record lengths.
+        central_crc = None
+        stream.seek(central_offset)
+        for _ in records:
+            offset = stream.tell()
+            header = stream.read(46)
+            if header[:4] != b'PK\x01\x02':
+                raise ValueError('Invalid ZIP central directory')
+            name_size, extra_size, comment_size = struct.unpack_from('<HHH', header, 28)
+            name = stream.read(name_size)
+            if name == record.filename.encode('utf-8'):
+                central_crc = offset + 16
+                break
+            stream.seek(extra_size + comment_size, os.SEEK_CUR)
+        if central_crc is None:
+            raise ValueError('Missing serialization ID directory entry')
+        if record.flag_bits & 8:
+            descriptor = data_offset + record.compress_size
+            stream.seek(descriptor)
+            if stream.read(4) != b'PK\x07\x08':
+                raise ValueError('Expected PyTorch ZIP data descriptor')
+            local_crc = descriptor + 4  # Same position for ZIP32 and ZIP64.
+        else:
+            local_crc = record.header_offset + 14
+        stream.seek(data_offset)
+        stream.write(replacement)
+        for offset in (local_crc, central_crc):
+            stream.seek(offset)
+            stream.write(struct.pack('<I', crc))
+
+
+def save_verified_encoder(state, output, expected):
+    """Publish only a complete encoder matching the original release SHA256."""
+    import torch
+    output = Path(output)
+    if output.exists():
+        raise FileExistsError(output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.convert-', dir=output.parent) as folder:
+        temporary = Path(folder) / output.name  # torch.save embeds the basename.
+        torch.save(state, temporary)
+        normalize_serialization_id(temporary, expected['serialization_id'])
+        if not matches(temporary, expected):
+            raise ValueError(f'Converted file differs from the pinned release: {output}. '
+                             'Use the pinned environment; do not bypass asset verification.')
+        os.link(temporary, output)  # Atomic, and refuses a concurrently created output.
 
 
 def read_flax_tree(path):
@@ -75,15 +158,9 @@ def convert(root, family, output):
                 raise ValueError(f'ConvNeXt shape mismatch: {key}')
             state[key] = value.to(dtype=target.dtype).contiguous()
     model.load_state_dict(state, strict=True, assign=True)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    if output.exists():
-        raise FileExistsError(output)
-    torch.save(state, output)
     expected = next(row for row in json.loads((ROOT / 'old/releases/posttrain_encoders.json').read_text())['files']
                     if row['path'] == f'{family}_encoder.pt')
-    if not matches(output, expected):
-        raise ValueError(f'Converted file differs from the pinned release: {output}. '
-                         'Use the pinned environment; do not bypass asset verification.')
+    save_verified_encoder(state, output, expected)
     print(f'{family}: strict loading and release SHA256 passed', flush=True)
     del model, state
     gc.collect()

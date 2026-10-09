@@ -39,11 +39,13 @@
     },
     {
       "path": "mae_encoder.pt",
+      "serialization_id": "0683869326600041671007054347111716310658",
       "bytes": 8508514310,
       "sha256": "799f96fa4115040f20800d5a7f78a5d3a1ce198f1a827f186de082df8b6cf5c8"
     },
     {
       "path": "convnext_encoder.pt",
+      "serialization_id": "1644131416905001393913676527748142244348",
       "bytes": 350889196,
       "sha256": "11a387ebeba481689af9e06fbef0ccff258c5cf56b97f0f1a3a415341fa536ab"
     }
