@@ -1,146 +1,64 @@
-# Portable environment and GPU setup
+# Environment and storage setup
 
-All examples start in the repository directory, named `Priming`. Its Python
-code, pinned baseline source, configs, and retained result records are included.
-Data, checkpoints, and encoder assets are installed separately under this root;
-see [assets.md](assets.md). No parent OST checkout is needed.
-
-## Create the environment
-
-On Linux x86-64 with Conda available:
+Use Linux x86-64, Python 3.11, and the pinned PyTorch 2.6.0/CUDA 12.4 environment.
+The [environment lock](../old/environment/requirements-linux-cu124.txt) retains the
+production pins for the retained workflows and their dependencies. Packages
+used by removed baselines, dashboards, and experiment tracking are excluded.
+The CPU tests use Python's standard `unittest` module.
 
 ```bash
 bash scripts/create_env.sh
 conda activate priming
 export PYTHONNOUSERSITE=1
 python scripts/check_environment.py
-python scripts/check_environment.py --cuda  # run on an allocated GPU node
+python scripts/check_environment.py --cuda  # inside a GPU allocation
 ```
 
-`environment.yml` creates **priming**, using Python 3.11.15 and a fully pinned
-[pip dependency list](../environment/requirements-linux-cu124.txt), including
-PyTorch 2.6.0 + CUDA 12.4 and torchvision 0.21.0. This is an environment recipe,
-not a clone of a pre-existing environment. It uses no user-site packages.
-The script fails if the environment already exists; use a fresh prefix or
-remove your own old environment deliberately before recreating it.
-Conda supports `CONDA_ENVS_PATH` and `CONDA_PKGS_DIRS` for alternative storage.
-Allow ample space for CUDA wheels, caches, and the environment.
+`environment.yml` creates the environment; `create_env.sh` runs dependency and
+import checks against the environment destination you select. A fresh custom
+prefix can be used with `bash scripts/create_env.sh --prefix /scratch/priming/env`.
+Eight ranks are required for the supplied training recipes. Paper FID/FDr5
+uses four ranks and batch 32. Preserve hardware, precision, rank/batch settings,
+and B/L backend behavior when comparing numerical trajectories.
 
-The wheels include their CUDA runtime. Use an NVIDIA driver compatible with
-CUDA 12.4 and H100/H200 GPUs. GPU checks run inside an allocation, not on a
-CPU-only login host. Eight ranks are required by the production training
-recipes; use one eight-GPU server or an equivalent multi-node allocation.
-Preserve batch sizes, accumulation, precision, and B/L-specific backends.
-A different GPU/topology may change numerical trajectories and memory usage;
-validate the supplied probe before a full reproduction.
+## Assets outside the checkout
 
-The pinned environment was built from scratch and checked on CPU and H200. [Environment validation](../environment/validation.json) records
-installed versions and whether CUDA was available. The separate [pipeline validation](validation.md) describes bounded training
-checks; these do not establish full training or 50k metric reproduction.
-
-## Paths and cached downloads
-
-```bash
-export HF_HOME="$PWD/assets/huggingface"
-export HF_HUB_CACHE="$HF_HOME/hub"
-export TORCH_HOME="$PWD/assets/torch"
-```
-
-Entrypoints set these defaults automatically. Download/cache model assets
-before running offline training. `pretraining/configs/site.json` and
-`training/configs/site.json` use repository-relative paths. Absolute paths are
-accepted for external storage. Prepare bundles again after moving a checkout:
-a prepared bundle freezes the resolved paths and asset identities.
-
-Slurm examples contain no institution-specific account or partition. Activate
-`priming` before submission and supply your scheduler's partition/account where
-needed. Direct `torchrun` commands are provided in each stage's guide.
-
-Run `python scripts/check_portability.py` to repeat the source-only relocation
-check (requires a Git checkout). It copies the public source into a temporary
-`Priming/` directory and checks imports, CPU regressions, and saved results.
-
-Official references: [NVIDIA driver compatibility](https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html) and [Conda environments](https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html).
-
-## Keep large files outside home
-
-Choose a writable shared scratch directory before creating an environment or
-fetching assets. Replace `/scratch/priming` with your storage location:
+Choose a shared storage directory and install the environment/assets there:
 
 ```bash
 export PRIMING_STORAGE=/scratch/priming
-mkdir -p "$PRIMING_STORAGE"/{conda-pkgs,pip-cache,tmp,huggingface,torch}
+mkdir -p "$PRIMING_STORAGE"/{conda-pkgs,pip-cache,huggingface,torch}
 export CONDA_PKGS_DIRS="$PRIMING_STORAGE/conda-pkgs"
 export PIP_CACHE_DIR="$PRIMING_STORAGE/pip-cache"
-export TMPDIR="$PRIMING_STORAGE/tmp"
-export HF_HOME="$PRIMING_STORAGE/huggingface"
-export HF_HUB_CACHE="$HF_HOME/hub"
-export TORCH_HOME="$PRIMING_STORAGE/torch"
-export HF_DATASETS_CACHE="$PRIMING_STORAGE/datasets"
-export XDG_CACHE_HOME="$PRIMING_STORAGE/cache"
 bash scripts/create_env.sh --prefix "$PRIMING_STORAGE/env"
 conda activate "$PRIMING_STORAGE/env"
-python scripts/check_environment.py
-hf download jaykim1102/priming checkpoints/priming_b_160.pth \
-  --local-dir "$PRIMING_STORAGE"
-python scripts/sample.py --model priming_b_160 \
-  --checkpoint "$PRIMING_STORAGE/checkpoints/priming_b_160.pth" \
-  --num-images 2 --output-dir "$PRIMING_STORAGE/samples/b160"
-```
-
-For training assets, `download_assets.py --root "$PRIMING_STORAGE"` creates
-`data/` and `assets/` underneath that directory. The helper uses this layout
-even when `HF_HOME` or `TORCH_HOME` points elsewhere; those variables do not
-redirect its destinations. Point runtime caches at the downloaded layout:
-
-```bash
-export HF_HOME="$PRIMING_STORAGE/assets/huggingface"
-export HF_HUB_CACHE="$HF_HOME/hub"
-export TORCH_HOME="$PRIMING_STORAGE/assets/torch"
 hf auth login
 python scripts/download_assets.py --group dataset --root "$PRIMING_STORAGE"
 python scripts/download_assets.py --group pretraining --root "$PRIMING_STORAGE"
 ```
 
-For post-training, also download `--group posttraining` and `--group conversion`
-with that same `--root`, then pass `--root "$PRIMING_STORAGE"` to
-`convert_ot_encoders.py` after installing its conversion dependency.
-For final evaluation, download `--group evaluation` with the same root and set:
+The download helper writes `data/` and `assets/` under `--root`; environment
+cache overrides do not redirect its destinations. Point the commands at the
+prepared paths:
 
 ```bash
-export PRIMING_FDR5_STATS="$PRIMING_STORAGE/assets/fid_stats"
-export PRIMING_FID_REFERENCE="$PRIMING_FDR5_STATS/jit_in256_stats.npz"
-export PRIMING_INCEPTION_WEIGHTS="$TORCH_HOME/hub/checkpoints/weights-inception-2015-12-05-6726825d.pth"
+export HF_HOME="$PRIMING_STORAGE/assets/huggingface"
+export HF_HUB_CACHE="$HF_HOME/hub"
+export TORCH_HOME="$PRIMING_STORAGE/assets/torch"
 ```
 
-Training launchers read the site files and override inherited cache environment
-variables. Set these fields to absolute paths (substitute your storage location;
-the JSON files do not interpolate shell variables automatically in every stage):
+Pretraining accepts `--data-path`, `--hf-home`, `--torch-home`, and
+`--lpips-weights`. Post-training accepts `--data-path`, `--encoder-cache`,
+`--init-checkpoint`, `--hf-home`, and `--torch-home`; its recipe specifies the
+scheduled evaluation reference locations. Standalone evaluation accepts
+`--checkpoint`, `--stats-dir`, `--fid-reference`, and `--inception-weights`.
+All selected paths may be absolute. Dataset paths select the **parent** of
+`imagenet-latents-images`. Output paths may be on shared storage.
 
-| File | Field | Location under `PRIMING_STORAGE` |
-|---|---|---|
-| `pretraining/configs/site.json` | `data_path` | `data/imagenet` |
-| same | `hf_home`, `torch_home`, `lpips_weights` | `assets/huggingface`, `assets/torch`, `assets/lpips/vgg.pth` |
-| selected `training/configs/ARM.json` | `data.data_path` | `data/imagenet` |
-| same | `checkpointing.load_from` | `checkpoints/pretraining/priming_b_160.pth` (or L) |
-| same | `ot.ot_repr_cache` | `assets/ot/representations` |
-| `training/configs/site.json` | `hf_home`, `torch_home` | `assets/huggingface`, `assets/torch` |
-| same | `data_root`, `fid_stats` | `data`, `assets/fid_stats` |
-| same | `scratch_root` | `outputs/posttraining_allocations` |
+Training compiler caches and temporary libraries use node-local `/tmp`,
+separated by run, job, and rank. Set `PRIMING_LOCAL_TMP` to another node-local
+writable disk if needed. Keep checkpoints and assets on shared storage.
+Offline execution loads already verified local encoder files.
 
-Keep `data_path` at the **parent** of `imagenet-latents-images`; each loader
-appends that subdirectory. The `ot_feature_asset_cache` and
-`ot_feature_calibration_dir` fields are inactive in the packaged full-MAE and
-SIM recipes; SIM reads its checked-in calibration from the runtime.
-
-Pretraining accepts an absolute `--output`; post-training preparation
-accepts `--output-dir`. Store bundles/jobs on shared scratch as well. Conda
-activation in batch jobs needs `source "$(conda info --base)/etc/profile.d/conda.sh"`
-before `conda activate`. Do not assume login-shell activation is inherited.
-
-Training launchers put compiler caches and temporary shared libraries in
-node-local `/tmp/priming-UID/`, separated by job and rank. Set
-`PRIMING_LOCAL_TMP` to another **node-local** writable disk if needed. Avoid a
-network filesystem for compiler temporary files: loaded libraries can leave
-open-file placeholders that make Triton's cleanup fail. This setting is
-independent of the shared scratch location used for checkpoints and bundles.
+See [asset preparation](assets.md), [pretraining](pretrain.md),
+[post-training](posttrain.md), and [evaluation](eval.md).

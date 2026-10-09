@@ -1,0 +1,7 @@
+_base_: _base.yaml
+model:
+  model: OST_L
+loss:
+  perceptual_threshold: 1.0
+optimizer:
+  min_lr: 0

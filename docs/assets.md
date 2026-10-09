@@ -11,7 +11,7 @@ helper and configure the asset paths as described in [setup](setup.md).
 | Reconstruction pretraining | Packed ImageNet; perceptual recipes also need LPIPS, VGG16, ConvNeXt |
 | OT post-training | Packed ImageNet with indices/calibration, converted MAE/ConvNeXt, pretrained generator, training diagnostic assets |
 
-The [encoder manifest](../releases/encoders.json) pins upstream revisions,
+The [encoder manifest](../old/releases/encoders.json) pins upstream revisions,
 filenames, sizes, and SHA256. The helper verifies every downloaded file and
 prepares the offline Hub cache. Existing files or cache revisions that differ
 from the release are rejected.
@@ -20,7 +20,7 @@ from the release are rejected.
 
 Dataset repository: [jaykim1102/priming](https://huggingface.co/datasets/jaykim1102/priming).
 This is separate from the generator's **model** repository with the same name.
-The [release manifest](../releases/dataset.json) pins the complete dataset
+The [release manifest](../old/releases/dataset.json) pins the complete dataset
 snapshot and checksums. The helper downloads that verified revision.
 
 Accept the ImageNet terms on the dataset page once. Access uses automatic
@@ -64,7 +64,7 @@ python scripts/download_assets.py --group dataset --verify-only
 ```
 
 The [ImageNet Terms of Access](https://image-net.org/download.php) apply;
-see the [dataset card](huggingface-dataset-card.md) for attribution.
+the dataset Hub page provides its attribution.
 [HF documents](https://huggingface.co/docs/hub/datasets-gated) browser acceptance
 and authenticated downloads.
 
@@ -84,20 +84,20 @@ No weight conversion is needed:
 
 Exact filenames and SHA256 are in the encoder manifest. The B no-perceptual
 recipe does not require these encoders. Continue with the
-[pretraining guide](../pretraining/README.md).
+[pretraining guide](pretrain.md).
 
 ## Post-training encoders and OT calibration
 
 First download the dataset. For default reproduction, also download the
 [160-epoch pretrained generator](checkpoints.md). With
-[`--init-checkpoint`](../training/README.md#start-from-your-own-pretraining-checkpoint),
+[`--init-checkpoint`](posttrain.md#initialization-and-resume),
 use your own compatible pretraining checkpoint instead.
 Then prepare diagnostic encoders/statistics and the original conversion inputs:
 
 ```bash
 python scripts/download_assets.py --group posttraining
 python scripts/download_assets.py --group conversion
-python -m pip install -r environment/requirements-conversion.txt
+python -m pip install -r old/environment/requirements-conversion.txt
 python scripts/convert_ot_encoders.py
 ```
 
@@ -118,6 +118,13 @@ parameter loading, verifies the output hashes, and refuses existing outputs.
   with epsilon `1e-6`. MAE uses BF16 compute and ConvNeXt uses FP32. Keep these
   implementations with the frozen calibration.
 
+The renewed encoder loader is `models/encoders/load.py`. It reads the same
+converted files and preserves the source hash recorded in the calibration.
+`old/releases/posttrain_encoders.json` pins the converted weights, index files, and
+both accepted metadata editions. The SIM loader uses the pinned local SigLIP,
+ViT-MAE, and Inception files from `old/releases/encoders.json`; it preserves the
+historical feature IDs without downloading during model construction.
+
 The dataset includes **class indices and frozen OT calibration**; reuse them
 for the released experiment. Calibration contains 97 feature bandwidths,
 weights, dimensions, 2,000 selected training rows, and the encoder source hash.
@@ -129,14 +136,7 @@ python scripts/prepare_ot_indices.py \
   --dataset-dir data/imagenet/imagenet-latents-images \
   --output-dir assets/ot/representations --verify-only \
   --calibration assets/ot/representations/calibration.json
-python training/scripts/verify.py --assets --arm b160
 ```
-
-Select `--arm l160` for L. Omitting `--arm` verifies every packaged recipe and
-therefore requires both B-160 and L-160 pretrained generator checkpoints.
-For a custom initialization, `prepare.py --init-checkpoint PATH` performs asset
-verification together with validation of your source; the default released-source
-verification command above is unnecessary.
 
 To independently rebuild the three index files, omit `--verify-only` and
 choose a new `--output-dir`. Read labels in dataset order, stable-sort by label
@@ -153,7 +153,7 @@ The post-training group also supplies precomputed Inception reference features
 for training-time precision/recall diagnostics, avoiding another reference-image
 download. SIM calibration is included in the source tree and reuses the
 downloaded timm/Inception encoders. Continue with the
-[training guide](../training/README.md).
+[training guide](posttrain.md).
 
 ## Evaluation: download existing reference statistics
 
@@ -182,22 +182,9 @@ Frozen FDr5 statistics are hosted alongside the Priming generator weights.
 These are distinct references; do not substitute one for the other.
 FDr5 excludes ConvNeXt; its additional statistic is used by training diagnostics.
 
-Encoder model IDs and exact revisions are in the [manifest](../releases/encoders.json).
+Encoder model IDs and exact revisions are in the [manifest](../old/releases/encoders.json).
 The helper prepares the pinned snapshots and `refs/main` for offline loading.
 Reference files hosted in the Priming model repository require the same read
 access as [generator checkpoints](checkpoints.md), independently of dataset access.
-See [evaluation commands](../eval/README.md) for the sampling/precision protocol
+See [evaluation commands](eval.md) for the sampling/precision protocol
 and a 1,000-image pilot.
-
-## Baseline generators
-
-Baseline evaluation additionally requires the respective released generator
-and, where applicable, VAE. These are separate from shared evaluation encoders:
-`pMF-L_256.pth`, `pMF-H_256.pth`, `iMF-XL.pth`, and `JiT-H.pth` belong in
-`assets/baselines/checkpoints/`; identities are recorded in
-[the baseline adapter](../eval/baseline_loaders.py). W-Flow uses
-`assets/baselines/comparison/wflow/checkpoints/latent_sota_XL_ot/state_00180000.pt`
-and `assets/baselines/comparison/vae`. Converted Drifting uses
-`assets/baselines/comparison/drifting/models/gen/jax/pixel_{B,L}_sota/converted_ema.pt`.
-The asset helper covers Priming data and shared encoders/references; it does
-not download these baseline generator checkpoints.

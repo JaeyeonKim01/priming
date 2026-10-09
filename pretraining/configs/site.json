@@ -1,6 +1,0 @@
-{
-  "data_path": "data/imagenet",
-  "hf_home": "assets/huggingface",
-  "torch_home": "assets/torch",
-  "lpips_weights": "assets/lpips/vgg.pth"
-}

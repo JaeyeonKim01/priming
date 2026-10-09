@@ -1,0 +1,68 @@
+model:
+  model: OST_B
+  img_size: 256
+  patch_size: 16
+  label_drop_prob: 0.0
+  class_tokens: 8
+  guidance_tokens: 0
+  interval_tokens: 0
+  norm_eps: 0.01
+  norm_p: 1.0
+  rope_2d: true
+  learned_pe: true
+  in_channels: 3
+  P_mean: 0.8
+  P_std: 0.8
+  perceptual_threshold: 0.8
+train:
+  steps: 25000
+  global_batch_size: 1024
+  seed: 1
+  dtype: bf16
+  compile: true
+  save_every: 1250
+  print_freq: 10
+optimizer:
+  optimizer: adamw
+  lr: 1.0e-05
+  beta1: 0.9
+  beta2: 0.95
+  weight_decay: 0.0
+  grad_clip: 1.0
+  warmup_steps: 125
+matching:
+  stack: convnext_full_mae
+  kind: featurewise_ot
+  coefficient: 5.0
+  global_classes_per_step: 16
+  samples_per_class: 64
+  real_references_per_class: 128
+  epsilon: 0.001
+  epsilon_mixture:
+    '0.001': 0.75
+    '0.01': 0.25
+  num_iterations: 1000
+  tolerance: 1.0e-06
+  energy_delta: 0.04549544751644135
+  microbatch: 8
+  seed: 7919
+data:
+  data_path: data/imagenet
+  num_classes: 1000
+  reference_workers: 4
+  encoder_cache: assets/ot/representations
+sampling:
+  cfg: 1.0
+  t_min: 0.1
+  t_max: 1.0
+  num_steps: 1
+evaluation:
+  every: 1250
+  num_images: 50000
+  batch_size: 64
+  stats_dir: assets/fid_stats
+  prc_reference: data/prc/VIRTUAL_imagenet256_labeled_inception.pt
+  prc_k: 3
+  prc_batch_size: 10000
+initialization:
+  checkpoint: checkpoints/pretraining/priming_b_160.pth

@@ -32,8 +32,6 @@ def check():
         count += 1
         if any(pattern.search(contents) for pattern in PATTERNS):
             failures.append(name)
-        if name.startswith('training/reports/') and name != 'training/reports/runtime_manifest.json':
-            failures.append(name)
     if failures:
         raise RuntimeError('Private information or old training reports: ' + ', '.join(sorted(set(failures))))
     print(f'PASS public-tree scan: {count} text files; Git history and binary metadata are outside this check.')

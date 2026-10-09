@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'training/runtime'))
+sys.path.insert(0, str(ROOT))
 from download_assets import matches
 
 
@@ -45,10 +45,10 @@ def read_flax_tree(path):
 
 def convert(root, family, output):
     import torch
-    from src.ot_representations_full.encoders import make_mae, make_convnext
-    from src.ot_representations_full.vendor.param_convert import convert_mae_tree_to_state_dict
-    from src.ot_representations_full.vendor.convnext import _map_hf_key_to_local
-    rows = [r for r in json.loads((ROOT / 'releases/encoders.json').read_text())['files']
+    from models.encoders.full.encoders import make_mae, make_convnext
+    from models.encoders.full.vendor.param_convert import convert_mae_tree_to_state_dict
+    from models.encoders.full.vendor.convnext import _map_hf_key_to_local
+    rows = [r for r in json.loads((ROOT / 'old/releases/encoders.json').read_text())['files']
             if 'conversion' in r['groups'] and f'/encoder_sources/{family}/' in r['path']]
     for row in rows:
         if not matches(root / row['path'], row):
@@ -79,8 +79,8 @@ def convert(root, family, output):
     if output.exists():
         raise FileExistsError(output)
     torch.save(state, output)
-    expected = next(row for row in json.loads((ROOT / 'training/assets.json').read_text())['files']
-                    if row['path'] == f'assets/ot/representations/{family}_encoder.pt')
+    expected = next(row for row in json.loads((ROOT / 'old/releases/posttrain_encoders.json').read_text())['files']
+                    if row['path'] == f'{family}_encoder.pt')
     if not matches(output, expected):
         raise ValueError(f'Converted file differs from the pinned release: {output}. '
                          'Use the pinned environment; do not bypass asset verification.')

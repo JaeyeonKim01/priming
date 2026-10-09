@@ -52,7 +52,7 @@ def main():
             raise ValueError('Invalid bandwidths')
         if not all(np.isfinite(x) and x > 0 for x in c['weights'].values()) or not np.isclose(sum(c['weights'].values()), 1):
             raise ValueError('Invalid feature weights')
-        source = ROOT / 'training/runtime/src/ot_representations_full'
+        source = ROOT / 'models/encoders/full'
         files = [source / 'encoders.py', *sorted((source / 'vendor').glob('*.py'))]
         identity = hashlib.sha256(b''.join(f.read_bytes() for f in files)).hexdigest()
         if identity != c['encoder_source_sha256']:

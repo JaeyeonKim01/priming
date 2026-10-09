@@ -1,3 +1,0 @@
-torch
-opencv-python
-torch-fidelity>=0.3.0

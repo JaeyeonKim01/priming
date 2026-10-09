@@ -1,24 +1,18 @@
 """Download a selected release asset group into an explicit storage root."""
 import argparse
-import hashlib
+import sys
 import json
 import os
 from pathlib import Path, PurePosixPath
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def digest(path):
-    h = hashlib.sha256()
-    with Path(path).open('rb') as f:
-        for block in iter(lambda: f.read(8 << 20), b''):
-            h.update(block)
-    return h.hexdigest()
+sys.path.insert(0, str(ROOT))
+from utils.files import sha256
 
 
 def matches(path, row):
-    return path.is_file() and path.stat().st_size == row['bytes'] and digest(path) == row['sha256']
+    return path.is_file() and path.stat().st_size == row['bytes'] and sha256(path) == row['sha256']
 
 
 def safe_path(root, name):
@@ -85,11 +79,11 @@ def main():
     # Authentication is read from the existing login; all large caches live here.
     os.environ.setdefault('HF_XET_CACHE', str(root / 'assets/.xet-cache'))
     if a.group == 'dataset':
-        release = json.loads((ROOT / 'releases/dataset.json').read_text())
+        release = json.loads((ROOT / 'old/releases/dataset.json').read_text())
         rows = [dict(row, kind='hub_file', repo_id=release['repo_id'], repo_type='dataset',
                      revision=release['revision'], filename=row['path']) for row in release['files']]
     else:
-        rows = [r for r in json.loads((ROOT / 'releases/encoders.json').read_text())['files'] if a.group in r['groups']]
+        rows = [r for r in json.loads((ROOT / 'old/releases/encoders.json').read_text())['files'] if a.group in r['groups']]
     print(f"{len(rows)} files; {sum(r['bytes'] for r in rows) / 1e9:.3f} GB", flush=True)
     for row in rows:
         download(root, row, a.verify_only)

@@ -1,0 +1,51 @@
+{
+  "format": "priming.posttrain.assets.v1",
+  "files": [
+    {
+      "path": "downloads.json",
+      "bytes": 1964,
+      "sha256": "b4d2df79ca0af5cb503e6b1fcdf66f4fa742a765621efde386709e574373570c",
+      "published_bytes": 1799,
+      "published_sha256": "a341d41e989d301bf82953ce4324d8dacb07edb24c14c259601f783f95609460"
+    },
+    {
+      "path": "converted_manifest.json",
+      "bytes": 2428,
+      "sha256": "8cf3866d055611816ea34da8ea41760cd0a1f7a928e92aad6d4d1149116a34dc",
+      "published_bytes": 2368,
+      "published_sha256": "90a6e7745fc338b359c6416dd32338df72da979ed568124e8b22b563329e39ba"
+    },
+    {
+      "path": "calibration.json",
+      "bytes": 61931,
+      "sha256": "bf9f6ca86712989431b7cccc9e67b460bed14a0b8647bdeb0ab6c37c1c1f9942",
+      "published_bytes": 61890,
+      "published_sha256": "aff37e1b790371357f75e51fa55c32e02a553282490453d6317d8cf58039b7de"
+    },
+    {
+      "path": "class_order.npy",
+      "bytes": 10249464,
+      "sha256": "8eac26afb61e97a1c0ae647425fa1984f1ef9b8a8e379f95aaa3f9888b5c29ba"
+    },
+    {
+      "path": "dataset_labels.npy",
+      "bytes": 10249464,
+      "sha256": "31157dfdc33be7d7f83ce46f744812269c6dd7ceac058da12a8f089734fdbc23"
+    },
+    {
+      "path": "class_counts.npy",
+      "bytes": 8128,
+      "sha256": "998193745040c74b8f5dffd3951ec59e336bcd8fd2d2875b7481c4303b257fb5"
+    },
+    {
+      "path": "mae_encoder.pt",
+      "bytes": 8508514310,
+      "sha256": "799f96fa4115040f20800d5a7f78a5d3a1ce198f1a827f186de082df8b6cf5c8"
+    },
+    {
+      "path": "convnext_encoder.pt",
+      "bytes": 350889196,
+      "sha256": "11a387ebeba481689af9e06fbef0ccff258c5cf56b97f0f1a3a415341fa536ab"
+    }
+  ]
+}

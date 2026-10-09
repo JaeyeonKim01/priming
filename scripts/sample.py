@@ -8,43 +8,19 @@ from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from priming_paths import resolve
-from verify_checkpoints import digest
+from utils.paths import resolve
 
 
 def load_generator(key, stage, weights, checkpoint, device):
     """Load only the pixel generator; no dataset, metric encoders, or VAE needed."""
-    import torch
-    runtime = ROOT / 'eval/runtime'
-    sys.path[:0] = [str(runtime), str(runtime / 'packages/distmatch/src')]
-    from src.models import OSTDenoiser_models
+    from utils.checkpoint import load_released_model
 
     manifest = 'pretraining_manifest.json' if stage == 'pretraining' else 'manifest.json'
-    item = json.loads((ROOT / 'checkpoints' / manifest).read_text())[key]
-    path = resolve(checkpoint or item['checkpoint'])
-    if not path.is_file():
-        raise FileNotFoundError(f'{path}\nDownload it with: hf download jaykim1102/priming {item["checkpoint"]} --local-dir {ROOT}')
-    if path.stat().st_size != item['checkpoint_bytes'] or digest(path) != item['checkpoint_sha256']:
-        raise ValueError(f'Checkpoint does not match the released {stage}/{key}: {path}')
-    config_path = ROOT / 'checkpoints' / f'{key}.json'
-    config_identity = json.loads((ROOT / 'checkpoints/manifest.json').read_text())[key]
-    if digest(config_path) != config_identity['config_sha256']:
-        raise ValueError(f'Inference config changed: {config_path}')
-    args = SimpleNamespace(**json.loads(config_path.read_text())['sampling_args'])
-    net = OSTDenoiser_models[args.model](
-        img_size=args.img_size, patch_size=args.patch_size, in_channels=args.token_channels,
-        tokenizer_patch_size=1, num_classes=args.num_classes, label_drop_prob=args.label_drop_prob,
-        corruption='denoising', t_dist='lognorm', t_min=0., t_max=1.,
-        P_mean=args.P_mean, P_std=args.P_std, cfg_beta=args.cfg_beta,
-        cfg_omega_max=args.cfg_omega_max, class_tokens=args.class_tokens,
-        guidance_tokens=args.guidance_tokens, interval_tokens=args.interval_tokens,
-        rope_2d=args.rope_2d, learned_pe=args.learned_pe, noise_scale=args.noise_scale,
-        norm_eps=args.norm_eps, norm_p=args.norm_p, perceptual_threshold=args.perceptual_threshold)
-    state = torch.load(path, map_location='cpu', mmap=True, weights_only=False)
+    item = json.loads((ROOT / 'old/checkpoints' / manifest).read_text())[key]
+    net, sampling = load_released_model(key, root=ROOT, checkpoint=checkpoint,
+                                       stage=stage, weights=weights, device=device)
+    args = SimpleNamespace(**sampling)
     ema = '0.9999' if stage == 'pretraining' else '0.999'
-    selected = state['model'] if weights == 'online' else state['model_ema']['shadows'][ema]
-    net.load_state_dict(selected, strict=True, assign=True)
-    net.to(device).eval().requires_grad_(False)
     return net, args, dict(checkpoint=item['checkpoint'], checkpoint_sha256=item['checkpoint_sha256'],
                            stage=stage, weights=weights, ema=ema if weights == 'ema' else None)
 
@@ -104,7 +80,7 @@ def main():
                     num_images=len(images), device=options.device,
                     precision='BF16' if options.device == 'cuda' else 'FP32',
                     sampling_steps=1, cfg=1., images=images,
-                    scope='Single-process samples; use eval/evaluate.py for the paper metric protocol.')
+                    scope='Single-process samples; use eval.py for the paper metric protocol.')
     (output / 'samples.json').write_text(json.dumps(metadata, indent=2) + '\n')
     print(f'Saved {len(images)} PNGs and samples.json to {output}')
 

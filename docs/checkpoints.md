@@ -1,7 +1,7 @@
 # Checkpoint downloads and sampling
 
 The release contains eight PyTorch `.pth` files: B/L × 80/160 pretraining epochs
-× before/after post-training. The two checked-in manifests pin filenames,
+× before/after post-training. The two checked-in manifests in `old/checkpoints/` pin filenames,
 sizes, and SHA256. Pretraining files contain online and EMA state; post-training
 initializes from online weights. Release evaluation uses post-training EMA .999.
 These are full training checkpoints, not Diffusers or safetensors models.
@@ -9,22 +9,17 @@ These are full training checkpoints, not Diffusers or safetensors models.
 ## Download the hosted checkpoints
 
 The eight files are hosted at [jaykim1102/priming](https://huggingface.co/jaykim1102/priming).
-The repository was private when checked; log in with an account that has read
-access. From the code repository root with the `priming` environment active:
+From the code repository root with the `priming` environment active:
 
 ```bash
 hf auth login
-hf download jaykim1102/priming --include 'checkpoints/*' --local-dir .
-python verify_checkpoints.py
+hf download jaykim1102/priming --include 'checkpoints/*.pth' --local-dir .
+python scripts/verify_checkpoints.py
 ```
 
 For the exact checked snapshot, add
 `--revision 9dc5fe94583b4479edb954327110850dc748ce44` to the download command.
-The [verification report](../environment/huggingface_validation.json) records
-remote identities, downloaded checksums, and online/EMA state-loading results.
-This checks checkpoint loading; it is not a new GPU sampling or metric run.
-
-`--metadata-only` on `verify_checkpoints.py` checks sizes and inference configs
+`--metadata-only` on `scripts/verify_checkpoints.py` checks sizes and inference configs
 but skips checkpoint hashes. The default performs full verification. Ordinary
 files downloaded from the Hub are accepted; original-workspace symlinks are
 not required. Evaluation also needs the [encoder/reference assets](assets.md).
@@ -56,6 +51,6 @@ seed, precision, batch size, and checkpoint identity.
 
 CUDA sampling uses BF16. `--device cpu --num-images 1 --batch-size 1` provides
 a small FP32 smoke test. Preserve device, batch size and seed when comparing
-sample runs. For paper FID/FDr⁵ measurements, use [the evaluation guide](../eval/README.md).
+sample runs. For paper FID/FDr⁵ measurements, use [the evaluation guide](eval.md).
 
 Official reference: [Hub CLI](https://huggingface.co/docs/huggingface_hub/guides/cli).

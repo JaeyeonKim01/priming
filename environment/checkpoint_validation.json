@@ -1,7 +1,0 @@
-{
-  "passed": true,
-  "checkpoints": 8,
-  "verification": "Full SHA256, file sizes, and inference config checksums",
-  "command": "python verify_checkpoints.py",
-  "scope": "Local production checkpoints; no Hugging Face upload/download performed."
-}

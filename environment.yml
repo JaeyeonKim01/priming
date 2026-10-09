@@ -5,4 +5,4 @@ dependencies:
   - python=3.11.15
   - pip=26.1.1
   - pip:
-      - -r environment/requirements-linux-cu124.txt
+      - -r old/environment/requirements-linux-cu124.txt

@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def check(require_cuda=False):
     mismatches = {}
     versions = {}
-    for line in (ROOT / 'environment/requirements-linux-cu124.txt').read_text().splitlines():
+    for line in (ROOT / 'old/environment/requirements-linux-cu124.txt').read_text().splitlines():
         if '==' not in line or line.startswith(('#', '-')):
             continue
         name, expected = line.split('==')
@@ -27,12 +27,10 @@ def check(require_cuda=False):
         raise RuntimeError(f'Environment differs from lock: {mismatches}')
     if sys.version_info[:2] != (3, 11):
         raise RuntimeError('The production runtime requires Python 3.11.')
-    import cv2
     import torch
     import torchvision
     import muon
     import transformers
-    import diffusers
     available = torch.cuda.is_available()
     if require_cuda and not available:
         raise RuntimeError('CUDA is unavailable; check NVIDIA driver/GPU access.')

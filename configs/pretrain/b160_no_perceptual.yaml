@@ -1,0 +1,6 @@
+_base_: _base.yaml
+data:
+  random_horizontal_flip: true
+loss:
+  aux:
+    enabled: false

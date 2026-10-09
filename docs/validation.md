@@ -1,193 +1,48 @@
-# Pipeline validation
+# Validation
 
-## End-to-end routes
-
-The release supports two Priming workflows: use released weights to reproduce
-sampling/metrics, or train a new perceptual B/L model through both stages and
-evaluate its terminal checkpoint. Repository visibility is a separate release
-step. The following table distinguishes executable paths from narrower scopes:
-
-| Route | Entry point and coverage |
-|---|---|
-| Released B/L × 80/160, before/after post-training: PNG sampling | [Checkpoint guide](checkpoints.md); all eight released files |
-| Released post-trained B/L × 80/160: official FID/FDr5 | [Evaluation guide](../eval/README.md); four Priming model keys, frozen encoder/reference assets |
-| Reconstruction from random initialization | [Pretraining guide](../pretraining/README.md); B perceptual, B no-perceptual, L perceptual |
-| Released B/L-160 initialization → 25k post-training updates | [Post-training guide](../training/README.md); pinned sources, standalone or Slurm probe chain |
-| Your perceptual B/L pretraining at any saved step → post-training → official evaluation | [`--init-checkpoint`](../training/README.md#start-from-your-own-pretraining-checkpoint), then `evaluate.py --checkpoint`; standalone launch |
-| SIM, Laplacian MMD, energy | [Ablation guide](../training/ablations/README.md); B recipes and terminal checkpoint evaluation |
-| Comparison baseline evaluation | Samplers and metric commands are included; baseline generator/VAE downloads and Drifting conversion are not a complete automated preparation path. See [baseline assets](assets.md#baseline-generators). |
-
-Explicit source selection reuses the packaged B/L-160 post-training settings;
-it does not certify the original B/L-80 training trajectories. The no-perceptual
-B recipe is available for reconstruction training, but the packaged post-training
-initialization format requires perceptual B weights. The standalone final
-evaluator accepts 25,000-update post-training checkpoints; evaluation of
-intermediate or reconstruction checkpoints and sampling from arbitrary user
-checkpoints are not exposed by those release entrypoints. Text-to-image and
-world-modeling training are outside this release.
-
-### Train your own B model through both stages
-
-Start in a fresh checkout with the [shared environment](setup.md) active and
-the dataset terms accepted. These commands use repository-local asset paths;
-for scratch storage, configure the paths in [setup.md](setup.md#keep-large-files-outside-home).
-Use new bundle, job, and output directories. The two training commands require
-eight GPUs; final evaluation uses four. These are full training commands, not
-short startup checks.
+The simplified workflows are `pretrain.py`, `posttrain.py`, and `eval.py`.
+The model, data, losses, metrics, and checkpoint helpers have one shared source
+tree. CPU comparisons read an original checkout selected by
+`PRIMING_REFERENCE_ROOT`; tests disable bytecode writes to that checkout.
 
 ```bash
-hf auth login
-python scripts/download_assets.py --group dataset
-python scripts/download_assets.py --group pretraining
-python scripts/download_assets.py --group posttraining
-python scripts/download_assets.py --group conversion
-python -m pip install -r environment/requirements-conversion.txt
-python scripts/convert_ot_encoders.py
-python scripts/download_assets.py --group evaluation
-
-python pretraining/scripts/prepare.py --recipe b160_perceptual \
-  --bundle outputs/pretraining/my_b_bundle --output outputs/pretraining/my_b_run
-python -m torch.distributed.run --standalone --nproc_per_node=8 \
-  pretraining/scripts/train.py --bundle outputs/pretraining/my_b_bundle
-
-python training/scripts/prepare.py --arm b160 \
-  --init-checkpoint outputs/pretraining/my_b_run/checkpoints/step_0200160.pth \
-  --run-name my_b_posttraining --job outputs/posttraining_allocations/my_b
-python -m torch.distributed.run --standalone --nproc_per_node=8 \
-  training/scripts/train.py --job outputs/posttraining_allocations/my_b
-
-export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
-python -m torch.distributed.run --standalone --nproc_per_node=4 \
-  eval/evaluate.py --model priming_b_160 \
-  --checkpoint outputs/posttraining/priming/my_b_posttraining/checkpoints/step_0024999.pth \
-  --num-images 50000 --seeds 1 2 3 --batch 32 --output-dir outputs/evaluation/my_b
-python eval/verify_batch.py --model priming_b_160 \
-  --checkpoint outputs/posttraining/priming/my_b_posttraining/checkpoints/step_0024999.pth \
-  --num-images 50000 --seeds 1 2 3 --output-dir outputs/evaluation/my_b
-```
-
-No released generator checkpoint is required by this route. Substitute any
-other saved perceptual checkpoint at `--init-checkpoint`. For L, use
-`l160_perceptual`, `--arm l160`, `--model priming_l_160`, and distinct paths/run
-names. The [evaluation guide](../eval/README.md) also provides a 1,000-image
-pilot to run before the final three-seed evaluation.
-
-## Downloaded assets and conversion
-
-The [asset release validation](../environment/asset_release_validation.json)
-records an additional check of the public preparation workflow:
-
-- All 517 packed ImageNet Arrow shards were hashed; image path fields were
-  null and images were embedded. The train/validation counts and all training
-  labels were checked against the included class indices.
-- All 527 dataset artifacts matched the published Hub sizes and checksums.
-  One image shard was downloaded again and passed the byte and image/label
-  checks. The public repository has automatic approval and an ImageNet terms
-  checkbox; anonymous image access was denied as expected.
-- Rebuilding the three class index files produced the released SHA256 values.
-  The frozen calibration's row selection and encoder source identity matched.
-- Conversion from the pinned upstream MAE and ConvNeXt weights reproduced
-  both released encoder files byte-for-byte.
-- A new evaluation cache was populated with the download helper. A 1,000-image
-  Priming-B-160 pilot on four H200 GPUs passed the saved-result audit using
-  those encoders and precomputed statistics. It used no ImageNet dataset and
-  did not recompute real-image statistics. This pilot is an execution check,
-  not a replacement for the 50,000-image paper evaluation.
-
-Dataset publication status and the pinned download revision are recorded in
-[the dataset release manifest](../releases/dataset.json).
-
-A startup check exercises asset loading, distributed forward/backward passes,
-optimizer updates, EMA, and checkpoint writing. It does not establish a full
-160-epoch or 25,000-update reproduction, final metrics, or recovery fidelity.
-The production launcher's longer probe additionally checks optimizer/EMA replay
-and resume behavior.
-
-## Bounded GPU checks
-
-Use a new output directory for every check. Keep environments, assets, bundles,
-and output checkpoints on external storage, with compiler caches on node-local
-`/tmp` (or `PRIMING_LOCAL_TMP`); see
-[the scratch setup example](setup.md#keep-large-files-outside-home).
-Prepare the dataset and encoders in [assets.md](assets.md) before running.
-Eight ranks and the production microbatch/accumulation are preserved.
-
-Reconstruction pretraining starts from random initialization. Its released
-Hugging Face checkpoints are outputs of this stage and inputs to post-training;
-they are not prerequisites for training the reconstruction model from scratch.
-
-```bash
-python pretraining/scripts/prepare.py --recipe b160_perceptual \
-  --bundle "$PRIMING_STORAGE/checks/b160_bundle" \
-  --output "$PRIMING_STORAGE/checks/b160_run"
-python -m torch.distributed.run --standalone --nproc_per_node=8 \
-  pretraining/scripts/train.py --bundle "$PRIMING_STORAGE/checks/b160_bundle" \
-  --smoke-steps 2
-```
-
-Repeat with `b160_no_perceptual` and `l160_perceptual`, using separate bundle
-and output directories. For multiple nodes, use the Slurm pretraining launcher
-with `SMOKE_STEPS=2`, the desired node/GPU layout, and your account/partition.
-
-Post-training checks initialize online weights and EMA from the released
-160-epoch checkpoint, verify its SHA256, and use a fresh optimizer:
-
-```bash
-python training/scripts/prepare.py --arm b160 \
-  --job "$PRIMING_STORAGE/checks/post_b160" \
-  --output-dir "$PRIMING_STORAGE/checks/post_outputs" --smoke-steps 2
-python -m torch.distributed.run --standalone --nproc_per_node=8 \
-  training/scripts/train.py --job "$PRIMING_STORAGE/checks/post_b160"
-```
-
-Repeat with `l160`. The bounded post-training config retains the 125-update
-warmup and full OT populations; it disables scheduled/final metric evaluation,
-sets the run horizon to two updates, and saves the terminal checkpoint. Smoke
-outputs are for validation and should not be used for production continuation.
-A prepared job records `mode: smoke` in its config manifest.
-
-## CPU and source checks
-
-```bash
-python scripts/check_environment.py
-python scripts/check_portability.py
+PRIMING_REFERENCE_ROOT=~/priming_old PYTHONDONTWRITEBYTECODE=1 \
+  python -B -m unittest discover -s tests -q
+python -B -m unittest discover -s scripts/tests -q
+python scripts/check_portability.py --reference-root ~/priming_old
 python scripts/check_public_tree.py
-python -m pytest -q tests eval/tests
 ```
 
-The portability check runs isolated imports, packaging and numerical CPU
-regressions, configuration/source verification, Slurm command previews, and
-arithmetic checks of the included final evaluation results.
+Comparisons cover the original model architecture/tensor schema, reconstruction
+and perceptual losses, B/L seed and accumulation behavior, OT/energy/Laplacian
+losses, transport plans, diagnostics, gradients, class/reference/noise sampling,
+optimizer warmup, EMA, checkpoint counters, and exact resumed updates.
 
-## Measured startup validation (2026-10-03)
+Encoder checks use compact real MAE/ConvNeXt architectures and complete Inception
+networks with synthetic local weights, plus test factories for heavyweight timm
+models. They check preprocessing, precision, feature identities, input-gradient
+replay, architecture schemas, and local asset guards.
 
-The [validation record](../environment/pipeline_validation.json) covers eight
-H200 GPUs on two nodes, with production global batch 1,024 and compiled BF16
-models. Every listed recipe completed two optimizer updates and saved its
-checkpoint using real ImageNet training data.
+Scheduled evaluation checks execute the original online/EMA draw with synthetic
+features and compare exact moments, metric values, image ordering, RNG, native
+FP32 Inception, and distributed scalar rounding. Standalone evaluation checks
+execute the original padded sampling loop and compare image bytes, official
+Inception outputs, feature arrays, RNG, reference-dtype FID arithmetic, and FDr5.
 
-| Stage | Recipes checked | Initialization |
-|---|---|---|
-| Reconstruction | B perceptual, B no-perceptual, L perceptual | Random |
-| Reference OT post-training | B-160, L-160 | Released pretrained online + EMA weights |
-| Post-training ablations | B-160 SIM, Laplacian MMD, energy | Released pretrained online + EMA weights |
+The portability check copies source into a temporary checkout, checks all CLI
+help/config paths, runs CPU tests, and checks imports without local assets.
+The public-tree scan checks source text for known private infrastructure paths;
+it does not scan Git history or binary metadata.
 
-Saved-state audits checked finite weights/optimizer/EMA, counters, and the
-configured losses. Post-training additionally verified all eight ranks'
-initialization and main/OT RNG states. B pretraining saved complete all-rank
-optimizer state; L retains its documented rank-zero optimizer format.
-L post-training peaked at **85.01 GiB allocated / 87.58 GiB reserved**, above
-80 GB device capacity at the tested batch size. Other hardware was not tested.
+## GPU validation
 
-[Sampling validation](../environment/sampling_validation.json) covers all eight
-B/L × 80/160 × pretrained/post-trained release checkpoints: two finite
-256×256 RGB PNGs each, using EMA and BF16 on H200. Local checkpoint SHA256s
-match the Hub's published LFS identities; existing checkpoint bytes were reused.
-[Environment validation](../environment/validation.json) and
-[portability validation](../environment/portability_validation.json) record the
-package/import and source-only checks.
+CPU equivalence is not full GPU reproduction. Compiled GPU trajectories,
+released heavyweight encoder weights, all-rank recovery, and 50,000-image metrics
+must be verified on an allocation with prepared assets. The current renewal was
+checked in a CPU-only session; it does not claim new full training runs or paper
+metrics.
 
-These checks did not rerun full training, the 130-update recovery probe, or
-50,000-image metric evaluation. The included final paper/ablation metric values
-were preserved and checked arithmetically. Raw job logs and temporary training
-artifacts are not distributed.
+Use `--smoke-steps` for bounded fresh training checks. Compare original and
+renewed runs using identical hardware, ranks, seeds, batches, weights, and
+asset versions, including the next update after a checkpoint resume. Run a
+1,000-image evaluation pilot before the full protocol.

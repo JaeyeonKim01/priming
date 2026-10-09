@@ -1,0 +1,4 @@
+_base_: _base.yaml
+matching:
+  kind: featurewise_energy
+  energy_delta: 0.0

@@ -1,0 +1,17 @@
+{
+  "inception": {
+    "bandwidth": 18.54016876220703,
+    "feature_id": "3a5cd088d53f5060cb57514388104b2b2a05e70cc39e238ff1cee8e720eb2b68",
+    "feature_dim": 2048
+  },
+  "mae": {
+    "bandwidth": 2.7689664363861084,
+    "feature_id": "9933f11546659775c500e4f7c330afb7bc394915f5c618aadf5ca42ee13e168b",
+    "feature_dim": 1024
+  },
+  "siglip": {
+    "bandwidth": 17.802997589111328,
+    "feature_id": "3623ba3b70fc63919c55186e7254983a2d38cd45ce46f25a737abc8c27524d77",
+    "feature_dim": 1152
+  }
+}

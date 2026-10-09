@@ -10,7 +10,6 @@ from unittest.mock import patch
 SCRIPTS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SCRIPTS))
 import download_assets as downloads
-import publish_dataset as publisher
 
 
 class DownloadTests(unittest.TestCase):
@@ -61,33 +60,6 @@ class DownloadTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             downloads.download(self.root, row)
         self.assertEqual(ref.read_text(), 'different')
-
-
-class ArrowTests(unittest.TestCase):
-    def shard(self, folder, image_path=None, label=0):
-        import pyarrow as pa
-        from PIL import Image
-        image = io.BytesIO(); Image.new('RGB', (256, 256)).save(image, format='PNG')
-        table = pa.table({'id': pa.array([0], type=pa.int32()),
-                          'image': pa.array([dict(bytes=image.getvalue(), path=image_path)],
-                                            type=pa.struct([('bytes', pa.binary()), ('path', pa.string())])),
-                          'label': pa.array([label], type=pa.int32())})
-        path = Path(folder) / 'data.arrow'
-        with path.open('wb') as handle, pa.ipc.new_stream(handle, table.schema) as writer:
-            writer.write_table(table)
-        return path
-
-    def test_embedded_images_are_portable(self):
-        with tempfile.TemporaryDirectory() as folder:
-            self.assertEqual(publisher.validate_arrow(self.shard(folder)).tolist(), [0])
-
-    def test_source_paths_are_not_published(self):
-        with tempfile.TemporaryDirectory() as folder, self.assertRaises(ValueError):
-            publisher.validate_arrow(self.shard(folder, image_path='source/image.png'))
-
-    def test_out_of_range_labels_are_rejected(self):
-        with tempfile.TemporaryDirectory() as folder, self.assertRaises(ValueError):
-            publisher.validate_arrow(self.shard(folder, label=1000))
 
 
 if __name__ == '__main__':

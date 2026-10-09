@@ -14,8 +14,8 @@ def module(name, path):
     return result
 
 
-output_paths = module('evaluation_output_paths', ROOT / 'eval/output_paths.py')
-paths = module('training_paths', ROOT / 'training/scripts/paths.py')
+output_paths = module('evaluation_output_paths', ROOT / 'utils/files.py')
+paths = module('repository_paths', ROOT / 'utils/paths.py')
 
 
 class Broadcast:
@@ -54,37 +54,10 @@ class PipelinePaths(unittest.TestCase):
                     output_paths.prepare_output_directory(output, rank, collective)
             self.assertEqual(saved.read_text(), 'previous result')
 
-    def test_asset_verification_follows_configured_roots(self):
-        config = paths.load_config('b160')
-        site = paths.site_config()
+    def test_relative_and_external_paths(self):
+        self.assertEqual(paths.resolve('assets/fid_stats'), ROOT/'assets/fid_stats')
         with tempfile.TemporaryDirectory() as folder:
-            base = Path(folder)
-            site.update(hf_home=str(base / 'hf'), torch_home=str(base / 'torch'),
-                        fid_stats=str(base / 'stats'), data_root=str(base / 'data'))
-            config['data']['data_path'] = str(base / 'imagenet')
-            config['ot'].update(ot_repr_cache=str(base / 'representations'),
-                                ot_feature_asset_cache=str(base / 'features'),
-                                ot_feature_calibration_dir=str(base / 'calibration'))
-            cases = {
-                'assets/huggingface/hub/model/config.json': 'hf/hub/model/config.json',
-                'assets/torch/hub/checkpoints/inception.pth': 'torch/hub/checkpoints/inception.pth',
-                'assets/fid_stats/reference.npz': 'stats/reference.npz',
-                'data/imagenet/imagenet-latents-images/state.json': 'imagenet/imagenet-latents-images/state.json',
-                'data/prc/reference.pt': 'data/prc/reference.pt',
-                'assets/ot/representations/mae_encoder.pt': 'representations/mae_encoder.pt',
-                'assets/ot/features/calibrations/stack.json': 'calibration/stack.json',
-                'assets/ot/features/model.pt': 'features/model.pt',
-            }
-            for canonical, relocated in cases.items():
-                self.assertEqual(paths.resolve_asset(canonical, config, site), base / relocated)
-            self.assertEqual(paths.resolve_asset(base / 'explicit.pt', config, site), base / 'explicit.pt')
-
-    def test_default_asset_locations_remain_repository_relative(self):
-        for arm in ('b160', 'l160'):
-            config, site = paths.load_config(arm), paths.site_config()
-            for path in ('assets/fid_stats/reference.npz', 'data/imagenet/imagenet-latents-images',
-                         'assets/ot/representations/calibration.json', 'data/prc/reference.pt'):
-                self.assertEqual(paths.resolve_asset(path, config, site), ROOT / path)
+            self.assertEqual(paths.resolve(Path(folder)/'reference.npz'), Path(folder)/'reference.npz')
 
 
 if __name__ == '__main__':
