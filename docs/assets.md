@@ -16,6 +16,46 @@ filenames, sizes, and SHA256. The helper verifies every downloaded file and
 prepares the offline Hub cache. Existing files or cache revisions that differ
 from the release are rejected.
 
+## Encoder configuration and paths
+
+Encoder selection is defined in the recipes and shared source below. There is
+no separate `--encoder-config` argument. All default paths are relative to the
+repository root; downloaded weights are separate from generator checkpoints.
+
+| Stage | Configuration / feature definition | Default assets and path overrides |
+|---|---|---|
+| Perceptual pretraining | [`configs/pretrain/_base.yaml`](../configs/pretrain/_base.yaml), `loss.aux`; [`models/encoders/perceptual.py`](../models/encoders/perceptual.py) fixes the VGG16 and ConvNeXt models | LPIPS: `assets/lpips/vgg.pth` (`--lpips-weights`). VGG16: `assets/torch/hub/checkpoints/vgg16-397923af.pth` (`--torch-home`). ConvNeXt: `assets/huggingface/hub/models--facebook--convnextv2-base-22k-224/` (`--hf-home`). |
+| Full-feature OT, energy, Laplacian MMD | [`configs/posttrain/_base.yaml`](../configs/posttrain/_base.yaml), `matching.stack: convnext_full_mae`, `data.encoder_cache`; [`models/encoders/load.py`](../models/encoders/load.py) | `assets/ot/representations/` (`--encoder-cache`). Must contain both converted encoders, calibration, conversion metadata, and class indices. |
+| SIM OT | [`configs/posttrain/b160_sim.yaml`](../configs/posttrain/b160_sim.yaml), `matching.stack: sim`; [`models/encoders/sim_calibration.json`](../models/encoders/sim_calibration.json) | SigLIP and ViT-MAE in the pinned Hub cache (`--hf-home`), Inception in the Torch cache (`--torch-home`); class indices still come from `--encoder-cache`. |
+| Scheduled training evaluation | [`metrics/specs.py`](../metrics/specs.py), `SPECS`; recipe `evaluation.stats_dir` and `evaluation.prc_reference` | Six encoder caches (`--hf-home`, `--torch-home`), `assets/fid_stats/`, and `data/prc/VIRTUAL_imagenet256_labeled_inception.pt`. Edit the two `evaluation` paths in your recipe when using external storage. |
+| Standalone FID/FDr⁵ | [`metrics/specs.py`](../metrics/specs.py), `PAPER_SPECS`; [`eval.py`](../eval.py) | Five encoder caches; `--stats-dir`, `--fid-reference`, and `--inception-weights` override the reference/official Inception paths. |
+
+`--hf-home` selects the parent of `hub/`; `--torch-home` selects the parent of
+`hub/checkpoints/`. They also accept `HF_HOME` and `TORCH_HOME`. Neither setting
+redirects LPIPS, OT calibration, or reference-statistics paths automatically.
+
+After dataset download and encoder conversion, the full OT directory is:
+
+```text
+assets/ot/representations/
+  mae_encoder.pt
+  convnext_encoder.pt
+  converted_manifest.json  # includes the pixel MAE architecture in mae_config
+  calibration.json         # 97 feature names, bandwidths, weights, and source hash
+  downloads.json
+  dataset_labels.npy
+  class_order.npy
+  class_counts.npy
+```
+
+The dataset download supplies indices/calibration/metadata; conversion produces
+the two `.pt` files. The loader checks them against
+[`old/releases/posttrain_encoders.json`](../old/releases/posttrain_encoders.json).
+The other encoder revisions and reference files are pinned in
+[`old/releases/encoders.json`](../old/releases/encoders.json).
+Keep the feature definitions, weights, calibration, and statistics together;
+replacing an encoder is a new experiment, not a path-only change.
+
 ## Packed ImageNet dataset
 
 Dataset repository: [jaykim1102/priming](https://huggingface.co/datasets/jaykim1102/priming).

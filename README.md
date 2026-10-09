@@ -20,98 +20,46 @@ Official implementation of [Are We Overthinking One-Step Generation?](#paper-lin
 
 [![Figure 1: Priming Models improve the training compute vs. FID trade-off (left); reconstruction pretraining accelerates distributional post-training (right).](docs/figures/figure1.png)](docs/figures/figure1.pdf)
 
-## Setup
+## Getting started
+
+Clone this repository as `Priming`; all commands below start there.
 
 ```bash
+git clone https://github.com/JaeyeonKim01/priming.git Priming
+cd Priming
 bash scripts/create_env.sh
 conda activate priming
 export PYTHONNOUSERSITE=1
 python scripts/check_environment.py
 ```
 
-Prepare [data and encoder assets](docs/assets.md), then download the
-[generator checkpoints](docs/checkpoints.md). Training requires eight GPUs;
-paper evaluation uses four GPUs and batch 32. Data, weights, caches, and outputs
-are stored outside Git. [External storage and environment setup](docs/setup.md).
+- [Environment setup](docs/setup.md): pinned environment, GPU execution, and external storage.
+- [Data and model assets](docs/assets.md): processed ImageNet, [encoder configurations and paths](docs/assets.md#encoder-configuration-and-paths), OT calibration, and precomputed evaluation statistics.
+- [Checkpoint downloads](docs/checkpoints.md): download and verify the released models. Sampling needs only a generator checkpoint.
+- [Validation](docs/validation.md): equivalence checks and the limits of current reproduction evidence.
 
-## Code layout
+## Checkpoints
 
-```text
-pretrain.py          reconstruction pretraining
-posttrain.py         distributional post-training
-eval.py             standalone FID/FDr5 and shared scheduled evaluation
-models/              shared Priming architecture and frozen encoders
-losses/              reconstruction, perceptual, and distributional losses
-metrics/             FID, Fréchet moments, Inception Score, precision/recall
-data/                task-specific datasets, preprocessing, and sampling
-utils/               optimizers, EMA, checkpoints, paths, distributed helpers
-configs/             the pretraining and post-training recipes
-scripts/             environment, asset, checkpoint, and sampling tools
-```
+Four model/epoch combinations, each available before and after post-training.
+Epochs refer to reconstruction pretraining; post-training adds 25,000 OT updates.
 
-The matcher follows the sample-in, loss-out design: it receives class-aligned
-live samples, independent generated references, and real images. The training
-script owns sampling, optimizer updates, EMA, and checkpoint recovery.
+| Model | Pretraining epochs | Pretrained | Post-trained |
+|---|---:|---|---|
+| Priming-B | 80 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_b_80.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_b_80.pth) |
+| Priming-B | 160 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_b_160.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_b_160.pth) |
+| Priming-L | 80 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_l_80.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_l_80.pth) |
+| Priming-L | 160 | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/pretraining/priming_l_160.pth) | [View checkpoint](https://huggingface.co/jaykim1102/priming/blob/main/checkpoints/priming_l_160.pth) |
 
-Data code is organized by task. [`data/imagenet.py`](data/imagenet.py) contains
-ImageNet loaders, preprocessing, real-reference access, and class sampling.
+All eight files are hosted at [jaykim1102/priming](https://huggingface.co/jaykim1102/priming).
+See the [download guide](docs/checkpoints.md) and the [checked-in manifests](old/checkpoints).
+Pretraining checkpoints contain online and EMA weights; post-training initializes
+from online weights, and final evaluation uses post-training EMA 0.999.
 
-Each recipe overrides the `_base.yaml` beside it. Configuration loading merges
-the two before validation; saved checkpoints contain the complete settings.
+### Sampling from our models
 
-Dependency lists, release manifests, and released inference configurations are
-temporarily collected under [`old/`](old/README.md). Setup and checkpoint tools
-still read these files. Downloaded weights use their published `checkpoints/`
-paths or explicit external paths.
+[![Figure 2: One-step samples from Priming Models across class-conditional image generation, text-to-image generation, and world modeling.](docs/figures/figure2.png)](docs/figures/figure2.pdf)
 
-## Pretrain
-
-```bash
-python pretrain.py --config configs/pretrain/b160_perceptual.yaml --check-config
-torchrun --standalone --nproc_per_node=8 pretrain.py \
-  --config configs/pretrain/b160_perceptual.yaml --output outputs/pretrain/b160
-```
-
-Recipes cover B with/without perceptual loss and L with perceptual loss.
-They use reconstruction at corruption t=0.8, Muon, and EMA 0.9999, retaining
-80- and 160-epoch checkpoints. [Pretraining guide](docs/pretrain.md).
-
-## Post-train
-
-```bash
-torchrun --standalone --nproc_per_node=8 posttrain.py \
-  --config configs/posttrain/b160.yaml --output outputs/posttrain/b160
-```
-
-Initialize from pretrained online weights, start fresh AdamW, inherit the EMA
-shadow, and use decay 0.999 for 25,000 updates. The five recipes cover B/L
-full-feature OT, B SIM OT, B energy distance, and B Laplacian MMD. Both online
-and EMA weights receive 50,000-image FDr6/IS/precision/recall evaluations every
-1,250 updates. [Post-training and resume guide](docs/posttrain.md).
-
-## Evaluate
-
-```bash
-python scripts/download_assets.py --group evaluation
-torchrun --standalone --nproc_per_node=4 eval.py \
-  --model priming_b_160 --num-images 1000 --seeds 1 --batch 32 \
-  --output-dir outputs/eval/pilot_b160
-```
-
-Use 50,000 images and seeds 1, 2, 3 for the paper protocol. Official FID uses
-FP32 Inception on rounded uint8 images and the JiT reference; FDr5 uses frozen
-BF16 float-image features and FP64 moments. [Evaluation guide](docs/eval.md).
-
-For your own terminal post-training checkpoint, add `--checkpoint PATH` and
-select the matching B/L model key. For pretraining weights, use
-`--stage pretraining`; `--weights online` selects online weights.
-
-## Checkpoints and samples
-
-B/L models at 80/160 pretraining epochs are available before and after
-post-training at [jaykim1102/priming](https://huggingface.co/jaykim1102/priming).
-The manifests under `old/checkpoints/` pin all eight weight files and inference
-configurations.
+Download one checkpoint and generate samples on a single GPU:
 
 ```bash
 hf auth login
@@ -120,19 +68,140 @@ python scripts/sample.py --model priming_b_160 --num-images 16 \
   --class-ids 207 --output-dir outputs/samples/b160
 ```
 
-Sampling needs only the generator checkpoint. [Download and sampling options](docs/checkpoints.md).
+Saves individual PNGs and a `samples.json` record. `--class-ids` accepts ImageNet
+IDs 0–999; omit it to cycle through classes. B/L and 80/160 checkpoints are
+supported. Use `--stage pretraining` for pretrained weights after downloading
+the corresponding file under `checkpoints/pretraining/`.
+See [sampling options](docs/checkpoints.md#sampling-options).
 
-## Verification
+### Evaluation: ImageNet
 
-CPU equivalence checks read the original checkout without writing to it:
+Evaluate the four released Priming models with **FID** and **FDr⁵**. Download the
+selected generator checkpoint first, as above, then prepare the evaluation
+encoders and precomputed reference statistics. No ImageNet images are needed.
+Start with a 1,000-image pilot on four GPUs:
 
 ```bash
-PRIMING_REFERENCE_ROOT=~/priming_old PYTHONDONTWRITEBYTECODE=1 \
-  python -B -m unittest discover -s tests -q
-python -B -m unittest discover -s scripts/tests -q
-python scripts/check_portability.py --reference-root ~/priming_old
+python scripts/download_assets.py --group evaluation
+torchrun --standalone --nproc_per_node=4 eval.py \
+  --model priming_b_160 --num-images 1000 --seeds 1 --batch 32 \
+  --output-dir outputs/eval/pilot_b160
 ```
 
-These cover numerical losses/gradients, sampling, encoder features, metric
-formulas, and checkpoint continuation. Full GPU training and 50,000-image
-metrics require separate validation. [Validation scope](docs/validation.md).
+For the paper protocol, use `--num-images 50000 --seeds 1 2 3` and a new output
+directory. Preserve four ranks and batch 32: changing either changes the sample
+stream. Official FID uses FP32 Inception on rounded uint8 images and the JiT
+reference; FDr⁵ uses five frozen encoders on float images, excluding ConvNeXt.
+
+A fresh evaluation of the refactored code reproduced all four checkpoints over
+three seeds: **12 runs, 600,000 images**, with all 48 image-byte streams matching
+the previous release. FID/FDr⁵ means match the paper at two decimal places.
+
+[Evaluation guide and options](docs/eval.md) ·
+[ImageNet refactor audit](docs/imagenet_refactor_audit.md)
+
+<details>
+<summary><strong>ImageNet results — click to view the fresh reproduction</strong></summary>
+
+These are the October 9 results from the refactored implementation, compared
+against the archived September 30 results. Source comparisons use the previous
+checkout at [`443db44`](https://github.com/JaeyeonKim01/priming/tree/443db44).
+Each row is the mean ± sample SD over three sampling seeds of one checkpoint,
+with 50,000 images per seed; these are not independent training runs.
+
+| Model | FID ↓ | FDr⁵ ↓ |
+|---|---:|---:|
+| Priming-B-80 | 1.4683 ± 0.0128 | 12.7089 ± 0.0188 |
+| Priming-B-160 | 1.3841 ± 0.0130 | 11.2286 ± 0.0157 |
+| Priming-L-80 | 1.2695 ± 0.0128 | 8.9430 ± 0.0134 |
+| Priming-L-160 | 1.1871 ± 0.0147 | 7.1048 ± 0.0196 |
+
+[Archived full report](https://github.com/JaeyeonKim01/priming/blob/443db44/eval/full_reproduction_20260930.md) ·
+[New full-precision results](docs/imagenet_refactor_results.csv)
+
+All official Inception feature arrays match the archived runs exactly. The
+maximum per-seed FDr⁵ change is 0.0000314. This validates evaluation with released
+weights; it does not claim a new full training reproduction.
+
+</details>
+
+## Experiment scope
+
+This release covers ImageNet-256: B/L sampling at 80/160 pretraining epochs,
+three reconstruction recipes, B/L-160 OT post-training, and B-160 SIM,
+Laplacian MMD, and energy ablations. Text-to-image and world modeling appear in
+the paper figure; their pipelines are not included. Comparison-baseline
+samplers and the old dashboard remain available in the previous Git revision.
+
+Post-training initializes from released pretrained online weights with a fresh
+optimizer and inherits the pretrained EMA shadow. Use `--init-checkpoint PATH`
+for your own compatible perceptual pretraining weights. Evaluate a terminal
+post-training checkpoint with `eval.py --checkpoint PATH`, or select
+`--stage pretraining` / `--weights online` for the additional evaluation modes.
+The paper results above use post-training EMA 0.999.
+
+The [eight-GPU audit](docs/imagenet_refactor_audit.md#eight-gpu-training-checks)
+passed short B/L perceptual pretraining and B post-training runs on H100 80 GB.
+The original L post-training runs used eight H200s and exceeded 85 GiB allocated
+per GPU; the unchanged refactored recipe also exceeds H100 80 GB capacity.
+The follow-up on eight H200s passed short L post-training runs from both
+released and custom checkpoints, plus B no-perceptual pretraining.
+See the audit for scope and memory measurements.
+
+## ImageNet experiments
+
+<details>
+<summary><strong>Click to expand ImageNet pretraining and post-training</strong></summary>
+
+### Training 1: Reconstruction pretraining
+
+Train at fixed corruption t=0.8 with adaptive pixel MSE, optionally adding
+LPIPS and ConvNeXt perceptual losses. Recipes cover **B with/without perceptual
+loss** and **L with perceptual loss**, using Muon and EMA 0.9999. The 160-epoch
+runs retain both 80- and 160-epoch checkpoints.
+
+```bash
+python pretrain.py --config configs/pretrain/b160_perceptual.yaml --check-config
+torchrun --standalone --nproc_per_node=8 pretrain.py \
+  --config configs/pretrain/b160_perceptual.yaml --output outputs/pretrain/b160
+```
+
+[Pretraining guide](docs/pretrain.md) ·
+[Production configs](configs/pretrain) · [Source code](pretrain.py)
+
+### Training 2: Distributional post-training
+
+Apply feature-wise optimal transport in ResNet-MAE and ConvNeXt feature spaces.
+The **B/L-160** workflows run 25,000 AdamW updates with EMA 0.999. Scheduled
+online/EMA evaluations use FDr⁶, Inception Score, and precision/recall; use the
+standalone evaluator above for official final FID/FDr⁵.
+
+```bash
+torchrun --standalone --nproc_per_node=8 posttrain.py \
+  --config configs/posttrain/b160.yaml --output outputs/posttrain/b160
+```
+
+[Post-training and resume guide](docs/posttrain.md) ·
+[Production configs](configs/posttrain) · [Source code](posttrain.py)
+
+- **Ablation study 1: SIM feature-space training.** Use SigLIP, Inception, and ViT-MAE features with [b160_sim.yaml](configs/posttrain/b160_sim.yaml).
+- **Ablation study 2: Other distributional losses.** Replace OT with [Laplacian MMD](configs/posttrain/b160_laplacian.yaml) or [energy distance](configs/posttrain/b160_energy.yaml).
+
+Prepare the dataset and encoders using the [asset guide](docs/assets.md) before
+training. See the stage guides for custom initialization and checkpoint recovery.
+
+</details>
+
+## Code layout
+
+`pretrain.py`, `posttrain.py`, and `eval.py` share the implementations in
+`models/`, `losses/`, `metrics/`, `data/`, and `utils/`. Each recipe inherits the
+`_base.yaml` beside it. The matcher receives generated and real samples and
+returns a loss; the training loop owns sampling, optimizer updates, and recovery.
+
+Dependency pins, asset manifests, and released inference configurations live
+under [`old/`](old/README.md) and are still required by the active tools.
+Downloaded generator weights retain their published `checkpoints/` paths.
+
+See [validation instructions](docs/validation.md) to run the numerical comparison
+suite against a checkout of the previous implementation.

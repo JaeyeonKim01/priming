@@ -1,5 +1,17 @@
 # Reconstruction pretraining
 
+The shared implementation preserves the released architecture differences:
+
+| Model | Transformer blocks | Hidden width | Attention heads | Patch size |
+|---|---:|---:|---:|---:|
+| Priming-B | 16 | 768 | 12 | 16 |
+| Priming-L | 32 | 1,024 | 16 | 16 |
+
+B retains its deterministic attention and stateless corruption/crop streams;
+L retains its original attention backend and random streams. Their perceptual
+thresholds remain 0.8 and 1.0, respectively. Both use the eight-rank production
+batch of 1,024 (microbatch 64, two accumulation steps per rank).
+
 Prepare the [environment](setup.md) and [packed ImageNet](assets.md). Perceptual
 recipes also need LPIPS, VGG16, and ConvNeXt weights.
 
@@ -37,12 +49,14 @@ torchrun --standalone --nproc_per_node=8 pretrain.py \
   --resume outputs/pretrain/b160/checkpoints/latest.pth
 ```
 
-Checkpoints include online weights, EMA, per-rank optimizer state, counters,
-RNG state, and the recipe/source/asset identities. The 80- and 160-epoch
-milestones are retained. B checkpoints preserve the stateless microbatch and
-perceptual seed streams. Recovery validates the original world size and
-identities. Historical L checkpoints are supported; use renewed B checkpoints
-for exact B recovery.
+Checkpoints include online weights, EMA, optimizer state, counters, and the
+recipe/source/asset identities. The 80- and 160-epoch milestones are retained.
+B additionally saves every rank's optimizer and RNG state, loader state, and
+stateless microbatch/perceptual stream identities; recovery validates the
+original world size and identities. L retains the historical rank-zero
+optimizer save/restore behavior and does not save all-rank RNG state, so it
+does not provide the same exact-recovery guarantee. Historical L checkpoints
+are supported; use renewed B checkpoints for exact B recovery.
 
 `--smoke-steps N` stops a fresh run after N updates and saves its state.
 USR1 or `PREEMPT_FLAG_FILE` requests a checkpointed stop at an update boundary.

@@ -3,6 +3,13 @@
 Prepare [packed ImageNet, class indices, frozen calibration, and encoders](assets.md).
 The default source is the pinned 160-epoch B/L pretraining checkpoint.
 
+The feature encoder settings are `matching.stack` and `data.encoder_cache` in
+[`configs/posttrain/_base.yaml`](../configs/posttrain/_base.yaml).
+`--encoder-cache PATH` selects the directory containing `mae_encoder.pt`,
+`convnext_encoder.pt`, `calibration.json`, and the accompanying metadata/indices.
+See the [encoder configuration/path table](assets.md#encoder-configuration-and-paths)
+for SIM, offline weight caches, and the separate evaluation assets.
+
 [`data/imagenet.py`](../data/imagenet.py) owns ImageNet real-reference loading
 and checkpointable class/reference sampling.
 
@@ -32,7 +39,22 @@ gradient clipping one). The zero-based warmup starts at LR zero and reaches
 decay 0.999. The horizon is 25,000 completed updates, with global batch 1,024,
 BF16 generator execution, and eight ranks.
 
+Hardware caveat: the [eight-H100 audit](imagenet_refactor_audit.md#eight-gpu-training-checks)
+passed B initialization from both released and custom pretraining checkpoints,
+but L exhausted 80 GB GPU memory before completing its first update. Original
+L-80/L-160 post-training used eight H200s and peaked above 85 GiB allocated
+per GPU; use H200s to match the original hardware. The refactored L recipe
+subsequently passed two updates from both released and custom checkpoints on
+eight H200s, peaking at 81.32 GiB allocated. This is a startup measurement,
+not a full-training memory bound.
+
 ## Initialization and resume
+
+Omitting `--init-checkpoint` uses the released pretrained B-160 or L-160 file
+selected by the recipe and verifies its release checksum. To use another
+released pretrained checkpoint, including B/L-80, pass its path explicitly.
+Choose `b160.yaml` for B weights or `l160.yaml` for L weights; the recipe name
+selects post-training settings, not a minimum pretraining duration.
 
 ```bash
 # Your compatible perceptual pretraining checkpoint; fresh post-training.
@@ -44,6 +66,21 @@ torchrun --standalone --nproc_per_node=8 posttrain.py \
 torchrun --standalone --nproc_per_node=8 posttrain.py \
   --config configs/posttrain/b160.yaml --output outputs/posttrain/custom_b --resume
 ```
+
+Custom initialization accepts a **full compatible Priming pretraining
+checkpoint at any saved step**. It must contain `model`, the EMA 0.9999 shadow
+and counter in `model_ema`, and consistent `step` / `current_step` fields.
+Tensor names and shapes must match the selected B/L architecture. B also
+requires the perceptual pretraining `contract`; a supplied contract must match
+the model/class settings and enable perceptual loss. Checkpoints written by
+the corresponding perceptual `pretrain.py` recipe satisfy this format.
+Weights-only exports, arbitrary external architectures, and the packaged
+no-perceptual B checkpoints are not supported initialization formats.
+
+For L, replace both recipe/model paths in the example with their L equivalents.
+Initialization loads online weights, inherits EMA, and starts a fresh AdamW
+optimizer; it does not resume the pretraining optimizer or its update counter.
+Use a new output directory for each initialization run.
 
 `--resume PATH` selects a checkpoint explicitly. Resume validates the recipe,
 shared source, packed-data metadata, calibrated encoder identity, world size,
