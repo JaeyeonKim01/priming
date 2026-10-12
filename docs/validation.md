@@ -71,75 +71,6 @@ establishes startup, updates, and saving; it does not establish convergence or
 exercise the scheduled evaluation at update 1,250. Start full training in new
 output directories without `--smoke-steps`.
 
-### Current-checkout startup check — October 11
-
-The current training source at `7fc7667` passed five fresh checks on eight H200
-GPUs (four nodes, two GPUs each), using the production recipes with compilation
-and BF16 enabled. Each stage completed two optimizer updates on real ImageNet:
-
-| Workflow | Result | Peak allocated memory per GPU |
-|---|---|---|
-| B perceptual pretraining → its own checkpoint → B OT post-training | Passed both stages | 35.70 / 47.87 GiB |
-| L perceptual pretraining → its own checkpoint → L OT post-training | Passed both stages | 59.78 / 81.32 GiB |
-| Released B-160 pretrained checkpoint → B OT post-training | Passed | 47.87 GiB |
-
-All eight ranks completed each stage. Saved model, optimizer, and EMA tensors
-were finite; post-training inherited the source EMA counters and changed online
-weights after the second update. The pinned environment checks, all eight recipe
-checks, and all 66 CPU/reference and asset-helper tests passed, including in a
-relocated source-only copy.
-
-The encoder instructions were checked against the download manifest, converter,
-and runtime loaders. Both ResNet-MAE and ConvNeXt were converted again into a
-new output directory; strict parameter loading and the published whole-file
-SHA256 checks passed. The setup guide now spells out the optional MessagePack
-dependency for external storage, and the asset guide distinguishes matching,
-SIM, and diagnostic encoders and the assets required at training startup.
-
-This pass reused the pinned environment and prepared data/assets from October 9;
-it did not repeat a fresh installation or full dataset download. It establishes
-B/L perceptual pretraining and OT post-training startup, updates, and saving.
-It does not cover full-training convergence, scheduled 50,000-image evaluation,
-GPU resume equivalence, or GPU runs of SIM/energy/Laplacian ablations.
-See the [machine-readable readiness record](readiness_20261011.json) for exact
-scope, checkpoint checks, and memory measurements, and the audit below for the
-earlier fresh-installation and download checks.
-
-### Fresh training workflow audit — October 9
-
-A separate checkout and newly created pinned Conda environment passed the
-setup script, dependency checks, CPU/reference suite, and source-only
-portability checks. Training encoder inputs, diagnostic weights/statistics,
-dataset metadata/indices/calibration, and a released B pretrained checkpoint
-were downloaded again through the public preparation tools. The 517 large
-ImageNet Arrow shards reused the previously downloaded public release, with
-sizes checked again; their class indices and calibration were revalidated.
-
-This exposed a conversion packaging issue: the fresh MAE archive differed only
-in PyTorch's non-tensor `serialization_id`. SHA256 comparisons matched all
-119 other archive records. The converter now pins that metadata and its ZIP
-CRCs, then requires the **unchanged whole-file release SHA256** before publishing
-the file. Fresh MAE and ConvNeXt conversions both passed. Changed tensor data
-remain rejected; the training and evaluation implementations are unchanged.
-
-Using that new environment and newly converted encoders, eight H200 GPUs
-completed two updates and saved-state audits for all five checks:
-
-- B perceptual pretraining → its own checkpoint → B post-training.
-- L perceptual pretraining → its own checkpoint → L post-training.
-- Downloaded released B-160 pretraining checkpoint → B post-training.
-
-All eight ranks completed each stage. Saved weights, optimizer and EMA states
-were finite; post-training inherited the source EMA counters and changed online
-weights. GPU execution used offline asset loading. These checks do not cover
-full-training convergence, scheduled 50,000-image training evaluation, or GPU
-resume equivalence. Prior B no-perceptual and released-L initialization checks
-are in the [refactor audit](imagenet_refactor_audit.md).
-
-See the [machine-readable workflow record](training_workflow_audit.json) for
-environment versions, public-access checks, release identities, and per-case
-results. ImageNet still requires accepting its dataset terms and logging in.
-
 ## CPU and source checks
 
 The simplified workflows are `pretrain.py`, `posttrain.py`, and `eval.py`.
@@ -176,26 +107,11 @@ help/config paths, runs CPU tests, and checks imports without local assets.
 The public-tree scan checks source text for known private infrastructure paths;
 it does not scan Git history or binary metadata.
 
-## ImageNet refactor audit
-
-See the [October 9 audit](imagenet_refactor_audit.md) for the comparison against
-`443db44`, completed checks, and changes affecting existing workflows.
-
 ## GPU validation
 
-CPU equivalence is not full GPU reproduction. Compiled GPU trajectories,
-released heavyweight encoder weights, all-rank recovery, and 50,000-image metrics
-must be verified on an allocation with prepared assets. The refactor was initially checked in a CPU-only session. The
-[October 9 audit](imagenet_refactor_audit.md) subsequently reproduced all 12
-Priming paper-protocol evaluations; full training remains a separate scope.
-Eight-H100 checks also passed B/L perceptual pretraining and both B
-post-training initialization routes, but L post-training ran out of memory.
-The follow-up on eight H200s passed both L initialization routes and B
-no-perceptual pretraining. Original L production also used H200s.
-See the audit's [training table](imagenet_refactor_audit.md#eight-gpu-training-checks)
-for completed checks and untested routes.
-
-Use `--smoke-steps` for bounded fresh training checks. Compare original and
-renewed runs using identical hardware, ranks, seeds, batches, weights, and
-asset versions, including the next update after a checkpoint resume. Run a
-1,000-image evaluation pilot before the full protocol.
+CPU checks do not establish GPU training trajectories or full reproduction.
+Use `--smoke-steps` for bounded training checks, and verify checkpoint recovery
+on your GPU setup. Compare runs using identical hardware, ranks, seeds, batches,
+weights, and asset versions, including the next update after a checkpoint resume.
+Run a 1,000-image evaluation pilot before the full 50,000-image protocol in the
+[evaluation guide](eval.md).

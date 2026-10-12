@@ -36,7 +36,7 @@ python scripts/check_environment.py
 - [Environment setup](docs/setup.md): pinned environment, GPU execution, and external storage.
 - [Data and model assets](docs/assets.md): processed ImageNet, [encoder configurations and paths](docs/assets.md#encoder-configuration-and-paths), OT calibration, and precomputed evaluation statistics.
 - [Checkpoint downloads](docs/checkpoints.md): download and verify the released models. Sampling needs only a generator checkpoint.
-- [Validation](docs/validation.md): equivalence checks and the limits of current reproduction evidence.
+- [Workflow and checks](docs/validation.md): end-to-end training, startup checks, and numerical tests.
 
 ImageNet pretraining and post-training require **eight GPUs** and approximately
 **259 GB** for the prepared dataset, plus model assets and training outputs.
@@ -100,19 +100,11 @@ directory. Preserve four ranks and batch 32: changing either changes the sample
 stream. Official FID uses FP32 Inception on rounded uint8 images and the JiT
 reference; FDr⁵ uses five frozen encoders on float images, excluding ConvNeXt.
 
-A fresh evaluation of the refactored code reproduced all four checkpoints over
-three seeds: **12 runs, 600,000 images**, with all 48 image-byte streams matching
-the previous release. FID/FDr⁵ means match the paper at two decimal places.
-
-[Evaluation guide and options](docs/eval.md) ·
-[ImageNet refactor audit](docs/imagenet_refactor_audit.md)
+[Evaluation guide and options](docs/eval.md)
 
 <details>
-<summary><strong>ImageNet results — click to view the fresh reproduction</strong></summary>
+<summary><strong>ImageNet evaluation results</strong></summary>
 
-These are the October 9 results from the refactored implementation, compared
-against the archived September 30 results. Source comparisons use the previous
-checkout at [`443db44`](https://github.com/JaeyeonKim01/priming/tree/443db44).
 Each row is the mean ± sample SD over three sampling seeds of one checkpoint,
 with 50,000 images per seed; these are not independent training runs.
 
@@ -123,12 +115,7 @@ with 50,000 images per seed; these are not independent training runs.
 | Priming-L-80 | 1.2695 ± 0.0128 | 8.9430 ± 0.0134 |
 | Priming-L-160 | 1.1871 ± 0.0147 | 7.1048 ± 0.0196 |
 
-[Archived full report](https://github.com/JaeyeonKim01/priming/blob/443db44/eval/full_reproduction_20260930.md) ·
-[New full-precision results](docs/imagenet_refactor_results.csv)
-
-All official Inception feature arrays match the archived runs exactly. The
-maximum per-seed FDr⁵ change is 0.0000314. This validates evaluation with released
-weights; it does not claim a new full training reproduction.
+These results use released post-training checkpoints.
 
 </details>
 
@@ -147,13 +134,8 @@ post-training checkpoint with `eval.py --checkpoint PATH`, or select
 `--stage pretraining` / `--weights online` for the additional evaluation modes.
 The paper results above use post-training EMA 0.999.
 
-The [eight-GPU audit](docs/imagenet_refactor_audit.md#eight-gpu-training-checks)
-passed short B/L perceptual pretraining and B post-training runs on H100 80 GB.
-The original L post-training runs used eight H200s and exceeded 85 GiB allocated
-per GPU; the unchanged refactored recipe also exceeds H100 80 GB capacity.
-The follow-up on eight H200s passed short L post-training runs from both
-released and custom checkpoints, plus B no-perceptual pretraining.
-See the audit for scope and memory measurements.
+Use eight H200 GPUs for L post-training. The original L runs exceeded
+85 GiB allocated per GPU, above H100 80 GB capacity.
 
 ## ImageNet experiments
 

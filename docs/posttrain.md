@@ -39,14 +39,9 @@ gradient clipping one). The zero-based warmup starts at LR zero and reaches
 decay 0.999. The horizon is 25,000 completed updates, with global batch 1,024,
 BF16 generator execution, and eight ranks.
 
-Hardware caveat: the [eight-H100 audit](imagenet_refactor_audit.md#eight-gpu-training-checks)
-passed B initialization from both released and custom pretraining checkpoints,
-but L exhausted 80 GB GPU memory before completing its first update. Original
-L-80/L-160 post-training used eight H200s and peaked above 85 GiB allocated
-per GPU; use H200s to match the original hardware. The refactored L recipe
-subsequently passed two updates from both released and custom checkpoints on
-eight H200s, peaking at 81.32 GiB allocated. This is a startup measurement,
-not a full-training memory bound.
+B post-training has been checked on H100 80 GB GPUs. Use eight H200s for L
+post-training to match the original hardware: L-80/L-160 production runs peaked
+above 85 GiB allocated per GPU, exceeding H100 80 GB capacity.
 
 ## Initialization and resume
 

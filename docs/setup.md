@@ -26,11 +26,9 @@ Eight ranks are required for the supplied training recipes. Paper FID/FDr5
 uses four ranks and batch 32. Preserve hardware, precision, rank/batch settings,
 and B/L backend behavior when comparing numerical trajectories.
 
-The [eight-GPU audit](imagenet_refactor_audit.md#eight-gpu-training-checks)
-passed short B/L perceptual pretraining and B post-training runs on H100 80 GB.
-The unchanged L post-training recipe ran out of GPU memory on that hardware;
-the original L-80/L-160 production runs used eight H200s and peaked above
-85 GiB allocated per GPU. Use H200s to match that training hardware.
+Use H100 80 GB or H200 GPUs for B training. Use eight H200s for L
+post-training: the original L-80/L-160 runs peaked above 85 GiB allocated per
+GPU, exceeding H100 80 GB capacity.
 
 ## Assets outside the checkout
 
