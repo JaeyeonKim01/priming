@@ -15,7 +15,7 @@
 
 </div>
 
-Official implementation of [Are We Overthinking One-Step Generation?](#paper-links) (arXiv coming soon).
+Official implementation of [Are We Overthinking One-Step Generation?](#paper-links).
 
 [![Figure 1: Priming Models improve the training compute vs. FID trade-off (left); reconstruction pretraining accelerates distributional post-training (right).](docs/figures/figure1.png)](docs/figures/figure1.pdf)
 
