@@ -108,18 +108,26 @@ reference; FDr⁵ uses five frozen encoders on float images, excluding ConvNeXt.
 Each row is the mean over three sampling seeds of one checkpoint,
 with 50,000 images per seed; these are not independent training runs.
 
-| Model | FID ↓ | FDr⁵ ↓ |
-|---|---:|---:|
-| Priming-B-80 | 1.4683 | 12.7089 |
-| Priming-B-160 | 1.3841 | 11.2286 |
-| Priming-L-80 | 1.2695 | 8.9430 |
-| Priming-L-160 | 1.1871 | 7.1048 |
+<table>
+<tr>
+<td valign="top">
+<table>
+<tr><th>Model</th><th>FID ↓</th><th>FDr⁵ ↓</th></tr>
+<tr><td>Priming-B-80</td><td>1.4683</td><td>12.7089</td></tr>
+<tr><td>Priming-B-160</td><td>1.3841</td><td>11.2286</td></tr>
+<tr><td>Priming-L-80</td><td>1.2695</td><td>8.9430</td></tr>
+<tr><td>Priming-L-160</td><td>1.1871</td><td>7.1048</td></tr>
+</table>
+</td>
+<td valign="top">
+<a href="docs/figures/figure1_fdr5.pdf"><img src="docs/figures/figure1_fdr5.png" width="420" alt="ImageNet FDr⁵ versus training compute for Priming and comparison models."></a>
+</td>
+</tr>
+</table>
 
 These results use released post-training checkpoints.
 
 </details>
-
-[![ImageNet FDr⁵ versus training compute for Priming and comparison models.](docs/figures/figure1_fdr5.png)](docs/figures/figure1_fdr5.pdf)
 
 ## Experiment scope
 
