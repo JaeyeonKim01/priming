@@ -5,8 +5,7 @@
 
 <p><strong><a href="https://parkwbin.github.io/">Woobin Park</a><sup>1,*</sup>, <a href="https://jaeyeonkim01.github.io/">Jaeyeon Kim</a><sup>2,*</sup>, <a href="https://yilundu.github.io/">Yilun Du</a><sup>2</sup>, <a href="https://www.sitanchen.com/">Sitan Chen</a><sup>2</sup>, <a href="https://cv.snu.ac.kr/index.php/~bhhan/">Bohyung Han</a><sup>1</sup></strong></p>
 
-<p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University<br>
-<sup>*</sup> Equal contribution (co-first authors)</p>
+<p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University &nbsp;·&nbsp; <sup>*</sup> Equal contribution</p>
 
 <!-- Replace the placeholder href values with the paper and announcement URLs when available. -->
 <p id="paper-links">
