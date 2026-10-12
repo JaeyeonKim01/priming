@@ -105,19 +105,21 @@ reference; FDr⁵ uses five frozen encoders on float images, excluding ConvNeXt.
 <details>
 <summary><strong>ImageNet evaluation results</strong></summary>
 
-Each row is the mean ± sample SD over three sampling seeds of one checkpoint,
+Each row is the mean over three sampling seeds of one checkpoint,
 with 50,000 images per seed; these are not independent training runs.
 
 | Model | FID ↓ | FDr⁵ ↓ |
 |---|---:|---:|
-| Priming-B-80 | 1.4683 ± 0.0128 | 12.7089 ± 0.0188 |
-| Priming-B-160 | 1.3841 ± 0.0130 | 11.2286 ± 0.0157 |
-| Priming-L-80 | 1.2695 ± 0.0128 | 8.9430 ± 0.0134 |
-| Priming-L-160 | 1.1871 ± 0.0147 | 7.1048 ± 0.0196 |
+| Priming-B-80 | 1.4683 | 12.7089 |
+| Priming-B-160 | 1.3841 | 11.2286 |
+| Priming-L-80 | 1.2695 | 8.9430 |
+| Priming-L-160 | 1.1871 | 7.1048 |
 
 These results use released post-training checkpoints.
 
 </details>
+
+[![ImageNet FDr⁵ versus training compute for Priming and comparison models.](docs/figures/figure1_fdr5.png)](docs/figures/figure1_fdr5.pdf)
 
 ## Experiment scope
 
