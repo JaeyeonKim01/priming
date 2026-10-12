@@ -62,7 +62,8 @@ See the [download guide](docs/checkpoints.md) and the [checked-in manifests](old
 Pretraining checkpoints contain online and EMA weights; post-training initializes
 from online weights, and final evaluation uses post-training EMA 0.999.
 
-### Sampling from our models
+<details>
+<summary><strong>Sampling from our models</strong></summary>
 
 [![Figure 2: One-step samples from Priming Models across class-conditional image generation, text-to-image generation, and world modeling.](docs/figures/figure2.png)](docs/figures/figure2.pdf)
 
@@ -81,7 +82,10 @@ supported. Use `--stage pretraining` for pretrained weights after downloading
 the corresponding file under `checkpoints/pretraining/`.
 See [sampling options](docs/checkpoints.md#sampling-options).
 
-### Evaluation: ImageNet
+</details>
+
+<details>
+<summary><strong>Evaluation: ImageNet</strong></summary>
 
 Evaluate the four released Priming models with **FID** and **FDr⁵**. Download the
 selected generator checkpoint first, as above, then prepare the evaluation
@@ -126,6 +130,8 @@ with 50,000 images per seed; these are not independent training runs.
 </table>
 
 These results use released post-training checkpoints.
+
+</details>
 
 </details>
 
