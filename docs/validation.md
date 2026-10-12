@@ -41,6 +41,9 @@ launch procedure if those GPUs span nodes.
 
 ## Check the training setup before a full run
 
+`--check-config` validates recipe settings only; it does not check local assets
+or run training. Use the GPU check below to verify that training can start.
+
 After preparing the same data and encoders, run two updates of each stage in
 new output directories. Two updates exercise the nonzero post-training learning
 rate after its first, zero-LR warmup update:
@@ -67,6 +70,40 @@ Pretraining writes `checkpoints/latest.pth`; the post-training check writes
 establishes startup, updates, and saving; it does not establish convergence or
 exercise the scheduled evaluation at update 1,250. Start full training in new
 output directories without `--smoke-steps`.
+
+### Current-checkout startup check — October 11
+
+The current training source at `7fc7667` passed five fresh checks on eight H200
+GPUs (four nodes, two GPUs each), using the production recipes with compilation
+and BF16 enabled. Each stage completed two optimizer updates on real ImageNet:
+
+| Workflow | Result | Peak allocated memory per GPU |
+|---|---|---|
+| B perceptual pretraining → its own checkpoint → B OT post-training | Passed both stages | 35.70 / 47.87 GiB |
+| L perceptual pretraining → its own checkpoint → L OT post-training | Passed both stages | 59.78 / 81.32 GiB |
+| Released B-160 pretrained checkpoint → B OT post-training | Passed | 47.87 GiB |
+
+All eight ranks completed each stage. Saved model, optimizer, and EMA tensors
+were finite; post-training inherited the source EMA counters and changed online
+weights after the second update. The pinned environment checks, all eight recipe
+checks, and all 66 CPU/reference and asset-helper tests passed, including in a
+relocated source-only copy.
+
+The encoder instructions were checked against the download manifest, converter,
+and runtime loaders. Both ResNet-MAE and ConvNeXt were converted again into a
+new output directory; strict parameter loading and the published whole-file
+SHA256 checks passed. The setup guide now spells out the optional MessagePack
+dependency for external storage, and the asset guide distinguishes matching,
+SIM, and diagnostic encoders and the assets required at training startup.
+
+This pass reused the pinned environment and prepared data/assets from October 9;
+it did not repeat a fresh installation or full dataset download. It establishes
+B/L perceptual pretraining and OT post-training startup, updates, and saving.
+It does not cover full-training convergence, scheduled 50,000-image evaluation,
+GPU resume equivalence, or GPU runs of SIM/energy/Laplacian ablations.
+See the [machine-readable readiness record](readiness_20261011.json) for exact
+scope, checkpoint checks, and memory measurements, and the audit below for the
+earlier fresh-installation and download checks.
 
 ### Fresh training workflow audit — October 9
 

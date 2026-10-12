@@ -40,7 +40,7 @@ After dataset download and encoder conversion, the full OT directory is:
 assets/ot/representations/
   mae_encoder.pt
   convnext_encoder.pt
-  converted_manifest.json  # includes the pixel MAE architecture in mae_config
+  converted_manifest.json  # includes the pixel ResNet-MAE architecture in mae_config
   calibration.json         # 97 feature names, bandwidths, weights, and source hash
   downloads.json
   dataset_labels.npy
@@ -51,6 +51,12 @@ assets/ot/representations/
 The dataset download supplies indices/calibration/metadata; conversion produces
 the two `.pt` files. The loader checks them against
 [`old/releases/posttrain_encoders.json`](../old/releases/posttrain_encoders.json).
+The full-feature matching encoder is **ResNet-MAE** from `Goodeat/drifting`;
+the **ViT-MAE** from `timm/vit_large_patch16_224.mae` serves SIM and evaluation.
+Likewise, the converted Facebook ConvNeXt matching encoder and the timm
+ConvNeXt evaluation encoder use separate pinned checkpoints. Keep each in its documented
+location.
+
 The other encoder revisions and reference files are pinned in
 [`old/releases/encoders.json`](../old/releases/encoders.json).
 Keep the feature definitions, weights, calibration, and statistics together;
@@ -140,6 +146,13 @@ python scripts/download_assets.py --group conversion
 python -m pip install -r old/environment/requirements-conversion.txt
 python scripts/convert_ot_encoders.py
 ```
+
+Use the `posttraining` download group even for a two-update smoke check:
+the trainer verifies all six diagnostic encoders, their statistics, and the
+precision/recall reference at startup. The `evaluation` group alone omits the
+diagnostic ConvNeXt weights/statistics and precision/recall reference.
+For SIM-only post-training, prepare the dataset and `posttraining` group;
+the `conversion` group and converted ResNet-MAE/ConvNeXt files are unnecessary.
 
 Conversion runs on CPU; allow sufficient RAM (64 GB recommended) and about
 20 GB for source/converted weights. The optional MessagePack package is only

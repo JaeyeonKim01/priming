@@ -38,6 +38,13 @@ python scripts/check_environment.py
 - [Checkpoint downloads](docs/checkpoints.md): download and verify the released models. Sampling needs only a generator checkpoint.
 - [Validation](docs/validation.md): equivalence checks and the limits of current reproduction evidence.
 
+ImageNet pretraining and post-training require **eight GPUs** and approximately
+**259 GB** for the prepared dataset, plus model assets and training outputs.
+B training has been checked on H100 80 GB; use H200s for L post-training.
+Accept the ImageNet dataset terms and prepare the assets before launching.
+Follow the [two-update training check](docs/validation.md#check-the-training-setup-before-a-full-run)
+to test pretraining → your saved checkpoint → post-training on your setup.
+
 ## Checkpoints
 
 Four model/epoch combinations, each available before and after post-training.
@@ -129,8 +136,8 @@ weights; it does not claim a new full training reproduction.
 
 This release covers ImageNet-256: B/L sampling at 80/160 pretraining epochs,
 three reconstruction recipes, B/L-160 OT post-training, and B-160 SIM,
-Laplacian MMD, and energy ablations. Text-to-image and world modeling appear in
-the paper figure; their pipelines are not included. Comparison-baseline
+Laplacian MMD, and energy ablations. Text-to-image and world modeling code will
+be ready in two weeks (October 25, 2026); see [News](#news). Comparison-baseline
 samplers and the old dashboard remain available in the previous Git revision.
 
 Post-training initializes from released pretrained online weights with a fresh
@@ -207,3 +214,22 @@ Downloaded generator weights retain their published `checkpoints/` paths.
 
 See [validation instructions](docs/validation.md) to run the numerical comparison
 suite against a checkout of the previous implementation.
+
+## News
+
+- **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
+  in two weeks, on **October 25, 2026**.
+
+## Citation
+
+If you use Priming in your research, please cite:
+
+```bibtex
+@misc{park2026priming,
+  title   = {Are We Overthinking One-Step Generation?},
+  author  = {Park, Woobin and Kim, Jaeyeon and Du, Yilun and Chen, Sitan and Han, Bohyung},
+  year    = {2026}
+}
+```
+
+The arXiv identifier and link will be added when the preprint is available.

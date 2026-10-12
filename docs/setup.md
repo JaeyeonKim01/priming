@@ -77,9 +77,19 @@ torchrun --standalone --nproc_per_node=8 pretrain.py \
   --output "$PRIMING_STORAGE/outputs/pretrain/my_b"
 ```
 
-For post-training, download the `posttraining` and `conversion` groups with
-the same `--root`, then run `scripts/convert_ot_encoders.py --root
-"$PRIMING_STORAGE"` as described in the [asset guide](assets.md#post-training-encoders-and-ot-calibration).
+For post-training, prepare the diagnostic assets and converted matching encoders
+under the same storage root. Install the optional conversion dependency before
+running the converter:
+
+```bash
+python scripts/download_assets.py --group posttraining --root "$PRIMING_STORAGE"
+python scripts/download_assets.py --group conversion --root "$PRIMING_STORAGE"
+python -m pip install -r old/environment/requirements-conversion.txt
+python scripts/convert_ot_encoders.py --root "$PRIMING_STORAGE"
+```
+
+Run conversion once; it refuses to overwrite existing encoder files. See the
+[asset guide](assets.md#post-training-encoders-and-ot-calibration) for encoder identities and verification.
 The scheduled evaluation paths are recipe fields, so create
 `configs/posttrain/b160_external.yaml` beside `_base.yaml`, replacing
 `/scratch/priming` with your actual storage root:
