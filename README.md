@@ -214,6 +214,9 @@ suite against a checkout of the previous implementation.
 
 ## News
 
+- **October 15, 2026:** We identified opportunities to speed up the post-training
+  codebase without changing the training recipe and are currently working on these
+  optimizations. This branch will be preserved for reproducibility.
 - **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
   in two weeks, on **October 25, 2026**.
 
