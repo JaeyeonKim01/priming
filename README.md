@@ -7,15 +7,15 @@
 
 <p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University &nbsp;·&nbsp; <sup>*</sup> Equal contribution</p>
 
-<!-- Replace the placeholder href values with the paper and announcement URLs when available. -->
+<!-- Update the announcement link when it is available. -->
 <p id="paper-links">
-  <a href="#paper-links" title="arXiv preprint coming soon"><img src="https://img.shields.io/badge/ArXiv-Coming_soon-red" alt="ArXiv: coming soon"></a>
+  <a href="https://arxiv.org/abs/2610.20331" title="Read the arXiv preprint"><img src="https://img.shields.io/badge/arXiv-2610.20331-b31b1b" alt="arXiv:2610.20331"></a>
   <a href="#paper-links" title="X announcement coming soon"><img src="https://img.shields.io/badge/X-Coming_soon-black?logo=x&amp;logoColor=white" alt="X: coming soon"></a>
 </p>
 
 </div>
 
-Official implementation of [Are We Overthinking One-Step Generation?](#paper-links).
+Official implementation of [Are We Overthinking One-Step Generation?](https://arxiv.org/abs/2610.20331).
 
 [![Figure 1: Priming Models improve the training compute vs. FID trade-off (left); reconstruction pretraining accelerates distributional post-training (right).](docs/figures/figure1.png)](docs/figures/figure1.pdf)
 
@@ -228,8 +228,10 @@ If you use Priming in your research, please cite:
 @misc{park2026priming,
   title   = {Are We Overthinking One-Step Generation?},
   author  = {Park, Woobin and Kim, Jaeyeon and Du, Yilun and Chen, Sitan and Han, Bohyung},
-  year    = {2026}
+  year    = {2026},
+  eprint  = {2610.20331},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  url     = {https://arxiv.org/abs/2610.20331}
 }
 ```
-
-The arXiv identifier and link will be added when the preprint is available.
