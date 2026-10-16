@@ -7,10 +7,9 @@
 
 <p><sup>1</sup> Seoul National University &nbsp;·&nbsp; <sup>2</sup> Harvard University &nbsp;·&nbsp; <sup>*</sup> Equal contribution</p>
 
-<!-- Update the announcement link when it is available. -->
 <p id="paper-links">
   <a href="https://arxiv.org/abs/2610.20331" title="Read the arXiv preprint"><img src="https://img.shields.io/badge/arXiv-2610.20331-b31b1b" alt="arXiv:2610.20331"></a>
-  <a href="#paper-links" title="X announcement coming soon"><img src="https://img.shields.io/badge/X-Coming_soon-black?logo=x&amp;logoColor=white" alt="X: coming soon"></a>
+  <a href="https://x.com/Jaeyeon_Kim_0/status/2110744814274674851" title="Read the X announcement"><img src="https://img.shields.io/badge/X-Announcement-black?logo=x&amp;logoColor=white" alt="X announcement"></a>
 </p>
 
 </div>
@@ -219,6 +218,18 @@ suite against a checkout of the previous implementation.
   optimizations. This branch will be preserved for reproducibility.
 - **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
   in two weeks, on **October 25, 2026**.
+
+## License
+
+Copyright 2026 the Priming contributors.
+
+The original code in this repository is licensed under the
+[Apache License 2.0](LICENSE).
+Third-party code retains its original license and copyright notices, including
+[W-Flow (MIT)](models/encoders/full/LICENSE-W-Flow) and
+[torch-fidelity (Apache-2.0)](models/encoders/LICENSE-torch-fidelity.md).
+External datasets, model weights, and other downloaded assets remain subject to
+their respective licenses and terms.
 
 ## Citation
 
