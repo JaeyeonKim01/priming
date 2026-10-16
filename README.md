@@ -236,7 +236,7 @@ their respective licenses and terms.
 If you use Priming in your research, please cite:
 
 ```bibtex
-@misc{park2026priming,
+@misc{park2026are,
   title   = {Are We Overthinking One-Step Generation?},
   author  = {Park, Woobin and Kim, Jaeyeon and Du, Yilun and Chen, Sitan and Han, Bohyung},
   year    = {2026},
