@@ -16,14 +16,44 @@ def full_source_hash():
     return hashlib.sha256(b''.join(path.read_bytes() for path in paths)).hexdigest()
 
 
+def configure_full_execution(encoders, *, mae_bf16_channels_last=False, compile_encoders=False):
+    """Optimize execution after verifying/loading the original calibrated weights."""
+    if mae_bf16_channels_last:
+        for module in encoders.mae.modules():
+            if isinstance(module, torch.nn.Conv2d):
+                weight = module.weight.detach().to(dtype=torch.bfloat16,
+                    memory_format=torch.channels_last)
+                module.weight = torch.nn.Parameter(weight, requires_grad=False)
+    if compile_encoders:
+        from torch.utils._python_dispatch import is_in_torch_dispatch_mode
+        eager = encoders.encode_family
+        compiled = torch.compile(eager, fullgraph=True, dynamic=False,
+                                 options={'layout_optimization': False})
+
+        def encode_family(images, family):
+            # A FLOP/profiling dispatch mode must not mark the compiled code eager.
+            if is_in_torch_dispatch_mode(include_infra_modes=False):
+                return eager(images, family)
+            return compiled(images, family)
+
+        encoders.encode_family = encode_family
+
+
 class FrozenEncoders(torch.nn.Module):
     def __init__(self, cache, *, stack='convnext_full_mae', device='cuda',
-                 microbatch=8, hf_home=None, torch_home=None):
+                 microbatch=8, hf_home=None, torch_home=None,
+                 mae_bf16_channels_last=False, compile_encoders=False):
         super().__init__()
         if stack not in {'convnext_full_mae', 'sim'}:
             raise ValueError('Expected the full MAE/ConvNeXt or SIM feature stack')
         if int(microbatch) < 1:
             raise ValueError('Encoder microbatch must be positive')
+        if not isinstance(mae_bf16_channels_last, bool) or not isinstance(compile_encoders, bool):
+            raise ValueError('Encoder execution switches must be booleans')
+        if stack != 'convnext_full_mae' and (mae_bf16_channels_last or compile_encoders):
+            raise ValueError('Encoder execution optimizations require the full feature stack')
+        self.execution = dict(microbatch=int(microbatch),
+            mae_bf16_channels_last=mae_bf16_channels_last, compile_encoders=compile_encoders)
         self.stack, self.cache, self.device = stack, Path(cache), torch.device(device)
         verify_references(self.cache, full=stack == 'convnext_full_mae')
         if stack == 'convnext_full_mae':
@@ -38,6 +68,8 @@ class FrozenEncoders(torch.nn.Module):
             self.encoders = PixelDriftingEncoders(self.cache, device=self.device,
                 microbatch=microbatch, mixed_precision=True, checkpoint_inputs=False)
             self.encoders.family_names = ('mae', 'convnext')
+            configure_full_execution(self.encoders,
+                mae_bf16_channels_last=mae_bf16_channels_last, compile_encoders=compile_encoders)
             # Preserve the historical full-feature metadata digest.
             paths = [self.cache/name for name in
                      ('downloads.json','converted_manifest.json','calibration.json')]
@@ -91,4 +123,8 @@ class FrozenEncoders(torch.nn.Module):
         return self.encoders.encode_family(images, family)
 
     def checkpoint_metadata(self):
-        return dict(feature_stack=self.stack, manifest_sha256=self.manifest_digest)
+        metadata = dict(feature_stack=self.stack, manifest_sha256=self.manifest_digest)
+        # Preserve the baseline metadata; optimized checkpoints bind execution too.
+        if self.execution != dict(microbatch=8, mae_bf16_channels_last=False, compile_encoders=False):
+            metadata['encoder_execution'] = dict(version=1, **self.execution)
+        return metadata

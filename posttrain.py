@@ -14,13 +14,15 @@ LOG = logging.getLogger(__name__)
 
 
 def make_matcher(cache, *, stack='convnext_full_mae', device='cuda', microbatch=8,
-                 hf_home=None, torch_home=None, **objective):
+                 hf_home=None, torch_home=None, mae_bf16_channels_last=False,
+                 compile_encoders=False, **objective):
     from losses.matching import Matching
     from models.encoders.load import FrozenEncoders
     if stack=='sim' and objective.get('kind','featurewise_ot')!='featurewise_ot':
         raise ValueError('The SIM recipe uses featurewise OT')
     encoder = FrozenEncoders(cache, stack=stack, device=device, microbatch=microbatch,
-                             hf_home=hf_home, torch_home=torch_home)
+        hf_home=hf_home, torch_home=torch_home, mae_bf16_channels_last=mae_bf16_channels_last,
+        compile_encoders=compile_encoders)
     return Matching(encoder, bandwidths=encoder.bandwidths, weights=encoder.weights,
                     checkpoint_metadata=encoder.checkpoint_metadata(), **objective)
 
@@ -94,13 +96,21 @@ def load_config(path):
         raise ValueError('Post-training requires the production fresh AdamW and zero-based 125-update warmup')
     fixed_matching = dict(coefficient=5., global_classes_per_step=16, samples_per_class=64,
         real_references_per_class=128, epsilon=.001, epsilon_mixture={'0.001':.75, '0.01':.25},
-        num_iterations=1000, tolerance=1e-6, microbatch=8, seed=7919)
+        num_iterations=1000, tolerance=1e-6, seed=7919)
     if any(matching.get(key) != value for key, value in fixed_matching.items()):
         raise ValueError('Post-training class populations, calibration, or Sinkhorn settings differ')
     if matching['kind'] not in {'featurewise_ot', 'featurewise_energy', 'featurewise_laplacian_mmd'}:
         raise ValueError('Unsupported feature discrepancy')
     if matching['stack'] not in {'convnext_full_mae', 'sim'} or (matching['stack'] == 'sim' and matching['kind'] != 'featurewise_ot'):
         raise ValueError('SIM uses featurewise OT; energy/Laplacian use the full feature stack')
+    for key in ('mae_bf16_channels_last', 'compile_encoders'):
+        if not isinstance(matching.get(key, False), bool):
+            raise ValueError(f'matching.{key} must be true or false')
+    if type(matching['microbatch']) is not int or matching['microbatch'] not in (8, 32):
+        raise ValueError('Encoder microbatch must be 8 (baseline) or 32')
+    if matching['stack'] == 'sim' and (matching['microbatch'] != 8 or
+            matching.get('mae_bf16_channels_last', False) or matching.get('compile_encoders', False)):
+        raise ValueError('SIM retains the baseline encoder execution')
     if model['model'] == 'OST_L' and (matching['stack'], matching['kind']) != ('convnext_full_mae', 'featurewise_ot'):
         raise ValueError('The packaged L recipe uses full-feature OT')
     delta = .04549544751644135 if matching['kind'] == 'featurewise_ot' else 0.
@@ -276,6 +286,8 @@ def train(config, args, output, hf_home, torch_home):
         matching = config['matching']
         matcher = make_matcher(config['data']['encoder_cache'], stack=matching['stack'],
             microbatch=matching['microbatch'], hf_home=hf_home, torch_home=torch_home,
+            mae_bf16_channels_last=matching.get('mae_bf16_channels_last', False),
+            compile_encoders=matching.get('compile_encoders', False),
             kind=matching['kind'], coefficient=matching['coefficient'], global_classes=matching['global_classes_per_step'],
             samples=matching['samples_per_class'], references=matching['real_references_per_class'],
             epsilon_mixture=matching['epsilon_mixture'], iterations=matching['num_iterations'], tolerance=matching['tolerance'])

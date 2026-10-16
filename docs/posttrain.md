@@ -43,6 +43,39 @@ B post-training has been checked on H100 80 GB GPUs. Use eight H200s for L
 post-training to match the original hardware: L-80/L-160 production runs peaked
 above 85 GiB allocated per GPU, exceeding H100 80 GB capacity.
 
+## Optional faster encoder execution
+
+`b160_fast.yaml` and `l160_fast.yaml` retain the baseline objective, populations,
+random streams, precision of the generator and ConvNeXt, optimizer, and evaluation
+schedule. They change only frozen encoder execution:
+
+- `matching.microbatch: 32` (the baseline remains eight).
+- `matching.mae_bf16_channels_last: true` stores MAE convolution weights once in
+  BF16/channels-last; normalization parameters remain FP32.
+- `matching.compile_encoders: true` compiles family encodes and gradient replay
+  with static shapes and Inductor layout optimization disabled. A dispatch-mode
+  measurement uses eager execution without disabling later compilation.
+
+These settings change floating-point rounding; they are not bit-identical to the
+baseline. The original encoder files, calibration digest, and verification remain
+unchanged. Optimized checkpoints record execution settings and reject incompatible
+resumes. Start each configuration in a new output directory. Compilation adds
+startup cost, including after resume; compare warmed updates separately.
+
+For a bounded benchmark with update timings and allocated/reserved GPU peaks per
+rank (saved under `OUTPUT/benchmark/`):
+
+```bash
+torchrun --standalone --nproc_per_node=8 scripts/benchmark_posttrain.py --steps 130 -- \
+  --config configs/posttrain/b160_fast.yaml --output outputs/benchmark/b160_fast
+```
+
+Use the multi-node launcher from [setup](setup.md) when eight GPUs span nodes.
+Benchmark baseline and fast settings on identical hardware, CPU allocations and
+data storage. The wrapper always limits execution to at most 200 updates per
+invocation; it does not launch full production training. Short runs establish
+execution and recovery, not final FID/FDr5 reproduction.
+
 ## Initialization and resume
 
 Omitting `--init-checkpoint` uses the released pretrained B-160 or L-160 file
