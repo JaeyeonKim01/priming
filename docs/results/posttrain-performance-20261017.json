@@ -243,7 +243,20 @@
           },
           "checkpoint_sha256": "c5465a9b59e5693f8bc0bb4166b463c938534190f089cd7c644fd0b8a9b9454f"
         }
-      ]
+      ],
+      "historical_full_run": {
+        "source": "Slurm accounting, verified against final training iteration and final evaluation log",
+        "state": "COMPLETED",
+        "elapsed_seconds": 131696,
+        "completed_updates": 25000,
+        "gpu": "NVIDIA H200",
+        "world_size": 8,
+        "nodes": 4,
+        "includes_scheduled_evaluations": true,
+        "comparison_scope": "Historical public reproduction run, separate from released checkpoints used for the FID comparison. Hardware/topology differs from new runs; use bounded matched benchmarks for speedup claims.",
+        "training_log_sha256": "01e17879a11a8a9dc676174b752a88161707a7b8a7d1cf529c380a3edefd1ca5",
+        "training_metrics_sha256": "af553231b4194f74acbc0c098b0dbe46f328f949616f2e6a1285966a384d628c"
+      }
     },
     "priming_l_160": {
       "environment": {
@@ -424,7 +437,20 @@
           },
           "checkpoint_sha256": "55d79ba71244cb6618ee99293b35db4415ed55643569247f0d79a85ba29a8d72"
         }
-      ]
+      ],
+      "historical_full_run": {
+        "source": "Slurm accounting, verified against final training iteration and final evaluation log",
+        "state": "COMPLETED",
+        "elapsed_seconds": 139475,
+        "completed_updates": 25000,
+        "gpu": "NVIDIA H200",
+        "world_size": 8,
+        "nodes": 4,
+        "includes_scheduled_evaluations": true,
+        "comparison_scope": "Historical public reproduction run, separate from released checkpoints used for the FID comparison. Hardware/topology differs from new runs; use bounded matched benchmarks for speedup claims.",
+        "training_log_sha256": "3a85b533b0d0095e6efdc10492fa6ad4038970a5d91d35861b8efd0458d68ba0",
+        "training_metrics_sha256": "c65e2aabec2132db7a22ca07e7fd77e74ce14ad1343b193c8e54c838abb9a3a5"
+      }
     }
   },
   "runtime_sha256": {

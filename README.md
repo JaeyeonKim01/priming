@@ -26,13 +26,14 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
   is preserved on [paper-reproduction](https://github.com/JaeyeonKim01/priming/tree/paper-reproduction)
   and tagged [v1.0-paper](https://github.com/JaeyeonKim01/priming/tree/v1.0-paper).
 
-  | Model | GPUs | Original → faster (s/update) | Speedup |
-  |---|---|---:|---:|
-  | B-160 | 8 × H100 | 5.65 → 1.83 | **3.09×** |
-  | L-160 | 8 × H200 | 5.64 → 1.92 | **2.94×** |
+  | Model | Benchmark GPUs | s/update (previous → new) | Speedup | Final FID (previous → new) | Total time (previous → new) |
+  |---|---|---:|---:|---:|---:|
+  | B-160 | 8 × H100 | 5.65 → 1.83 | **3.09×** | 1.3841 → **1.3837** | ~36.6h → **~13.6h** |
+  | L-160 | 8 × H200 | 5.64 → 1.92 | **2.94×** | 1.1871 → **1.1810** | ~38.7h → **~13.9h** |
 
-  Post-training (25k updates, including evaluations): **~13.5h for B, ~14h for L**
-  on the hardware above.
+  FID: three-seed means, released → new checkpoints. Total time: 25k updates
+  including evaluations; previous runs used 8 H200s across four nodes, new runs
+  used the GPUs above across two nodes. Speedups use matched warmed-update benchmarks.
 
 - **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
   in two weeks, on **October 25, 2026**.

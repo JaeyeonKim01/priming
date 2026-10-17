@@ -61,8 +61,15 @@ medians over updates 100–130, taking the slowest rank's time for each update.
 These are warmed training-update timings, excluding scheduled evaluation,
 checkpoint writing, and startup. Compilation adds startup cost, including after
 resume. The complete fast jobs, including scheduled evaluations, took 13h 34m
-for B and 13h 54m for L; no matched original full-job wall-time comparison is
-claimed. Keep using H200s for L training: its fast benchmark reserved 79.52 GiB
+for B and 13h 54m for L. Earlier public reproduction jobs completed the same
+25,000-update horizon in 36h 35m for B and 38h 45m for L. Those historical jobs
+used eight H200s across four nodes; the new jobs used eight H100s for B and eight
+H200s for L across two nodes. These are observed total runtimes with different
+hardware/topology, not the matched benchmarks used to calculate the speedups
+above. The previous FID column refers to released checkpoints, rather than
+these separate historical reproduction jobs.
+
+Keep using H200s for L training: its fast benchmark reserved 79.52 GiB
 per GPU, and full L training was validated on H200s.
 
 An intermediate configuration with microbatch 32 and BF16/channels-last MAE
