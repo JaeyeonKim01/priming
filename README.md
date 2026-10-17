@@ -22,9 +22,7 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 
 - **October 17, 2026:** Faster B/L post-training recipes deliver about **3× faster
   warmed training updates** with reproduced final FID after 25,000 updates.
-  **Only frozen-encoder execution changed**: larger encoder microbatches,
-  MAE weight precision/layout, and encoder compilation. The generator, training
-  objective, optimizer, and evaluation protocol are unchanged. See
+  **Only frozen-encoder execution changed**. See
   [benchmarks and results](docs/posttrain-performance.md). The original public code
   is preserved on [paper-reproduction](https://github.com/JaeyeonKim01/priming/tree/paper-reproduction)
   and tagged [v1.0-paper](https://github.com/JaeyeonKim01/priming/tree/v1.0-paper).
