@@ -35,6 +35,9 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
   | L-160 | 8 × H200 | 5.64 → 1.92 | **2.94×** |
 
   Median warmed update times; excludes startup, evaluation, and checkpoint writing.
+  Full 25,000-update post-training, including scheduled evaluations, takes roughly
+  **13.5 hours for B-160 on 8 H100s** and **14 hours for L-160 on 8 H200s**
+  on our setup.
 
 - **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
   in two weeks, on **October 25, 2026**.
