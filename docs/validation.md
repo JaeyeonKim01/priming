@@ -18,7 +18,7 @@ python scripts/convert_ot_encoders.py
 torchrun --standalone --nproc_per_node=8 pretrain.py \
   --config configs/pretrain/b160_perceptual.yaml --output outputs/pretrain/my_b
 torchrun --standalone --nproc_per_node=8 posttrain.py \
-  --config configs/posttrain/b160.yaml --output outputs/posttrain/my_b \
+  --config configs/posttrain/b160_fast.yaml --output outputs/posttrain/my_b \
   --init-checkpoint outputs/pretrain/my_b/checkpoints/latest.pth
 
 torchrun --standalone --nproc_per_node=4 eval.py \
@@ -30,7 +30,7 @@ The converter creates new files and refuses to overwrite existing converted
 encoders; run it once after preparing the source weights. To use released
 pretrained weights instead, download `checkpoints/pretraining/priming_b_160.pth`
 using the [checkpoint guide](checkpoints.md), skip pretraining, and omit
-`--init-checkpoint`. For L, use `l160_perceptual.yaml`, `l160.yaml`, and
+`--init-checkpoint`. For L, use `l160_perceptual.yaml`, `l160_fast.yaml`, and
 `--model priming_l_160`, with distinct output paths.
 
 These commands assume assets under the repository defaults. The
@@ -53,7 +53,7 @@ torchrun --standalone --nproc_per_node=8 pretrain.py \
   --config configs/pretrain/b160_perceptual.yaml \
   --output outputs/pretrain/check_b --smoke-steps 2
 torchrun --standalone --nproc_per_node=8 posttrain.py \
-  --config configs/posttrain/b160.yaml \
+  --config configs/posttrain/b160_fast.yaml \
   --init-checkpoint outputs/pretrain/check_b/checkpoints/latest.pth \
   --output outputs/posttrain/check_b --smoke-steps 2
 ```
@@ -61,7 +61,7 @@ torchrun --standalone --nproc_per_node=8 posttrain.py \
 The first command creates the checkpoint used by the second; no released
 generator checkpoint is needed for this route. To check released initialization,
 download the matching pretrained checkpoint and omit `--init-checkpoint` in a
-separate post-training run. For L, use `l160_perceptual.yaml`, `l160.yaml`, distinct
+separate post-training run. For L, use `l160_perceptual.yaml`, `l160_fast.yaml`, distinct
 output paths, and eight H200s. On a multi-node allocation, replace the standalone
 launcher with the [Slurm example](setup.md#training-across-multiple-nodes).
 
