@@ -22,8 +22,7 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 
 - **October 17, 2026:** Faster B/L post-training recipes deliver about **3× faster
   warmed training updates** with reproduced final FID after 25,000 updates.
-  **Only frozen-encoder execution changed**. See
-  [benchmarks and results](docs/posttrain-performance.md). The original public code
+  **Only frozen-encoder execution changed**. The original public code
   is preserved on [paper-reproduction](https://github.com/JaeyeonKim01/priming/tree/paper-reproduction)
   and tagged [v1.0-paper](https://github.com/JaeyeonKim01/priming/tree/v1.0-paper).
 
@@ -32,10 +31,8 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
   | B-160 | 8 × H100 | 5.65 → 1.83 | **3.09×** |
   | L-160 | 8 × H200 | 5.64 → 1.92 | **2.94×** |
 
-  Median warmed update times; excludes startup, evaluation, and checkpoint writing.
-  Full 25,000-update post-training, including scheduled evaluations, takes roughly
-  **13.5 hours for B-160 on 8 H100s** and **14 hours for L-160 on 8 H200s**
-  on our setup.
+  Post-training (25k updates, including evaluations): **~13.5h for B, ~14h for L**
+  on the hardware above.
 
 - **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
   in two weeks, on **October 25, 2026**.
