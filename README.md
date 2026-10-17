@@ -16,13 +16,17 @@
 
 Official implementation of [Are We Overthinking One-Step Generation?](https://arxiv.org/abs/2610.20331).
 
-**Faster post-training:** the recommended B/L recipes deliver about **3× faster
-warmed training updates** with reproduced final FID. See the
-[benchmarks and results](docs/posttrain-performance.md). The original public code
-is preserved on [paper-reproduction](https://github.com/JaeyeonKim01/priming/tree/paper-reproduction)
-and tagged [v1.0-paper](https://github.com/JaeyeonKim01/priming/tree/v1.0-paper).
-
 [![Figure 1: Priming Models improve the training compute vs. FID trade-off (left); reconstruction pretraining accelerates distributional post-training (right).](docs/figures/figure1.png)](docs/figures/figure1.pdf)
+
+## News
+
+- **October 17, 2026:** Faster B/L post-training recipes deliver about **3× faster
+  warmed training updates** with reproduced final FID after 25,000 updates. See
+  [benchmarks and results](docs/posttrain-performance.md). The original public code
+  is preserved on [paper-reproduction](https://github.com/JaeyeonKim01/priming/tree/paper-reproduction)
+  and tagged [v1.0-paper](https://github.com/JaeyeonKim01/priming/tree/v1.0-paper).
+- **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
+  in two weeks, on **October 25, 2026**.
 
 ## Getting started
 
@@ -216,13 +220,6 @@ Downloaded generator weights retain their published `checkpoints/` paths.
 
 See [validation instructions](docs/validation.md) to run the numerical comparison
 suite against a checkout of the previous implementation.
-
-## News
-
-- **October 17, 2026:** Faster B/L post-training recipes are available with full
-  25,000-update validation. See [results](docs/posttrain-performance.md).
-- **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
-  in two weeks, on **October 25, 2026**.
 
 ## License
 
