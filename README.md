@@ -25,6 +25,14 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
   [benchmarks and results](docs/posttrain-performance.md). The original public code
   is preserved on [paper-reproduction](https://github.com/JaeyeonKim01/priming/tree/paper-reproduction)
   and tagged [v1.0-paper](https://github.com/JaeyeonKim01/priming/tree/v1.0-paper).
+
+  | Model | GPUs | Original → faster (s/update) | Speedup |
+  |---|---|---:|---:|
+  | B-160 | 8 × H100 | 5.65 → 1.83 | **3.09×** |
+  | L-160 | 8 × H200 | 5.64 → 1.92 | **2.94×** |
+
+  Median warmed update times; excludes startup, evaluation, and checkpoint writing.
+
 - **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
   in two weeks, on **October 25, 2026**.
 
