@@ -93,7 +93,7 @@ The scheduled evaluation paths are recipe fields, so create
 `/scratch/priming` with your actual storage root:
 
 ```yaml
-_base_: _base.yaml
+_base_: b160_fast.yaml
 data:
   data_path: /scratch/priming/data/imagenet
   encoder_cache: /scratch/priming/assets/ot/representations
@@ -157,7 +157,7 @@ sbatch --partition=YOUR_GPU_PARTITION --account=YOUR_ACCOUNT train.sbatch \
   --output outputs/pretrain/check_b --smoke-steps 2
 # After pretraining completes:
 sbatch --partition=YOUR_GPU_PARTITION --account=YOUR_ACCOUNT train.sbatch \
-  posttrain.py --config configs/posttrain/b160.yaml \
+  posttrain.py --config configs/posttrain/b160_fast.yaml \
   --init-checkpoint outputs/pretrain/check_b/checkpoints/latest.pth \
   --output outputs/posttrain/check_b --smoke-steps 2
 ```

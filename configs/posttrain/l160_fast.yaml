@@ -1,0 +1,9 @@
+_base_: _base.yaml
+model:
+  model: OST_L
+initialization:
+  checkpoint: checkpoints/pretraining/priming_l_160.pth
+matching:
+  microbatch: 32
+  mae_bf16_channels_last: true
+  compile_encoders: true

@@ -14,13 +14,15 @@ for SIM, offline weight caches, and the separate evaluation assets.
 and checkpointable class/reference sampling.
 
 ```bash
-python posttrain.py --config configs/posttrain/b160.yaml --check-config
+python posttrain.py --config configs/posttrain/b160_fast.yaml --check-config
 torchrun --standalone --nproc_per_node=8 posttrain.py \
-  --config configs/posttrain/b160.yaml --output outputs/posttrain/b160
+  --config configs/posttrain/b160_fast.yaml --output outputs/posttrain/b160
 ```
 
-Recipes: `b160.yaml`, `l160.yaml`, `b160_sim.yaml`, `b160_energy.yaml`, and
-`b160_laplacian.yaml`. They inherit common settings from
+Recommended OT recipes: `b160_fast.yaml` and `l160_fast.yaml`. Original execution
+remains available through `b160.yaml` and `l160.yaml`; ablations use
+`b160_sim.yaml`, `b160_energy.yaml`, and `b160_laplacian.yaml`.
+They inherit common settings from
 [`_base.yaml`](../configs/posttrain/_base.yaml). Full-feature recipes use the calibrated ResNet-MAE and
 ConvNeXt outputs; SIM uses SigLIP, ViT-MAE, and Inception. Energy and Laplacian
 change the discrepancy while retaining the full feature stack.
@@ -28,7 +30,8 @@ change the discrepancy while retaining the full feature stack.
 Each update selects 16 distinct global classes, with 64 generated samples,
 64 independent generated references, and 128 real images per class. Frozen
 features are computed online. Only the live generated population receives
-gradients; encoder replay runs in microbatches of eight. Class-local losses
+gradients; encoder replay uses microbatches of 32 in the fast recipes and eight
+in the original recipes. Class-local losses
 use the original scalar and parameter-gradient SUM conventions. OT retains
 its fixed bandwidths, epsilon mixture, per-feature convergence, and coefficient
 five. The matcher owns neither datasets nor generator/optimizer state.
@@ -43,23 +46,60 @@ B post-training has been checked on H100 80 GB GPUs. Use eight H200s for L
 post-training to match the original hardware: L-80/L-160 production runs peaked
 above 85 GiB allocated per GPU, exceeding H100 80 GB capacity.
 
+## Faster encoder execution
+
+`b160_fast.yaml` and `l160_fast.yaml` retain the baseline objective, populations,
+random streams, precision of the generator and ConvNeXt, optimizer, and evaluation
+schedule. They change only frozen encoder execution:
+
+- `matching.microbatch: 32` (the baseline remains eight).
+- `matching.mae_bf16_channels_last: true` stores MAE convolution weights once in
+  BF16/channels-last; normalization parameters remain FP32.
+- `matching.compile_encoders: true` compiles family encodes and gradient replay
+  with static shapes and Inductor layout optimization disabled. A dispatch-mode
+  measurement uses eager execution without disabling later compilation.
+
+These settings change floating-point rounding; they are not bit-identical to the
+baseline. The original encoder files, calibration digest, and verification remain
+unchanged. Optimized checkpoints record execution settings and reject incompatible
+resumes. Start each configuration in a new output directory. Compilation adds
+startup cost, including after resume; compare warmed updates separately.
+
+The fast B/L recipes have completed 25,000-update training and three-seed final
+evaluation. See [performance and reproduction results](posttrain-performance.md)
+for timings, numerical differences, and the preserved public version.
+
+For a bounded benchmark with update timings and allocated/reserved GPU peaks per
+rank (saved under `OUTPUT/benchmark/`):
+
+```bash
+torchrun --standalone --nproc_per_node=8 scripts/benchmark_posttrain.py --steps 130 -- \
+  --config configs/posttrain/b160_fast.yaml --output outputs/benchmark/b160_fast
+```
+
+Use the multi-node launcher from [setup](setup.md) when eight GPUs span nodes.
+Benchmark baseline and fast settings on identical hardware, CPU allocations and
+data storage. The wrapper always limits execution to at most 200 updates per
+invocation; it does not launch full production training. Short runs establish
+execution and recovery, not final FID/FDr5 reproduction.
+
 ## Initialization and resume
 
 Omitting `--init-checkpoint` uses the released pretrained B-160 or L-160 file
 selected by the recipe and verifies its release checksum. To use another
 released pretrained checkpoint, including B/L-80, pass its path explicitly.
-Choose `b160.yaml` for B weights or `l160.yaml` for L weights; the recipe name
+Choose `b160_fast.yaml` for B weights or `l160_fast.yaml` for L weights; the recipe name
 selects post-training settings, not a minimum pretraining duration.
 
 ```bash
 # Your compatible perceptual pretraining checkpoint; fresh post-training.
 torchrun --standalone --nproc_per_node=8 posttrain.py \
-  --config configs/posttrain/b160.yaml --output outputs/posttrain/custom_b \
+  --config configs/posttrain/b160_fast.yaml --output outputs/posttrain/custom_b \
   --init-checkpoint outputs/pretrain/b160/checkpoints/latest.pth
 
 # Exact continuation of the latest renewed post-training checkpoint.
 torchrun --standalone --nproc_per_node=8 posttrain.py \
-  --config configs/posttrain/b160.yaml --output outputs/posttrain/custom_b --resume
+  --config configs/posttrain/b160_fast.yaml --output outputs/posttrain/custom_b --resume
 ```
 
 Custom initialization accepts a **full compatible Priming pretraining
