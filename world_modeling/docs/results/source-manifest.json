@@ -1,0 +1,155 @@
+{
+  "archive": "t2i_and_world.tar.gz",
+  "files": [
+    {
+      "source": "rt1_driftworld/unet/blocks.py",
+      "destination": "world_modeling/models/rt1/blocks.py",
+      "source_sha256": "57cdbee8b69af1d4c058ddf5343adb55b67bb6fc030e9b15bd7d5b017b3b839a",
+      "migrated_sha256": "57cdbee8b69af1d4c058ddf5343adb55b67bb6fc030e9b15bd7d5b017b3b839a"
+    },
+    {
+      "source": "rt1_driftworld/unet/unet.py",
+      "destination": "world_modeling/models/rt1/unet.py",
+      "source_sha256": "f888ee0bc88dd4c02c2c1ce352018502b7941788290c64ab57d73ad0bdfb8443",
+      "migrated_sha256": "f888ee0bc88dd4c02c2c1ce352018502b7941788290c64ab57d73ad0bdfb8443"
+    },
+    {
+      "source": "rt1_driftworld/unet/unet_cfg.py",
+      "destination": "world_modeling/models/rt1/unet_cfg.py",
+      "source_sha256": "0f086f14c93b861c1a30ba9f93e2f0e84f435c6a2f90208e65256a259770431c",
+      "migrated_sha256": "0f086f14c93b861c1a30ba9f93e2f0e84f435c6a2f90208e65256a259770431c"
+    },
+    {
+      "source": "rt1_driftworld/unet/unet_configs.py",
+      "destination": "world_modeling/models/rt1/unet_configs.py",
+      "source_sha256": "df1e8156fe73886d0ea339373cf808092d4286cc8269b9a1511532836f7b0a49",
+      "migrated_sha256": "df1e8156fe73886d0ea339373cf808092d4286cc8269b9a1511532836f7b0a49"
+    },
+    {
+      "source": "rt1_driftworld/datasets/dataset_precomputed.py",
+      "destination": "world_modeling/data/rt1.py",
+      "source_sha256": "d4125afa84ce658e128024a951cdb817647616e60d4914fa36ce1382e8cc00f7",
+      "migrated_sha256": "d4125afa84ce658e128024a951cdb817647616e60d4914fa36ce1382e8cc00f7"
+    },
+    {
+      "source": "bridge_driftworld/unet/blocks.py",
+      "destination": "world_modeling/models/bridge/blocks.py",
+      "source_sha256": "c89035814ff8dcbaba9788e35487308c827bfc50b65961cdb2d773399908785a",
+      "migrated_sha256": "c89035814ff8dcbaba9788e35487308c827bfc50b65961cdb2d773399908785a"
+    },
+    {
+      "source": "bridge_driftworld/unet/unet.py",
+      "destination": "world_modeling/models/bridge/unet.py",
+      "source_sha256": "052226ca082eb0d3792305f4c30f3aef9ab0b2e251477390a1a11be632dfd6bc",
+      "migrated_sha256": "052226ca082eb0d3792305f4c30f3aef9ab0b2e251477390a1a11be632dfd6bc"
+    },
+    {
+      "source": "bridge_driftworld/unet/unet_cfg.py",
+      "destination": "world_modeling/models/bridge/unet_cfg.py",
+      "source_sha256": "d8772cdbfb5ab439812377fec39306619f3e0247834151bbb59478ba449a8f03",
+      "migrated_sha256": "d8772cdbfb5ab439812377fec39306619f3e0247834151bbb59478ba449a8f03"
+    },
+    {
+      "source": "bridge_driftworld/unet/unet_configs.py",
+      "destination": "world_modeling/models/bridge/unet_configs.py",
+      "source_sha256": "4382f519cf7fe85bca55f21e535d1a1c21cbb6d1778e3b7445b1b2971b91a4c0",
+      "migrated_sha256": "4382f519cf7fe85bca55f21e535d1a1c21cbb6d1778e3b7445b1b2971b91a4c0"
+    },
+    {
+      "source": "bridge_driftworld/unet/action_tokens.py",
+      "destination": "world_modeling/models/bridge/action_tokens.py",
+      "source_sha256": "828090f13502533f679c7edebbc2e8731f6c541c0b09c1955e0da14c2d60022a",
+      "migrated_sha256": "828090f13502533f679c7edebbc2e8731f6c541c0b09c1955e0da14c2d60022a"
+    },
+    {
+      "source": "bridge_driftworld/datasets/dataset_precomputed.py",
+      "destination": "world_modeling/data/bridge.py",
+      "source_sha256": "c72f71a39a26effb68cecc97fdd0ec2df85bee3c06ba2cc1adfe56e1c9ab6a60",
+      "migrated_sha256": "c72f71a39a26effb68cecc97fdd0ec2df85bee3c06ba2cc1adfe56e1c9ab6a60"
+    },
+    {
+      "source": "rt1_driftworld/flow_matching.py",
+      "destination": "world_modeling/losses/reconstruction.py",
+      "source_sha256": "9fb67696310c470a6ad80029d174d3c59f4a5409f3ce1085792ffd0f4fe9d160",
+      "migrated_sha256": "9fb67696310c470a6ad80029d174d3c59f4a5409f3ce1085792ffd0f4fe9d160"
+    },
+    {
+      "source": "rt1_driftworld/distmatch_generator.py",
+      "destination": "world_modeling/models/generator.py",
+      "source_sha256": "7bd441e4fd3d9dbf1a24f43211b593033e56493c490528e640a76e5528c74e44",
+      "migrated_sha256": "1a99dee9c33a5bef965fd09b684bf2806d58027ea85cf4b08b0ac26f44b45d45"
+    },
+    {
+      "source": "rt1_driftworld/encoders/vae_utils.py",
+      "destination": "world_modeling/models/vae_utils.py",
+      "source_sha256": "93aaa067ea84edf63744b95f12e057d46af975b981b5f393cb5c1aeedbb5f7ef",
+      "migrated_sha256": "b354da83aa98220fa617370eff170f1e06284fef440d15508893f6bf375118c9"
+    },
+    {
+      "source": "rt1_driftworld/encoders/vae_sd3.py",
+      "destination": "world_modeling/models/vae.py",
+      "source_sha256": "09c22fcbfc90bf4a1ab9831ce0ac5a0046175075916757c96840d42760a014ef",
+      "migrated_sha256": "04961b5535a5cac7371d263a543f07dc6f8e6375ad2da7cfd0c1e0e90b110363"
+    },
+    {
+      "source": "rt1_driftworld/features/dinov3_extractor/extractor.py",
+      "destination": "world_modeling/models/dino.py",
+      "source_sha256": "4ad7002cca59253c1e6cb459dcd3ee902468b4c3d53f47f8507c719fb383f934",
+      "migrated_sha256": "4ad7002cca59253c1e6cb459dcd3ee902468b4c3d53f47f8507c719fb383f934"
+    },
+    {
+      "source": "rt1_driftworld/features/distmatch_latent_features.py",
+      "destination": "world_modeling/losses/features.py",
+      "source_sha256": "54203f9a2ac30706306a4a548a46b30cbc1b6e6a631d351291c7b068047245ac",
+      "migrated_sha256": "a9732b5def3aff1d9b5dde9c2941ca2b2bfa77276bfe24f7ca7943213cd54c61"
+    },
+    {
+      "source": "rt1_driftworld/distmatch_replay.py",
+      "destination": "world_modeling/utils/replay.py",
+      "source_sha256": "3d01204dd74e9dc5691bb09f4373a2fc8ad2e06f899287b8215bc83bd1f0b79e",
+      "migrated_sha256": "3d01204dd74e9dc5691bb09f4373a2fc8ad2e06f899287b8215bc83bd1f0b79e"
+    },
+    {
+      "source": "rt1_driftworld/eval/eval_metrics.py",
+      "destination": "world_modeling/metrics/eval_metrics.py",
+      "source_sha256": "1514fca3af270071333d33604f5e7f161af46fbdb503ea042b9841b89f159463",
+      "migrated_sha256": "1514fca3af270071333d33604f5e7f161af46fbdb503ea042b9841b89f159463"
+    },
+    {
+      "source": "rt1_driftworld/eval/tensor_conversions.py",
+      "destination": "world_modeling/metrics/tensor_conversions.py",
+      "source_sha256": "bac068c16e9860e03464c9cad9c3c07bb9d4cbf916a26a43804abe890cf625c3",
+      "migrated_sha256": "bac068c16e9860e03464c9cad9c3c07bb9d4cbf916a26a43804abe890cf625c3"
+    },
+    {
+      "source": "rt1_driftworld/eval/streaming_metrics.py",
+      "destination": "world_modeling/metrics/streaming_metrics.py",
+      "source_sha256": "9064cb4f66be99d8d14836499363f0ecd31406d922937f940e2a437b71addcd0",
+      "migrated_sha256": "9064cb4f66be99d8d14836499363f0ecd31406d922937f940e2a437b71addcd0"
+    },
+    {
+      "source": "rt1_driftworld/utils/video_utils.py",
+      "destination": "world_modeling/utils/video.py",
+      "source_sha256": "ca886c04d966e12b3271e06e76c9dcaf225409185faa5f757422897c5aff79d8",
+      "migrated_sha256": "ca886c04d966e12b3271e06e76c9dcaf225409185faa5f757422897c5aff79d8"
+    },
+    {
+      "source": "rt1_driftworld/flow_matching_denoiser.py",
+      "destination": "world_modeling/models/denoiser.py",
+      "source_sha256": "3b685392af6bcb3c05cbfaaab31b91423aa0ccb40138150eaab528e3d44d793b",
+      "migrated_sha256": "fba11f9c605253666847560dd8557077a9f6200d0f414edd8e027f3c308e332c"
+    },
+    {
+      "source": "rt1_driftworld/eval/eval_on_validation_streaming_shard.py",
+      "destination": "world_modeling/metrics/streaming.py",
+      "source_sha256": "825a88b9ed2fd13710ff079c1d3a75e7e8ad1f82e433f92fe3a9f172efbac675",
+      "migrated_sha256": "ae01737c17b9506ee1d30e97ba2954ea5fd0005e28a06b93c690733379a3fa11"
+    },
+    {
+      "source": "rt1_driftworld/eval/eval_on_validation_streaming_aggregate.py",
+      "destination": "world_modeling/metrics/aggregate.py",
+      "source_sha256": "5b4d9668167bc834e990d4d4defac65c968dc15b36a294d3a3d702ea93ccc613",
+      "migrated_sha256": "7d544f5c92e3697f6327d7b3b21b483e73ca1e1187bb3ef92b8588716e76d675"
+    }
+  ]
+}

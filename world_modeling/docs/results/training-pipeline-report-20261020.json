@@ -1,0 +1,333 @@
+{
+  "scope": "bounded training pipeline; pilot evaluation is not a quality reproduction",
+  "passed": true,
+  "datasets": {
+    "rt1": {
+      "pretrain": {
+        "final_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/pretrain/ckpt_save/ckpt-step250.pth",
+        "sha256": "1af63bb24cc49e9df085064bd0825b5acd234de8a5718be7ce57873e374d127a",
+        "summary": {
+          "stage": "pretrain",
+          "initial_step": 200,
+          "completed_steps": 250,
+          "target_steps": 250,
+          "stop_reason": "max_steps",
+          "loader_steps_per_epoch": 1322,
+          "dataset_episodes": 84566,
+          "checkpoint_seconds": 4.363421346060932,
+          "world_size": 8,
+          "last_saved_step": 250,
+          "seconds": 25.625348075293005,
+          "matcher": null,
+          "source_checkpoint": null
+        },
+        "initialization": {
+          "resume_checkpoint": null,
+          "initial_step": 0,
+          "optimizer_state_entries": 0,
+          "optimizer_steps": [],
+          "source_checkpoint": null,
+          "world_size": 8,
+          "loader_steps_per_epoch": 1322,
+          "dataset_episodes": 84566
+        },
+        "recovery": {
+          "resume_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/pretrain/ckpt_save/ckpt-step200.pth",
+          "initial_step": 200,
+          "optimizer_state_entries": 300,
+          "optimizer_steps": [
+            200
+          ],
+          "source_checkpoint": null,
+          "world_size": 8,
+          "loader_steps_per_epoch": 1322,
+          "dataset_episodes": 84566
+        },
+        "optimizer_steps": [
+          250
+        ],
+        "steady_iteration_seconds_mean": 0.16023669210465058,
+        "steady_iteration_seconds_median": 0.15881231427192688,
+        "max_allocated_gib": 10.920122146606445,
+        "max_reserved_gib": 11.7421875,
+        "pilot_session_seconds": 70.74124139267951,
+        "pilot_checkpoint_seconds": 13.028455950319767,
+        "projected_full_steps": 84608,
+        "projected_full_training_hours": 3.765918345997299,
+        "projected_full_training_gpu_hours": 30.12734676797839
+      },
+      "posttrain": {
+        "final_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/posttrain/ckpt_save/ckpt-step120.pth",
+        "sha256": "a78d37888b6fdebb832576de374088c47f04bbf7735fd498dea7226669f3fbc1",
+        "summary": {
+          "stage": "posttrain",
+          "initial_step": 100,
+          "completed_steps": 120,
+          "target_steps": 120,
+          "stop_reason": "max_steps",
+          "loader_steps_per_epoch": 2643,
+          "dataset_episodes": 84566,
+          "checkpoint_seconds": 3.471205691806972,
+          "world_size": 8,
+          "last_saved_step": 120,
+          "seconds": 64.84926781151444,
+          "matcher": {
+            "version": "0.6.0",
+            "source": "/n/netscratch/sitanc_lab/Lab/jaykim/distmatch/src/distmatch",
+            "sha256": "587edb55204d5d55926872e3d250ae220f8478bc956457b3fc8e2f01bfb14114"
+          },
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/pretrain/ckpt_save/ckpt-step250.pth",
+            "sha256": "1af63bb24cc49e9df085064bd0825b5acd234de8a5718be7ce57873e374d127a",
+            "step": 250,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          }
+        },
+        "initialization": {
+          "resume_checkpoint": null,
+          "initial_step": 0,
+          "optimizer_state_entries": 0,
+          "optimizer_steps": [],
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/pretrain/ckpt_save/ckpt-step250.pth",
+            "sha256": "1af63bb24cc49e9df085064bd0825b5acd234de8a5718be7ce57873e374d127a",
+            "step": 250,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          },
+          "world_size": 8,
+          "loader_steps_per_epoch": 2643,
+          "dataset_episodes": 84566,
+          "online_equals_ema": true
+        },
+        "recovery": {
+          "resume_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/posttrain/ckpt_save/ckpt-step100.pth",
+          "initial_step": 100,
+          "optimizer_state_entries": 300,
+          "optimizer_steps": [
+            100
+          ],
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/pretrain/ckpt_save/ckpt-step250.pth",
+            "sha256": "1af63bb24cc49e9df085064bd0825b5acd234de8a5718be7ce57873e374d127a",
+            "step": 250,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          },
+          "world_size": 8,
+          "loader_steps_per_epoch": 2643,
+          "dataset_episodes": 84566
+        },
+        "optimizer_steps": [
+          120
+        ],
+        "steady_iteration_seconds_mean": 2.767262213230133,
+        "steady_iteration_seconds_median": 2.6834216117858887,
+        "max_allocated_gib": 8.662649154663086,
+        "max_reserved_gib": 8.810546875,
+        "pilot_session_seconds": 350.0649485811591,
+        "pilot_checkpoint_seconds": 10.626186629757285,
+        "projected_full_steps": 4000,
+        "projected_full_training_hours": 3.0747357924779255,
+        "projected_full_training_gpu_hours": 24.597886339823404
+      },
+      "evaluation": {
+        "n_videos": 16,
+        "ssim": 0.2941045016050339,
+        "ssim_std": 0.04641304776386513,
+        "psnr": 9.405859112739563,
+        "psnr_std": 0.5122615325510372,
+        "lpips": 0.9260969310998917,
+        "lpips_std": 0.020040117889779854,
+        "total_gen_time_s": 15.574473963584751,
+        "total_gen_frames": 652,
+        "time_per_frame_s": 0.023887230005498084,
+        "max_shard_wall_time_s": 6.443487897980958,
+        "backend": "streaming_features_v1",
+        "weights": "ema",
+        "actual_step": 120,
+        "step": 120,
+        "world_size": 8,
+        "cfg_scale": 1.0,
+        "chunk_gen_frames": 8,
+        "flow_steps": 1,
+        "flow_solver": "euler",
+        "fid": 460.5820915891038,
+        "fvd2048_16f": 4825.861567578268,
+        "fid_feature_count": 652,
+        "fvd_feature_count": 16,
+        "real_stats_cache": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/rt1/eval/real_stats.npz",
+        "intermediate_png_count": 0,
+        "pilot": true
+      }
+    },
+    "bridge": {
+      "pretrain": {
+        "final_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/pretrain/ckpt_save/ckpt-step250.pth",
+        "sha256": "43af70a686890da8f6affbcd5e8fa9ae212fdf725def8f00882bd1baf110143e",
+        "summary": {
+          "stage": "pretrain",
+          "initial_step": 200,
+          "completed_steps": 250,
+          "target_steps": 250,
+          "stop_reason": "max_steps",
+          "loader_steps_per_epoch": 831,
+          "dataset_episodes": 53178,
+          "checkpoint_seconds": 3.604181068018079,
+          "world_size": 8,
+          "last_saved_step": 250,
+          "seconds": 20.805807014927268,
+          "matcher": null,
+          "source_checkpoint": null
+        },
+        "initialization": {
+          "resume_checkpoint": null,
+          "initial_step": 0,
+          "optimizer_state_entries": 0,
+          "optimizer_steps": [],
+          "source_checkpoint": null,
+          "world_size": 8,
+          "loader_steps_per_epoch": 831,
+          "dataset_episodes": 53178
+        },
+        "recovery": {
+          "resume_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/pretrain/ckpt_save/ckpt-step200.pth",
+          "initial_step": 200,
+          "optimizer_state_entries": 427,
+          "optimizer_steps": [
+            200
+          ],
+          "source_checkpoint": null,
+          "world_size": 8,
+          "loader_steps_per_epoch": 831,
+          "dataset_episodes": 53178
+        },
+        "optimizer_steps": [
+          250
+        ],
+        "steady_iteration_seconds_mean": 0.17861411992622458,
+        "steady_iteration_seconds_median": 0.17856570333242416,
+        "max_allocated_gib": 11.202890396118164,
+        "max_reserved_gib": 12.080078125,
+        "pilot_session_seconds": 67.80372594110668,
+        "pilot_checkpoint_seconds": 12.334455482661724,
+        "projected_full_steps": 53184,
+        "projected_full_training_hours": 2.6387259317100913,
+        "projected_full_training_gpu_hours": 21.10980745368073
+      },
+      "posttrain": {
+        "final_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/posttrain/ckpt_save/ckpt-step120.pth",
+        "sha256": "7f950b37dd190ea90e6cf16823fb8d1283b68e127cc71a021981a7f7618c1c07",
+        "summary": {
+          "stage": "posttrain",
+          "initial_step": 100,
+          "completed_steps": 120,
+          "target_steps": 120,
+          "stop_reason": "max_steps",
+          "loader_steps_per_epoch": 1662,
+          "dataset_episodes": 53178,
+          "checkpoint_seconds": 3.49902271758765,
+          "world_size": 8,
+          "last_saved_step": 120,
+          "seconds": 67.64277843479067,
+          "matcher": {
+            "version": "0.6.0",
+            "source": "/n/netscratch/sitanc_lab/Lab/jaykim/distmatch/src/distmatch",
+            "sha256": "587edb55204d5d55926872e3d250ae220f8478bc956457b3fc8e2f01bfb14114"
+          },
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/pretrain/ckpt_save/ckpt-step250.pth",
+            "sha256": "43af70a686890da8f6affbcd5e8fa9ae212fdf725def8f00882bd1baf110143e",
+            "step": 250,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          }
+        },
+        "initialization": {
+          "resume_checkpoint": null,
+          "initial_step": 0,
+          "optimizer_state_entries": 0,
+          "optimizer_steps": [],
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/pretrain/ckpt_save/ckpt-step250.pth",
+            "sha256": "43af70a686890da8f6affbcd5e8fa9ae212fdf725def8f00882bd1baf110143e",
+            "step": 250,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          },
+          "world_size": 8,
+          "loader_steps_per_epoch": 1662,
+          "dataset_episodes": 53178,
+          "online_equals_ema": true
+        },
+        "recovery": {
+          "resume_checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/posttrain/ckpt_save/ckpt-step100.pth",
+          "initial_step": 100,
+          "optimizer_state_entries": 427,
+          "optimizer_steps": [
+            100
+          ],
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/pretrain/ckpt_save/ckpt-step250.pth",
+            "sha256": "43af70a686890da8f6affbcd5e8fa9ae212fdf725def8f00882bd1baf110143e",
+            "step": 250,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          },
+          "world_size": 8,
+          "loader_steps_per_epoch": 1662,
+          "dataset_episodes": 53178
+        },
+        "optimizer_steps": [
+          120
+        ],
+        "steady_iteration_seconds_mean": 3.0264501762390137,
+        "steady_iteration_seconds_median": 3.0750858783721924,
+        "max_allocated_gib": 8.945411682128906,
+        "max_reserved_gib": 9.1796875,
+        "pilot_session_seconds": 381.33237519394606,
+        "pilot_checkpoint_seconds": 11.611328040249646,
+        "projected_full_steps": 4000,
+        "projected_full_training_hours": 3.3627224180433486,
+        "projected_full_training_gpu_hours": 26.90177934434679
+      },
+      "evaluation": {
+        "n_videos": 24,
+        "ssim": 0.3352985742191474,
+        "ssim_std": 0.08200181658704253,
+        "psnr": 11.175942222277323,
+        "psnr_std": 1.2131940870204323,
+        "lpips": 0.9249479745825132,
+        "lpips_std": 0.038898465505050966,
+        "total_gen_time_s": 20.86932104337029,
+        "total_gen_frames": 726,
+        "time_per_frame_s": 0.028745621271859905,
+        "max_shard_wall_time_s": 6.2989740709308535,
+        "backend": "streaming_features_v1",
+        "weights": "ema",
+        "actual_step": 120,
+        "step": 120,
+        "world_size": 8,
+        "cfg_scale": 1.0,
+        "chunk_gen_frames": 8,
+        "flow_steps": 1,
+        "flow_solver": "euler",
+        "fid": 452.75194137434863,
+        "fvd2048_16f": 2716.8382105340875,
+        "fid_feature_count": 726,
+        "fvd_feature_count": 22,
+        "real_stats_cache": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/pilot1/bridge/eval/real_stats.npz",
+        "intermediate_png_count": 0,
+        "pilot": true
+      }
+    }
+  },
+  "estimate_note": "Steady iterations include data loading and distributed work; projections exclude queueing, startup, checkpoint writes, evaluation and failures. Allow additional contingency."
+}

@@ -1,0 +1,12 @@
+{
+  "rt1/posttrain/ema_prediction_max_error": 0.0,
+  "rt1/pretrain/ema_prediction_max_error": 0.0,
+  "rt1/pretrain/loss": 2.820699691772461,
+  "rt1/pretrain/gradient_max_error": 0.0,
+  "rt1/pretrain/adamw_and_ema_exact": true,
+  "bridge/posttrain/ema_prediction_max_error": 0.0,
+  "bridge/pretrain/ema_prediction_max_error": 0.0,
+  "bridge/pretrain/loss": 2.3011314868927,
+  "bridge/pretrain/gradient_max_error": 0.0,
+  "bridge/pretrain/adamw_and_ema_exact": true
+}

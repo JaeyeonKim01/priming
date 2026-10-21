@@ -1,0 +1,23 @@
+# Install alongside Priming's PyTorch 2.6 / CUDA 12.4 environment.
+# Do not replace the shared ImageNet environment or its torch/torchvision pins.
+diffusers==0.37.1
+scipy==1.15.3
+av==13.1.0
+pytorchvideo==0.1.5
+lpips==0.1.4
+imageio==2.37.0
+imageio-ffmpeg==0.6.0
+scikit-image==0.25.2
+fvcore==0.1.5.post20221221
+iopath==0.1.10
+yacs==0.1.8
+portalocker==3.2.0
+termcolor==3.1.0
+tabulate==0.9.0
+lazy-loader==0.4
+tifffile==2025.5.10
+torchmetrics==1.7.1
+lightning-utilities==0.14.3
+importlib-metadata==8.6.1
+zipp==3.23.0
+parameterized==0.9.0

@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "dataset": "bridge",
+  "stages": {
+    "pretrain": {
+      "passed": true,
+      "dataset": "bridge",
+      "stage": "pretrain",
+      "final_steps": 53184,
+      "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/bridge/pretrain/ckpt_save/ckpt-step53184.pth",
+      "sha256": "8274c435e96b3603e240c36d81168cf5a62c1e1556000bc62872efb3c098788e",
+      "parent": null,
+      "iteration_seconds_total": 9186.414721697569,
+      "peak_allocated_gib": 11.202890396118164,
+      "peak_reserved_gib": 11.9453125,
+      "summary": {
+        "stage": "pretrain",
+        "initial_step": 0,
+        "completed_steps": 53184,
+        "target_steps": 53184,
+        "stop_reason": "recipe_complete",
+        "loader_steps_per_epoch": 831,
+        "dataset_episodes": 53178,
+        "checkpoint_seconds": 296.7120659747161,
+        "world_size": 8,
+        "last_saved_step": 53184,
+        "seconds": 11065.405911176931,
+        "matcher": null,
+        "source_checkpoint": null
+      }
+    },
+    "posttrain": {
+      "passed": true,
+      "dataset": "bridge",
+      "stage": "posttrain",
+      "final_steps": 4000,
+      "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/bridge/posttrain/ckpt_save/ckpt-step4000.pth",
+      "sha256": "ead6f71f0ef257d89c6ffd68a1735c9fa6dff70294aeaefbde5610f4ea1b5dad",
+      "parent": {
+        "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/bridge/pretrain/ckpt_save/ckpt-step53184.pth",
+        "sha256": "8274c435e96b3603e240c36d81168cf5a62c1e1556000bc62872efb3c098788e",
+        "step": 53184,
+        "weights": "ema",
+        "objective": "flow_matching_x_prediction",
+        "t_convention": "t=0 data, t=1 noise"
+      },
+      "iteration_seconds_total": 12068.94462776184,
+      "peak_allocated_gib": 8.945411682128906,
+      "peak_reserved_gib": 9.181640625,
+      "summary": {
+        "stage": "posttrain",
+        "initial_step": 0,
+        "completed_steps": 4000,
+        "target_steps": 4000,
+        "stop_reason": "recipe_complete",
+        "loader_steps_per_epoch": 1662,
+        "dataset_episodes": 53178,
+        "checkpoint_seconds": 16.3602207666263,
+        "world_size": 8,
+        "last_saved_step": 4000,
+        "seconds": 12100.05066920584,
+        "matcher": {
+          "version": "0.6.0",
+          "source": "/n/netscratch/sitanc_lab/Lab/jaykim/distmatch/src/distmatch",
+          "sha256": "587edb55204d5d55926872e3d250ae220f8478bc956457b3fc8e2f01bfb14114"
+        },
+        "source_checkpoint": {
+          "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/bridge/pretrain/ckpt_save/ckpt-step53184.pth",
+          "sha256": "8274c435e96b3603e240c36d81168cf5a62c1e1556000bc62872efb3c098788e",
+          "step": 53184,
+          "weights": "ema",
+          "objective": "flow_matching_x_prediction",
+          "t_convention": "t=0 data, t=1 noise"
+        }
+      }
+    }
+  },
+  "evaluation": {
+    "n_videos": 6871,
+    "ssim": 0.8562404102172901,
+    "ssim_std": 0.04993198235753979,
+    "psnr": 24.4624918653288,
+    "psnr_std": 2.422979586174519,
+    "lpips": 0.06790402254490652,
+    "lpips_std": 0.03249201460413683,
+    "total_gen_time_s": 6321.071465046145,
+    "total_gen_frames": 228693,
+    "time_per_frame_s": 0.02763998664168184,
+    "max_shard_wall_time_s": 1232.486839769408,
+    "backend": "streaming_features_v1",
+    "weights": "ema",
+    "actual_step": 4000,
+    "step": 4000,
+    "world_size": 8,
+    "cfg_scale": 1.0,
+    "chunk_gen_frames": 8,
+    "flow_steps": 1,
+    "flow_solver": "euler",
+    "fid": 2.7589491803294663,
+    "fvd2048_16f": 33.218214288040144,
+    "fid_feature_count": 228693,
+    "fvd_feature_count": 2048,
+    "real_stats_cache": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/bridge/eval/real_stats.npz",
+    "intermediate_png_count": 0,
+    "pilot": false
+  }
+}

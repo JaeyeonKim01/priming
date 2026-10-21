@@ -1,0 +1,93 @@
+{
+  "rt1": {
+    "counts_match": true,
+    "n_videos": 2165,
+    "protocol_match": true,
+    "total_gen_frames": 86135,
+    "metrics": {
+      "ssim": {
+        "reproduced": 0.8783232449383989,
+        "archived": 0.8783233222730166,
+        "delta": -7.733461770964567e-08,
+        "paper": 0.878,
+        "paper_rounding_match": true
+      },
+      "psnr": {
+        "reproduced": 26.76467019008434,
+        "archived": 26.764669104701653,
+        "delta": 1.0853826850620862e-06,
+        "paper": 26.765,
+        "paper_rounding_match": true
+      },
+      "lpips": {
+        "reproduced": 0.0624085223951805,
+        "archived": 0.06240910113408439,
+        "delta": -5.787389038905411e-07,
+        "paper": 0.063,
+        "paper_rounding_match": false
+      },
+      "fid": {
+        "reproduced": 3.1609839595384983,
+        "archived": 3.1618535871137396,
+        "delta": -0.0008696275752413385,
+        "paper": 3.16,
+        "paper_rounding_match": true
+      },
+      "fvd": {
+        "reproduced": 30.955012324538075,
+        "archived": 30.96123811209327,
+        "delta": -0.006225787555194984,
+        "paper": 30.96,
+        "paper_rounding_match": true
+      }
+    },
+    "raw_metadata_match": false,
+    "episode_and_fvd_selection_match": true,
+    "metadata_note": "Archived manifest/manifest_sha256 fields are equivalent to current source_sha256 mapping; identical manifest hash."
+  },
+  "bridge": {
+    "counts_match": true,
+    "n_videos": 6871,
+    "protocol_match": true,
+    "total_gen_frames": 228693,
+    "metrics": {
+      "ssim": {
+        "reproduced": 0.8572483995720351,
+        "archived": 0.8572484095740953,
+        "delta": -1.0002060180092087e-08,
+        "paper": 0.857,
+        "paper_rounding_match": true
+      },
+      "psnr": {
+        "reproduced": 24.54873935889337,
+        "archived": 24.54874405439652,
+        "delta": -4.695503147189584e-06,
+        "paper": 24.549,
+        "paper_rounding_match": true
+      },
+      "lpips": {
+        "reproduced": 0.06728022986907241,
+        "archived": 0.0672806874572257,
+        "delta": -4.5758815328533764e-07,
+        "paper": 0.067,
+        "paper_rounding_match": true
+      },
+      "fid": {
+        "reproduced": 2.8215309739439363,
+        "archived": 2.8218571490436375,
+        "delta": -0.0003261750997012314,
+        "paper": 2.82,
+        "paper_rounding_match": true
+      },
+      "fvd": {
+        "reproduced": 32.57114464340793,
+        "archived": 32.57786469268376,
+        "delta": -0.006720049275827478,
+        "paper": 32.58,
+        "paper_rounding_match": false
+      }
+    },
+    "raw_metadata_match": true,
+    "episode_and_fvd_selection_match": true
+  }
+}

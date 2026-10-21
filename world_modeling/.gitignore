@@ -1,0 +1,4 @@
+# Local operational records are kept with external run artifacts.
+/docs/results/*monitor*
+/docs/results/production-submission-*.json
+/docs/results/push-readiness-*.json

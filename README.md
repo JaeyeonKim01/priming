@@ -20,6 +20,9 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 
 ## News
 
+- **October 21, 2026:** RT-1 and Bridge world modeling experiments are available
+  in [`world_modeling/`](world_modeling/README.md).
+
 - **October 17, 2026:** Faster B/L post-training recipes deliver about **3× faster
   warmed training updates** with reproduced final FID after 25,000 updates.
   **Only frozen-encoder execution changed**. The original public code
@@ -157,8 +160,9 @@ These results use released post-training checkpoints.
 
 This release covers ImageNet-256: B/L sampling at 80/160 pretraining epochs,
 three reconstruction recipes, B/L-160 OT post-training, and B-160 SIM,
-Laplacian MMD, and energy ablations. Text-to-image and world modeling code will
-be ready in two weeks (October 25, 2026); see [News](#news). Comparison-baseline
+Laplacian MMD, and energy ablations. RT-1 and Bridge world modeling experiments
+are available under [`world_modeling/`](world_modeling/README.md). Text-to-image
+code is planned for October 25, 2026; see [News](#news). Comparison-baseline
 samplers and the old dashboard remain available in the previous Git revision.
 
 Post-training initializes from released pretrained online weights with a fresh
@@ -214,6 +218,19 @@ Prepare the dataset and encoders using the [asset guide](docs/assets.md) before
 training. Start with the [two-update training check](docs/validation.md#check-the-training-setup-before-a-full-run)
 to verify pretraining → post-training on your setup. See the stage guides for
 custom initialization and checkpoint recovery.
+
+</details>
+
+<details>
+<summary><strong>World modeling experiments: RT-1 and Bridge</strong></summary>
+
+Action-conditioned video prediction with reconstruction pretraining followed by
+distributional post-training. Both tasks use eight GPUs, 64 pretraining epochs,
+and 4,000 post-training updates initialized from the pretraining EMA.
+
+Code, configs, and evaluation are contained in [`world_modeling/`](world_modeling/README.md).
+Full training and evaluation have been validated; measured results and differences
+from the historical checkpoints are documented in the [validation report](world_modeling/docs/validation.md).
 
 </details>
 

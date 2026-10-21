@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "world_size": 2,
+  "intentional_stop_step": 1,
+  "resumed_to_step": 2,
+  "optimizer_steps": 2,
+  "rng_states": 2,
+  "slurm_job_id": "54234714",
+  "summary": {
+    "stage": "pretrain",
+    "initial_step": 1,
+    "completed_steps": 2,
+    "target_steps": 2,
+    "stop_reason": "max_steps",
+    "loader_steps_per_epoch": 5286,
+    "dataset_episodes": 84566,
+    "checkpoint_seconds": 3.4649122348055243,
+    "world_size": 2,
+    "last_saved_step": 2,
+    "seconds": 4.776219496969134,
+    "matcher": null,
+    "source_checkpoint": null
+  }
+}

@@ -1,0 +1,79 @@
+flow:
+  p_mean: 0.8
+  p_std: 0.8
+  t_eps: 0.05
+  noise_scale: 1.0
+  train_cfg_scale: 1.0
+  freeze_cfg_conditioner: true
+  sampling_steps: 1
+  solver: euler
+distmatch:
+  mode: conditional
+  objective: sinkhorn
+  n_pos: 1
+  samples_per_condition: 16
+  feature_pooling: none
+  epsilon: 0.05
+  max_iter: 10
+  tolerance: 1.0e-06
+  strict: false
+  max_pairwise_elements: 16000000
+  use_replay: true
+  replay_microbatch_size: 8
+  verify_replay: false
+  source: ${oc.env:DISTMATCH_SOURCE,./external/distmatch}
+dinov3:
+  model_name: dinov3_vitb16
+  repo_dir: ${scratch_root}/libraries/dinov3
+  weights: ${scratch_root}/models/dinov3/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth
+  source: local
+  input_size: 256
+  block_indices:
+  - 2
+  - 5
+  - 8
+feature_branches:
+  scale: pair_rms
+  weights:
+    blk2_tok: 1.0
+    blk5_tok: 1.0
+    blk8_tok: 1.0
+    _latent: 1.0
+train:
+  seed: 1
+  num_steps: 4000
+  checkpoint_every: 1000
+  log_every: 10
+  decay: 0.999
+  precision: bf16
+  resume: false
+  save_final: true
+  max_steps: null
+opt:
+  beta2: 0.95
+  lr: 1.0e-05
+  weight_decay: 0.0
+  warmup_steps: 0
+  grad_clip: 1.0
+dataloader:
+  batch_size: 4
+  num_workers: 4
+  prefetch_factor: 2
+  pin_memory: true
+eval:
+  pytorch_fid_dir: ${scratch_root}/libraries/pytorch-fid
+  stylegan_v_dir: ${scratch_root}/libraries/stylegan-v
+scratch_root: ${oc.env:WORLD_MODEL_STORAGE,./assets/world_modeling}
+results_dir: ${output_dir}
+stage: eval
+assets:
+  sd3: ${scratch_root}/models/sd3-medium-diffusers
+  torch_home: ${scratch_root}/cache/torch
+  dnnlib_cache: ${scratch_root}/cache/dnnlib
+evaluation:
+  max_videos_per_shard: null
+  save_videos: 32
+  decode_chunk_size: 16
+  chunk_gen_frames: 8
+  fid_batch_size: 50
+  fvd_batch_size: 8

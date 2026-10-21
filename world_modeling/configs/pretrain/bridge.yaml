@@ -1,0 +1,29 @@
+_base_: _base.yaml
+model:
+  dir_name: bridge_flow_xpred
+  objective: flow_matching
+  inner_model_cfg: Bridge_UNet
+  is_phase_2: false
+  chunk_size: 8
+  film_actions: true
+  action_token_mode: per_frame_component
+  action_token_dim: 256
+  unet_1frame_spec: cfg
+  cfg_alpha: 1.0
+flow:
+  p_mean: 0.8
+  p_std: 0.8
+  t_eps: 0.05
+  noise_scale: 1.0
+  train_cfg_scale: 1.0
+  freeze_cfg_conditioner: true
+  sampling_steps: 32
+  solver: euler
+bridge:
+  dataset_dir: ${scratch_root}/data/bridge/processed
+  n_frames: 5
+  action_dim: 7
+  subset_names: bridge_v2
+  input_h: 256
+  input_w: 256
+output_dir: outputs/world_modeling/pretrain/bridge

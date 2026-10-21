@@ -1,0 +1,341 @@
+{
+  "scope": "migration and bounded training/evaluation; full reproduction not run",
+  "source_parity": {
+    "rt1/posttrain/ema_prediction_max_error": 0.0,
+    "rt1/pretrain/ema_prediction_max_error": 0.0,
+    "rt1/pretrain/loss": 2.820699691772461,
+    "rt1/pretrain/gradient_max_error": 0.0,
+    "rt1/pretrain/adamw_and_ema_exact": true,
+    "bridge/posttrain/ema_prediction_max_error": 0.0,
+    "bridge/pretrain/ema_prediction_max_error": 0.0,
+    "bridge/pretrain/loss": 2.3011314868927,
+    "bridge/pretrain/gradient_max_error": 0.0,
+    "bridge/pretrain/adamw_and_ema_exact": true
+  },
+  "feature_parity": {
+    "fp32": {
+      "blk2_tok": {
+        "shape": [
+          2,
+          256,
+          768
+        ],
+        "max_error": 0.0
+      },
+      "blk5_tok": {
+        "shape": [
+          2,
+          256,
+          768
+        ],
+        "max_error": 0.0
+      },
+      "blk8_tok": {
+        "shape": [
+          2,
+          256,
+          768
+        ],
+        "max_error": 0.0
+      },
+      "_latent": {
+        "shape": [
+          2,
+          1024,
+          16
+        ],
+        "max_error": 0.0
+      },
+      "input_gradient_max_error": 2.2904714569449425e-07,
+      "input_gradient_norm": 0.18736669421195984,
+      "input_gradient_relative_l2_error": 7.4100398705923e-06,
+      "input_gradient_cosine": 1.0000001192092896
+    },
+    "bf16": {
+      "blk2_tok": {
+        "shape": [
+          2,
+          256,
+          768
+        ],
+        "max_error": 0.0
+      },
+      "blk5_tok": {
+        "shape": [
+          2,
+          256,
+          768
+        ],
+        "max_error": 0.0
+      },
+      "blk8_tok": {
+        "shape": [
+          2,
+          256,
+          768
+        ],
+        "max_error": 0.0
+      },
+      "_latent": {
+        "shape": [
+          2,
+          1024,
+          16
+        ],
+        "max_error": 0.0
+      },
+      "input_gradient_max_error": 7.975846529006958e-05,
+      "input_gradient_norm": 0.3216661512851715,
+      "input_gradient_relative_l2_error": 0.003996944520622492,
+      "input_gradient_cosine": 0.9999918937683105
+    }
+  },
+  "datasets": {
+    "rt1": {
+      "pretrain": {
+        "summary": {
+          "stage": "pretrain",
+          "completed_steps": 3,
+          "world_size": 2,
+          "last_saved_step": 3,
+          "seconds": 5.6346301609883085,
+          "matcher": null,
+          "source_checkpoint": null
+        },
+        "metrics": [
+          {
+            "step": 1,
+            "epoch": 0,
+            "loss": 3.5725860595703125,
+            "grad_norm": 24.256418228149414,
+            "seconds": 1.149634599685669,
+            "allocated_gib_rank_mean": 9.688131332397461
+          },
+          {
+            "step": 2,
+            "epoch": 0,
+            "loss": 3.684469699859619,
+            "grad_norm": 26.17355728149414,
+            "seconds": 0.17022903263568878,
+            "allocated_gib_rank_mean": 10.9614896774292
+          },
+          {
+            "step": 3,
+            "epoch": 0,
+            "loss": 2.2754626274108887,
+            "grad_norm": 17.723840713500977,
+            "seconds": 0.8741132020950317,
+            "allocated_gib_rank_mean": 10.905784606933594
+          }
+        ],
+        "optimizer_steps": [
+          3.0
+        ],
+        "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/rt1/pretrain/ckpt_save/ckpt-step3.pth"
+      },
+      "posttrain": {
+        "summary": {
+          "stage": "posttrain",
+          "completed_steps": 3,
+          "world_size": 2,
+          "last_saved_step": 3,
+          "seconds": 14.37589284099522,
+          "matcher": {
+            "version": "0.6.0",
+            "source": "/n/netscratch/sitanc_lab/Lab/jaykim/distmatch/src/distmatch",
+            "sha256": "587edb55204d5d55926872e3d250ae220f8478bc956457b3fc8e2f01bfb14114"
+          },
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/rt1/pretrain/ckpt_save/ckpt-step3.pth",
+            "step": 3,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          }
+        },
+        "metrics": [
+          {
+            "step": 1,
+            "epoch": 0,
+            "loss": 3.9305644035339355,
+            "grad_norm": 32.77781295776367,
+            "seconds": 3.594356060028076,
+            "allocated_gib_rank_mean": 7.469145774841309
+          },
+          {
+            "step": 2,
+            "epoch": 0,
+            "loss": 3.919826030731201,
+            "grad_norm": 137.1087188720703,
+            "seconds": 2.6712241172790527,
+            "allocated_gib_rank_mean": 8.662647247314453
+          },
+          {
+            "step": 3,
+            "epoch": 0,
+            "loss": 3.90812611579895,
+            "grad_norm": 113.42084503173828,
+            "seconds": 10.244202613830566,
+            "allocated_gib_rank_mean": 8.662270545959473
+          }
+        ],
+        "optimizer_steps": [
+          3.0
+        ],
+        "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/rt1/posttrain/ckpt_save/ckpt-step3.pth"
+      },
+      "evaluation": {
+        "n_videos": 4,
+        "ssim": 0.3098967373371124,
+        "ssim_std": 0.023128087176406076,
+        "psnr": 9.292305707931519,
+        "psnr_std": 0.5411452330955756,
+        "lpips": 0.9258841574192047,
+        "lpips_std": 0.021790417887373542,
+        "total_gen_time_s": 3.3774781560059637,
+        "total_gen_frames": 132,
+        "time_per_frame_s": 0.025586955727317905,
+        "max_shard_wall_time_s": 4.670292380993487,
+        "backend": "streaming_features_v1",
+        "weights": "ema",
+        "actual_step": 3,
+        "step": 3,
+        "world_size": 2,
+        "cfg_scale": 1.0,
+        "chunk_gen_frames": 8,
+        "flow_steps": 1,
+        "flow_solver": "euler",
+        "fid": 479.3553171024661,
+        "fvd2048_16f": 5866.74873968839,
+        "fid_feature_count": 132,
+        "fvd_feature_count": 4,
+        "real_stats_cache": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/rt1/eval/real_stats.npz",
+        "intermediate_png_count": 0,
+        "pilot": true
+      }
+    },
+    "bridge": {
+      "pretrain": {
+        "summary": {
+          "stage": "pretrain",
+          "completed_steps": 3,
+          "world_size": 2,
+          "last_saved_step": 3,
+          "seconds": 6.7395944179734215,
+          "matcher": null,
+          "source_checkpoint": null
+        },
+        "metrics": [
+          {
+            "step": 1,
+            "epoch": 0,
+            "loss": 2.751984119415283,
+            "grad_norm": 17.96831512451172,
+            "seconds": 1.6461344957351685,
+            "allocated_gib_rank_mean": 9.831711769104004
+          },
+          {
+            "step": 2,
+            "epoch": 0,
+            "loss": 2.992961883544922,
+            "grad_norm": 19.89603042602539,
+            "seconds": 0.18877017498016357,
+            "allocated_gib_rank_mean": 11.202888488769531
+          },
+          {
+            "step": 3,
+            "epoch": 0,
+            "loss": 1.7935035228729248,
+            "grad_norm": 13.237274169921875,
+            "seconds": 0.9431736469268799,
+            "allocated_gib_rank_mean": 11.137944221496582
+          }
+        ],
+        "optimizer_steps": [
+          3.0
+        ],
+        "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/bridge/pretrain/ckpt_save/ckpt-step3.pth"
+      },
+      "posttrain": {
+        "summary": {
+          "stage": "posttrain",
+          "completed_steps": 3,
+          "world_size": 2,
+          "last_saved_step": 3,
+          "seconds": 8.12864725801046,
+          "matcher": {
+            "version": "0.6.0",
+            "source": "/n/netscratch/sitanc_lab/Lab/jaykim/distmatch/src/distmatch",
+            "sha256": "587edb55204d5d55926872e3d250ae220f8478bc956457b3fc8e2f01bfb14114"
+          },
+          "source_checkpoint": {
+            "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/bridge/pretrain/ckpt_save/ckpt-step3.pth",
+            "step": 3,
+            "weights": "ema",
+            "objective": "flow_matching_x_prediction",
+            "t_convention": "t=0 data, t=1 noise"
+          }
+        },
+        "metrics": [
+          {
+            "step": 1,
+            "epoch": 0,
+            "loss": 3.938812017440796,
+            "grad_norm": 25.84123420715332,
+            "seconds": 3.9352455139160156,
+            "allocated_gib_rank_mean": 7.638801574707031
+          },
+          {
+            "step": 2,
+            "epoch": 0,
+            "loss": 3.9222640991210938,
+            "grad_norm": 150.0062255859375,
+            "seconds": 2.887692928314209,
+            "allocated_gib_rank_mean": 8.945409774780273
+          },
+          {
+            "step": 3,
+            "epoch": 0,
+            "loss": 3.9136321544647217,
+            "grad_norm": 91.424072265625,
+            "seconds": 3.9741272926330566,
+            "allocated_gib_rank_mean": 8.94503402709961
+          }
+        ],
+        "optimizer_steps": [
+          3.0
+        ],
+        "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/bridge/posttrain/ckpt_save/ckpt-step3.pth"
+      },
+      "evaluation": {
+        "n_videos": 4,
+        "ssim": 0.33188284933567047,
+        "ssim_std": 0.0844147152527389,
+        "psnr": 11.025796890258789,
+        "psnr_std": 1.5183201416822192,
+        "lpips": 0.9020441174507141,
+        "lpips_std": 0.043729744957980696,
+        "total_gen_time_s": 3.303222190006636,
+        "total_gen_frames": 114,
+        "time_per_frame_s": 0.028975633245672247,
+        "max_shard_wall_time_s": 3.3265223359921947,
+        "backend": "streaming_features_v1",
+        "weights": "ema",
+        "actual_step": 3,
+        "step": 3,
+        "world_size": 2,
+        "cfg_scale": 1.0,
+        "chunk_gen_frames": 8,
+        "flow_steps": 1,
+        "flow_solver": "euler",
+        "fid": 480.6950400764443,
+        "fvd2048_16f": 2350.2327107098786,
+        "fid_feature_count": 114,
+        "fvd_feature_count": 3,
+        "real_stats_cache": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_migration_20261020/smoke1/bridge/eval/real_stats.npz",
+        "intermediate_png_count": 0,
+        "pilot": true
+      }
+    }
+  }
+}

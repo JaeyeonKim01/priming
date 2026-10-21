@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "job_id": "54233331",
+  "snapshot_and_inputs_rechecked": true,
+  "datasets": {
+    "rt1": {
+      "pretrain": {
+        "checkpoint_and_optimizer_tensors_finite": true,
+        "resume_and_final_checkpoints_checked": true,
+        "iteration_seconds": 0.16023669210465058,
+        "steps_per_second": 6.240767871985899,
+        "full_updates": 84608,
+        "full_hours": 3.765918345997299,
+        "gpu_hours": 30.12734676797839,
+        "peak_allocated_gib": 10.920122146606445,
+        "peak_reserved_gib": 11.7421875,
+        "checkpoint_bytes": 2563823670,
+        "pilot_checkpoint_seconds": 13.028455950319767
+      },
+      "posttrain": {
+        "checkpoint_and_optimizer_tensors_finite": true,
+        "resume_and_final_checkpoints_checked": true,
+        "iteration_seconds": 2.767262213230133,
+        "steps_per_second": 0.3613679958549115,
+        "full_updates": 4000,
+        "full_hours": 3.0747357924779255,
+        "gpu_hours": 24.597886339823404,
+        "peak_allocated_gib": 8.662649154663086,
+        "peak_reserved_gib": 8.810546875,
+        "checkpoint_bytes": 2563825910,
+        "pilot_checkpoint_seconds": 10.626186629757285
+      },
+      "eval_all_eight_ranks_completed": true,
+      "eval_videos": 16,
+      "total_projected_hours": 6.840654138475225,
+      "planning_hours_with_margin": 8.892850380017792
+    },
+    "bridge": {
+      "pretrain": {
+        "checkpoint_and_optimizer_tensors_finite": true,
+        "resume_and_final_checkpoints_checked": true,
+        "iteration_seconds": 0.17861411992622458,
+        "steps_per_second": 5.598661519106348,
+        "full_updates": 53184,
+        "full_hours": 2.6387259317100913,
+        "gpu_hours": 21.10980745368073,
+        "peak_allocated_gib": 11.202890396118164,
+        "peak_reserved_gib": 12.080078125,
+        "checkpoint_bytes": 2806933610,
+        "pilot_checkpoint_seconds": 12.334455482661724
+      },
+      "posttrain": {
+        "checkpoint_and_optimizer_tensors_finite": true,
+        "resume_and_final_checkpoints_checked": true,
+        "iteration_seconds": 3.0264501762390137,
+        "steps_per_second": 0.33042010995294346,
+        "full_updates": 4000,
+        "full_hours": 3.3627224180433486,
+        "gpu_hours": 26.90177934434679,
+        "peak_allocated_gib": 8.945411682128906,
+        "peak_reserved_gib": 9.1796875,
+        "checkpoint_bytes": 2806935850,
+        "pilot_checkpoint_seconds": 11.611328040249646
+      },
+      "eval_all_eight_ranks_completed": true,
+      "eval_videos": 24,
+      "total_projected_hours": 6.00144834975344,
+      "planning_hours_with_margin": 7.801882854679473
+    }
+  },
+  "planning_margin": 0.3,
+  "limitations": [
+    "Pilot uses only 250 pretraining and 120 post-training updates; no long-run convergence established.",
+    "Post-training times include replay verification.",
+    "Projection excludes queueing and full evaluation; 30% planning margin is an assumption, not a measured bound.",
+    "DistMatch 0.6.0 is recovered; historical checkpoints used 0.4.0.",
+    "Data-loader worker/prefetch RNG is not checkpointed; resumption is not bit-exact."
+  ],
+  "slurm_accounting": [
+    "54233331|kempner_sitanc_lab|kempner_h100|normal|COMPLETED|0:0|00:28:50|2026-10-20T20:13:47|2026-10-20T20:42:37|billing=21286,cpu=64,gres/gpu:nvidia_h100_80gb_hbm3=8,gres/gpu=8,mem=512G,node=2|holygpu8a[15601,17302]",
+    "54234714|kempner_sitanc_lab|kempner_h100|normal|COMPLETED|0:0|00:02:25|2026-10-20T19:54:33|2026-10-20T19:56:58|billing=5323,cpu=16,gres/gpu:nvidia_h100_80gb_hbm3=2,gres/gpu=2,mem=160G,node=1|holygpu8a13404"
+  ],
+  "total_projected_hours": 12.842102488228665,
+  "total_projected_gpu_hours": 102.73681990582932,
+  "planning_hours_with_margin": 16.694733234697264
+}

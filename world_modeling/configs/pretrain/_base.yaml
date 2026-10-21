@@ -1,0 +1,42 @@
+train:
+  seed: 1
+  num_epochs: 64
+  ckpt_every: null
+  checkpoint_every: 1000
+  deadline_margin_seconds: 180
+  checkpoint_epochs:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  - 32
+  - 64
+  log_every: 10
+  decay: 0.9999
+  precision: bf16
+  resume: false
+  max_steps: null
+  save_epoch_checkpoints: true
+  save_final: true
+opt:
+  beta2: 0.95
+  lr: 0.0001
+  weight_decay: 0.0
+  warmup_steps: 0
+  grad_clip: 2.0
+dataloader:
+  batch_size: 8
+  num_workers: 6
+  prefetch_factor: 2
+  pin_memory: true
+eval:
+  pytorch_fid_dir: ${scratch_root}/libraries/pytorch-fid
+  stylegan_v_dir: ${scratch_root}/libraries/stylegan-v
+scratch_root: ${oc.env:WORLD_MODEL_STORAGE,./assets/world_modeling}
+results_dir: ${output_dir}
+stage: pretrain
+assets:
+  sd3: ${scratch_root}/models/sd3-medium-diffusers
+  torch_home: ${scratch_root}/cache/torch
+  dnnlib_cache: ${scratch_root}/cache/dnnlib

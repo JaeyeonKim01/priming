@@ -1,0 +1,78 @@
+{
+  "fp32": {
+    "blk2_tok": {
+      "shape": [
+        2,
+        256,
+        768
+      ],
+      "max_error": 0.0
+    },
+    "blk5_tok": {
+      "shape": [
+        2,
+        256,
+        768
+      ],
+      "max_error": 0.0
+    },
+    "blk8_tok": {
+      "shape": [
+        2,
+        256,
+        768
+      ],
+      "max_error": 0.0
+    },
+    "_latent": {
+      "shape": [
+        2,
+        1024,
+        16
+      ],
+      "max_error": 0.0
+    },
+    "input_gradient_max_error": 2.2904714569449425e-07,
+    "input_gradient_norm": 0.18736669421195984,
+    "input_gradient_relative_l2_error": 7.4100398705923e-06,
+    "input_gradient_cosine": 1.0000001192092896
+  },
+  "bf16": {
+    "blk2_tok": {
+      "shape": [
+        2,
+        256,
+        768
+      ],
+      "max_error": 0.0
+    },
+    "blk5_tok": {
+      "shape": [
+        2,
+        256,
+        768
+      ],
+      "max_error": 0.0
+    },
+    "blk8_tok": {
+      "shape": [
+        2,
+        256,
+        768
+      ],
+      "max_error": 0.0
+    },
+    "_latent": {
+      "shape": [
+        2,
+        1024,
+        16
+      ],
+      "max_error": 0.0
+    },
+    "input_gradient_max_error": 7.975846529006958e-05,
+    "input_gradient_norm": 0.3216661512851715,
+    "input_gradient_relative_l2_error": 0.003996944520622492,
+    "input_gradient_cosine": 0.9999918937683105
+  }
+}

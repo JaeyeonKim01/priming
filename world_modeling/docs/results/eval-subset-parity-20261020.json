@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "feature_rtol": 1e-05,
+  "feature_atol": 1e-06,
+  "scalar_rtol": 1e-06,
+  "scalar_atol": 1e-07,
+  "datasets": {
+    "rt1": {
+      "max_abs": {
+        "ssim": 0,
+        "psnr": 0,
+        "lpips": 0,
+        "fid_pred": 0,
+        "fvd_pred": 0,
+        "fid_real": 0,
+        "fvd_real": 0
+      },
+      "n_videos": 16
+    },
+    "bridge": {
+      "max_abs": {
+        "ssim": 0,
+        "psnr": 0,
+        "lpips": 0,
+        "fid_pred": 0,
+        "fvd_pred": 0,
+        "fid_real": 0,
+        "fvd_real": 0
+      },
+      "n_videos": 24
+    }
+  }
+}

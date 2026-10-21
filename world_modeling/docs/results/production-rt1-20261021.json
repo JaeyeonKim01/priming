@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "dataset": "rt1",
+  "stages": {
+    "pretrain": {
+      "passed": true,
+      "dataset": "rt1",
+      "stage": "pretrain",
+      "final_steps": 84608,
+      "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/rt1/pretrain/ckpt_save/ckpt-step84608.pth",
+      "sha256": "a49af07cb0158d841acdf80dbd50023c09ce26989eadc41cd8e4b88bf1bff009",
+      "parent": null,
+      "iteration_seconds_total": 13263.480196386576,
+      "peak_allocated_gib": 10.920122146606445,
+      "peak_reserved_gib": 11.564453125,
+      "summary": {
+        "stage": "pretrain",
+        "initial_step": 0,
+        "completed_steps": 84608,
+        "target_steps": 84608,
+        "stop_reason": "recipe_complete",
+        "loader_steps_per_epoch": 1322,
+        "dataset_episodes": 84566,
+        "checkpoint_seconds": 359.6190299708396,
+        "world_size": 8,
+        "last_saved_step": 84608,
+        "seconds": 14408.003050296567,
+        "matcher": null,
+        "source_checkpoint": null
+      }
+    },
+    "posttrain": {
+      "passed": true,
+      "dataset": "rt1",
+      "stage": "posttrain",
+      "final_steps": 4000,
+      "checkpoint": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/rt1/posttrain/ckpt_save/ckpt-step4000.pth",
+      "sha256": "597ccea7accc066a3d4662658ffcabd51b5413c0e654c3ef7c776899067a61bb",
+      "parent": {
+        "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/rt1/pretrain/ckpt_save/ckpt-step84608.pth",
+        "sha256": "a49af07cb0158d841acdf80dbd50023c09ce26989eadc41cd8e4b88bf1bff009",
+        "step": 84608,
+        "weights": "ema",
+        "objective": "flow_matching_x_prediction",
+        "t_convention": "t=0 data, t=1 noise"
+      },
+      "iteration_seconds_total": 11097.58795285225,
+      "peak_allocated_gib": 8.662649154663086,
+      "peak_reserved_gib": 8.830078125,
+      "summary": {
+        "stage": "posttrain",
+        "initial_step": 0,
+        "completed_steps": 4000,
+        "target_steps": 4000,
+        "stop_reason": "recipe_complete",
+        "loader_steps_per_epoch": 2643,
+        "dataset_episodes": 84566,
+        "checkpoint_seconds": 14.603495318442583,
+        "world_size": 8,
+        "last_saved_step": 4000,
+        "seconds": 11128.391967034899,
+        "matcher": {
+          "version": "0.6.0",
+          "source": "/n/netscratch/sitanc_lab/Lab/jaykim/distmatch/src/distmatch",
+          "sha256": "587edb55204d5d55926872e3d250ae220f8478bc956457b3fc8e2f01bfb14114"
+        },
+        "source_checkpoint": {
+          "path": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/rt1/pretrain/ckpt_save/ckpt-step84608.pth",
+          "sha256": "a49af07cb0158d841acdf80dbd50023c09ce26989eadc41cd8e4b88bf1bff009",
+          "step": 84608,
+          "weights": "ema",
+          "objective": "flow_matching_x_prediction",
+          "t_convention": "t=0 data, t=1 noise"
+        }
+      }
+    }
+  },
+  "evaluation": {
+    "n_videos": 2165,
+    "ssim": 0.8777845300372699,
+    "ssim_std": 0.04263568229857922,
+    "psnr": 26.738428559864918,
+    "psnr_std": 1.9044825790054256,
+    "lpips": 0.06279750488887759,
+    "lpips_std": 0.028742805335670668,
+    "total_gen_time_s": 1938.1888614187483,
+    "total_gen_frames": 86135,
+    "time_per_frame_s": 0.022501757258010662,
+    "max_shard_wall_time_s": 418.03455614787526,
+    "backend": "streaming_features_v1",
+    "weights": "ema",
+    "actual_step": 4000,
+    "step": 4000,
+    "world_size": 8,
+    "cfg_scale": 1.0,
+    "chunk_gen_frames": 8,
+    "flow_steps": 1,
+    "flow_solver": "euler",
+    "fid": 3.2881666044200983,
+    "fvd2048_16f": 32.812994938874,
+    "fid_feature_count": 86135,
+    "fvd_feature_count": 2048,
+    "real_stats_cache": "/n/netscratch/sham_lab/Lab/jaykim/priming_world_training_20261020/production1/rt1/eval/real_stats.npz",
+    "intermediate_png_count": 0,
+    "pilot": false
+  }
+}

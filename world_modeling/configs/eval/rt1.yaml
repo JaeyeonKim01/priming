@@ -1,0 +1,22 @@
+_base_: _base.yaml
+model:
+  dir_name: rt1_flow_distmatch_sinkhorn
+  objective: flow_matching
+  posttrain_objective: distmatch_sinkhorn
+  inner_model_cfg: RT1_UNet
+  is_phase_2: false
+  chunk_size: 1
+  unet_1frame_spec: cfg
+  cfg_alpha: 1.0
+init:
+  checkpoint: ${scratch_root}/outputs/rt1_flow_xpred/ckpt_save/ckpt-step84608.pth
+  weights: ema
+rt1:
+  dataset_dir: ${scratch_root}/data/rt1/processed/rt_1
+  n_frames: 5
+  action_dim: 10
+  subset_names: ''
+  input_h: 256
+  input_w: 256
+output_dir: outputs/world_modeling/eval/rt1
+checkpoint: ${scratch_root}/outputs/rt1_flow_distmatch_sinkhorn/ckpt_save/ckpt-step4000.pth

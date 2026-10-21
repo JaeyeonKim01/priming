@@ -1,0 +1,25 @@
+_base_: _base.yaml
+model:
+  dir_name: bridge_flow_distmatch_sinkhorn
+  objective: flow_matching
+  posttrain_objective: distmatch_sinkhorn
+  inner_model_cfg: Bridge_UNet
+  is_phase_2: false
+  chunk_size: 1
+  film_actions: true
+  action_token_mode: per_frame_component
+  action_token_dim: 256
+  unet_1frame_spec: cfg
+  cfg_alpha: 1.0
+init:
+  checkpoint: ${scratch_root}/outputs/bridge_flow_xpred/ckpt_save/ckpt-latest.pth
+  weights: ema
+bridge:
+  dataset_dir: ${scratch_root}/data/bridge/processed
+  n_frames: 5
+  action_dim: 7
+  subset_names: bridge_v2
+  input_h: 256
+  input_w: 256
+output_dir: outputs/world_modeling/eval/bridge
+checkpoint: ${scratch_root}/outputs/bridge_flow_distmatch_sinkhorn/ckpt_save/ckpt-step4000.pth

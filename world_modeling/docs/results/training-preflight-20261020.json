@@ -1,0 +1,39 @@
+{
+  "snapshot_and_external_inputs_verified": true,
+  "training_loaders": {
+    "rt1": {
+      "pretrain": {
+        "eligible_episodes": 84566,
+        "episodes_per_rank": 10570,
+        "batches_per_epoch": 1322,
+        "batch_per_rank": 8,
+        "final_batch_per_rank": 2,
+        "full_updates": 84608
+      },
+      "posttrain": {
+        "eligible_episodes": 84566,
+        "episodes_per_rank": 10570,
+        "batches_per_epoch": 2643,
+        "batch_per_rank": 4,
+        "final_batch_per_rank": 2
+      }
+    },
+    "bridge": {
+      "pretrain": {
+        "eligible_episodes": 53178,
+        "episodes_per_rank": 6647,
+        "batches_per_epoch": 831,
+        "batch_per_rank": 8,
+        "final_batch_per_rank": 7,
+        "full_updates": 53184
+      },
+      "posttrain": {
+        "eligible_episodes": 53178,
+        "episodes_per_rank": 6647,
+        "batches_per_epoch": 1662,
+        "batch_per_rank": 4,
+        "final_batch_per_rank": 3
+      }
+    }
+  }
+}

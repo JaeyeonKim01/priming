@@ -1,0 +1,112 @@
+{
+  "training_and_evaluation_verified": true,
+  "datasets": {
+    "rt1": {
+      "full_recipe_and_checkpoints_verified": true,
+      "eval_protocol_and_episode_selection_match": true,
+      "metrics": {
+        "ssim": {
+          "new_training": 0.8777845300372699,
+          "historical_checkpoint_reevaluation": 0.8783232449383989,
+          "delta_vs_historical": -0.0005387149011290004,
+          "percent_delta_vs_historical": -0.061334469312235296,
+          "paper": 0.878,
+          "delta_vs_paper": -0.00021546996273014152
+        },
+        "psnr": {
+          "new_training": 26.738428559864918,
+          "historical_checkpoint_reevaluation": 26.76467019008434,
+          "delta_vs_historical": -0.026241630219420387,
+          "percent_delta_vs_historical": -0.09804578211892734,
+          "paper": 26.765,
+          "delta_vs_paper": -0.026571440135082725
+        },
+        "lpips": {
+          "new_training": 0.06279750488887759,
+          "historical_checkpoint_reevaluation": 0.0624085223951805,
+          "delta_vs_historical": 0.0003889824936970862,
+          "percent_delta_vs_historical": 0.623284254727241,
+          "paper": 0.063,
+          "delta_vs_paper": -0.0002024951111224138
+        },
+        "fid": {
+          "new_training": 3.2881666044200983,
+          "historical_checkpoint_reevaluation": 3.1609839595384983,
+          "delta_vs_historical": 0.12718264488160003,
+          "percent_delta_vs_historical": 4.023514402780104,
+          "paper": 3.16,
+          "delta_vs_paper": 0.1281666044200982
+        },
+        "fvd": {
+          "new_training": 32.812994938874,
+          "historical_checkpoint_reevaluation": 30.955012324538075,
+          "delta_vs_historical": 1.8579826143359242,
+          "percent_delta_vs_historical": 6.002202793061406,
+          "paper": 30.96,
+          "delta_vs_paper": 1.852994938873998
+        }
+      },
+      "pretrain_hours": 4.002223069526824,
+      "posttrain_hours": 3.0912199908430273,
+      "n_videos": 2165,
+      "generated_frames": 86135,
+      "fvd_clips": 2048,
+      "allocation_seconds": 26199,
+      "allocation_gpu_hours": 58.22
+    },
+    "bridge": {
+      "full_recipe_and_checkpoints_verified": true,
+      "eval_protocol_and_episode_selection_match": true,
+      "metrics": {
+        "ssim": {
+          "new_training": 0.8562404102172901,
+          "historical_checkpoint_reevaluation": 0.8572483995720351,
+          "delta_vs_historical": -0.001007989354744998,
+          "percent_delta_vs_historical": -0.11758427956800599,
+          "paper": 0.857,
+          "delta_vs_paper": -0.0007595897827098463
+        },
+        "psnr": {
+          "new_training": 24.4624918653288,
+          "historical_checkpoint_reevaluation": 24.54873935889337,
+          "delta_vs_historical": -0.08624749356457073,
+          "percent_delta_vs_historical": -0.3513316602684391,
+          "paper": 24.549,
+          "delta_vs_paper": -0.08650813467119889
+        },
+        "lpips": {
+          "new_training": 0.06790402254490652,
+          "historical_checkpoint_reevaluation": 0.06728022986907241,
+          "delta_vs_historical": 0.0006237926758341089,
+          "percent_delta_vs_historical": 0.9271559818508468,
+          "paper": 0.067,
+          "delta_vs_paper": 0.0009040225449065131
+        },
+        "fid": {
+          "new_training": 2.7589491803294663,
+          "historical_checkpoint_reevaluation": 2.8215309739439363,
+          "delta_vs_historical": -0.06258179361446992,
+          "percent_delta_vs_historical": -2.2180083859576816,
+          "paper": 2.82,
+          "delta_vs_paper": -0.061050819670533496
+        },
+        "fvd": {
+          "new_training": 33.218214288040144,
+          "historical_checkpoint_reevaluation": 32.57114464340793,
+          "delta_vs_historical": 0.6470696446322108,
+          "percent_delta_vs_historical": 1.9866346476809182,
+          "paper": 32.58,
+          "delta_vs_paper": 0.638214288040146
+        }
+      },
+      "pretrain_hours": 3.0737238642158142,
+      "posttrain_hours": 3.3611251858905113,
+      "n_videos": 6871,
+      "generated_frames": 228693,
+      "fvd_clips": 2048,
+      "allocation_seconds": 24695,
+      "allocation_gpu_hours": 54.87777777777778
+    }
+  },
+  "total_gpu_hours": 113.09777777777778
+}
