@@ -175,8 +175,7 @@ The paper results above use post-training EMA 0.999.
 Use eight H200 GPUs for L post-training. The original L runs exceeded
 85 GiB allocated per GPU, above H100 80 GB capacity.
 
-<details>
-<summary><strong>Training</strong></summary>
+## Training
 
 <details>
 <summary><strong>ImageNet: pretraining and post-training</strong></summary>
@@ -232,8 +231,6 @@ and 4,000 post-training updates initialized from the pretraining EMA.
 Code, configs, and evaluation are contained in [`world_modeling/`](world_modeling/README.md).
 Full training and evaluation have been validated; measured results and differences
 from the historical checkpoints are documented in the [validation report](world_modeling/docs/validation.md).
-
-</details>
 
 </details>
 
