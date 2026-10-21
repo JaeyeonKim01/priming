@@ -41,19 +41,6 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 - **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
   in two weeks, on **October 25, 2026**.
 
-<details>
-<summary><strong>World modeling experiments: RT-1 and Bridge</strong></summary>
-
-Action-conditioned video prediction with reconstruction pretraining followed by
-distributional post-training. Both tasks use eight GPUs, 64 pretraining epochs,
-and 4,000 post-training updates initialized from the pretraining EMA.
-
-Code, configs, and evaluation are contained in [`world_modeling/`](world_modeling/README.md).
-Full training and evaluation have been validated; measured results and differences
-from the historical checkpoints are documented in the [validation report](world_modeling/docs/validation.md).
-
-</details>
-
 ## Getting started
 
 Clone this repository as `Priming`; all commands below start there.
@@ -188,10 +175,11 @@ The paper results above use post-training EMA 0.999.
 Use eight H200 GPUs for L post-training. The original L runs exceeded
 85 GiB allocated per GPU, above H100 80 GB capacity.
 
-## ImageNet experiments
+<details>
+<summary><strong>Training</strong></summary>
 
 <details>
-<summary><strong>Click to expand ImageNet pretraining and post-training</strong></summary>
+<summary><strong>ImageNet: pretraining and post-training</strong></summary>
 
 ### Training 1: Reconstruction pretraining
 
@@ -231,6 +219,21 @@ Prepare the dataset and encoders using the [asset guide](docs/assets.md) before
 training. Start with the [two-update training check](docs/validation.md#check-the-training-setup-before-a-full-run)
 to verify pretraining → post-training on your setup. See the stage guides for
 custom initialization and checkpoint recovery.
+
+</details>
+
+<details>
+<summary><strong>World modeling: RT-1 and Bridge</strong></summary>
+
+Action-conditioned video prediction with reconstruction pretraining followed by
+distributional post-training. Both tasks use eight GPUs, 64 pretraining epochs,
+and 4,000 post-training updates initialized from the pretraining EMA.
+
+Code, configs, and evaluation are contained in [`world_modeling/`](world_modeling/README.md).
+Full training and evaluation have been validated; measured results and differences
+from the historical checkpoints are documented in the [validation report](world_modeling/docs/validation.md).
+
+</details>
 
 </details>
 
