@@ -1,0 +1,58 @@
+{
+  "repo": "BiliSakura/Priming-diffusers",
+  "revision": "a0c1743f49eb0f972feec280356ccaab90298b20",
+  "files": {
+    "Priming-B/model_index.json": {
+      "bytes": 35826,
+      "sha256": "c091db6528af969ddf55be7db5d5c2809c2773f0c8f20ed9b429f35956872faa"
+    },
+    "Priming-B/pipeline.py": {
+      "bytes": 33369,
+      "sha256": "e3912f07d06c0c0b2071c40d6f0556ebab6e3c9eae583d0060ee3cdcf78843cd"
+    },
+    "Priming-B/scheduler/scheduler_config.json": {
+      "bytes": 136,
+      "sha256": "f4c2bb5985f1e77a8975bce26d52ca0f143112348665a3b9a02ee82efe83161a"
+    },
+    "Priming-B/scheduler/scheduling_priming.py": {
+      "bytes": 5540,
+      "sha256": "38fe2662dc87a36582902250c42e6e8065b5d8705b469766df58a05cf6a50102"
+    },
+    "Priming-B/transformer/config.json": {
+      "bytes": 709,
+      "sha256": "dabd43437637240baaac0cd2cc1bb1409de975fae8a12da7a5c0d0754567c597"
+    },
+    "Priming-B/transformer/transformer_priming.py": {
+      "bytes": 38734,
+      "sha256": "01ab5e4c5aafd779ed4f8ac96816d8c89b75dc442d5318ab3ff6f5c42bf87e3b"
+    },
+    "Priming-L/model_index.json": {
+      "bytes": 35826,
+      "sha256": "c091db6528af969ddf55be7db5d5c2809c2773f0c8f20ed9b429f35956872faa"
+    },
+    "Priming-L/pipeline.py": {
+      "bytes": 33369,
+      "sha256": "e3912f07d06c0c0b2071c40d6f0556ebab6e3c9eae583d0060ee3cdcf78843cd"
+    },
+    "Priming-L/scheduler/scheduler_config.json": {
+      "bytes": 136,
+      "sha256": "f4c2bb5985f1e77a8975bce26d52ca0f143112348665a3b9a02ee82efe83161a"
+    },
+    "Priming-L/scheduler/scheduling_priming.py": {
+      "bytes": 5540,
+      "sha256": "38fe2662dc87a36582902250c42e6e8065b5d8705b469766df58a05cf6a50102"
+    },
+    "Priming-L/transformer/config.json": {
+      "bytes": 710,
+      "sha256": "08f2e7d05e8dd1df2f71bfdc97b06468303bd3a9446de5e10efe8398d915dbdd"
+    },
+    "Priming-L/transformer/transformer_priming.py": {
+      "bytes": 38734,
+      "sha256": "01ab5e4c5aafd779ed4f8ac96816d8c89b75dc442d5318ab3ff6f5c42bf87e3b"
+    },
+    "README.md": {
+      "bytes": 3194,
+      "sha256": "40b98dec7072b57d5985767a10ebb9cdfed8390ae03495507663fabee79d1890"
+    }
+  }
+}

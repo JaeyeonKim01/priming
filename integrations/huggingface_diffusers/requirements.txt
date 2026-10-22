@@ -1,0 +1,2 @@
+# Optional inference integration, tested with the repository's PyTorch 2.6 environment.
+diffusers==0.37.1

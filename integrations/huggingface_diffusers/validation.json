@@ -1,0 +1,121 @@
+{
+  "torch": "2.6.0+cu124",
+  "diffusers": "0.37.1",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "seed": 123,
+  "labels": [
+    0,
+    207,
+    999
+  ],
+  "scope": "Fixed-input inference parity and serialization; not a FID reproduction",
+  "models": {
+    "b": {
+      "provenance": {
+        "model": "priming_b_160",
+        "stage": "posttraining",
+        "weights": "ema",
+        "ema_decay": "0.999",
+        "checkpoint_sha256": "6306b183a2e5e796396da0ebe02156b8ef70796141730b824b2e2f50b0497c55",
+        "config_sha256": "e73f8d14c6d2cb034d16bb2259c58d91194037f286bc772540269e89c68cdf53",
+        "tensor_mapping": "Remove net. prefix; no dtype conversion",
+        "dtype": "torch.float32"
+      },
+      "community_sha256": "782f9d48a5100f826f45a23609c3b5d2b7784b37a0ab6503bfd0d1670aea5825",
+      "candidate_checks": {
+        "priming_b_80": {
+          "equal": false,
+          "tensors_compared": 1
+        },
+        "priming_b_160": {
+          "equal": true,
+          "tensors_compared": 218
+        }
+      },
+      "parity": {
+        "fp32": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        },
+        "bf16_autocast": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        },
+        "bf16_weights": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        },
+        "bf16_weights_vs_fp32_weights_autocast": {
+          "max_abs": 0.73583984375,
+          "mean_abs": 0.01368687953799963,
+          "exact": false
+        },
+        "saved_reloaded_fp32": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        }
+      },
+      "passed": true
+    },
+    "l": {
+      "provenance": {
+        "model": "priming_l_160",
+        "stage": "posttraining",
+        "weights": "ema",
+        "ema_decay": "0.999",
+        "checkpoint_sha256": "51586a8d847cb2b790572997249b8760ab37cd284354bffaa657fd2125623da0",
+        "config_sha256": "d212ac4b3725c191ca8b3960308fa89c0af6cf6ca62efd2821240824a36e8e82",
+        "tensor_mapping": "Remove net. prefix; no dtype conversion",
+        "dtype": "torch.float32"
+      },
+      "community_sha256": "45a0e94ab8df82f55b82e3b48087db57e4b07155e4001d15b39576995e6b484f",
+      "candidate_checks": {
+        "priming_l_80": {
+          "equal": false,
+          "tensors_compared": 1
+        },
+        "priming_l_160": {
+          "equal": true,
+          "tensors_compared": 426
+        }
+      },
+      "parity": {
+        "fp32": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        },
+        "bf16_autocast": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        },
+        "bf16_weights": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        },
+        "bf16_weights_vs_fp32_weights_autocast": {
+          "max_abs": 0.764892578125,
+          "mean_abs": 0.02450532466173172,
+          "exact": false
+        },
+        "saved_reloaded_fp32": {
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exact": true
+        }
+      },
+      "passed": true
+    }
+  },
+  "passed": true,
+  "community_repository": "BiliSakura/Priming-diffusers",
+  "community_revision": "a0c1743f49eb0f972feec280356ccaab90298b20",
+  "date": "2026-10-21",
+  "cpu_unit_tests_passed": 4
+}

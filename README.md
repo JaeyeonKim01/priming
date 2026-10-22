@@ -103,6 +103,10 @@ supported. Use `--stage pretraining` for pretrained weights after downloading
 the corresponding file under `checkpoints/pretraining/`.
 See [sampling options](docs/checkpoints.md#sampling-options).
 
+Optional [Diffusers inference](integrations/huggingface_diffusers/README.md)
+provides ImageNet B/L checkpoint conversion and [ready-to-load HF exports](https://huggingface.co/jaykim1102/priming/tree/main/diffusers), adapted from
+[BiliSakura’s community implementation](https://huggingface.co/BiliSakura/Priming-diffusers).
+
 </details>
 
 <details>

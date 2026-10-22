@@ -1,0 +1,26 @@
+{
+  "repo_id": "jaykim1102/priming",
+  "revision": "b5928fce72a3f7aa29ffcf14c121df57c00ffa36",
+  "url": "https://huggingface.co/jaykim1102/priming/commit/b5928fce72a3f7aa29ffcf14c121df57c00ffa36",
+  "cpu_tests_passed": 5,
+  "downloaded_artifact_hashes_verified": true,
+  "standalone_load_without_priming_package": true,
+  "gpu": "NVIDIA H100 80GB",
+  "pre_upload_vs_downloaded_outputs_exact": true,
+  "seed": 123,
+  "class_ids": [
+    0,
+    207,
+    999
+  ],
+  "output_sha256": {
+    "b": {
+      "fp32": "aaf6aee5f66d4cecf0beb9ae7bbc5ade604067c8fe67bb83c30bd47500612acc",
+      "bf16_autocast": "29ea4c4e0d6a82af377a95d221679a5036e932107c6b0c8ef5d801f615cafd8e"
+    },
+    "l": {
+      "fp32": "d05171a5b73d5a259c8b4e1e44de513c51bbbadd10f2bb5299e413c0adc2b517",
+      "bf16_autocast": "3c6b8fbe238821aaa8cc5026a03f52aecf2e0a03c7d3816c536e3004b05074b7"
+    }
+  }
+}
