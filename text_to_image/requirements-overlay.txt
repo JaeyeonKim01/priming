@@ -1,0 +1,23 @@
+# Added alongside ~/.conda/envs/fdloss, without replacing its PyTorch/CUDA.
+numpy==1.26.4
+opencv-python==4.10.0.84
+transformers==4.40.2
+huggingface-hub==0.36.0
+sentencepiece==0.2.0
+datasets==2.18.0
+pyarrow==17.0.0
+webdataset==0.2.111
+modelscope==1.15.0
+simplejson>=3.19,<4
+sortedcontainers==2.4.0
+mmengine==0.10.7
+mmdet==3.3.0
+open-clip-torch==2.24.0
+clip-benchmark==1.6.1
+addict==2.4.0
+yapf==0.40.2
+pycocotools==2.0.10
+setuptools<81
+ninja
+wheel
+pytest

@@ -1,0 +1,31 @@
+# Architecture metadata for the released MiniT2I L/16 checkpoint.
+# Evaluation overrides n_T and cfg_scale on the command line.
+run_name: minit2i-l16-release-inference
+output_dir: ${T2I_OUTPUT_ROOT}/inference_l16
+
+image_size: 512
+prompt_length: 256
+
+t5_name: google/flan-t5-large
+patch_size: 16
+hidden_size: 1248
+text_hidden_size: 1248
+t5_hidden_size: 1024
+depth_double: 23
+text_preamble_depth: 2
+num_heads: 24
+head_dim: 52
+mlp_ratio: 2.7
+pca_channels: 128
+final_layer_zero: false
+compat_checkpoint_arch: false
+attention_impl: sdpa
+
+model_variant: diffusion
+prediction: x
+noise_scale: 2.0
+mean_flow_t_min: 0.2
+mean_flow_t_max: 0.8
+n_T: 1
+cfg_scale: 1.0
+amp_dtype: bf16

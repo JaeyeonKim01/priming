@@ -1,0 +1,15 @@
+# Input WebDataset recipe for materializing and verifying the 120K tensor mix.
+dataset_backend: finetune_wds
+finetune_dataset_dir: ${T2I_FINETUNE_DATA_ROOT}
+finetune_hf_streaming: false
+finetune_sources:
+  - blip3_ft60k
+  - dalle3
+  - sharegpt4o
+finetune_mix_weights:
+  - 0.06
+  - 0.016
+  - 0.04
+image_size: 512
+prompt_length: 256
+t5_name: google/flan-t5-large

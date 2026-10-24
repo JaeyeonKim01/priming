@@ -1,0 +1,31 @@
+# Exact architecture and one-step sampling parameters for
+# the released MiniT2I B/16 Mean Flow checkpoint.
+run_name: minit2i-b16-meanflow-inference
+output_dir: ${T2I_OUTPUT_ROOT}/inference_b16_meanflow
+
+image_size: 512
+prompt_length: 256
+
+t5_name: google/flan-t5-large
+patch_size: 16
+hidden_size: 768
+text_hidden_size: 768
+t5_hidden_size: 1024
+depth_double: 17
+text_preamble_depth: 2
+num_heads: 12
+head_dim: 64
+mlp_ratio: 2.6666666666666665
+pca_channels: 128
+final_layer_zero: false
+compat_checkpoint_arch: false
+attention_impl: sdpa
+
+model_variant: mean_flow
+prediction: x
+noise_scale: 2.0
+mean_flow_t_min: 0.2
+mean_flow_t_max: 0.8
+n_T: 1
+cfg_scale: 12.0
+amp_dtype: bf16

@@ -1,0 +1,57 @@
+# Pooled conditional Sinkhorn matching initialized from the released MiniT2I L/16 checkpoint.
+init_from: ${T2I_CHECKPOINT_ROOT}/minit2i-l-16.pt
+init_weights: model
+output_dir: ${T2I_OUTPUT_ROOT}/train/distmatch_l16_sim_cond_c64_b16_lr1e5_sinkhorn_from_minit2i_l16
+dataset_dir: ${T2I_FINETUNE_TENSOR_ROOT}
+expected_samples: 120000
+
+# 32 GPUs (16 nodes x 2): 64 captions and 1024 images in each generated
+# population globally. Each caption stays on one rank and is matched using B=16.
+n_c: 2
+n_pos: 1
+b: 16
+use_replay: true
+# This changes only replay chunking, not the loss or effective populations. The
+# H100 smoke test selects the largest validated value for the full run.
+replay_microbatch_size: 16
+verify_replay: false
+mode: conditional
+objective: sinkhorn
+kernel: laplacian
+bandwidth: 0.05
+sinkhorn_epsilon: 0.05
+sinkhorn_max_iter: 10
+sinkhorn_tolerance: 0.000001
+sinkhorn_strict: false
+
+feature_weights:
+  siglip: 1.0
+  mae: 1.0
+  inception: 1.0
+sim_weights: {}
+
+attention_impl: sdpa
+amp_dtype: bf16
+device: cuda
+seed: 42
+num_steps: 4000
+warmup_steps: 0
+learning_rate: 0.00001
+adam_beta2: 0.95
+weight_decay: 0.0
+max_grad_norm: 1.0
+ema_decay: 0.999
+num_workers: 1
+dataloader_prefetch: 2
+log_every: 50
+ckpt_every: 1000
+vis_every: 1000
+vis_at_start: true
+visualization_seed: 123
+visualization_samples_per_prompt: 4
+visualization_batch_size: 4
+visualization_prompts:
+  - A red panda wearing a blue baseball cap.
+  - A watercolor painting of a lighthouse in a storm.
+  - A glass teapot filled with yellow flowers on a wooden table.
+  - An astronaut riding a horse through a snowy forest.

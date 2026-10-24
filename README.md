@@ -38,8 +38,10 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
   including evaluations; previous runs used 8 H200s across four nodes, new runs
   used the GPUs above across two nodes. Speedups use matched warmed-update benchmarks.
 
-- **October 11, 2026:** Text-to-image (T2I) and world modeling code will be ready
-  in two weeks, on **October 25, 2026**.
+- **October 24, 2026:** An initial text-to-image port is available under
+  [`text_to_image/`](text_to_image/README.md). Copied source CPU tests and a
+  dry run against the local B/16 checkpoint and 120K dataset pass; full GPU
+  training and benchmark scoring have not been rerun in this checkout.
 
 ## Getting started
 
@@ -165,9 +167,10 @@ These results use released post-training checkpoints.
 This release covers ImageNet-256: B/L sampling at 80/160 pretraining epochs,
 three reconstruction recipes, B/L-160 OT post-training, and B-160 SIM,
 Laplacian MMD, and energy ablations. RT-1 and Bridge world modeling experiments
-are available under [`world_modeling/`](world_modeling/README.md). Text-to-image
-code is planned for October 25, 2026; see [News](#news). Comparison-baseline
-samplers and the old dashboard remain available in the previous Git revision.
+are available under [`world_modeling/`](world_modeling/README.md). The initial
+text-to-image implementation is under [`text_to_image/`](text_to_image/README.md).
+Comparison samplers and the old dashboard remain available in the previous Git
+revision.
 
 Post-training initializes from released pretrained online weights with a fresh
 optimizer and inherits the pretrained EMA shadow. Use `--init-checkpoint PATH`

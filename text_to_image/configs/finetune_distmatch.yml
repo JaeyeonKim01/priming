@@ -1,0 +1,53 @@
+# Independent one-step trainer; existing diffusion/Mean Flow trainers are unchanged.
+init_from: ${T2I_OUTPUT_ROOT}/train/minit2i_b16_t08/finetune/checkpoints/checkpoint_040000.pt
+init_weights: model
+output_dir: ${T2I_OUTPUT_ROOT}/train/distmatch_b16_sim
+dataset_dir: ${T2I_FINETUNE_TENSOR_ROOT}
+expected_samples: 120000
+
+# 8 GPUs (4 nodes x 2): 1024 caption/example IDs, real, live and detached images globally.
+# Marginal matching pools 128 captions PER RANK; DDP averages rank-local gradients.
+n_c: 128
+n_pos: 1
+b: 1
+use_replay: true                  # Host-owned image-gradient caching and generator replay.
+replay_microbatch_size: 64        # Per GPU: two generator chunks, one full 128-sample loss.
+verify_replay: false
+mode: marginal                   # Pool captions on each rank, not across GPUs.
+objective: mmd                    # Or sinkhorn.
+kernel: laplacian                 # L2-Laplacian, using UNSQUARED distance.
+bandwidth: 0.05                   # Dimensionless R: exp(-r/R) in f/s_f coordinates.
+sinkhorn_epsilon: 0.05
+sinkhorn_max_iter: 10
+sinkhorn_tolerance: 0.000001
+
+# SIM: SigLIP SO400M/global@224, MAE-L/CLS@224, TF-FID Inception/pool@299.
+# Equal-weight branch SUM, each with the package's detached pair-RMS scaling.
+feature_weights: {siglip: 1.0, mae: 1.0, inception: 1.0}
+sim_weights: {}                   # Optional local timm/TF-FID state-dict paths.
+
+attention_impl: sdpa
+amp_dtype: bf16
+device: cuda
+seed: 42
+num_steps: 4000
+warmup_steps: 500
+learning_rate: 0.00004
+adam_beta2: 0.95
+weight_decay: 0.0
+max_grad_norm: 1.0
+ema_decay: 0.999
+num_workers: 1
+dataloader_prefetch: 2
+log_every: 50                     # OST-style local smoothed metrics; no W&B.
+ckpt_every: 1000
+vis_every: 1000
+vis_at_start: true                # Include a matched online/EMA step-0 baseline.
+visualization_seed: 123
+visualization_samples_per_prompt: 4
+visualization_batch_size: 4       # Preview inference only; independent of training replay.
+visualization_prompts:
+  - A red panda wearing a blue baseball cap.
+  - A watercolor painting of a lighthouse in a storm.
+  - A glass teapot filled with yellow flowers on a wooden table.
+  - An astronaut riding a horse through a snowy forest.

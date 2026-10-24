@@ -1,0 +1,36 @@
+# Historical four-GPU RBF/replay smoke recipe, independent of the main recipe.
+init_from: ${T2I_CHECKPOINT_ROOT}/minit2i-b-16.pt
+init_weights: model
+output_dir: ${T2I_OUTPUT_ROOT}/train/distmatch_smoke
+dataset_dir: ${T2I_FINETUNE_TENSOR_ROOT}
+expected_samples: 120000
+n_c: 4
+n_pos: 1
+b: 4
+use_replay: true
+replay_microbatch_size: 4
+verify_replay: true
+mode: conditional
+objective: mmd
+kernel: rbf
+bandwidth: 0.05                   # Dimensionless R: RBF exp(-r^2/(2R)), NOT sigma.
+sinkhorn_epsilon: 0.05
+sinkhorn_max_iter: 10
+sinkhorn_tolerance: 0.000001
+feature_weights: {siglip: 1.0, mae: 1.0, inception: 1.0}
+sim_weights: {}
+attention_impl: sdpa
+amp_dtype: bf16
+device: cuda
+seed: 42
+num_steps: 12
+warmup_steps: 1000
+learning_rate: 0.00004
+adam_beta2: 0.95
+weight_decay: 0.0
+max_grad_norm: 1.0
+ema_decay: 0.99995
+num_workers: 1
+dataloader_prefetch: 2
+log_every: 1
+ckpt_every: 10

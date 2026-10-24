@@ -1,0 +1,518 @@
+{
+  "source": "~/minit2i-torch",
+  "source_commit": "e54e15d7445d386e4c30663861c9d42288e87b66",
+  "source_snapshot": "working tree, including uncommitted and untracked files",
+  "files": [
+    {
+      "source": "LICENSE",
+      "ported": "LICENSE",
+      "source_sha256": "9f0f39cd914fe3ac90f735ba5cf7c85418900b2125c49928c956e087a1fd2aaa",
+      "ported_sha256": "9f0f39cd914fe3ac90f735ba5cf7c85418900b2125c49928c956e087a1fd2aaa",
+      "modified": false
+    },
+    {
+      "source": "configs/eval.yml",
+      "ported": "configs/eval.yml",
+      "source_sha256": "1c23a0817516fa6d3013440bcf3e61db545c13ba7a5af6d672462fc7545f2362",
+      "ported_sha256": "1c23a0817516fa6d3013440bcf3e61db545c13ba7a5af6d672462fc7545f2362",
+      "modified": false
+    },
+    {
+      "source": "configs/eval_hf_b16.yml",
+      "ported": "configs/eval_hf_b16.yml",
+      "source_sha256": "fdd4e5a2206ef022ba8e1cfcebe47892a50bd9b5cca1a4dd30b239dfb48c0d47",
+      "ported_sha256": "fdd4e5a2206ef022ba8e1cfcebe47892a50bd9b5cca1a4dd30b239dfb48c0d47",
+      "modified": false
+    },
+    {
+      "source": "configs/eval_hf_l16.yml",
+      "ported": "configs/eval_hf_l16.yml",
+      "source_sha256": "18b99b7d0a6da73c83dd8f0e280346deafaedfe43e620b4484656974d230bbe4",
+      "ported_sha256": "18b99b7d0a6da73c83dd8f0e280346deafaedfe43e620b4484656974d230bbe4",
+      "modified": false
+    },
+    {
+      "source": "configs/finetune.yml",
+      "ported": "configs/finetune.yml",
+      "source_sha256": "8ac36d83ecdeb72a5df0a787b17b4ee569aa6331e706620a1b21ef3c3eac63d3",
+      "ported_sha256": "8ac36d83ecdeb72a5df0a787b17b4ee569aa6331e706620a1b21ef3c3eac63d3",
+      "modified": false
+    },
+    {
+      "source": "configs/finetune_b16.yml",
+      "ported": "configs/finetune_b16.yml",
+      "source_sha256": "b3445066649169a3307e2a612a5f5984fcf6407c9f2d1a53588294e6060bb515",
+      "ported_sha256": "b3445066649169a3307e2a612a5f5984fcf6407c9f2d1a53588294e6060bb515",
+      "modified": false
+    },
+    {
+      "source": "configs/finetune_distmatch.yml",
+      "ported": "configs/finetune_distmatch.yml",
+      "source_sha256": "d1a59d851c8da0e63814f35c755414443c0a77c4553a1329bb8d6ffb60e38eae",
+      "ported_sha256": "d0e85726ac5c4a386de4ebf757822f6433afb69e0e864707df2828950720b08e",
+      "modified": true
+    },
+    {
+      "source": "configs/finetune_distmatch_cond_c64_b16_lr1e5_sinkhorn.yml",
+      "ported": "configs/finetune_distmatch_cond_c64_b16_lr1e5_sinkhorn.yml",
+      "source_sha256": "1044c3a759dd13b5b04bd858c0434e9987f001144de0ade74f390ab123381a94",
+      "ported_sha256": "5ffa1cff79024d30ca047cae96796cc2d37ca163678246c3377bc9a2ce81eb81",
+      "modified": true
+    },
+    {
+      "source": "configs/finetune_distmatch_cond_c64_b16_lr1e5_sinkhorn_from_minit2i_l16.yml",
+      "ported": "configs/finetune_distmatch_cond_c64_b16_lr1e5_sinkhorn_from_minit2i_l16.yml",
+      "source_sha256": "7a473896489d9ec57f5b4378678b0a9c032b0dc92f9edffca180c2f27f78707b",
+      "ported_sha256": "b93e58851be9d2aa1a45edeba0e3b5a7865f00c8ed280ab86ae4a73c5a626fc9",
+      "modified": true
+    },
+    {
+      "source": "configs/finetune_distmatch_smoke.yml",
+      "ported": "configs/finetune_distmatch_smoke.yml",
+      "source_sha256": "e65c73a355a601cfc045e406e982128e402246df3008ec15a87a0f6f835812dd",
+      "ported_sha256": "de981d59d1c8a155d80bbe66dae86fa040802cfbb9100c9c3f209e45649a811a",
+      "modified": true
+    },
+    {
+      "source": "configs/inference_b16_meanflow.yml",
+      "ported": "configs/inference_b16_meanflow.yml",
+      "source_sha256": "8f880619c5aa03bb7a86bcb90fef42655d9f4a78ed30e916a48562e6da47c10c",
+      "ported_sha256": "7da61f3e8523283ada7385d14ee6ec845ec95fa0cb69c3b3ac72b4c7efa26211",
+      "modified": true
+    },
+    {
+      "source": "configs/inference_b16_release.yml",
+      "ported": "configs/inference_b16_release.yml",
+      "source_sha256": "e0cd3ec37e8941942f55156b9894c2c17c5c12fd38a792a46f632cc03ffd18f8",
+      "ported_sha256": "949540fc22faacc912caa520e5c8fd466231ca43abe35716f67dabd40a6e13e9",
+      "modified": true
+    },
+    {
+      "source": "configs/inference_l16_release.yml",
+      "ported": "configs/inference_l16_release.yml",
+      "source_sha256": "03c3423f256760c499340c6bd8c03f081901cafb19a44afbd389fd65caec0b3f",
+      "ported_sha256": "963e6dc300b746536e08dfb574cab4437bf0e4209551051237d8d719d1de389f",
+      "modified": true
+    },
+    {
+      "source": "configs/pretrain.yml",
+      "ported": "configs/pretrain.yml",
+      "source_sha256": "40819b43846b3be18cba94d33c0bac336334f1730258afc2ecb62e9371e37548",
+      "ported_sha256": "40819b43846b3be18cba94d33c0bac336334f1730258afc2ecb62e9371e37548",
+      "modified": false
+    },
+    {
+      "source": "configs/pretrain_b16.yml",
+      "ported": "configs/pretrain_b16.yml",
+      "source_sha256": "f48d8bba42b086d73879014db7158aa973e72f14dbeae0037b6762063440e07f",
+      "ported_sha256": "f48d8bba42b086d73879014db7158aa973e72f14dbeae0037b6762063440e07f",
+      "modified": false
+    },
+    {
+      "source": "main.py",
+      "ported": "main.py",
+      "source_sha256": "1ecf12f437456d25f7aeba0e9f769ee67a2350c22ea49d9c721473d56779e27d",
+      "ported_sha256": "1ecf12f437456d25f7aeba0e9f769ee67a2350c22ea49d9c721473d56779e27d",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/__init__.py",
+      "ported": "mini_t2i/__init__.py",
+      "source_sha256": "d7ea7452e4e6883b40ef14932b4def4784579667ee893f2dd666f7bf449cffa5",
+      "ported_sha256": "d7ea7452e4e6883b40ef14932b4def4784579667ee893f2dd666f7bf449cffa5",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/config.py",
+      "ported": "mini_t2i/config.py",
+      "source_sha256": "c29eb37d4f5689d020b4b58a08299acb50384f8a5c286ffc9ed39416aa087988",
+      "ported_sha256": "c29eb37d4f5689d020b4b58a08299acb50384f8a5c286ffc9ed39416aa087988",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/data.py",
+      "ported": "mini_t2i/data.py",
+      "source_sha256": "904ead955e24551ed1ec8fb6a3a386cb3cca17f73676089a3b4547effe0c67bc",
+      "ported_sha256": "904ead955e24551ed1ec8fb6a3a386cb3cca17f73676089a3b4547effe0c67bc",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/datasets/__init__.py",
+      "ported": "mini_t2i/datasets/__init__.py",
+      "source_sha256": "8539d70ed7b51f7324dee670f3741eda1b435dd8874e3bb196cdbedd68065922",
+      "ported_sha256": "8539d70ed7b51f7324dee670f3741eda1b435dd8874e3bb196cdbedd68065922",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/datasets/finetune.py",
+      "ported": "mini_t2i/datasets/finetune.py",
+      "source_sha256": "0ecc0b1eac206dfa9ea0437d8078c31d783a59bab27592401387fcb15ff40b2d",
+      "ported_sha256": "0ecc0b1eac206dfa9ea0437d8078c31d783a59bab27592401387fcb15ff40b2d",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/datasets/interface.py",
+      "ported": "mini_t2i/datasets/interface.py",
+      "source_sha256": "e7ff9a423f2bb8edc70376abcb92075f4191a9d2ac3d9a796c68e24f6632a55d",
+      "ported_sha256": "e7ff9a423f2bb8edc70376abcb92075f4191a9d2ac3d9a796c68e24f6632a55d",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/diffusion.py",
+      "ported": "mini_t2i/diffusion.py",
+      "source_sha256": "eaadac1a8caecc55d7a57191bffcf1213577002e00dee02c2fb3d8415fe19231",
+      "ported_sha256": "eaadac1a8caecc55d7a57191bffcf1213577002e00dee02c2fb3d8415fe19231",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/distmatch_bridge.py",
+      "ported": "mini_t2i/distmatch_bridge.py",
+      "source_sha256": "477c9c9b486d32917cd14c0a5b2cff166332122fea800871e43376493c6c69ad",
+      "ported_sha256": "a7d8c33ea80d0e0dc5d23179913c06be74ee69db52a81a54027522290eb0c61a",
+      "modified": true
+    },
+    {
+      "source": "mini_t2i/distmatch_config.py",
+      "ported": "mini_t2i/distmatch_config.py",
+      "source_sha256": "28796fc05dd466d092cb3911a74be98d14c9b5e9783a3f0464863bc5092dccfb",
+      "ported_sha256": "918405a8874f00481f9d078333bc0149c5519a389925e311b48daad5fca9f664",
+      "modified": true
+    },
+    {
+      "source": "mini_t2i/distmatch_data.py",
+      "ported": "mini_t2i/distmatch_data.py",
+      "source_sha256": "46a062402d4c09d38219ef50d31e054804219fbe939b9c56a37c94ba5f2b3add",
+      "ported_sha256": "46a062402d4c09d38219ef50d31e054804219fbe939b9c56a37c94ba5f2b3add",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/distmatch_logging.py",
+      "ported": "mini_t2i/distmatch_logging.py",
+      "source_sha256": "baa95ddbfed9e335e21358f2017a591230f3c007eb300644caf4adcbc3e7680c",
+      "ported_sha256": "baa95ddbfed9e335e21358f2017a591230f3c007eb300644caf4adcbc3e7680c",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/distmatch_visualize.py",
+      "ported": "mini_t2i/distmatch_visualize.py",
+      "source_sha256": "e0bf8ad856f7b4c03cb2f446f91deeecd05f106d107491734d04297aa5d2bc11",
+      "ported_sha256": "e0bf8ad856f7b4c03cb2f446f91deeecd05f106d107491734d04297aa5d2bc11",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/dpg_data.py",
+      "ported": "mini_t2i/dpg_data.py",
+      "source_sha256": "73d304424c18a5794f4b317af775e96c99eaa49699073b46f047b0681ac069b5",
+      "ported_sha256": "73d304424c18a5794f4b317af775e96c99eaa49699073b46f047b0681ac069b5",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/eval_pipeline.py",
+      "ported": "mini_t2i/eval_pipeline.py",
+      "source_sha256": "2748f0e93baa97b25010802fa00e580934b388738ee65f47cefb27a7e4feb7a4",
+      "ported_sha256": "b8693c9d61965b46b6861a906cb7b0791bc50c20496fb1f4aa18d80143d97da3",
+      "modified": true
+    },
+    {
+      "source": "mini_t2i/evaluation/__init__.py",
+      "ported": "mini_t2i/evaluation/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/evaluation/geneval/LICENSE",
+      "ported": "mini_t2i/evaluation/geneval/LICENSE",
+      "source_sha256": "e6082bfcbdf460dd19f8c55cc261055414df2a278768b4991c5382d65be2b52a",
+      "ported_sha256": "e6082bfcbdf460dd19f8c55cc261055414df2a278768b4991c5382d65be2b52a",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/evaluation/geneval/__init__.py",
+      "ported": "mini_t2i/evaluation/geneval/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ported_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/evaluation/geneval/evaluate_images.py",
+      "ported": "mini_t2i/evaluation/geneval/evaluate_images.py",
+      "source_sha256": "93730b0bd07566d4a32c13c8bd522a7c0c6e01a4b326385959b5aab06e2de908",
+      "ported_sha256": "93730b0bd07566d4a32c13c8bd522a7c0c6e01a4b326385959b5aab06e2de908",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/evaluation/geneval/evaluate_images_mmdet3.py",
+      "ported": "mini_t2i/evaluation/geneval/evaluate_images_mmdet3.py",
+      "source_sha256": "f7d2246eea8dcd976bc7549498e0bd128a105b18f12150c58a980cd434e55cf3",
+      "ported_sha256": "f7d2246eea8dcd976bc7549498e0bd128a105b18f12150c58a980cd434e55cf3",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/evaluation/geneval/object_names.txt",
+      "ported": "mini_t2i/evaluation/geneval/object_names.txt",
+      "source_sha256": "608f6a0e5c8ca1c7a92b818430141fe268c85b7930b50f4160f1d65893b5bacd",
+      "ported_sha256": "608f6a0e5c8ca1c7a92b818430141fe268c85b7930b50f4160f1d65893b5bacd",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/evaluation/geneval/summary_scores.py",
+      "ported": "mini_t2i/evaluation/geneval/summary_scores.py",
+      "source_sha256": "11579ae8fee0fbd5976f65feed51b66d06baa90b006ff6d8952415b052f7d039",
+      "ported_sha256": "11579ae8fee0fbd5976f65feed51b66d06baa90b006ff6d8952415b052f7d039",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/fid.py",
+      "ported": "mini_t2i/fid.py",
+      "source_sha256": "bee2500ec20323554fd64dba27aa2ff1e9e18d594f5e09e6b70abbf506b41aa1",
+      "ported_sha256": "bee2500ec20323554fd64dba27aa2ff1e9e18d594f5e09e6b70abbf506b41aa1",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/mean_flow_model.py",
+      "ported": "mini_t2i/mean_flow_model.py",
+      "source_sha256": "bab2b3226fc3cb5d53d0becfb61e6a443d57943962df0e9739c4c3078b98302e",
+      "ported_sha256": "bab2b3226fc3cb5d53d0becfb61e6a443d57943962df0e9739c4c3078b98302e",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/model.py",
+      "ported": "mini_t2i/model.py",
+      "source_sha256": "e76c296a142dc8e12d965e87452f052165a9473fc1cffbba855c096776113607",
+      "ported_sha256": "e76c296a142dc8e12d965e87452f052165a9473fc1cffbba855c096776113607",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/multilayer_features.py",
+      "ported": "mini_t2i/multilayer_features.py",
+      "source_sha256": "0630433802981384b4f4508b43b5fc22c43bd8c2481322176f7743aa43c16463",
+      "ported_sha256": "0630433802981384b4f4508b43b5fc22c43bd8c2481322176f7743aa43c16463",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/one_step.py",
+      "ported": "mini_t2i/one_step.py",
+      "source_sha256": "24f77560f939ba0f67e8fa8e1a72a52bdd191fe8fd608d28714d8c04a6a318f3",
+      "ported_sha256": "24f77560f939ba0f67e8fa8e1a72a52bdd191fe8fd608d28714d8c04a6a318f3",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/scripts/evaluate_dpg_bench.py",
+      "ported": "mini_t2i/scripts/evaluate_dpg_bench.py",
+      "source_sha256": "52839e82d0441fc1b029eeb82153e8d0d9b232b80c588ab8e11bf30b2ea63295",
+      "ported_sha256": "52839e82d0441fc1b029eeb82153e8d0d9b232b80c588ab8e11bf30b2ea63295",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/scripts/generate_benchmark_images.py",
+      "ported": "mini_t2i/scripts/generate_benchmark_images.py",
+      "source_sha256": "6fd9b80828af267f086983c973dd78476834d24eebcf7ee40e01a1e75a19e215",
+      "ported_sha256": "1b63907ad30bb044d34ceda7d7ad325b4e1d2f798afe68e4699f814796f9b88f",
+      "modified": true
+    },
+    {
+      "source": "mini_t2i/scripts/generate_geneval_pt.py",
+      "ported": "mini_t2i/scripts/generate_geneval_pt.py",
+      "source_sha256": "e128ebc51128ac648b527c56622ce792e16069f1567c520c917d833069c5e2cc",
+      "ported_sha256": "6f6cc4d29d87dd38d939b7e83e4b2b20e5ffbf548ce78369e22791314c20e7ea",
+      "modified": true
+    },
+    {
+      "source": "mini_t2i/settings.py",
+      "ported": "mini_t2i/settings.py",
+      "source_sha256": "33887298b5dcba2881cf144cc4f22544ff7987ae64d216883cfd12f0facc3a93",
+      "ported_sha256": "e014337e69d30b5f054624ba0af6c422c20e1bfb51e7bb462a1dab36d26d0a61",
+      "modified": true
+    },
+    {
+      "source": "mini_t2i/sim_features.py",
+      "ported": "mini_t2i/sim_features.py",
+      "source_sha256": "6eea8ed49aef0a6f2ffe70fecdc35d27232cc2f956bab77c2b6a602442fef572",
+      "ported_sha256": "6eea8ed49aef0a6f2ffe70fecdc35d27232cc2f956bab77c2b6a602442fef572",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/sim_inception.py",
+      "ported": "mini_t2i/sim_inception.py",
+      "source_sha256": "7ac102a2558b0f36ef2967e716a4d270aa4a03924842cca6f12627909e3d2646",
+      "ported_sha256": "7ac102a2558b0f36ef2967e716a4d270aa4a03924842cca6f12627909e3d2646",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/train.py",
+      "ported": "mini_t2i/train.py",
+      "source_sha256": "b53a99b8ab5c026b69d1e7d067f8dbc90b0ec30024790fc2e5a91312637c2b02",
+      "ported_sha256": "b53a99b8ab5c026b69d1e7d067f8dbc90b0ec30024790fc2e5a91312637c2b02",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/train_distmatch.py",
+      "ported": "mini_t2i/train_distmatch.py",
+      "source_sha256": "99f6dca551aa1a8c1d7088bc250e2a24eb6bde8acfe8ad67c4c148b36b1a0f59",
+      "ported_sha256": "99f6dca551aa1a8c1d7088bc250e2a24eb6bde8acfe8ad67c4c148b36b1a0f59",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/utils.py",
+      "ported": "mini_t2i/utils.py",
+      "source_sha256": "6eae1bbac619f02674a462fad428eca222ab4a994647171c4308f053fc84429b",
+      "ported_sha256": "6eae1bbac619f02674a462fad428eca222ab4a994647171c4308f053fc84429b",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/visualize.py",
+      "ported": "mini_t2i/visualize.py",
+      "source_sha256": "ca8ee93b1cba5fbd99c68ecc72cbe90b499a6e0bf263eeaadac6b539f212b3d2",
+      "ported_sha256": "ca8ee93b1cba5fbd99c68ecc72cbe90b499a6e0bf263eeaadac6b539f212b3d2",
+      "modified": false
+    },
+    {
+      "source": "mini_t2i/x_replay.py",
+      "ported": "mini_t2i/x_replay.py",
+      "source_sha256": "cadf915305712731dba04fded596c45106af83d03d931de15c4aa20748a3ab2b",
+      "ported_sha256": "cadf915305712731dba04fded596c45106af83d03d931de15c4aa20748a3ab2b",
+      "modified": false
+    },
+    {
+      "source": "env/requirements.txt",
+      "ported": "requirements-overlay.txt",
+      "source_sha256": "5c406bf4c8c9555e582bf3ef64bd288c8f4c09cc23dcb8f2b11e645130b02b53",
+      "ported_sha256": "5c406bf4c8c9555e582bf3ef64bd288c8f4c09cc23dcb8f2b11e645130b02b53",
+      "modified": false
+    },
+    {
+      "source": "requirements.txt",
+      "ported": "requirements.txt",
+      "source_sha256": "9cd3791f8f1f8603f798423283c90f40ae361483721b83b4e9622573b6bdc9a8",
+      "ported_sha256": "9cd3791f8f1f8603f798423283c90f40ae361483721b83b4e9622573b6bdc9a8",
+      "modified": false
+    },
+    {
+      "source": "tests/test_cc12m_conversion.py",
+      "ported": "tests/test_cc12m_conversion.py",
+      "source_sha256": "bf0fcd5f6e67a6881abf081dd8fe2040411661d4cc2353483999fa30d8ca72d5",
+      "ported_sha256": "bf0fcd5f6e67a6881abf081dd8fe2040411661d4cc2353483999fa30d8ca72d5",
+      "modified": false
+    },
+    {
+      "source": "tests/test_diffusion.py",
+      "ported": "tests/test_diffusion.py",
+      "source_sha256": "797b2201d3ef40b525a73c3a0f4064e4beb9b292559bc44df4e4ef0d8eda28ff",
+      "ported_sha256": "797b2201d3ef40b525a73c3a0f4064e4beb9b292559bc44df4e4ef0d8eda28ff",
+      "modified": false
+    },
+    {
+      "source": "tests/test_distmatch_batch_probe.py",
+      "ported": "tests/test_distmatch_batch_probe.py",
+      "source_sha256": "b1660e9b492000a3dc6a0f06cab2db83ada4d685f31c8967bf7dae6ce2730de1",
+      "ported_sha256": "b1660e9b492000a3dc6a0f06cab2db83ada4d685f31c8967bf7dae6ce2730de1",
+      "modified": false
+    },
+    {
+      "source": "tests/test_distmatch_training.py",
+      "ported": "tests/test_distmatch_training.py",
+      "source_sha256": "5a1b7f6557b9d6eada92fee4931fc6650b52fe9e3a3901477e79703fc5b39857",
+      "ported_sha256": "5a1b7f6557b9d6eada92fee4931fc6650b52fe9e3a3901477e79703fc5b39857",
+      "modified": false
+    },
+    {
+      "source": "tests/test_evaluate_dpg_bench.py",
+      "ported": "tests/test_evaluate_dpg_bench.py",
+      "source_sha256": "0aa8f6f28095fe88519cf864c0ab2d076211b9d50b79a999a21305cd5d39a80e",
+      "ported_sha256": "0aa8f6f28095fe88519cf864c0ab2d076211b9d50b79a999a21305cd5d39a80e",
+      "modified": false
+    },
+    {
+      "source": "tests/test_generate_benchmark_images.py",
+      "ported": "tests/test_generate_benchmark_images.py",
+      "source_sha256": "09daf847cafb9ae2a3cbc23c4480f0eeffcbdbcb6f4a96987c5e40e0495e4601",
+      "ported_sha256": "09daf847cafb9ae2a3cbc23c4480f0eeffcbdbcb6f4a96987c5e40e0495e4601",
+      "modified": false
+    },
+    {
+      "source": "tests/test_mean_flow.py",
+      "ported": "tests/test_mean_flow.py",
+      "source_sha256": "73ec7d3707c6585d721c7f362a48540b704b193995f33811ab186a56d47b45e5",
+      "ported_sha256": "73ec7d3707c6585d721c7f362a48540b704b193995f33811ab186a56d47b45e5",
+      "modified": false
+    },
+    {
+      "source": "tests/test_multilayer_features.py",
+      "ported": "tests/test_multilayer_features.py",
+      "source_sha256": "add3271959efdcc7223a8f5b88043b914181d9982a3ac92a49cf7a089991b5ea",
+      "ported_sha256": "add3271959efdcc7223a8f5b88043b914181d9982a3ac92a49cf7a089991b5ea",
+      "modified": false
+    },
+    {
+      "source": "tests/test_utils.py",
+      "ported": "tests/test_utils.py",
+      "source_sha256": "f6f9d92817fc6d331e5e43e96a334c22adf02e0106b175b05753f8f31003ed58",
+      "ported_sha256": "f6f9d92817fc6d331e5e43e96a334c22adf02e0106b175b05753f8f31003ed58",
+      "modified": false
+    },
+    {
+      "source": "tools/cc12m_jsonl_to_parquet.py",
+      "ported": "tools/cc12m_jsonl_to_parquet.py",
+      "source_sha256": "250c97030b13ebcec0661e25fa9dffa8038662dc0fad069f7bf8e56d90745469",
+      "ported_sha256": "250c97030b13ebcec0661e25fa9dffa8038662dc0fad069f7bf8e56d90745469",
+      "modified": false
+    },
+    {
+      "source": "tools/cc12m_wds_to_chunks.py",
+      "ported": "tools/cc12m_wds_to_chunks.py",
+      "source_sha256": "9de765dc30fc6e63536f15a40210b58b3c807a9d9a98b7833ac7e4637b4f838d",
+      "ported_sha256": "9de765dc30fc6e63536f15a40210b58b3c807a9d9a98b7833ac7e4637b4f838d",
+      "modified": false
+    },
+    {
+      "source": "tools/finetune_wds_to_chunks.py",
+      "ported": "tools/finetune_wds_to_chunks.py",
+      "source_sha256": "5b5b203842615d3d02585fba3edbdcac29f135b3ee572bea4fc0785cd578158c",
+      "ported_sha256": "752be20184a6b0c318dc4e5ba4af08cc52ba1d1337144b47e176f55117c771ce",
+      "modified": true
+    },
+    {
+      "source": "tools/prepare_120k_mix_layout.py",
+      "ported": "tools/prepare_120k_mix_layout.py",
+      "source_sha256": "7053d5c92bb058b5a5312d962794e6ca09af1709d6e4f5edc8700350e60f1f9c",
+      "ported_sha256": "7053d5c92bb058b5a5312d962794e6ca09af1709d6e4f5edc8700350e60f1f9c",
+      "modified": false
+    },
+    {
+      "source": "tools/prepare_cc12m_chunks.py",
+      "ported": "tools/prepare_cc12m_chunks.py",
+      "source_sha256": "ea8fb3d0267745661ef306cc79b1ee6b344d53627bd25f1f8a041e6a5c4814df",
+      "ported_sha256": "ea8fb3d0267745661ef306cc79b1ee6b344d53627bd25f1f8a041e6a5c4814df",
+      "modified": false
+    },
+    {
+      "source": "tools/probe_distmatch_batch_size.py",
+      "ported": "tools/probe_distmatch_batch_size.py",
+      "source_sha256": "eda099235232281cc0c4119ff30c5f875bc6f77430587c1bd3e7a5d65ca2185e",
+      "ported_sha256": "eda099235232281cc0c4119ff30c5f875bc6f77430587c1bd3e7a5d65ca2185e",
+      "modified": false
+    },
+    {
+      "source": "tools/verify_cc12m_chunks.py",
+      "ported": "tools/verify_cc12m_chunks.py",
+      "source_sha256": "5144de50e9df343050c2da8fa928849b6452a88ead41f972d55a9a82394ebbe7",
+      "ported_sha256": "5144de50e9df343050c2da8fa928849b6452a88ead41f972d55a9a82394ebbe7",
+      "modified": false
+    },
+    {
+      "source": "tools/verify_cc12m_download.py",
+      "ported": "tools/verify_cc12m_download.py",
+      "source_sha256": "6e12a2804f202470195ada966010129a23c63ca6bd2946fd30d8cfc7e72d6820",
+      "ported_sha256": "6e12a2804f202470195ada966010129a23c63ca6bd2946fd30d8cfc7e72d6820",
+      "modified": false
+    },
+    {
+      "source": "tools/verify_finetune_chunks.py",
+      "ported": "tools/verify_finetune_chunks.py",
+      "source_sha256": "cc5a57e77098107d5e2e607350fda552194d36e33cc1e18ff7420af78f9fe7f1",
+      "ported_sha256": "252f59aa9fdac34cb7c3419a8ff3117a07dafd8cdccbbce4ed28eeb6f98a885a",
+      "modified": true
+    }
+  ]
+}
