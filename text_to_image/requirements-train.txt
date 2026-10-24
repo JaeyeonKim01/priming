@@ -1,0 +1,19 @@
+# Install a compatible CUDA PyTorch/torchvision pair separately for your system.
+# Versions below match the local Python 3.11 runtime used for the CPU checks.
+numpy==1.26.4
+scipy==1.17.1
+PyYAML==6.0.3
+tqdm==4.70.0
+transformers==4.40.2
+huggingface-hub==0.36.0
+sentencepiece==0.2.0
+datasets==2.18.0
+pyarrow==17.0.0
+webdataset==0.2.111
+Pillow==12.3.0
+timm==1.0.29
+wandb==0.29.0
+safetensors==0.8.0
+pandas==3.0.5
+# Optional for scheduled FID evaluation in reconstruction training:
+# pytorch-fid

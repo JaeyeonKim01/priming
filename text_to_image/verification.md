@@ -18,6 +18,7 @@ documented path/dependency adaptations.
 | Full copied test suite collection | 63 tests collected without import errors |
 | Read-only dataset check | CC12M: 6,933,021 samples / 6,771 chunks; fine-tuning: 120,000 / 118 |
 | B/16 training data loaders | Pretraining and fine-tuning each yielded `[2,3,512,512]` uint8 images and `[2,256]` int64 token IDs |
+| Data-free CPU smoke using Priming's environment | One-step MM-JiT forward and backward passed |
 
 Both dry runs found 120,000 caption/example IDs, 83,951 distinct caption
 strings, and dataset fingerprint
@@ -29,6 +30,12 @@ The login environment has no CUDA device. Model sampling, GPU training,
 full-size memory use, and benchmark scores were not checked here. The source
 report's four-GPU smoke test is historical evidence for its own checkout, not
 a GPU validation of this port.
+
+The historical T2I overlay has Transformers 4.40.2 and Hugging Face Hub
+0.36.0. In this workspace, importing the installed Diffusers 0.40.0 pipeline
+with that overlay fails because Diffusers expects `get_cached_repo_tree` from
+Hub. Multi-step Hub inference therefore needs a separately checked dependency
+set. The training imports and CPU tests passed in the overlay.
 
 The dataset check compared contiguous chunk filenames, completion markers,
 prior full verification records, dimensions, tokenizer, and current file sizes.

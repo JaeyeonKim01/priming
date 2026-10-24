@@ -20,6 +20,12 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 
 ## News
 
+- **October 24, 2026:** An initial text-to-image port is available under
+  [`text_to_image/`](text_to_image/README.md), with a [dataset preparation guide](text_to_image/DATASETS.md).
+  Copied source CPU tests and a dry run against the local B/16 checkpoint and
+  120K dataset pass. Full T2I training needs external data, DistMatch, and model
+  assets; GPU training and benchmark scoring have not been rerun in this checkout.
+
 - **October 21, 2026:** RT-1 and Bridge world modeling experiments are available
   in [`world_modeling/`](world_modeling/README.md).
 
@@ -38,11 +44,6 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
   including evaluations; previous runs used 8 H200s across four nodes, new runs
   used the GPUs above across two nodes. Speedups use matched warmed-update benchmarks.
 
-- **October 24, 2026:** An initial text-to-image port is available under
-  [`text_to_image/`](text_to_image/README.md). Copied source CPU tests and a
-  dry run against the local B/16 checkpoint and 120K dataset pass; full GPU
-  training and benchmark scoring have not been rerun in this checkout.
-
 ## Getting started
 
 Clone this repository as `Priming`; all commands below start there.
@@ -60,6 +61,7 @@ python scripts/check_environment.py
 - [Data and model assets](docs/assets.md): processed ImageNet, [encoder configurations and paths](docs/assets.md#encoder-configuration-and-paths), OT calibration, and precomputed evaluation statistics.
 - [Checkpoint downloads](docs/checkpoints.md): download and verify the released models. Sampling needs only a generator checkpoint.
 - [Workflow and checks](docs/validation.md): end-to-end training, startup checks, and numerical tests.
+- [Text-to-image dataset preparation](text_to_image/DATASETS.md): CC12M and 120K download, conversion, and verification.
 
 ImageNet pretraining and post-training require **eight GPUs** and approximately
 **259 GB** for the prepared dataset, plus model assets and training outputs.
@@ -225,6 +227,48 @@ Prepare the dataset and encoders using the [asset guide](docs/assets.md) before
 training. Start with the [two-update training check](docs/validation.md#check-the-training-setup-before-a-full-run)
 to verify pretraining → post-training on your setup. See the stage guides for
 custom initialization and checkpoint recovery.
+
+</details>
+
+<details>
+<summary><strong>Text-to-image: reconstruction and one-step post-training</strong></summary>
+
+Use a separate Python 3.11 T2I environment and set `T2I_STORAGE_ROOT` to your
+external storage. Follow the [dataset guide](text_to_image/DATASETS.md) to build
+and verify CC12M chunks for B/16 pretraining and the materialized 120K mix for
+fine-tuning. The [T2I guide](text_to_image/README.md) covers environment setup,
+other model variants, sampling, and evaluation.
+
+```bash
+export T2I_STORAGE_ROOT=/absolute/path/to/t2i-storage
+
+torchrun --standalone --nproc_per_node=8 text_to_image/main.py train \
+  --config-file text_to_image/configs/pretrain_b16.yml
+
+torchrun --standalone --nproc_per_node=8 text_to_image/main.py train \
+  --config-file text_to_image/configs/finetune_b16.yml \
+  --resume-from /path/to/pretrain/checkpoint.pt --no-auto-resume
+```
+
+One-step post-training starts from the reconstruction checkpoint and requires
+the external DistMatch package and frozen SIM feature encoders. Check the
+checkpoint and 120K data first with `--dry-run`, then launch the GPU job:
+
+```bash
+export DISTMATCH_SOURCE=/absolute/path/to/distmatch
+
+python text_to_image/main.py train-distmatch \
+  --config text_to_image/configs/finetune_distmatch.yml \
+  --init-from /path/to/reconstruction/checkpoint.pt --dry-run
+
+torchrun --standalone --nproc_per_node=8 text_to_image/main.py train-distmatch \
+  --config text_to_image/configs/finetune_distmatch.yml \
+  --init-from /path/to/reconstruction/checkpoint.pt \
+  --output-dir /path/to/posttrain/run
+```
+
+The T2I port has passed CPU checks and a local-data dry run. GPU training and
+benchmark scoring remain to be checked in this checkout.
 
 </details>
 
