@@ -35,11 +35,58 @@ For full T2I work, prepare the following external inputs:
 | One-step post-training | A reconstruction checkpoint, the 120K mixture, DistMatch source, and frozen SIM encoder weights |
 | GenEval / DPG-Bench | Generated images, benchmark prompts, detector/VQA weights, and their optional Python dependencies |
 
-No Priming T2I one-step checkpoint download or public DistMatch source location
-is supplied in this checkout. A researcher starting with only this clone can
-run the CPU check, but cannot reproduce the one-step T2I results until those
-inputs are made available. The [MiniT2I model card](https://huggingface.co/MiniT2I/MiniT2I)
-documents separate multi-step baseline inference with Diffusers.
+The released Priming T2I checkpoints below support inference with this code.
+Training still requires external data, frozen feature encoders, and DistMatch;
+a public DistMatch source location is not supplied in this checkout. The
+[MiniT2I model card](https://huggingface.co/MiniT2I/MiniT2I) documents separate
+multi-step baseline inference with Diffusers.
+
+## Released checkpoints
+
+Two native MM-JiT-B/16 checkpoints for 512×512 generation are hosted at
+[jaykim1102/priming](https://huggingface.co/jaykim1102/priming/tree/main/t2i).
+
+| Checkpoint | Completed training |
+| --- | --- |
+| [Pre-OT](https://huggingface.co/jaykim1102/priming/blob/main/t2i/priming_b_lognorm/pre_ot/checkpoint.pt) | 250k CC12M reconstruction updates + 40k curated reconstruction updates |
+| [Post-OT](https://huggingface.co/jaykim1102/priming/blob/main/t2i/priming_b_lognorm/post_ot_20k/checkpoint.pt) | The same initializer + 20k distributional OT updates |
+
+Both files contain online (`model`) and EMA weights plus architecture and
+sampling config. They support inference and initialization of new training
+runs; optimizer and RNG states are omitted. The pre-OT online weights are the
+exact initializer for the post-OT run. Its stored step counter is 40k within
+the second reconstruction phase, or 290k reconstruction updates in total.
+File sizes, SHA256 hashes, and the pinned Hub revision are in
+[`checkpoints.json`](checkpoints.json).
+
+After installing the T2I environment below, run from the Priming repository root:
+
+```bash
+hf download jaykim1102/priming \
+  --revision 3601fbd3babf5f9f83656490a8188b2b5e9e8818 \
+  --include 't2i/*' --local-dir ./outputs/t2i/weights
+
+python text_to_image/sample.py \
+  --checkpoint ./outputs/t2i/weights/t2i/priming_b_lognorm/post_ot_20k/checkpoint.pt \
+  --weights model --steps 1 --cfg-scale 1 --attention-impl sdpa --amp-dtype bf16 \
+  --prompt 'A red panda wearing a blue baseball cap.' \
+  --seed 123 --output-dir ./outputs/t2i/post_ot_sample
+```
+
+Sampling requires CUDA and the separately downloaded `google/flan-t5-large`
+text encoder. Explicitly select `--weights model` for the reported online
+results; the sampling script otherwise defaults to EMA. To inspect the
+initializer with the same settings, replace `post_ot_20k` with `pre_ot` and
+use a different output directory. The initializer's one-step samples do not
+represent the finished generator's quality. For new OT training, use the
+pre-OT file as `--init-from` with `init_weights: model`.
+
+The extended 20k post-OT run scores **0.8280 GenEval** and **82.71 DPG-Bench**
+with online weights, one network evaluation, CFG=1, and noise scale 2.
+EMA scores are 0.8257 and 82.59, respectively. These are the extended run's
+results, distinct from the paper's original checkpoint scores. See the
+[HF release guide](https://huggingface.co/jaykim1102/priming/blob/main/t2i/README.md)
+for evaluation details and export compatibility information.
 
 ## Environment
 

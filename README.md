@@ -20,6 +20,13 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 
 ## News
 
+- **November 4, 2026:** Two text-to-image checkpoints are now available on
+  [Hugging Face](https://huggingface.co/jaykim1102/priming/tree/main/t2i): the
+  reconstruction initializer (250k + 40k updates) and the model after 20k OT
+  updates. The post-OT online weights achieve **0.8280 GenEval** and **82.71
+  DPG-Bench** with one network evaluation and CFG=1. See the
+  [download and sampling instructions](text_to_image/README.md#released-checkpoints).
+
 - **October 24, 2026:** An initial text-to-image port is available under
   [`text_to_image/`](text_to_image/README.md), with a [dataset preparation guide](text_to_image/DATASETS.md).
   Copied source CPU tests and a dry run against the local B/16 checkpoint and

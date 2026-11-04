@@ -1,0 +1,29 @@
+{
+  "repo_id": "jaykim1102/priming",
+  "revision": "3601fbd3babf5f9f83656490a8188b2b5e9e8818",
+  "format": "native_pytorch",
+  "model": "MM-JiT-B/16",
+  "image_size": 512,
+  "text_encoder": "google/flan-t5-large",
+  "included_weights": ["model", "ema"],
+  "recommended_weights": "model",
+  "optimizer_included": false,
+  "checkpoints": {
+    "pre_ot": {
+      "file": "t2i/priming_b_lognorm/pre_ot/checkpoint.pt",
+      "sha256": "7b145ab806dd5a7dc4f9573daa7448819ddd0e3def96afc642b73427f35cf67a",
+      "bytes": 2065244332,
+      "checkpoint_step": 40000,
+      "reconstruction_updates": 290000,
+      "ot_updates": 0
+    },
+    "post_ot_20k": {
+      "file": "t2i/priming_b_lognorm/post_ot_20k/checkpoint.pt",
+      "sha256": "974609abcaf6e07d9ad5a7e2f5042824b08b85220d0402df9e5e4f143d8c5993",
+      "bytes": 2065244396,
+      "checkpoint_step": 20000,
+      "reconstruction_updates": 290000,
+      "ot_updates": 20000
+    }
+  }
+}
