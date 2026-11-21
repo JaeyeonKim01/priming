@@ -1,4 +1,27 @@
-# Port verification, 2026-10-24
+# Verification
+
+## Bundled DistMatch, 2026-11-21
+
+The bundled `external/distmatch/src/distmatch/` Python files and `py.typed`
+match the local `~/distmatch/src/distmatch/` source byte for byte. A fresh T2I
+import without `DISTMATCH_SOURCE` loads the bundled version 0.6.0. Setting
+`DISTMATCH_SOURCE=~/distmatch` still selects that explicit source.
+
+| Check | Result |
+| --- | --- |
+| DistMatch objectives, features, and normalization source tests against the bundled package | 34 passed |
+| DistMatch Fréchet source tests against the bundled package | 9 passed, including two-process Gloo outside the network sandbox |
+| World-modeling core tests with the bundled source | 7 passed |
+| Complete `text_to_image/tests` suite with the bundled source and no override | 63 passed |
+| `train-distmatch --help` without `DISTMATCH_SOURCE` | Passed |
+
+The full T2I suite used Python 3.11.16, PyTorch 2.6.0+cu124, and one CPU thread
+per process. It produced only upstream deprecation and intentionally corrupt
+WebDataset sample warnings. This verifies imports, CPU loss and gradient paths,
+replay, checkpoint resume, and other local T2I behavior. It does not establish
+GPU training throughput or checkpoint reproduction quality.
+
+## Initial port, 2026-10-24
 
 The port was checked with Python 3.11.16, PyTorch 2.6.0+cu124,
 Transformers 4.40.2, and external DistMatch 0.6.0. The source files came from

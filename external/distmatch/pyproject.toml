@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "distmatch"
+version = "0.6.0"
+description = "Online multi-feature matching objectives and stable Frechet evaluation"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = ["torch>=2.1"]
+
+[project.optional-dependencies]
+evaluation = ["numpy>=1.24"]
+images = ["torchvision", "Pillow"]
+models = ["timm>=1.0"]
+datasets = ["datasets", "Pillow", "torchvision"]
+ost = ["omegaconf", "timm>=1.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+distmatch = ["py.typed"]

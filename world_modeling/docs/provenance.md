@@ -13,8 +13,9 @@ and migrated destinations. Shared stage entrypoints, configuration handling,
 checkpoint recovery, explicit variant selection, and the DistMatch loader are
 migration code.
 
-DistMatch is an external dependency loaded from the user-provided source path,
-not vendored here. Its fingerprint is recorded in post-training checkpoints.
+DistMatch 0.6.0 is bundled under `external/distmatch` and loaded from that
+default path, or from a user-provided `DISTMATCH_SOURCE` override. Its
+fingerprint is recorded in post-training checkpoints.
 The migration assessment documents the recovered 0.6.0 versus historical 0.4.0
 version gap. Model weights, data, DINOv3, pytorch-fid, and the I3D detector remain
 external assets with their own provenance and license terms.

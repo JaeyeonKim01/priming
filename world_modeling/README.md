@@ -14,12 +14,13 @@ Use Python 3.11 with Priming's PyTorch 2.6 / CUDA 12.4 environment and install
 
 ```bash
 export WORLD_MODEL_STORAGE=/path/to/world-model-assets
-export DISTMATCH_SOURCE=/path/to/distmatch/src
 ```
 
 The asset root contains `data/`, `models/`, `libraries/`, and `cache/`.
-DistMatch is loaded from the explicit source path. These runs use version 0.6.0;
-historical checkpoints record 0.4.0. See the [recipe and asset details](docs/migration.md)
+DistMatch defaults to the bundled [`external/distmatch`](../external/distmatch/)
+source. Set `DISTMATCH_SOURCE` to another compatible source if needed. These
+runs use version 0.6.0; historical checkpoints record 0.4.0. See the
+[recipe and asset details](docs/migration.md)
 and [source provenance](docs/provenance.md).
 
 ## Training and evaluation
@@ -62,7 +63,7 @@ export WORLD_MODEL_PYTHON=/path/to/environment/bin/python
 export WORLD_MODEL_RUN=/path/to/new/production
 "$WORLD_MODEL_PYTHON" -m world_modeling.scripts.production prepare \
   --run-root "$WORLD_MODEL_RUN" --storage "$WORLD_MODEL_STORAGE" \
-  --distmatch "$DISTMATCH_SOURCE"
+  --distmatch external/distmatch
 for WORLD_MODEL_DATASET in rt1 bridge; do
   export WORLD_MODEL_DATASET
   sbatch --job-name="world-prod-$WORLD_MODEL_DATASET" \

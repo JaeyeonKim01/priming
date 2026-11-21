@@ -32,12 +32,12 @@ For full T2I work, prepare the following external inputs:
 | --- | --- |
 | Native checkpoint sampling | A compatible MiniT2I training or one-step checkpoint and FLAN-T5-Large weights |
 | Reconstruction training | CC12M tensor chunks or the 120K mixture, plus FLAN-T5-Large weights |
-| One-step post-training | A reconstruction checkpoint, the 120K mixture, DistMatch source, and frozen SIM encoder weights |
+| One-step post-training | A reconstruction checkpoint, the 120K mixture, and frozen SIM encoder weights |
 | GenEval / DPG-Bench | Generated images, benchmark prompts, detector/VQA weights, and their optional Python dependencies |
 
 The released Priming T2I checkpoints below support inference with this code.
-Training still requires external data, frozen feature encoders, and DistMatch;
-a public DistMatch source location is not supplied in this checkout. The
+Training still requires external data and frozen feature encoder weights;
+DistMatch 0.6.0 is included under [`external/distmatch`](../external/distmatch/). The
 [MiniT2I model card](https://huggingface.co/MiniT2I/MiniT2I) documents separate
 multi-step baseline inference with Diffusers.
 
@@ -112,13 +112,12 @@ Hub inference should use its own compatible dependency set; the historical T2I
 overlay cannot import the Diffusers 0.40.0 available in this workspace because
 their Hugging Face Hub APIs differ.
 
-Post-training also requires the external DistMatch package. Set
-`DISTMATCH_SOURCE` to its repository root, its `src/` directory, or the
-`src/distmatch/` package directory. The package is not copied into Priming.
+Post-training loads the bundled DistMatch package automatically. To select
+another compatible copy, set `DISTMATCH_SOURCE` to its repository root, its
+`src/` directory, or the `src/distmatch/` package directory.
 
 ```bash
 export T2I_STORAGE_ROOT=/path/to/t2i-storage
-export DISTMATCH_SOURCE=/path/to/distmatch
 python text_to_image/main.py --help
 ```
 
@@ -206,7 +205,7 @@ checkpoint resume, and benchmark sampling. The [verification record](verificatio
 lists the checks run for this port. From a T2I environment:
 
 ```bash
-PYTHONPATH="$PWD/text_to_image" DISTMATCH_SOURCE=/path/to/distmatch \
+PYTHONPATH="$PWD/text_to_image" \
   python -m pytest -q text_to_image/tests/test_diffusion.py \
   text_to_image/tests/test_mean_flow.py \
   text_to_image/tests/test_distmatch_training.py \

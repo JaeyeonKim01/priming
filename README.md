@@ -20,6 +20,9 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 
 ## News
 
+- **November 21, 2026:** DistMatch 0.6.0 is included in this checkout for
+  text-to-image one-step post-training. See the [T2I training guide](text_to_image/README.md).
+
 - **November 4, 2026:** Two text-to-image checkpoints are now available on
   [Hugging Face](https://huggingface.co/jaykim1102/priming/tree/main/t2i): the
   reconstruction initializer (250k + 40k updates) and the model after 20k OT
@@ -30,8 +33,8 @@ Official implementation of [Are We Overthinking One-Step Generation?](https://ar
 - **October 24, 2026:** An initial text-to-image port is available under
   [`text_to_image/`](text_to_image/README.md), with a [dataset preparation guide](text_to_image/DATASETS.md).
   Copied source CPU tests and a dry run against the local B/16 checkpoint and
-  120K dataset pass. Full T2I training needs external data, DistMatch, and model
-  assets; GPU training and benchmark scoring have not been rerun in this checkout.
+  120K dataset pass. Full T2I training needs external data and model assets;
+  GPU training and benchmark scoring have not been rerun in this checkout.
 
 - **October 21, 2026:** RT-1 and Bridge world modeling experiments are available
   in [`world_modeling/`](world_modeling/README.md).
@@ -257,13 +260,12 @@ torchrun --standalone --nproc_per_node=8 text_to_image/main.py train \
   --resume-from /path/to/pretrain/checkpoint.pt --no-auto-resume
 ```
 
-One-step post-training starts from the reconstruction checkpoint and requires
-the external DistMatch package and frozen SIM feature encoders. Check the
-checkpoint and 120K data first with `--dry-run`, then launch the GPU job:
+One-step post-training starts from the reconstruction checkpoint and uses the
+bundled [DistMatch 0.6.0 package](external/distmatch/) plus frozen SIM feature
+encoders. Check the checkpoint and 120K data first with `--dry-run`, then launch
+the GPU job:
 
 ```bash
-export DISTMATCH_SOURCE=/absolute/path/to/distmatch
-
 python text_to_image/main.py train-distmatch \
   --config text_to_image/configs/finetune_distmatch.yml \
   --init-from /path/to/reconstruction/checkpoint.pt --dry-run
