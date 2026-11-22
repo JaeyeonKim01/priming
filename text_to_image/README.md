@@ -175,6 +175,64 @@ four-GPU smoke test checked replay, finite gradients, checkpointing, and resume;
 it did not establish full-run quality. Size a new run with a bounded GPU check
 before relying on a long training job.
 
+## Reproducing the released 20k OT run
+
+[`configs/post_ot_20k.yaml`](configs/post_ot_20k.yaml) records the settings
+from the released run's saved 4k config and 8k/20k resume records. It starts
+from the released **pre-OT online weights**, with a fresh OT optimizer and EMA.
+Architecture, 512×512 resolution, FLAN-T5-Large, and noise scale 2 are read
+from that checkpoint. Prepare the same 120K mixture using [DATASETS.md](DATASETS.md).
+
+The original run used **16 H200 GPUs**, with `n_c: 4` captions per rank and
+`b: 16` generated images per caption in each of the live and detached
+populations: 64 captions, 64 real images, and 1,024 images in **each** generated
+population globally. Matching is conditional and rank-local. Changing rank
+count changes these global populations; keep 16 ranks to match this recipe.
+Generator replay uses chunks of 32 images per rank.
+
+Install the [T2I environment](#environment). The saved run records PyTorch
+2.6.0+cu124, Transformers 4.40.2, and **timm 1.0.27**; the general port
+requirements pin a later timm, so use `python -m pip install timm==1.0.27`
+to match this run. DistMatch is bundled in `external/distmatch` and loads
+automatically when `DISTMATCH_SOURCE` is unset. SIM uses the named pretrained
+SigLIP SO400M and MAE-L weights plus TF-FID Inception. The historical Inception
+file SHA256 is `6726825d0af5f729cebd5821db510b11b1cfad8faad88a03f1befd49fb9129b2`;
+`sim_weights: {}` uses the same public pretrained sources through cache/download.
+
+```bash
+export T2I_STORAGE_ROOT=/absolute/path/to/t2i-storage
+hf download jaykim1102/priming \
+  --revision 3601fbd3babf5f9f83656490a8188b2b5e9e8818 \
+  --include 't2i/priming_b_lognorm/pre_ot/*' \
+  --local-dir "$T2I_STORAGE_ROOT/checkpoints"
+
+WORLD_SIZE=16 python text_to_image/main.py train-distmatch \
+  --config text_to_image/configs/post_ot_20k.yaml --dry-run
+
+# Example for one 8-GPU node in a two-node job; run on BOTH nodes.
+# Set NODE_RANK to 0/1 and MASTER_ADDR to the address of node 0.
+torchrun --nnodes=2 --nproc_per_node=8 \
+  --node_rank="$NODE_RANK" --master_addr="$MASTER_ADDR" --master_port=29500 \
+  text_to_image/main.py train-distmatch \
+  --config text_to_image/configs/post_ot_20k.yaml
+```
+
+The historical job ran 0→4k, resumed 4k→8k, then resumed 8k→20k with
+unchanged matching and optimizer settings. LR stays at `1e-5` with no warmup
+or decay; `num_steps` is the total target, not an additional update count.
+The YAML supports a single 20k run. To follow the original stage boundaries,
+add `--num-steps 4000` to the first launch, then launch with
+`--resume-from /path/to/run/checkpoints/checkpoint_004000.pt --num-steps 8000`,
+and finally `--resume-from /path/to/run/checkpoints/checkpoint_008000.pt`
+(the YAML already targets 20k). Retain the same world size, data and encoder
+identities when resuming. The Hub exports omit optimizer/RNG state: use `pre_ot`
+as initialization, and your own full trainer checkpoints for resumption.
+
+This reproduces the recorded training recipe; a fresh run is not guaranteed
+bit-identical across datasets, hardware or library versions. Evaluate **online**
+weights (`--weights model`), one step, CFG=1, noise scale 2 to match the released
+20k results (GenEval 0.8280; DPG-Bench 82.71).
+
 ## Sampling and evaluation
 
 `sample.py` uses the source benchmark sampler. It reads the architecture from a

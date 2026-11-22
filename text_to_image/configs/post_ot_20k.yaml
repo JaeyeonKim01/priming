@@ -1,0 +1,65 @@
+# Released Priming MM-JiT-B/16 post_ot_20k training recipe.
+# Use 16 ranks: 4 captions/rank = 64 captions globally; B=16 per caption
+# in EACH generated population = 1024 live + 1024 detached samples globally.
+# Architecture, FLAN-T5-Large, image_size=512 and noise_scale=2 come from pre_ot.
+# Historical run: 0->4000->8000->20000, resuming full trainer checkpoints.
+# See ../README.md#reproducing-the-released-20k-ot-run for setup and launch.
+init_from: ${T2I_CHECKPOINT_ROOT}/t2i/priming_b_lognorm/pre_ot/checkpoint.pt
+init_weights: model
+resume_from: null
+output_dir: ${T2I_OUTPUT_ROOT}/train/priming_b_lognorm_post_ot_20k
+dataset_dir: ${T2I_FINETUNE_TENSOR_ROOT}
+expected_samples: 120000
+
+n_c: 4
+n_pos: 1
+b: 16
+input_times: null                 # One-step x prediction at t=1.
+samples_per_time: null
+time_matching: joint
+use_replay: true
+replay_microbatch_size: 32
+verify_replay: false
+mode: conditional                # Matching is per caption and local to its rank.
+objective: sinkhorn
+kernel: laplacian                 # MMD-only setting; inactive for Sinkhorn.
+bandwidth: 0.05                   # MMD-only setting; inactive for Sinkhorn.
+sinkhorn_epsilon: 0.05
+sinkhorn_max_iter: 10
+sinkhorn_tolerance: 0.000001
+sinkhorn_strict: false
+
+feature_set: sim
+feature_pooling: sim
+feature_weights: {siglip: 1.0, mae: 1.0, inception: 1.0}
+sim_weights: {}                   # Download/cache the named pretrained SIM weights.
+feature_microbatch_size: 8
+feature_checkpointing: true
+max_pairwise_elements: 16000000
+
+seed: 42
+num_steps: 20000
+warmup_steps: 0                   # Constant LR throughout all three historical stages.
+learning_rate: 0.00001
+adam_beta2: 0.95                  # Adam beta1 is fixed to 0.9 by the trainer.
+weight_decay: 0.0
+max_grad_norm: 1.0
+ema_decay: 0.999
+amp_dtype: bf16
+device: cuda
+attention_impl: sdpa
+mean_flow_omega: 1.0
+num_workers: 1
+dataloader_prefetch: 2
+log_every: 50
+ckpt_every: 1000
+vis_every: 0
+vis_at_start: false
+visualization_seed: 123
+visualization_samples_per_prompt: 4
+visualization_batch_size: 4
+visualization_prompts:
+  - A red panda wearing a blue baseball cap.
+  - A watercolor painting of a lighthouse in a storm.
+  - A glass teapot filled with yellow flowers on a wooden table.
+  - An astronaut riding a horse through a snowy forest.
